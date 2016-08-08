@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+.container {
+  width: 100%;
+}
+
+.row {
+	margin: 2% 10% 2% 10%;
+}
+
+.nearest-header-nav>* {
+  float: right;
+  margin-top: 3%;
+}
+
+.nearest-header-menu-btn {
+  float: left;
+  margin-right: 1%;
+}
+
+.nearest-header-menu {
+  position: absolute;
+  z-index: 99;
+  padding: 2% 0px 1% 0px;
+  /* background-image: repeating-linear-gradient(to bottom right, #3f95ea 0%, #52d3aa 100%); */
+}
+
+.nearest-header-logo {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.nearest-map-infowindow {
+	margin-bottom: 0 !important;
+}
+
+.fh5co-person {
+	padding: 2% 2% 0 2%;
+}
+
+/* Product Detail Item Border */
+.nearest-work-list-border {
+	border: 2px solid black;
+}
+
+/* PageNavigation Hover Background */
+.pagenav :hover {
+	background-color: #66cdaa !important;
+}

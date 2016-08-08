@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+
+
+
+.loginForm{
+  margin: 0 40% 0 40%;
+}
+
+.login-form-box {
+	height: 100%;
+}
+
+.login-form-top {
+  overflow: hidden;
+  padding: 0 25px 15px 25px;
+  background: #444;
+  background: rgba(0, 0, 0, 0.35);
+  -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+  text-align: left;
+}
+
+.login-form-top-left {
+  width: 100%;
+  padding-top: 25px;
+}
+
+.login-form-top-left h3 { margin-top: 0; color: #fff; text-align: center;}
+.login-form-top-left p { opacity: 0.8; color: #fff; }
+
+.login-form-top-right {
+  float: left;
+  width: 25%;
+  padding-top: 5px;
+  font-size: 66px;
+  color: #fff;
+  line-height: 100px;
+  text-align: right;
+  opacity: 0.3;
+}
+
+.login-form-bottom {
+  padding: 30px 25px 0px 25px;
+  background: #444;
+  background: rgba(0, 0, 0, 0.3);
+  -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+  text-align: left;
+}
+
+.login-form-id-save {
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+.id-save {
+	float: left;
+}
+
+.id-save > label  {
+	color:#fff;
+	font-weight: 200 !important;
+	font-size: 1.4rem;
+}
+
+.find-id-password {
+  float: right;
+  color: #fff;
+}
+
+.find-id-password > a {
+	text-decoration: none; 
+	color: #e7e7e7 !important;
+	font-size: 1.4rem;
+}
+
+.login-form-group > .login-form-control{
+  height: 40px;	
+}
+
+.login-form > .btn {
+	padding: 10px 12px;	
+}
+
+.login-form > .login-form-group {
+	margin-bottom: 20px;
+}
+
+.login-form-bottom form textarea {
+  height: 100px;
+}
+
+.login-form-bottom form button.btn {
+  width: 100%;
+  background: #19b9e7;
+}
+
+.login-form-bottom form button.btn {
+   color: #fff;
+}
+
+.login-form-bottom form .input-error {
+  border-color: #19b9e7;
+}
+

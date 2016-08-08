@@ -1,0 +1,25 @@
+{
+  "name": "webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "bootstrap-datetimepicker": "0.0.7",
+    "google-maps": "^3.2.1",
+    "handlebars": "^4.0.5",
+    "jquery": "^1.12.4",
+    "jquery-countto": "^1.2.0",
+    "jquery-easing": "0.0.1",
+    "jquery-waypoints": "^2.0.5",
+    "magnific-popup": "^1.1.0",
+    "npm-modernizr": "^2.8.3",
+    "respondjs": "^0.3.0"
+  }
+}
