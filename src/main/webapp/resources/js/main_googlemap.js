@@ -54,7 +54,7 @@ function initMap() {
   }
   
   $.ajax({
-	  url: 'http://localhost:8080/nearest/mart/martList.do',
+	  url: contextRoot + 'mart/martList.do',
 	  dataType: 'json',
 	  method: 'post',
 	  success: function(result) {
@@ -163,7 +163,7 @@ $(function() {
 		$('#nearest-pageno').children().remove();
 		
 		$.ajax({
-		  url: 'http://localhost:8080/nearest/product/list.do',
+		  url: contextRoot + 'product/list.do',
 		  dataType: 'json',
 		  data: {
 			searchTag: 'marts',

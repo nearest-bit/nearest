@@ -1,5 +1,4 @@
-src/main/webapp/node_modules/*
 .gradle/*
-bin/*
 .settings/*
-.project
+bin/*
+src/main/webapp/node_modules/*
