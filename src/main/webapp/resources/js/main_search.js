@@ -3,6 +3,10 @@ var prodListTemplete = Handlebars.compile(prodListSource);
 var pageNavSource = $('#nearest-product-pagenav-template').text();
 var pageNavTemplete = Handlebars.compile(pageNavSource);
 
+/* page 버튼 누르면 재검색 하기위한 변수 */
+var searchTag = "";
+var searchContent = "";
+
 $('#nearest-search').click(function(){
 
   if($('input[name=searchContent]').val().trim() == ""){
@@ -49,11 +53,39 @@ $('#nearest-search').click(function(){
        		$('#nearest-pageno').append(pageNavTemplete({i}));   		
        	}
       }
-        
-      alert(pageUnit);
+      searchTag = $('select[name=searchTag]').val();
+      searchContent = $('input[name=searchContent]').val();
+      alert(pageUnit+'//'+searchTag+'//'+searchContent);
     },
     error : function() {
       alert("error....");
     }
+  });
+});
+
+$(document).on('click','#nearest-pageno > li',function (){
+	alert(searchTag+'//'+searchContent+$(this).children('a').text());
+	$('#nearest-product-list').children().remove();
+	
+	$.ajax({
+	    url :  contextRoot + 'product/list.do',
+	    datatype : 'json',
+	    method : 'post',
+	      
+	    data : {
+	      searchTag : searchTag,
+	      searchContent : searchContent,
+	      currentPage : $(this).children('a').text()
+	    },
+	    success : function(result) {
+	    	if(result.status != 'success'){
+	            alert('재검색오류');
+	            return;
+	          }
+	    	$('#nearest-product-list').append(prodListTemplete(result));
+	    },
+	    error : function() {
+	        alert("error....");
+	      }
   });
 });
