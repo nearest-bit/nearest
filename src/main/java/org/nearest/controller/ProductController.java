@@ -28,6 +28,7 @@ public class ProductController {
                                @RequestParam(defaultValue="1") int currentPage,
                                @RequestParam(defaultValue="9") int length){
     
+    
     Map<String, Object> result = new HashMap<>();
     List<Product> products = null;
     
