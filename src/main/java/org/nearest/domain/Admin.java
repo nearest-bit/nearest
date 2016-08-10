@@ -45,5 +45,9 @@ public class Admin implements Serializable {
 		this.password = password;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Admin [no=" + no + ", phone=" + phone + ", name=" + name + ", id=" + id + ", password=" + password
+				+ "]";
+	}
 }

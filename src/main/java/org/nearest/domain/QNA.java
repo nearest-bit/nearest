@@ -67,4 +67,11 @@ public class QNA implements Serializable{
     this.client = client;
   }
 
+  @Override
+  public String toString() {
+	  return "QNA [no=" + no + ", createDate=" + createDate + ", content=" + content + ", status=" + status
+			  + ", replyContent=" + replyContent + ", replyDate=" + replyDate + ", mart=" + mart + ", client=" + client
+			  + "]";
+  }
+
 }

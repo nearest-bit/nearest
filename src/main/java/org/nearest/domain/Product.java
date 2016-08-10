@@ -59,4 +59,10 @@ public class Product implements Serializable {
 		this.mart = mart;
 	}
 	
+	@Override
+	public String toString() {
+		return "Product [no=" + no + ", name=" + name + ", price=" + price + ", entity=" + entity + ", discountRate="
+				+ discountRate + ", photo=" + photo + ", mart=" + mart + "]";
+	}
+	
 }

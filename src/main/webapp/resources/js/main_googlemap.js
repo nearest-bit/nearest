@@ -1,32 +1,15 @@
 var myLocation = {
-  lat : 37.497946,
-  lng : 127.027786
+  lat : 37.492968,
+  lng : 127.029334
 };
-var markerLocation = [ {
-  lat : 37.497777,
-  lng : 127.028590
-}, {
-  lat : 37.498890,
-  lng : 127.027653
-}, {
-  lat : 37.498552,
-  lng : 127.030824
-}, {
-  lat : 37.498897,
-  lng : 127.029857
-}, {
-  lat : 37.496719,
-  lng : 127.027769
-}, {
-  lat : 37.497394,
-  lng : 127.030292
-} ];
+var markerLocation = new Array();
 
 var map;
 
 var infowindows = new Array();
 
 function initMap() {
+
   var mapOptions = {
     zoom : 17,
     center : myLocation,
@@ -34,44 +17,87 @@ function initMap() {
     disableDefaultUI: false
   }
 
-  map = new google.maps.Map(document.getElementById('map'),
-  mapOptions);
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
   var image = './resources/images/map_marker.png';
+  
+  var geo_options = {
+    enableHighAccuracy: false, 
+    maximumAge        : 0
+  };
+  
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(function(position) {
+      var pos = {
+//        lat: position.coords.latitude,
+//        lng: position.coords.longitude
+    	  lat: myLocation.lat,
+    	  lng: myLocation.lng
+      };
 
-  var myMarker = new google.maps.Marker({
-    position : myLocation,
-    map : map,
-    title : '현재 내 위치'
-  });
+      map.setCenter(pos);
+      
+      var myMarker = new google.maps.Marker({
+	    position : pos,
+	    map : map,
+	    title : '현재 내 위치'
+	  });
 
-  myMarker.setMap(map);
-
-  for ( var i in markerLocation) {
-	/* var contentString = markerLocation[i].lat + ',' + markerLocation[i].lng; */
-	var contentString = '<div>';
-    contentString += '    <div class="fh5co-person text-center nearest-map-infowindow">';
-    contentString += '      <img src="./resources/images/person1.jpg" alt="Image" style="width:70%; height:30%;">';
-    contentString += '      <h3>진한 마트</h3>';
-    contentString += '      <span class="fh5co-position">02-335-8878</span>';
-    contentString += '      <p>서울시 관악구 신림동 1245-55 번지</p>';
-    contentString += '      <ul class="social social-circle">';
-    contentString += '        <li><a href="#"><i class="icon-twitter"></i></a></li>';
-    contentString += '        <li><a href="#"><i class="icon-facebook"></i></a></li>';
-    contentString += '        <li><a href="#"><i class="icon-dribbble"></i></a></li>';
-    contentString += '      </ul>';
-    contentString += '    </div>';
-    contentString += '   </div>';
+	  myMarker.setMap(map);
 	  
-    var marker = new google.maps.Marker({
-      position : markerLocation[i],
-      map : map,
-      title : '진한마트',
-      icon : image
-    });
-    
-    setMarkerInfoWindow(marker, i, contentString);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    }, function(){}, geo_options);
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
   }
+  
+  $.ajax({
+	  url: 'http://localhost:8080/nearest/mart/martList.do',
+	  dataType: 'json',
+	  method: 'post',
+	  success: function(result) {
+		if(result.state != 'success') {
+			alert('Controller Exception 발생');
+		} else {
+			var martList = result.data;
+			
+			for(var i in martList) {
+				markerLocation[i] = {
+					lat: martList[i].latitude-0,
+					lng: martList[i].longitude-0
+				}
+			}
+			
+			for ( var i in markerLocation) {
+				
+			  var contentString = '<div>';
+			  contentString += '    <div class="fh5co-person text-center nearest-map-infowindow">';
+			  contentString += '      <img src="./resources/images/person1.jpg" alt="Image" style="width:70%; height:30%;">';
+			  contentString += '      <h3>'+ martList[i].name +'</h3>';
+			  contentString += '      <span class="fh5co-position">'+ martList[i].telNo +'</span>';
+			  contentString += '      <p>'+ martList[i].addr +'</p>';
+			  contentString += '      <p>'+ martList[i].addrDetail +'</p>';
+			  contentString += '	  <button type="button" class="infowindow-btn" value="'+ martList[i].name +'">마트 물품 보기</button>';
+			  contentString += '    </div>';
+			  contentString += '   </div>';
+				  
+			  var marker = new google.maps.Marker({
+			    position : markerLocation[i],
+			    map : map,
+			    title : '진한마트',
+			    icon : image
+			  });
+			    
+			  setMarkerInfoWindow(marker, i, contentString);
+			}
+		}
+	  },
+	  error: function() {
+		  alert('ajax 접속 실패');
+	  }
+  })
 }
 
 function setMarkerInfoWindow (marker, index, content) {
@@ -128,3 +154,55 @@ function setMarkerInfoWindow (marker, index, content) {
 	    		});
 		});
 }
+
+$(function() {
+	$(document).on('click', '.infowindow-btn', function() {
+		var martName = $(this).val();
+		
+		$('#nearest-product-list').children().remove();
+		$('#nearest-pageno').children().remove();
+		
+		$.ajax({
+		  url: 'http://localhost:8080/nearest/product/list.do',
+		  dataType: 'json',
+		  data: {
+			searchTag: 'marts',
+			searchContent: martName
+		  },
+		  method: 'post',
+		  success: function(result) {
+			  if(result.status != 'success'){
+		        alert('Controller 오류');
+		        return;
+		      }
+		        
+		      $('#nearest-product-list').append(prodListTemplete(result));
+		        
+		      alert(JSON.stringify(result.total));
+		        
+		      var pageUnit;
+		        
+		      if ( JSON.stringify(result.total) % 9 != 0){
+		      	pageUnit = parseInt( JSON.stringify(result.total) / 9 ) + 1;
+		      }else{
+		      	pageUnit = parseInt( JSON.stringify(result.total) / 9 );
+		      }
+		        
+		      if ( pageUnit >= 5) {
+		    	  pageUnit = 5; 
+		      }
+		        
+		      if (pageUnit >= 1){
+		      	for(var i=1; i<=pageUnit; i++){
+		       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
+		       	}
+		      }
+		        
+		      alert(pageUnit);
+		  },
+		  error: function() {
+			  alert('ajax 접속 실패');
+		  }
+		});
+	});
+});

@@ -14,7 +14,7 @@ public class Mart implements Serializable {
 	protected String postNo;
 	protected String telNo;
 	protected String latitude;
-	protected String logitude;
+	protected String longitude;
 	protected Admin admin;
 	
 	
@@ -61,11 +61,11 @@ public class Mart implements Serializable {
 	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
-	public String getLogitude() {
-		return logitude;
+	public String getLongitude() {
+		return longitude;
 	}
-	public void setLogitude(String logitude) {
-		this.logitude = logitude;
+	public void setLongitude(String logitude) {
+		this.longitude = logitude;
 	}
 	public Admin getAdmin() {
 		return admin;
@@ -74,4 +74,11 @@ public class Mart implements Serializable {
 		this.admin = admin;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Mart [no=" + no + ", name=" + name + ", addr=" + addr + ", addrDetail=" + addrDetail + ", postNo="
+				+ postNo + ", telNo=" + telNo + ", latitude=" + latitude + ", longitude=" + longitude + ", admin="
+				+ admin + "]";
+	}
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.nearest.dao.ProductDao">
+  <resultMap type="product" id="productMap">
+    <id     column="prod_no"       property="no" />
+    <result column="prod_nm"       property="name" />
+    <result column="prod_pri"      property="price" />
+    <result column="prod_ent"      property="entity" />
+    <result column="prod_dis"      property="discountRate" />
+    <result column="prod_pic"      property="photo" />
+    <association property="mart" javaType="mart">
+      <result property="no" column="mt_no" javaType="INTEGER"/>
+    </association>
+  </resultMap>
+
+  <select id="selectProdList" resultMap="productMap" parameterType="map">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
+    count
+    FROM prods
+    WHERE prod_nm LIKE '%${prodName}%'
+    order by prod_nm asc
+    limit #{startIndex}, #{len} 
+  </select>
+  
+  <select id="selectProdTotal" resultType="int" parameterType="string">
+    SELECT COUNT(prod_no) 
+    FROM prods
+    WHERE prod_nm LIKE '%${value}%'
+  </select>
+  
+  <select id="selectMartList" resultMap="productMap" parameterType="map">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, m.mt_no
+    FROM prods p, marts m
+    WHERE  p.mt_no = m.mt_no AND m.mt_nm = #{martName}
+    order by prod_nm asc
+    limit #{startIndex}, #{len}
+  </select>
+  
+  <select id="selectProdTotalByMart" resultType="int" parameterType="string">
+    SELECT COUNT(prod_no)
+    FROM prods p, marts m
+    WHERE  p.mt_no = m.mt_no AND m.mt_nm = #{value}
+  </select>
+  
+  
+
+</mapper>

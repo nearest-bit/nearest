@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.nearest.dao.MartDao">
+  <resultMap type="mart" id="martMap">
+    <id     column="mt_no"       property="no" />
+    <result column="mt_nm"       property="name" />
+    <result column="mt_addr"     property="addr" />
+    <result column="mt_addt"     property="addrDetail" />
+    <result column="mt_post"     property="postNo" />
+    <result column="mt_tel"      property="telNo" />
+    <result column="mt_lat"      property="latitude" />
+    <result column="mt_lng"      property="longitude" />
+    <association property="admin" javaType="admin">
+      <id column="admin_no" property="no" javaType="INTEGER" />
+    </association>
+  </resultMap>
+  
+  <resultMap type="admin" id="adminMap">
+    <id     column="admin_no"       property="no" />
+    <result column="admin_pn"       property="phone" />
+    <result column="admin_nm"       property="name" />
+    <result column="admin_id"       property="id" />
+    <result column="admin_pw"       property="password" />
+  </resultMap>
+
+  <select id="selectList" resultMap="martMap">
+    SELECT
+		*
+		FROM admins ad, marts mt
+		WHERE ad.admin_no=mt.admin_no
+  </select>
+</mapper>

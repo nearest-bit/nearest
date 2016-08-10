@@ -46,4 +46,10 @@ public class Order implements Serializable {
 		this.client = client;
 	}
 	
+	@Override
+	public String toString() {
+		return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", mart=" + mart
+				+ ", client=" + client + "]";
+	}
+	
 }

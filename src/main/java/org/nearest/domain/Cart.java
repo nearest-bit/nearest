@@ -24,5 +24,9 @@ public class Cart implements Serializable {
 		this.product = product;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Cart [client=" + client + ", product=" + product + "]";
+	}
+		
 }

@@ -31,4 +31,9 @@ public class ProductOrder implements Serializable {
 		this.entity = entity;
 	}
 	
+	@Override
+	public String toString() {
+		return "ProductOrder [order=" + order + ", product=" + product + ", entity=" + entity + "]";
+	}
+	
 }

@@ -61,7 +61,10 @@ public class Client implements Serializable{
       this.password = password;
     }
     
-    
-    
+	@Override
+	public String toString() {
+		return "Client [no=" + no + ", name=" + name + ", phone=" + phone + ", birth=" + birth + ", email=" + email
+				+ ", id=" + id + ", password=" + password + "]";
+	}
     
 }
