@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nearest.dao.ClientDao">
+    
+  <resultMap type="client" id="clientMap">
+    <id     column="clnt_no"       property="no" />
+    <result column="clnt_nm"      property="name"/>
+    <result column="clnt_pn"       property="phone" />
+    <result column="clnt_bir"       property="birth" />
+    <result column="clnt_eml"       property="email" />
+    <result column="clnt_id"       property="id" />
+    <result column="clnt_pw"       property="password" />
+  </resultMap>
+
+  <select id="selectOne" resultMap="clientMap" parameterType="string">
+    SELECT clnt_no, clnt_nm, clnt_pn, clnt_bir, clnt_eml, clnt_id, clnt_pw
+    FROM clnts
+    WHERE clnt_id=#{value}
+  </select>
+</mapper>

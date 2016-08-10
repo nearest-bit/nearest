@@ -91,6 +91,10 @@
 	#product-detail-form {
      background-color: white !important;
   }
+  
+  #loginAfter {
+    display: none;
+  }
   </style>
 
   </head>
@@ -109,6 +113,15 @@
 	      
 	      <div class="row box-shadow top-nav">
           <div class="nearest-header-nav">
+            <div class="white-popup nearest-header-menu-btn" id="loginAfter">
+              <span id="loginView"></span>&nbsp;님 환영합니다.&nbsp;&nbsp;
+              <button id="myInfoBtn" type="button" class="btn btn-default">
+                <strong>내정보</strong>
+              </button>
+              <button id="logoutBtn" type="button" class="btn btn-default">
+                <strong>로그아웃</strong>
+              </button> 
+            </div>
           
             <a href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
 	            <button id="loginBtn" type="button" class="btn btn-default">
