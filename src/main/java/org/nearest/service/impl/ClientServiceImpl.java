@@ -15,4 +15,9 @@ public class ClientServiceImpl implements ClientService{
 	public Client getClient(String id) {
 		return clientDao.selectOne(id);
 	}
+
+  @Override
+  public void addClient(Client client) {
+    clientDao.insert(client);
+  }
 }
