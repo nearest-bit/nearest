@@ -374,7 +374,7 @@
       
       <!-- Product Page Navigator -->
       <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
-              <li class="pagenav"><a id="nearest-{{i}}">{{i}}</a></li>
+              <li class="pagenav"><a>{{i}}</a></li>
       </script>
       
       <div class="row">
@@ -382,7 +382,7 @@
             <ul class="pagination">
               <li class="pagenav">
                 <a aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true" data-privious-page="">&laquo;</span>
                 </a>
               </li>
             </ul>
@@ -391,7 +391,7 @@
             <ul class="pagination">
               <li class="pagenav">
                 <a aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
+                  <span aria-hidden="true" data-next-page="">&raquo;</span>
                 </a>
               </li>
             </ul>
