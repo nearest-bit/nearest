@@ -15,6 +15,15 @@ var total = "";
 
 // 검색 했을때 
 $('#nearest-search').click(function(){
+	
+	searchTag = "";
+	searchContent = "";
+	pageUnit = "" ;
+	totalPage = "";
+	currentPage = "";
+	nextPage = "";
+	priviousPage = "";
+	total = "";
 
   if($('input[name=searchContent]').val().trim() == ""){
     alert('검색어를 입력해주세요.');
@@ -58,6 +67,7 @@ $('#nearest-search').click(function(){
     	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
       }else if( totalPage == 0 ){
     	  pageUnit = 0;
+    	  $('span[data-next-page=""]').attr('data-next-page', '');
       }
         
       if (pageUnit >= 1){
@@ -143,6 +153,7 @@ $(document).on('click', 'a[aria-label="Next"]', function() {
 			  $('span[data-next-page=""]').attr('data-next-page', nextPage);
 		  }else{
 			  pageUnit = totalPage+1;
+			  $('span[data-next-page]').attr('data-next-page', '');
 		  }
 		 
 		  alert(totalPage+'//'+nextPage+"//"+pageUnit);
