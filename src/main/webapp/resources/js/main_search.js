@@ -4,13 +4,28 @@ var pageNavSource = $('#nearest-product-pagenav-template').text();
 var pageNavTemplete = Handlebars.compile(pageNavSource);
 
 /* 검색 변수 */
+// 검색 옵션
 var searchTag = "";
+
+// 검색 키워드
 var searchContent = "";
+
+// 화면에 표시되는 페이지 수
 var pageUnit = "" ;
+
+// 총 페이지 수
 var totalPage = "";
+
+// 현재 페이지
 var currentPage = "";
+
+// 다음 페이지 번호
 var nextPage = "";
+
+// 이전 페이지 번호
 var priviousPage = "";
+
+// 총 데이터의 수
 var total = "";
 
 // 검색 했을때 
@@ -50,7 +65,7 @@ $('#nearest-search').click(function(){
         
       $('#nearest-product-list').append(prodListTemplete(result));
         
-      alert(JSON.stringify(result.total));
+//      alert(JSON.stringify(result.total));
         
       total = JSON.stringify(result.total);
         
@@ -77,7 +92,7 @@ $('#nearest-search').click(function(){
       }
       searchTag = $('select[name=searchTag]').val();
       searchContent = $('input[name=searchContent]').val();
-      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
+//      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
     },
     error : function() {
       alert("error....");
@@ -92,7 +107,7 @@ $(document).on('click','#nearest-pageno > li',function (){
 	
 	currentpage = $(this).children('a').text();
 	
-	alert(searchTag+'//'+searchContent+"//"+currentpage);
+//	alert(searchTag+'//'+searchContent+"//"+currentpage);
 	
 	$.ajax({
 	    url :  contextRoot + 'product/list.do',
@@ -120,7 +135,7 @@ $(document).on('click','#nearest-pageno > li',function (){
 //다음 버튼 눌렀을때
 $(document).on('click', 'a[aria-label="Next"]', function() {
 	
-	alert('currentPage = ' + $(this).children('span').attr('data-next-page'));
+//	alert('currentPage = ' + $(this).children('span').attr('data-next-page'));
 	
 	currentPage = $(this).children('span').attr('data-next-page');
 	
@@ -145,7 +160,7 @@ $(document).on('click', 'a[aria-label="Next"]', function() {
 		    
 		  $('#nearest-product-list').append(prodListTemplete(result));
 		    
-		  alert(JSON.stringify(result.total));
+//		  alert(JSON.stringify(result.total));
 		    
 		  if( totalPage >= (nextPage + 5)) {
 			  pageUnit = (nextPage + 5);
@@ -156,7 +171,7 @@ $(document).on('click', 'a[aria-label="Next"]', function() {
 			  $('span[data-next-page]').attr('data-next-page', '');
 		  }
 		 
-		  alert(totalPage+'//'+nextPage+"//"+pageUnit);
+//		  alert(totalPage+'//'+nextPage+"//"+pageUnit);
 		 
 		  if (pageUnit >= 1){
 		  	for(var i=nextPage; i < pageUnit; i++){
@@ -168,7 +183,7 @@ $(document).on('click', 'a[aria-label="Next"]', function() {
 		      nextPage = pageUnit;
 			  $('span[data-next-page]').attr('data-next-page', nextPage);
 		  }
-		  alert(pageUnit+'//'+searchTag+'//'+searchContent);
+//		  alert(pageUnit+'//'+searchTag+'//'+searchContent);
 		},
 		error : function() {
 		  alert("error....");

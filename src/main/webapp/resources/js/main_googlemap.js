@@ -161,6 +161,8 @@ $(function() {
 		
 		$('#nearest-product-list').children().remove();
 		$('#nearest-pageno').children().remove();
+		$('select[name="searchTag"] option:last-child').attr('selected', 'selected');
+		$('input[name="searchContent"]').val(martName);
 		
 		$.ajax({
 		  url: contextRoot + 'product/list.do',
