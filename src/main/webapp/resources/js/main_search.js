@@ -23,7 +23,7 @@ var currentPage = "";
 var nextPage = "";
 
 // 이전 페이지 번호
-var priviousPage = "";
+var previousPage = "";
 
 // 총 데이터의 수
 var total = "";
@@ -31,13 +31,14 @@ var total = "";
 // 검색 했을때 
 $('#nearest-search').click(function(){
 	
+	//초기화
 	searchTag = "";
 	searchContent = "";
 	pageUnit = "" ;
 	totalPage = "";
 	currentPage = "";
 	nextPage = "";
-	priviousPage = "";
+	previousPage = "";
 	total = "";
 
   if($('input[name=searchContent]').val().trim() == ""){
@@ -54,8 +55,8 @@ $('#nearest-search').click(function(){
     method : 'post',
       
     data : {
-      searchTag : $('select[name=searchTag]').val(),
-      searchContent : $('input[name=searchContent]').val()
+      searchTag : $('select[name="searchTag"]').val(),
+      searchContent : $('input[name="searchContent"]').val()
     },
     success : function(result) {
       if(result.status != 'success'){
@@ -66,7 +67,6 @@ $('#nearest-search').click(function(){
       $('#nearest-product-list').append(prodListTemplete(result));
         
 //      alert(JSON.stringify(result.total));
-        
       total = JSON.stringify(result.total);
         
       if ( total % 9 != 0){
@@ -83,6 +83,8 @@ $('#nearest-search').click(function(){
       }else if( totalPage == 0 ){
     	  pageUnit = 0;
     	  $('span[data-next-page=""]').attr('data-next-page', '');
+      }else{
+    	  pageUnit = totalPage;
       }
         
       if (pageUnit >= 1){
@@ -132,15 +134,80 @@ $(document).on('click','#nearest-pageno > li',function (){
   });
 });
 
+function search(){
+
+	
+}
+
 //다음 버튼 눌렀을때
 $(document).on('click', 'a[aria-label="Next"]', function() {
 	
 //	alert('currentPage = ' + $(this).children('span').attr('data-next-page'));
-	
 	currentPage = $(this).children('span').attr('data-next-page');
 	
 	$('#nearest-product-list').children().remove();
 	  $('#nearest-pageno').children().remove();
+	  
+	  if( $(this).children('span').attr('data-next-page') == '' ){
+		  alert('끝 페이지 입니다.');
+	  }
+		$.ajax({
+		    url :  contextRoot + 'product/list.do',
+			datatype : 'json',
+			method : 'post',
+		  
+			data : {
+			  searchTag : searchTag,
+			  searchContent : searchContent,
+			  currentPage : currentPage
+			},
+			success : function(result) {
+			  if(result.status != 'success'){
+			    alert('검색오류');
+			    return;
+			  }
+			    
+			  $('#nearest-product-list').append(prodListTemplete(result));
+			    
+			  if( totalPage >= (nextPage + 5)) {
+				  pageUnit = (nextPage + 5);
+				  
+				  $('span[data-next-page=""]').attr('data-next-page', nextPage);
+
+			  }else{
+				  pageUnit = totalPage+1;
+				  $('span[data-next-page]').attr('data-next-page', '');
+			  }
+			  
+			  previousPage = nextPage - 1;
+			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
+			 
+			  if (pageUnit >= 1){
+			  	for(var i=nextPage; i < pageUnit; i++){
+			   		$('#nearest-pageno').append(pageNavTemplete({i}));   		
+			   	}
+			  	
+			  }
+			  if(totalPage >= pageUnit){
+			      nextPage = pageUnit;
+				  $('span[data-next-page]').attr('data-next-page', nextPage);
+			  }
+			  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
+			},
+			error : function() {
+			  alert("error....");
+			}
+	  });
+	  
+});
+
+//이전 버튼 눌렀을때
+$(document).on('click', 'a[aria-label="Previous"]', function() {
+	
+	currentPage = $(this).children('span').attr('data-previous-page');
+	
+	$('#nearest-product-list').children().remove();
+	$('#nearest-pageno').children().remove();
 	  
 	  $.ajax({
 	    url :  contextRoot + 'product/list.do',
@@ -150,40 +217,32 @@ $(document).on('click', 'a[aria-label="Next"]', function() {
 		data : {
 		  searchTag : searchTag,
 		  searchContent : searchContent,
-		  currentPage : currentPage
+		  currentPage : previousPage
 		},
 		success : function(result) {
 		  if(result.status != 'success'){
 		    alert('검색오류');
 		    return;
 		  }
-		    
+		  
 		  $('#nearest-product-list').append(prodListTemplete(result));
-		    
-//		  alert(JSON.stringify(result.total));
-		    
-		  if( totalPage >= (nextPage + 5)) {
-			  pageUnit = (nextPage + 5);
-			  
-			  $('span[data-next-page=""]').attr('data-next-page', nextPage);
-		  }else{
-			  pageUnit = totalPage+1;
-			  $('span[data-next-page]').attr('data-next-page', '');
-		  }
-		 
-//		  alert(totalPage+'//'+nextPage+"//"+pageUnit);
-		 
+		  
 		  if (pageUnit >= 1){
-		  	for(var i=nextPage; i < pageUnit; i++){
+		  	for(var i=(previousPage - 4); i <= previousPage; i++){
 		   		$('#nearest-pageno').append(pageNavTemplete({i}));   		
 		   	}
 		  	
 		  }
-		  if(totalPage >= pageUnit){
-		      nextPage = pageUnit;
+		  if(previousPage > 5 ){
+			  previousPage -= 5 ;
+			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
+		  }
+		  if(nextPage > 6){
+			  nextPage -= 5;  
 			  $('span[data-next-page]').attr('data-next-page', nextPage);
 		  }
-//		  alert(pageUnit+'//'+searchTag+'//'+searchContent);
+		  
+		  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
 		},
 		error : function() {
 		  alert("error....");
