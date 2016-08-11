@@ -237,10 +237,14 @@ $(document).on('click', 'a[aria-label="Previous"]', function() {
 			  previousPage -= 5 ;
 			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
 		  }
-		  if(nextPage > 6){
+		  if( nextPage > 6 && (totalPage - nextPage) > 6){
 			  nextPage -= 5;  
-			  $('span[data-next-page]').attr('data-next-page', nextPage);
 		  }
+		  if( currentPage == 5 ){
+			  nextPage = 6;
+		  }
+		  $('span[data-next-page]').attr('data-next-page', nextPage);
+		  /*if( (totalPage - nextPage) < 6 ){}*/
 		  
 		  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
 		},
