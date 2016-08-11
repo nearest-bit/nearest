@@ -91,6 +91,10 @@
 	#product-detail-form {
      background-color: white !important;
   }
+  
+  #loginAfter {
+    display: none;
+  }
   </style>
 
   </head>
@@ -109,6 +113,15 @@
 	      
 	      <div class="row box-shadow top-nav">
           <div class="nearest-header-nav">
+            <div class="white-popup nearest-header-menu-btn" id="loginAfter">
+              <span id="loginView"></span>&nbsp;님 환영합니다.&nbsp;&nbsp;
+              <button id="myInfoBtn" type="button" class="btn btn-default">
+                <strong>내정보</strong>
+              </button>
+              <button id="logoutBtn" type="button" class="btn btn-default">
+                <strong>로그아웃</strong>
+              </button> 
+            </div>
           
             <a href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
 	            <button id="loginBtn" type="button" class="btn btn-default">
@@ -338,7 +351,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 section-heading text-center">
-          <h2 class="to-animate">상품관리</h2>
+          <h2 class="to-animate">상품검색</h2>
         </div>
       </div>
       
@@ -361,14 +374,14 @@
       
       <!-- Product Page Navigator -->
       <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
-              <li class="pagenav"><a href="#">{{i}}</a></li>
+              <li class="pagenav"><a id="nearest-{{i}}">{{i}}</a></li>
       </script>
       
       <div class="row">
           <nav class="col-md-12 text-center" aria-label="Page navigation">
             <ul class="pagination">
               <li class="pagenav">
-                <a href="#" aria-label="Previous">
+                <a aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
               </li>
@@ -377,7 +390,7 @@
             </ul>
             <ul class="pagination">
               <li class="pagenav">
-                <a href="#" aria-label="Next">
+                <a aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
               </li>
