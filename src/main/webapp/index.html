@@ -74,6 +74,9 @@
   <script src="./js/respond.min.js"></script>
   <![endif]-->
   
+  <!-- jQuery Cookie -->
+  <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
+  
   <style>
 	/* Google Map InfoWindow */
 	.gm-style-iw {
@@ -236,108 +239,102 @@
 	</div>
   
   
-	<div id="signupForm" class="white-popup-block mfp-hide">
-	 <div class="top-content">
-	 
-	   <div class="inner-bg">
-	     <div class="container">
-	  
-	           <div class="signup-form-box">
-	             <div class="signup-form-top">
-	               <div class="signup-form-top-left">
-	                 <h2><strong>Nearest</strong></h2>
-	                 <p>위치기반 간편쇼핑 Nearest 가입을 환영합니다.</p>
-	               </div>
-	      
-	               <div class="signup-form-top-right">
-	                 <i class="fa fa-pencil"></i>
-	               </div>
-	             </div>
-	                   
-		           <div class="signup-form-bottom">
-		             <form role="form" action="" method="post" class="registration-form">
-		               <div class="form-group">
-		                 <label>ID</label>
-										 <input type="text" 
-										        name="form-first-name" 
-										        placeholder="아이디를 입력하세요." 
-										        class="form-first-name form-control" 
-										        id="form-id">	                          
-		               </div>
-		                       
-		               <div class="form-group">
-		                 <label>PASSWORD</label>
-										 <input type="password" 
-										        name="form-password" 
-										        placeholder="패스워드를 입력하세요." 
-										        class="form-last-name form-control" 
-										        id="form-password">
-		               </div>
-		                       
-									 <div class="form-group">
-									   <label>NAME</label>
-									   <input type="text" 
-									          name="form-name" 
-									          placeholder="이름을 입력하세요." 
-									          class="form-last-name form-control" 
-									          id="form-name">
-									 </div>
-		                 
-		               <div class="form-group">
-		                 <label>BIRTH</label>
-		                 <div class='input-group date' id='datepicker1'>
-		                     <input type='text' 
-		                            class="form-control birth-font-color" 
-		                            placeholder="생년월일을 선택하세요."/>
-		                     <span class="input-group-addon">
-		                       <span class="glyphicon glyphicon-calendar"></span>
-		                     </span>
-		                 </div>
-		                           
-		                           <!-- Load jQuery and bootstrap datepicker scripts -->
-									   <script type="text/javascript">
-									   // When the document is ready
-									   $(function () {
-									    
-									       $('#datepicker1').datetimepicker(
-									           {   
-									             format: 'YYYY-MM-DD', 
-									             defaultDate: new Date()
-									           }
-									       );  
-									
-								   	 });
-									   </script>
-		               </div>
-		
-		               <label>E-MAIL</label>
-		               <div class="form-group">
-		                 <input type="text" 
-		                        name="form-email" 
-		                        placeholder="이메일을 입력하세요." 
-		                        class="form-email form-control" 
-		                        id="form-email">
-		               </div>
-		               
-		               <label>ADDRESS</label>
-		               <div class="form-group">
-		  
-		                 <textarea name="form-about-yourself" 
-		                           placeholder="주소를 입력하세요." 
-		                           class="form-about-yourself form-control" 
-		                           id="form-about-yourself"></textarea>
-		               </div>
-		
-		               <button type="submit" class="btn">회원가입</button>
-		             </form>
-		           </div> <!-- signup-form-bottom end -->
-		             
-	           </div> <!-- signup-form-box end -->
+	<div id="signupForm" class="white-popup-block mfp-hide">	 
+	
+    <div class="signup-form-box">
+      <div class="signup-form-top">
+        <div class="signup-form-top-left">
+          <h2><strong>Nearest</strong></h2>
+          <p>위치기반 간편쇼핑 Nearest 가입을 환영합니다.</p>
+        </div>
+
+        <div class="signup-form-top-right">
+          <i class="fa fa-pencil"></i>
+        </div>
+      </div>
+            
+     <div class="signup-form-bottom">
+       <form role="form" action="" method="post" class="registration-form">
+         <div class="form-group">
+           <label>ID</label>
+		 <input type="text" 
+		        name="reg-id" 
+		        placeholder="아이디를 입력하세요." 
+		        class="form-first-name form-control" 
+		        id="form-id">	  
+		        <span id="nearest-checkDupl"></span>                        
+         </div>
+                 
+         <div class="form-group">
+           <label>PASSWORD</label>
+		 <input type="password" 
+		        name="reg-password" 
+		        placeholder="패스워드를 입력하세요." 
+		        class="form-last-name form-control" 
+		        id="form-password">
+         </div>
+                 
+	 <div class="form-group">
+	   <label>NAME</label>
+	   <input type="text" 
+	          name="reg-name" 
+	          placeholder="이름을 입력하세요." 
+	          class="form-last-name form-control" 
+	          id="form-name">
+	 </div>
+           
+         <div class="form-group">
+           <label>BIRTH</label>
+           <div class='input-group date' id='datepicker1'>
+               <input type='text' 
+                      name="reg-birth"
+                      class="form-control birth-font-color" 
+                      placeholder="생년월일을 선택하세요."/>
+               <span class="input-group-addon">
+                 <span class="glyphicon glyphicon-calendar"></span>
+               </span>
+           </div>
+                     
+                     <!-- Load jQuery and bootstrap datepicker scripts -->
+	   <script type="text/javascript">
+	   // When the document is ready
+	   $(function () {
 	    
-	     </div> <!-- container end -->
-	   </div> <!-- inner-bg end -->
-	   
-	 </div> <!-- top-content end -->
+	       $('#datepicker1').datetimepicker(
+	           {   
+	             format: 'YYYY-MM-DD', 
+	             defaultDate: new Date()
+	           }
+	       );  
+	
+   	 });
+	   </script>
+         </div>
+
+         <label>E-MAIL</label>
+         <div class="form-group">
+           <input type="text" 
+                  name="reg-email" 
+                  placeholder="이메일을 입력하세요." 
+                  class="form-email form-control" 
+                  id="form-email">
+         </div>
+         
+         <label>Phone</label>
+         <div class="form-group">
+
+           <input name="reg-phone"
+                  type="text" 
+                  placeholder="핸드폰 번호를 입력하세요." 
+                  class="form-about-yourself form-control"/>
+         </div>
+
+         <button name="regBtn" type="button" class="btn regBtn">회원가입</button>
+       </form>
+     </div> <!-- signup-form-bottom end -->
+       
+    </div> <!-- signup-form-box end -->
+	    
 	</div> <!-- signupForm end -->
   
 
@@ -462,6 +459,65 @@
   <script src="./resources/js/main_googlemap.js"></script>
   <script src="./resources/js/main_handlebars.js"></script>
   <script src="./resources/js/main_login.js"></script>
+  <script type="text/javascript">
+  
+  var duplicate = '';
+  
+  $(document).on('click','.regBtn', function(){
+	  $.ajax({
+		  dataType : 'json',
+		  url : contextRoot + 'client/register.do',
+		  data : {
+			  id : $('input[name="reg-id"]').val(),
+			  password : $('input[name="reg-password"]').val(),
+			  name : $('input[name="reg-name"]').val(),
+			  birth : $('input[name="reg-birth"]').val(),
+			  email : $('input[name="reg-email"]').val(),
+			  phone : $('input[name="reg-phone"]').val()
+		  },
+		  success : function(result){
+			
+			  if(duplicate == true){
+				  alert('중복된 아이디 입니다')
+				  return;
+			  }else{
+				  alert('회원가입 성공');
+			  }
+			  
+		  },
+		  error : function(){
+			  alert('controller error....');
+		  }
+	  });
+  });
+  
+  $('input[name="reg-id"]').on('keyup', function(event){
+	  $.ajax({
+		  dataType : 'json',
+		  url : contextRoot + 'client/checkDupl.do',
+		  data : {
+			  id : $('input[name="reg-id"]').val()
+		  },
+		  success : function(result){
+			  if(result.status != 'success'){
+				  alert('서버 오류...');
+				  return;
+			  }
+			   if( result.check == 'true' ){
+				  $('#nearest-checkDupl').text('중복된 아이디 입니다').css('color', 'red');
+				  duplicate = true;
+			  }else{
+				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', 'blue');
+				  duplicate = false;
+			  }
+		  },
+		  error : function(){
+			  alert('error...');
+		  }
+	  });
+  });
+  
+  </script>
 
   </body>
 </html>
