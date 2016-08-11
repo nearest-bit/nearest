@@ -18,6 +18,7 @@
     "jquery-countto": "^1.2.0",
     "jquery-easing": "0.0.1",
     "jquery-waypoints": "^2.0.5",
+    "jquery.cookie": "^1.4.1",
     "magnific-popup": "^1.1.0",
     "npm-modernizr": "^2.8.3",
     "respondjs": "^0.3.0"

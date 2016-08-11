@@ -11,7 +11,9 @@ $(document).ready(function() {
 					$('.mfp-container').click(function(event) {
 						if(event.target.id == 'loginForm') {
 							$.magnificPopup.close();
-						} else if(event.target.id == 'signupForm') {
+						}
+						
+						if(event.target.id == 'signupForm') {
 							$.magnificPopup.close();
 						}
 					});

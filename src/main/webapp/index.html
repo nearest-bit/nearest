@@ -74,6 +74,9 @@
   <script src="./js/respond.min.js"></script>
   <![endif]-->
   
+  <!-- jQuery Cookie -->
+  <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
+  
   <style>
 	/* Google Map InfoWindow */
 	.gm-style-iw {
@@ -236,108 +239,100 @@
 	</div>
   
   
-	<div id="signupForm" class="white-popup-block mfp-hide">
-	 <div class="top-content">
-	 
-	   <div class="inner-bg">
-	     <div class="container">
-	  
-	           <div class="signup-form-box">
-	             <div class="signup-form-top">
-	               <div class="signup-form-top-left">
-	                 <h2><strong>Nearest</strong></h2>
-	                 <p>위치기반 간편쇼핑 Nearest 가입을 환영합니다.</p>
-	               </div>
-	      
-	               <div class="signup-form-top-right">
-	                 <i class="fa fa-pencil"></i>
-	               </div>
-	             </div>
-	                   
-		           <div class="signup-form-bottom">
-		             <form role="form" action="" method="post" class="registration-form">
-		               <div class="form-group">
-		                 <label>ID</label>
-										 <input type="text" 
-										        name="form-first-name" 
-										        placeholder="아이디를 입력하세요." 
-										        class="form-first-name form-control" 
-										        id="form-id">	                          
-		               </div>
-		                       
-		               <div class="form-group">
-		                 <label>PASSWORD</label>
-										 <input type="password" 
-										        name="form-password" 
-										        placeholder="패스워드를 입력하세요." 
-										        class="form-last-name form-control" 
-										        id="form-password">
-		               </div>
-		                       
-									 <div class="form-group">
-									   <label>NAME</label>
-									   <input type="text" 
-									          name="form-name" 
-									          placeholder="이름을 입력하세요." 
-									          class="form-last-name form-control" 
-									          id="form-name">
-									 </div>
-		                 
-		               <div class="form-group">
-		                 <label>BIRTH</label>
-		                 <div class='input-group date' id='datepicker1'>
-		                     <input type='text' 
-		                            class="form-control birth-font-color" 
-		                            placeholder="생년월일을 선택하세요."/>
-		                     <span class="input-group-addon">
-		                       <span class="glyphicon glyphicon-calendar"></span>
-		                     </span>
-		                 </div>
-		                           
-		                           <!-- Load jQuery and bootstrap datepicker scripts -->
-									   <script type="text/javascript">
-									   // When the document is ready
-									   $(function () {
-									    
-									       $('#datepicker1').datetimepicker(
-									           {   
-									             format: 'YYYY-MM-DD', 
-									             defaultDate: new Date()
-									           }
-									       );  
-									
-								   	 });
-									   </script>
-		               </div>
-		
-		               <label>E-MAIL</label>
-		               <div class="form-group">
-		                 <input type="text" 
-		                        name="form-email" 
-		                        placeholder="이메일을 입력하세요." 
-		                        class="form-email form-control" 
-		                        id="form-email">
-		               </div>
-		               
-		               <label>ADDRESS</label>
-		               <div class="form-group">
-		  
-		                 <textarea name="form-about-yourself" 
-		                           placeholder="주소를 입력하세요." 
-		                           class="form-about-yourself form-control" 
-		                           id="form-about-yourself"></textarea>
-		               </div>
-		
-		               <button type="submit" class="btn">회원가입</button>
-		             </form>
-		           </div> <!-- signup-form-bottom end -->
-		             
-	           </div> <!-- signup-form-box end -->
+	<div id="signupForm" class="white-popup-block mfp-hide">	 
+	
+    <div class="signup-form-box">
+      <div class="signup-form-top">
+        <div class="signup-form-top-left">
+          <h2><strong>Nearest</strong></h2>
+          <p>위치기반 간편쇼핑 Nearest 가입을 환영합니다.</p>
+        </div>
+
+        <div class="signup-form-top-right">
+          <i class="fa fa-pencil"></i>
+        </div>
+      </div>
+            
+     <div class="signup-form-bottom">
+       <form role="form" action="" method="post" class="registration-form">
+         <div class="form-group">
+           <label>ID</label>
+		 <input type="text" 
+		        name="form-first-name" 
+		        placeholder="아이디를 입력하세요." 
+		        class="form-first-name form-control" 
+		        id="form-id">	                          
+         </div>
+                 
+         <div class="form-group">
+           <label>PASSWORD</label>
+		 <input type="password" 
+		        name="form-password" 
+		        placeholder="패스워드를 입력하세요." 
+		        class="form-last-name form-control" 
+		        id="form-password">
+         </div>
+                 
+	 <div class="form-group">
+	   <label>NAME</label>
+	   <input type="text" 
+	          name="form-name" 
+	          placeholder="이름을 입력하세요." 
+	          class="form-last-name form-control" 
+	          id="form-name">
+	 </div>
+           
+         <div class="form-group">
+           <label>BIRTH</label>
+           <div class='input-group date' id='datepicker1'>
+               <input type='text' 
+                      class="form-control birth-font-color" 
+                      placeholder="생년월일을 선택하세요."/>
+               <span class="input-group-addon">
+                 <span class="glyphicon glyphicon-calendar"></span>
+               </span>
+           </div>
+                     
+                     <!-- Load jQuery and bootstrap datepicker scripts -->
+	   <script type="text/javascript">
+	   // When the document is ready
+	   $(function () {
 	    
-	     </div> <!-- container end -->
-	   </div> <!-- inner-bg end -->
-	   
-	 </div> <!-- top-content end -->
+	       $('#datepicker1').datetimepicker(
+	           {   
+	             format: 'YYYY-MM-DD', 
+	             defaultDate: new Date()
+	           }
+	       );  
+	
+   	 });
+	   </script>
+         </div>
+
+         <label>E-MAIL</label>
+         <div class="form-group">
+           <input type="text" 
+                  name="form-email" 
+                  placeholder="이메일을 입력하세요." 
+                  class="form-email form-control" 
+                  id="form-email">
+         </div>
+         
+         <label>ADDRESS</label>
+         <div class="form-group">
+
+           <textarea name="form-about-yourself" 
+                     placeholder="주소를 입력하세요." 
+                     class="form-about-yourself form-control" 
+                     id="form-about-yourself"></textarea>
+         </div>
+
+         <button type="submit" class="btn">회원가입</button>
+       </form>
+     </div> <!-- signup-form-bottom end -->
+       
+    </div> <!-- signup-form-box end -->
+	    
 	</div> <!-- signupForm end -->
   
 
@@ -374,7 +369,7 @@
       
       <!-- Product Page Navigator -->
       <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
-              <li class="pagenav"><a id="nearest-{{i}}">{{i}}</a></li>
+              <li class="pagenav"><a>{{i}}</a></li>
       </script>
       
       <div class="row">
@@ -382,7 +377,7 @@
             <ul class="pagination">
               <li class="pagenav">
                 <a aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
+                  <span aria-hidden="true" data-previous-page="">&laquo;</span>
                 </a>
               </li>
             </ul>
@@ -391,7 +386,7 @@
             <ul class="pagination">
               <li class="pagenav">
                 <a aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
+                  <span aria-hidden="true" data-next-page="">&raquo;</span>
                 </a>
               </li>
             </ul>
@@ -458,10 +453,10 @@
   <script src="./resources/js/app-context.js"></script>
   <script src="./resources/js/main.js"></script>
   <script src="./resources/js/main_dropdown.js"></script>
+  <script src="./resources/js/main_search.js"></script>
   <script src="./resources/js/main_googlemap.js"></script>
   <script src="./resources/js/main_handlebars.js"></script>
   <script src="./resources/js/main_login.js"></script>
-  <script src="./resources/js/main_search.js"></script>
 
   </body>
 </html>

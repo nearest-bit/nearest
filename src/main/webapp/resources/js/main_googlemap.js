@@ -161,6 +161,11 @@ $(function() {
 		
 		$('#nearest-product-list').children().remove();
 		$('#nearest-pageno').children().remove();
+		$('select[name="searchTag"] option:last-child').attr('selected', 'selected');
+		$('input[name="searchContent"]').val(martName);
+		
+		searchTag = $('select[name=searchTag]').val();
+	    searchContent = $('input[name=searchContent]').val();
 		
 		$.ajax({
 		  url: contextRoot + 'product/list.do',
@@ -178,18 +183,24 @@ $(function() {
 		        
 		      $('#nearest-product-list').append(prodListTemplete(result));
 		        
-		      alert(JSON.stringify(result.total));
+		      total = JSON.stringify(result.total);
 		        
-		      var pageUnit;
-		        
-		      if ( JSON.stringify(result.total) % 9 != 0){
-		      	pageUnit = parseInt( JSON.stringify(result.total) / 9 ) + 1;
+		      if ( total % 9 != 0){
+		      	totalPage = parseInt( total / 9 ) + 1;
 		      }else{
-		      	pageUnit = parseInt( JSON.stringify(result.total) / 9 );
+		    	totalPage = parseInt( total / 9 );
 		      }
-		        
-		      if ( pageUnit >= 5) {
+		      
+		      if ( totalPage >= 5) {
 		    	  pageUnit = 5; 
+		    	  nextPage = pageUnit + 1;
+		    	  
+		    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
+		      }else if( totalPage == 0 ){
+		    	  pageUnit = 0;
+		    	  $('span[data-next-page=""]').attr('data-next-page', '');
+		      }else{
+		    	  pageUnit = totalPage;
 		      }
 		        
 		      if (pageUnit >= 1){
