@@ -2,3 +2,5 @@
 .settings/*
 bin/*
 src/main/webapp/node_modules/*
+.classpath
+.project
