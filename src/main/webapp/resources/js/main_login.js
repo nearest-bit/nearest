@@ -20,19 +20,16 @@
 
 $(document).on('click','#login-btn',function() {
 	var loginId = $.cookie('loginId', $('#login-form-username').val(), {expires : 1});
-	/*if(loginId != undefined){
-		$('#login-form-username').val(loginId);
-		$('#rememberId').prop('checked', true);
-	}*/
+	
 	if($.trim($('#login-form-username').val()) == ""){
 		alert("아이디를 입력하세요.");
 		return;
-	} else {
+	/*} else {
 		if($('#rememberId').prop('checked')) {
-			$.cookie('loginId', $('#login-form-username').val());
+			$('#login-form-username').val(loginId);
 		} else{
 			$.removeCookie('loginId');
-		}
+		}*/
 	}
 	
 	/* location.href = "./admin.html"; */
@@ -45,12 +42,11 @@ $(document).on('click','#login-btn',function() {
 		},
 		method: 'post',
 		success: function(result) {
-			alert(result.status);
-			$('#loginView').text(result.data.id);
 			$(function() {
 				$.magnificPopup.close();
 				$("#loginBtn").css("display", "none");
 				$("#signupBtn").css('display', 'none');
+				$("#btnSplit").css('display', 'none');
 				$('#loginAfter').css('display', 'inline');
 			});
 			
@@ -67,6 +63,20 @@ $(document).on('click','#logoutBtn',function() {
 	$(function() {
 		$("#loginBtn").css("display", 'inline');
 		$("#signupBtn").css('display', 'inline');
+		$("#btnSplit").css('display', 'inline');
 		$('#loginAfter').css('display', 'none');
 	})
+});
+
+$(function() {
+    
+    var loginId = $.cookie('loginId');
+    if( loginId != undefined){
+        $(function() {
+            $("#loginBtn").css("display", "none");
+            $("#signupBtn").css('display', 'none');
+            $("#btnSplit").css('display', 'none');
+            $('#loginAfter').css('display', 'inline');
+        });
+    }
 });
