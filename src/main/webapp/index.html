@@ -89,6 +89,11 @@
 	   border-radius: 2px 2px 0 0;
 	   padding: 0 auto !important;
 	}
+
+	.wrapper {
+	  width: 1024px;
+	  margin: 0 auto;
+	}
 	
 	/* 상품 상세 정보 */
 	#product-detail-form {
@@ -108,86 +113,86 @@
   
   <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
+    
       <div class="container nearest-header-menu">
-        <div class="row box-shadow nearest-header-top-menu">
-        
-          <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
-            <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
-                  aria-hidden="true"
-                  onclick="myFunction()">
-            </span>
-            
-            <div id="myDropdown" class="nearest-dropdown-content">
-              <a href="./client.html">찜 목록</a>
-              <a href="./client.html">구매 목록</a>
-              <a href="./client.html">건의 사항</a>
-            </div>
-          </div>
-        
-          <div class="white-popup nearest-header-menu-btn" id="loginAfter">
-            <a id="myInfoBtn">
-              <strong>내정보</strong>
-            </a>
-            <strong>|</strong>
-            <a id="logoutBtn">
-              <strong>로그아웃</strong>
-            </a> 
-          </div>
-          
-          <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
-            <strong>REGISTER</strong>
-          </a>
-          
-          <a id="btnSplit" class="nearest-header-menu-btn">
-            <strong>|</strong>
-          </a>
-          
-          <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
-            <strong>LOGIN</strong>
-          </a>
-          
-          
-        
-        </div>
-      
-	      <div class="row box-shadow nearest-header-logo">
-	        <div>
+        <div class="wrapper">
+	        <div class="row box-shadow nearest-header-top-menu">
 	        
-	          <img src="./resources/images/logo_2.png"/>
+	          <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
+	            <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
+	                  aria-hidden="true"
+	                  onclick="myFunction()">
+	            </span>
+	            
+	            <div id="myDropdown" class="nearest-dropdown-content">
+	              <a href="./client.html">찜 목록</a>
+	              <a href="./client.html">구매 목록</a>
+	              <a href="./client.html">건의 사항</a>
+	            </div>
+	          </div>
+	        
+	          <div class="white-popup nearest-header-menu-btn" id="loginAfter">
+	            <a id="myInfoBtn">
+	              <strong>내정보</strong>
+	            </a>
+	            <strong>|</strong>
+	            <a id="logoutBtn">
+	              <strong>로그아웃</strong>
+	            </a> 
+	          </div>
 	          
-	        </div> <!-- .nearest-header-nav end -->
-	      </div>
+	          <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
+	            <strong>REGISTER</strong>
+	          </a>
+	          
+	          <a id="btnSplit" class="nearest-header-menu-btn">
+	            <strong>|</strong>
+	          </a>
+	          
+	          <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
+	            <strong>LOGIN</strong>
+	          </a>
+	          
+	          
+	        
+	        </div>
 	      
-	      <div class="row box-shadow top-nav">
-          <div class="nearest-header-nav">
-            <div class="col-xs-2">
-              <select name="searchTag" class="form-control">
-                <option value="prods">제품검색</option>
-                <option value="marts">매장검색</option>
-              </select>
-            </div>
-            
-            <div class="col-xs-4">
-              <div class="input-group">
-                <input type="text"
-                       name="searchContent" 
-                       class="form-control" 
-                       placeholder="상품을 입력하세요.">
-                <span class="input-group-btn">
-                  <button id="nearest-search" 
-                          class="btn btn-default" 
-                          type="button"
-                          data-nav-section="work">
-                       검색
-                  </button>
-                </span>
-              </div>
-              <!-- /input-group -->
-            </div>
-            
-          </div> <!-- .nearest-header-nav end -->
-        </div>
-        
+		      <div class="row box-shadow nearest-header-logo">
+		        <div>
+		          <img src="./resources/images/logo_2.png"/>
+		        </div>
+		      </div>
+		      
+		      <div class="row box-shadow top-nav">
+	          <p class="nearest-header-nav">
+	            <div class="col-xs-4">
+	              <select name="searchTag" class="form-control">
+	                <option value="prods">제품검색</option>
+	                <option value="marts">매장검색</option>
+	              </select>
+	            </div>
+	            
+	            <div class="col-xs-8">
+	              <div class="input-group">
+	                <input type="text"
+	                       name="searchContent" 
+	                       class="form-control" 
+	                       placeholder="상품을 입력하세요.">
+	                <span class="input-group-btn">
+	                  <button id="nearest-search" 
+	                          class="btn btn-default" 
+	                          type="button"
+	                          data-nav-section="work">
+	                       검색
+	                  </button>
+	                </span>
+	              </div>
+	              <!-- /input-group -->
+	            </div>
+	            
+	          </p> <!-- .nearest-header-nav end -->
+	        </div>
+        </div><!-- wrapper end -->
 	    </div> <!-- container end -->
   </header>
 
@@ -352,14 +357,15 @@
   
   <!-- Product -->
   <section id="fh5co-work" data-section="work">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 section-heading text-center">
-          <h2 class="to-animate">상품검색</h2>
-        </div>
-      </div>
-      
-      <script id="nearest-product-list-template" type="text/x-handlebars-template">
+    <div class="wrapper">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 section-heading text-center">
+	          <h2 class="to-animate">상품검색</h2>
+	        </div>
+	      </div>
+	      
+	      <script id="nearest-product-list-template" type="text/x-handlebars-template">
       {{#each productData}}
         <div class="col-md-4 col-sm-6 col-xxs-12">
           <a href="#product-detail-form" class="fh5co-project-item popup-with-form nearest-work-list-border">
@@ -372,15 +378,15 @@
         </div>
       {{/each}}
 	    </script>
-      
-      <div id="nearest-product-list" class="row row-bottom-padded-sm">
-      </div>
-      
-      <!-- Product Page Navigator -->
-      <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
+	      
+	      <div id="nearest-product-list" class="row row-bottom-padded-sm">
+	      </div>
+	      
+	      <!-- Product Page Navigator -->
+	      <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
               <li class="pagenav"><a>{{i}}</a></li>
       </script>
-      
+	      
       <div class="row">
           <nav class="col-md-12 text-center" aria-label="Page navigation">
             <ul class="pagination">
@@ -402,7 +408,7 @@
           </nav>
         </div>
       </div>
-
+    </div>
   </section>
   
   <!-- Product Detail Form -->
