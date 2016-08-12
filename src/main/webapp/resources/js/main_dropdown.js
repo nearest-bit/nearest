@@ -14,7 +14,7 @@ function myFunction() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function(event) {
-  if (!event.target.matches('.nearest-dropbtn')) {
+  if (!event.target.matches('.nearest-drop-span')) {
 
     var dropdowns = document.getElementsByClassName("nearest-dropdown-content");
     var i;

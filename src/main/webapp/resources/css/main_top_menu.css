@@ -9,13 +9,14 @@
 }
 
 .nearest-header-nav>* {
-  float: right;
-  margin-top: 3%;
+  left: 24%;
+  right: -50%;
 }
 
 .nearest-header-menu-btn {
-  float: left;
+  float: right;
   margin-right: 1%;
+  color: #66cdaa;
 }
 
 .nearest-header-menu {
@@ -28,6 +29,15 @@
 .nearest-header-logo {
   text-align: center;
   margin: 0 auto;
+}
+
+.nearest-header-logo > div > img {
+	width: 300px;
+}
+
+.nearest-header-top-menu {
+	margin-top: 0 !important;
+	text-align: right;
 }
 
 .nearest-map-infowindow {

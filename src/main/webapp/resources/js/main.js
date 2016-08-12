@@ -134,6 +134,7 @@
 			if ( scrlTop > 500 && scrlTop <= 2000 ) {
 				header.addClass('navbar-fixed-top fh5co-animated slideInDown');
 				$('#fh5co-header .nearest-header-logo').css('display', 'none');
+				$('.nearest-header-top-menu').css('display', 'none');
 				$('.nearest-header-menu').css('background', '#222');
 				$('.nearest-header-menu').css('padding', '0');
 				$('.top-nav button').css('margin-top', '0');
@@ -144,10 +145,10 @@
 					setTimeout(function(){
 						header.removeClass('navbar-fixed-top fh5co-animated slideInDown slideOutUp');
 						$('#fh5co-header .nearest-header-logo').css('display', '');
+						$('.nearest-header-top-menu').css('display', '');
 						$('.nearest-header-menu').css('background', '');
 						$('.nearest-header-menu').css('padding', '2% 0px 1% 0px');
 						$('.top-nav button').css('margin-top', '2%');
-						$('.nearest-header-nav > *').css('margin-top', '3%');
 					}, 100 );
 				}
 			} 

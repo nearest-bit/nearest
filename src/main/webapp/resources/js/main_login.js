@@ -42,12 +42,11 @@ $(document).on('click','#login-btn',function() {
 		},
 		method: 'post',
 		success: function(result) {
-			alert(result.status);
-			$('#loginView').text(result.data.id);
 			$(function() {
 				$.magnificPopup.close();
 				$("#loginBtn").css("display", "none");
 				$("#signupBtn").css('display', 'none');
+				$("#btnSplit").css('display', 'none');
 				$('#loginAfter').css('display', 'inline');
 			});
 			
@@ -64,6 +63,7 @@ $(document).on('click','#logoutBtn',function() {
 	$(function() {
 		$("#loginBtn").css("display", 'inline');
 		$("#signupBtn").css('display', 'inline');
+		$("#btnSplit").css('display', 'inline');
 		$('#loginAfter').css('display', 'none');
 	})
 });
@@ -72,10 +72,10 @@ $(function() {
     
     var loginId = $.cookie('loginId');
     if( loginId != undefined){
-        $('#loginView').text(loginId);
         $(function() {
             $("#loginBtn").css("display", "none");
             $("#signupBtn").css('display', 'none');
+            $("#btnSplit").css('display', 'none');
             $('#loginAfter').css('display', 'inline');
         });
     }

@@ -105,6 +105,46 @@
   <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
       <div class="container nearest-header-menu">
+        <div class="row box-shadow nearest-header-top-menu">
+          <div class="nearest-dropdown nearest-header-menu-btn"> 
+            <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
+                  aria-hidden="true"
+                  onclick="myFunction()">
+            </span>
+            
+            <div id="myDropdown" class="nearest-dropdown-content">
+              <a href="#">찜 목록</a>
+              <a href="#">구매 목록</a>
+              <a href="#">건의 사항</a>
+            </div>
+          </div>
+        
+          <div class="white-popup nearest-header-menu-btn" id="loginAfter">
+            <a id="myInfoBtn">
+              <strong>내정보</strong>
+            </a>
+            <strong>|</strong>
+            <a id="logoutBtn">
+              <strong>로그아웃</strong>
+            </a> 
+          </div>
+          
+          <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
+            <strong>REGISTER</strong>
+          </a>
+          
+          <a id="btnSplit" class="nearest-header-menu-btn">
+            <strong>|</strong>
+          </a>
+          
+          <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
+            <strong>LOGIN</strong>
+          </a>
+          
+          
+        
+        </div>
+      
 	      <div class="row box-shadow nearest-header-logo">
 	        <div>
 	        
@@ -115,42 +155,11 @@
 	      
 	      <div class="row box-shadow top-nav">
           <div class="nearest-header-nav">
-            <div class="white-popup nearest-header-menu-btn" id="loginAfter">
-              <span id="loginView"></span>&nbsp;님 환영합니다.&nbsp;&nbsp;
-              <button id="myInfoBtn" type="button" class="btn btn-default">
-                <strong>내정보</strong>
-              </button>
-              <button id="logoutBtn" type="button" class="btn btn-default">
-                <strong>로그아웃</strong>
-              </button> 
-            </div>
-          
-            <a href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
-	            <button id="loginBtn" type="button" class="btn btn-default">
-	              <strong>LOGIN</strong>
-	            </button>
-            </a>
-            
-            <a href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
-              <button id="signupBtn" type="button" class="btn btn-default">
-                <strong>REGISTER</strong>
-              </button>
-            </a>
-          
-            <div class="nearest-dropdown"> 
-	            <button type="button" 
-	                    onclick="myFunction()"
-	                    class="btn btn-default nearest-dropbtn">
-	              
-	              <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-	              
-	            </button>
-	            
-	            <div id="myDropdown" class="nearest-dropdown-content">
-						    <a href="#">찜 목록</a>
-						    <a href="#">구매 목록</a>
-						    <a href="#">건의 사항</a>
-						  </div>
+            <div class="col-xs-2">
+              <select name="searchTag" class="form-control">
+                <option value="prods">제품검색</option>
+                <option value="marts">매장검색</option>
+              </select>
             </div>
             
             <div class="col-xs-4">
@@ -171,12 +180,6 @@
               <!-- /input-group -->
             </div>
             
-            <div class="col-xs-2">
-              <select name="searchTag" class="form-control">
-                <option value="prods">제품검색</option>
-                <option value="marts">매장검색</option>
-              </select>
-            </div>
           </div> <!-- .nearest-header-nav end -->
         </div>
         
