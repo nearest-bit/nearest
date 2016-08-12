@@ -1,1 +1,1 @@
-var contextRoot = "http://localhost:8080/nearest/";
+var contextRoot = "http://192.168.0.19:8080/nearest/";
