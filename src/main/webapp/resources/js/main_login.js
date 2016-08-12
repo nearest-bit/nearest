@@ -70,3 +70,16 @@ $(document).on('click','#logoutBtn',function() {
 		$('#loginAfter').css('display', 'none');
 	})
 });
+
+$(function() {
+    
+    var loginId = $.cookie('loginId');
+    if( loginId != undefined){
+        $('#loginView').text(loginId);
+        $(function() {
+            $("#loginBtn").css("display", "none");
+            $("#signupBtn").css('display', 'none');
+            $('#loginAfter').css('display', 'inline');
+        });
+    }
+});
