@@ -99,7 +99,20 @@
     display: none;
   }
   </style>
-
+  <script type="text/javascript">
+  $(function() {
+      
+      var loginId = $.cookie('loginId');
+      if( loginId != undefined){
+          $('#loginView').text(loginId);
+          $(function() {
+              $("#loginBtn").css("display", "none");
+              $("#signupBtn").css('display', 'none');
+              $('#loginAfter').css('display', 'inline');
+          });
+      }
+  });
+  </script>
   </head>
   <body>
   
@@ -226,7 +239,7 @@
 	        
 	        <div class="login-form-id-save">
 	           <p class="id-save"> 
-	              <label><input type="checkbox"> 아이디 저장</label>
+	              <label><input type="checkbox" id="rememberId"> 아이디 저장</label>
 	           </p>
 	           <p class="find-id-password">  
 	             <a href="#">아이디 찾기</a>&nbsp;|&nbsp;<a href="#">비밀번호 찾기</a>

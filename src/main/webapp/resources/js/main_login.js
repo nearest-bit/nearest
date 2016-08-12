@@ -19,6 +19,22 @@
 //});
 
 $(document).on('click','#login-btn',function() {
+	var loginId = $.cookie('loginId', $('#login-form-username').val(), {expires : 1});
+	/*if(loginId != undefined){
+		$('#login-form-username').val(loginId);
+		$('#rememberId').prop('checked', true);
+	}*/
+	if($.trim($('#login-form-username').val()) == ""){
+		alert("아이디를 입력하세요.");
+		return;
+	} else {
+		if($('#rememberId').prop('checked')) {
+			$.cookie('loginId', $('#login-form-username').val());
+		} else{
+			$.removeCookie('loginId');
+		}
+	}
+	
 	/* location.href = "./admin.html"; */
 	$.ajax({
 		url: contextRoot + 'client/login.do',
@@ -44,4 +60,13 @@ $(document).on('click','#login-btn',function() {
 		}
 	});
 	
+});
+
+$(document).on('click','#logoutBtn',function() {
+	$.removeCookie('loginId');
+	$(function() {
+		$("#loginBtn").css("display", 'inline');
+		$("#signupBtn").css('display', 'inline');
+		$('#loginAfter').css('display', 'none');
+	})
 });
