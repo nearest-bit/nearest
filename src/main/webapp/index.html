@@ -459,65 +459,7 @@
   <script src="./resources/js/main_googlemap.js"></script>
   <script src="./resources/js/main_handlebars.js"></script>
   <script src="./resources/js/main_login.js"></script>
-  <script type="text/javascript">
-  
-  var duplicate = '';
-  
-  $(document).on('click','.regBtn', function(){
-	  $.ajax({
-		  dataType : 'json',
-		  url : contextRoot + 'client/register.do',
-		  data : {
-			  id : $('input[name="reg-id"]').val(),
-			  password : $('input[name="reg-password"]').val(),
-			  name : $('input[name="reg-name"]').val(),
-			  birth : $('input[name="reg-birth"]').val(),
-			  email : $('input[name="reg-email"]').val(),
-			  phone : $('input[name="reg-phone"]').val()
-		  },
-		  success : function(result){
-			
-			  if(duplicate == true){
-				  alert('중복된 아이디 입니다')
-				  return;
-			  }else{
-				  alert('회원가입 성공');
-			  }
-			  
-		  },
-		  error : function(){
-			  alert('controller error....');
-		  }
-	  });
-  });
-  
-  $('input[name="reg-id"]').on('keyup', function(event){
-	  $.ajax({
-		  dataType : 'json',
-		  url : contextRoot + 'client/checkDupl.do',
-		  data : {
-			  id : $('input[name="reg-id"]').val()
-		  },
-		  success : function(result){
-			  if(result.status != 'success'){
-				  alert('서버 오류...');
-				  return;
-			  }
-			   if( result.check == 'true' ){
-				  $('#nearest-checkDupl').text('중복된 아이디 입니다').css('color', 'red');
-				  duplicate = true;
-			  }else{
-				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', 'blue');
-				  duplicate = false;
-			  }
-		  },
-		  error : function(){
-			  alert('error...');
-		  }
-	  });
-  });
-  
-  </script>
+  <script src="./resources/js/main_register.js"></script>
 
   </body>
 </html>
