@@ -47,6 +47,7 @@ $(document).on('click','#login-btn',function() {
 				$("#loginBtn").css("display", "none");
 				$("#signupBtn").css('display', 'none');
 				$("#btnSplit").css('display', 'none');
+				$('#nearest-dropdown').css('display', 'inline');
 				$('#loginAfter').css('display', 'inline');
 			});
 			
@@ -64,6 +65,7 @@ $(document).on('click','#logoutBtn',function() {
 		$("#loginBtn").css("display", 'inline');
 		$("#signupBtn").css('display', 'inline');
 		$("#btnSplit").css('display', 'inline');
+		$('#nearest-dropdown').css('display', 'none');
 		$('#loginAfter').css('display', 'none');
 	})
 });
@@ -76,6 +78,7 @@ $(function() {
             $("#loginBtn").css("display", "none");
             $("#signupBtn").css('display', 'none');
             $("#btnSplit").css('display', 'none');
+            $('#nearest-dropdown').css('display', 'inline');
             $('#loginAfter').css('display', 'inline');
         });
     }
