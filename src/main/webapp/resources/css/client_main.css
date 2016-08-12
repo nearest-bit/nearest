@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+
+tbody > tr > td, tbody > tr > th {
+	vertical-align: middle !important;
+}
