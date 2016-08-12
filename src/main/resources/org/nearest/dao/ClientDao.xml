@@ -14,6 +14,11 @@
     <result column="clnt_id"       property="id" />
     <result column="clnt_pw"       property="password" />
   </resultMap>
+  
+  <insert id="insert" parameterType="client">
+    insert into clnts ( clnt_id, clnt_pw, clnt_nm, clnt_bir, clnt_eml, clnt_pn )
+    values ( #{id}, #{password}, #{name}, #{birth}, #{email}, #{phone} )
+  </insert>
 
   <select id="selectOne" resultMap="clientMap" parameterType="string">
     SELECT clnt_no, clnt_nm, clnt_pn, clnt_bir, clnt_eml, clnt_id, clnt_pw

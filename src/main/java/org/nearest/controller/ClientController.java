@@ -1,6 +1,7 @@
 package org.nearest.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.nearest.domain.Client;
 import org.nearest.service.ClientService;
@@ -39,4 +40,46 @@ public class ClientController {
 		
 		return new Gson().toJson(result);
 	}
+	
+	@RequestMapping(path="register", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String addClient(Client client){
+	  
+	  Map<String, Object> result = new HashMap<>(); 
+    
+    try {
+      clientService.addClient(client);
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    
+    return new Gson().toJson(result);
+  }
+	
+	@RequestMapping(path="checkDupl", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String checkDuplication(@RequestParam String id){
+    
+    Map<String, Object> result = new HashMap<>(); 
+    
+    try {
+      Client client = clientService.getClient(id);
+      result.put("status", "success");
+      
+      if(client != null){
+        result.put("check", "true");
+      }else {
+        result.put("check", "false");
+      }
+      
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    
+    return new Gson().toJson(result);
+  }
+	
 }
