@@ -99,20 +99,6 @@
     display: none;
   }
   </style>
-  <script type="text/javascript">
-  $(function() {
-      
-      var loginId = $.cookie('loginId');
-      if( loginId != undefined){
-          $('#loginView').text(loginId);
-          $(function() {
-              $("#loginBtn").css("display", "none");
-              $("#signupBtn").css('display', 'none');
-              $('#loginAfter').css('display', 'inline');
-          });
-      }
-  });
-  </script>
   </head>
   <body>
   
