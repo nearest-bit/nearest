@@ -42,7 +42,8 @@
 <link rel="stylesheet" href="./resources/css/main_header.css">
 <!-- Purchase List -->
 <link rel="stylesheet" href="./resources/css/client_purchase_list.css">
-
+<!-- input calendar -->
+<link rel="stylesheet" href="./resources/css/client_datepicker_style.css">
 <!-- JS Files -->
 
 <!-- jQuery -->
@@ -67,14 +68,16 @@
 <script src="./resources/js/jquery.backstretch.min.js"></script>
 <script src="./resources/js/scripts.js"></script>
 <script	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-<script src="./resources/js/bootstrap-datetimepicker.js"></script>
 <!-- Modernizr JS -->
 <script src="./node_modules/npm-modernizr/modernizr.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
   <script src="./js/respond.min.js"></script>
   <![endif]-->
-
+<!-- jquery-dateFormat -->
+<script src="./node_modules/jquery-dateformat/dist/jquery-dateFormat.js"></script>
+<!-- bootstrap-datepicker -->
+<script src="./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
 <!-- jQuery Cookie -->
 <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
 <!-- IamPort 결제 -->
@@ -342,11 +345,65 @@
 	
 		</section><!-- End of JJimList -->
 		
-		<section id="fh5co-work" data-section="work"
+  
+  <section id="fh5co-counters" data-stellar-background-ratio="0.5">
+    
+    <div id="nearest-purchase-list" class="container">
+      <div class="row">
+        <div class="col-md-12 section-heading text-center to-animate">
+          <h2>구매내역</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-money to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="5" data-speed="5000" data-refresh-interval="50">89</span>
+            <span class="fh5co-counter-label">결제완료</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-inbox to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="15" data-speed="5000" data-refresh-interval="50">15</span>
+            <span class="fh5co-counter-label">준비중</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-lightbulb-o to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50">30</span>
+            <span class="fh5co-counter-label">준비완료</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="55" data-speed="5000" data-refresh-interval="50">55</span>
+            <span class="fh5co-counter-label">수령완료</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div id="flight-datepicker" class="input-daterange input-group">
+			    <div class="form-item">
+			      <label>Start Date</label><span class="fontawesome-calendar"></span>
+			      <input type="text" id="start-date" name="start" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm form-control"/><span class="date-text date-depart"></span>
+			    </div>
+			    <div class="form-item">
+			      <label>End Date</label><span class="fontawesome-calendar"></span>
+			      <input type="text" id="end-date" name="end" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm form-control"/><span class="date-text date-return"></span>
+			    </div>
+			  </div>      
+      </div>
+    </div>
+  </section>
+  
+  <section id="fh5co-work" data-section="work"
     style="background-image: url(images/full_image_2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
     <div class="container">
       <div class="row">
-        <div class="col-md-12 section-heading text-center">
+        <!-- <div class="col-md-12 section-heading text-center">
           <h2 class="to-animate">구매내역</h2>
           <div class="search-form">
             <button class="btn btn-info to-animate" id="order-btn"
@@ -362,8 +419,8 @@
               <button class="btn btn-info" type="button">조회</button>
               <button class="btn btn-default" id="order-reset-btn" type="reset">취소</button>
             </div>
-        </div>
-      </div>
+         </div>
+        </div> -->
       <div class="row row-bottom-padded-sm">
       
         <div class="col-md-4 col-sm-6 col-xxs-12">
