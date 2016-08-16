@@ -46,24 +46,16 @@ body {
     text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
 }
 
-#modal > p {
-    text-align:right;
-    margin-top: 7px 0 25px;
-    color: #ccc;
-    font-size:25px;
-    text-shadow: 0 0px 5px rgba(0,0,0,.25), 0 -1px 1px #000;
-}
-
-hr.line {
+hr.nearest-line {
     border: none; border: 0.1px dashed;
 }
 
-#image {
+#nearest-image {
     width: 75%;
     height: 75%
 }
 
-#item-title {
+#nearest-item-title {
     margin:0;
     font-size:25px;
     letter-spacing:-1px;
@@ -71,7 +63,7 @@ hr.line {
     text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
 }
 
-#item-detail {
+#nearest-item-detail {
     margin:0;
     font-size:18px;
     letter-spacing:-1px;
@@ -79,11 +71,11 @@ hr.line {
     text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
 }
 
-#purchase-pay {
+#nearest-purchase-pay {
     font-size: 23px;
 }
 
-#purchase-footer {
+#nearest-purchase-footer {
     float: right;
 }
 
@@ -155,49 +147,49 @@ hr.line {
     <div id="modal">
     <h1>상품상세정보</h1>
     <br/>
-    <hr class="line"/>
+    <hr class="nearest-line"/>
     <table style="width:100%">
         <tr>
             <th rowspan="9">
-                <img id="image" alt="No image" src="./foke.jpg">
+                <img id="nearest-image" alt="No image" src="./foke.jpg">
             </th>
             <th style="width:5%"></th>
-            <th colspan="3"> <font id="item-title">우삼겹구이 300g BBQ</font></th>
+            <th colspan="3"> <font id="nearest-item-title">우삼겹구이 300g BBQ</font></th>
         </tr>
         <tr>
-            <td colspan="3"><hr class="line"/></td>
+            <td colspan="3"><hr class="nearest-line"/></td>
         </tr>
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font id="item-detail">판매처&nbsp;:&nbsp;</font>
+               <font id="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
                <span>진한마트</span>
             </td>
         </tr>
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font id="item-detail">현재 재고량&nbsp;:&nbsp;</font>
+               <font id="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
                <span>1</span>
             </td>
         </tr>
         <tr>
-            <td colspan="3"><hr class="line"/></td>
+            <td colspan="3"><hr class="nearest-line"/></td>
         </tr>
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font id="item-detail">판매가&nbsp;:&nbsp;</font>
-               <font id="purchase-pay">5900</font>
+               <font id="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
+               <font id="nearest-purchase-pay">5900</font>&nbsp;원
             </td>
         </tr>
         <tr>
-            <td colspan="3"><hr class="line"/></td>
+            <td colspan="3"><hr class="nearest-line"/></td>
         </tr>
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-                <font id="item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
+                <font id="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
                 <input type="number" value="1" style="width:15%">
             </td>
         </tr>
@@ -211,10 +203,10 @@ hr.line {
             </td>
         </tr> -->
     </table>
-    <hr class="line"/><br/>
-    <div id="purchase-footer">
-        <font id="item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
-        <font id="purchase-pay" style="color: red">5900</font>&nbsp;원
+    <hr class="nearest-line"/><br/>
+    <div id="nearest-purchase-footer">
+        <font id="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
+        <font id="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
     </div>
     <br/><br/><br/>
     <a class="yes" href="javascript:void(0);">찜</a>
