@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>상품상세정보</title>
-<style>
-body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    padding: 50px;
-    background: rgba(0,0,0,.2);
-}
+@CHARSET "UTF-8";
 
-#modal {
+#nearest-modal {
     /* basic */
     background-color: #fff;
     margin: 0 auto;
-    width:50%;
+    width: 60%;
     padding: 30px;
     text-align: center;
     /* border-radius */
@@ -37,7 +27,7 @@ body {
     overflow: hidden;
 }
 
-#modal h1 {
+#nearest-modal h1 {
     text-align:left;
     margin:0;
     font-size:35px;
@@ -135,104 +125,3 @@ hr.nearest-line {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c5bd', endColorstr='#ff6600',GradientType=0 );
     background: linear-gradient(to bottom, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 100%);
 }
-
-/* a:active {
-    position: absolute;
-    top:3px;
-} */
-
-</style>
-</head>
-<body>
-    <div id="modal">
-    <h1>상품상세정보</h1>
-    <br/>
-    <hr class="nearest-line"/>
-    <table style="width:100%">
-        <tr>
-            <th rowspan="9">
-                <img id="nearest-image" alt="No image" src="./foke.jpg">
-            </th>
-            <th style="width:5%"></th>
-            <th colspan="3"> <font id="nearest-item-title">우삼겹구이 300g BBQ</font></th>
-        </tr>
-        <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
-            <td style="width:5%"></td>
-            <td colspan="3" style="text-align:right">
-               <font id="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
-               <span>진한마트</span>
-            </td>
-        </tr>
-        <tr>
-            <td style="width:5%"></td>
-            <td colspan="3" style="text-align:right">
-               <font id="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
-               <span>1</span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
-            <td style="width:5%"></td>
-            <td colspan="3" style="text-align:right">
-               <font id="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
-               <font id="nearest-purchase-pay">5900</font>&nbsp;원
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
-            <td style="width:5%"></td>
-            <td colspan="3" style="text-align:right">
-                <font id="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
-                <input type="number" value="1" style="width:15%">
-            </td>
-        </tr>
-        <!-- <tr>
-            <td colspan="3"><hr/></td>
-        </tr>
-        <tr>
-            <td colspan="4" style="text-align:right">
-                <font id="item-detail">구매예정금액</font>&nbsp;&nbsp;&nbsp;
-                <span id="purchase-pay" style="color: red">5900</span>&nbsp;원
-            </td>
-        </tr> -->
-    </table>
-    <hr class="nearest-line"/><br/>
-    <div id="nearest-purchase-footer">
-        <font id="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
-        <font id="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
-    </div>
-    <br/><br/><br/>
-    <a class="yes" href="javascript:void(0);">찜</a>
-    <a class="no" href="javascript:void(0);">바로구매</a>
-    <!-- <br>
-    <img id="image" alt="No Image"/>
-    
-    <p>우삼겹구이 300g BBQ </p>
-    <hr>
-    <div id="topDetail">
-    <span id="space">판매처&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
-    <span id="space">판매가&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
-    <span id="space">현재 재고량&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
-    </div>
-    <p/>
-    <br/><br/>
-    <div id="middleDetail">
-    <span id="space">구매수량&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
-    </div>
-    <p/>
-    <br><hr><br/>
-    <div id="bottomDetail">
-    <a class="yes" href="javascript:void(0);">찜</a>
-    <a class="no" href="javascript:void(0);">바로구매</a>
-    </div> -->
-    </div>
-    
-</body>
-</html>
