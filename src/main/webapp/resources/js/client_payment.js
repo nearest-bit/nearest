@@ -6,6 +6,12 @@ var IMP = window.IMP;
 	IMP.init('imp16866345');
 
 	$('#purchaseBtn').click(function() {
+		
+		if (checkVal()) {
+			return;
+		}
+		
+		
 		IMP.request_pay({
 			pg : 'inicis', // version 1.1.0부터 지원. 
 			/*
@@ -19,7 +25,7 @@ var IMP = window.IMP;
 			pay_method : 'card', // 'card':신용카드, 'trans':실시간계좌이체, 'vbank':가상계좌, 'phone':휴대폰소액결제
 			merchant_uid : 'merchant_' + new Date().getTime(),
 			name : '주문명:결제테스트',
-			amount : 1000,
+			amount : $('#nearest-payment-price').attr('value'),
 			buyer_email : 'iamport@siot.do',
 			buyer_name : '구매자이름',
 			buyer_tel : '010-1234-5678',
@@ -38,3 +44,15 @@ var IMP = window.IMP;
 			}
 		});
 	});
+	
+	function checkVal(){
+
+		for( var i in $('.form-group > input[type="text"]')){
+			if( $($('.form-group > input[type="text"]')[i]).val() == null || $($('.form-group > input[type="text"]')[i]).val() == '' ){
+				alert('모든 정보를 입력 해주세요');
+				return true;
+			} else if (i== $('.form-group > input[type="text"]').length-1) {
+				return false;
+			}
+		}
+	}

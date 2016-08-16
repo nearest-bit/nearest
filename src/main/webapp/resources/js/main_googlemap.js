@@ -4,7 +4,8 @@ var myLocation = {
 };
 var markerLocation = new Array();
 
-var map;
+var map, places;
+var autocomplete;
 
 var infowindows = new Array();
 
@@ -18,6 +19,12 @@ function initMap() {
   }
 
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
+  places = new google.maps.places.PlacesService(map);
+  autocomplete = new google.maps.places.Autocomplete( document.getElementById('nearest-map-autocomplete') );
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+	 showSelectedPlace(); 
+  });
 
   var image = './resources/images/map_marker.png';
   
@@ -98,6 +105,80 @@ function initMap() {
 		  alert('ajax 접속 실패');
 	  }
   })
+}
+
+function tilesLoaded() {
+	google.maps.event.clearListeners(map, 'tilesloaded');
+	google.maps.event.addListener(map, 'zoom_changed', search);
+	google.maps.event.addListener(map, 'dragend', search);
+	search();
+}
+
+function search() {
+	var type;
+
+	autocomplete.setBounds(map.getBounds());
+	var search = {
+		bounds: map.getBounds()
+	};
+	if (type != 'establishment') {
+		search.types = [type];
+	}
+	places.search(search, function (results, status) {});
+}
+
+function addResult(result, i) {
+	var results = document.getElementById('nearest-map-results');
+	var tr = document.createElement('tr');
+	tr.style.backgroundColor = (i % 2 == 0 ? '#F0F0F0' : '#FFFFFF');
+	tr.onclick = function () {
+		google.maps.event.trigger(markers[i], 'click');
+	};
+	var iconTd = document.createElement('td');
+	var nameTd = document.createElement('td');
+	var icon = document.createElement('img');
+	icon.src = result.icon.replace('http:', '');
+	icon.setAttribute('class', 'placeIcon');
+	var name = document.createTextNode(result.name);
+	iconTd.appendChild(icon);
+	nameTd.appendChild(name);
+	tr.appendChild(iconTd);
+	tr.appendChild(nameTd);
+	results.appendChild(tr);
+}
+
+function getDetails(result, i) {
+	return function () {
+		places.getDetails({
+			reference: result.reference
+		}, showInfoWindow(i));
+	}
+}
+
+
+function showSelectedPlace() {
+	//clearResult();
+	//clearMarkers();
+	var place = autocomplete.getPlace();
+	map.panTo(place.geometry.location);
+	
+	/*var iw;
+	
+	markers[0] = new google.maps.Marker({
+		position: place.geometry.location,
+		map: map
+	});
+	iw = new google.maps.InfoWindow({
+		content: getIWContent(place)
+	});
+	iw.open(map, markers[0]);*/
+}
+
+function clearResult() {
+	var results = $('#nearest-map-results');
+	while (results.childNodes[0]) {
+		results.removeChild(results.childNodes[0]);
+	}
 }
 
 function setMarkerInfoWindow (marker, index, content) {

@@ -18,9 +18,11 @@ function setTotalPrice() {
 		price +=  parseInt($(priceArray[i]).html());
 	}
 	
-	totalPrice = numberWithCommas(price);
+	totalPrice = price;
 	
-	$('#nearest-cart-totalPrice').html(totalPrice);
+	$('#nearest-cart-totalPrice').html(numberWithCommas(totalPrice));
+	$('#nearest-payment-price').text(numberWithCommas(totalPrice)+' 원').attr('value', totalPrice);
+	
 	
 }
 
@@ -53,3 +55,4 @@ $('.decreaseBtn').click(function() {
 	$(this).parent().parent().next().next().find('p').text(price);
 	setTotalPrice();
 });
+

@@ -45,6 +45,8 @@
   <link rel="stylesheet" href="./resources/css/main_header.css">
   <!-- Main Footer -->
   <link rel="stylesheet" href="./resources/css/main_footer.css">
+  <!-- Main Product Detail -->
+  <link rel="stylesheet" href="./resources/css/main_prod_detail.css">
   
   
   
@@ -251,6 +253,7 @@
 	  </div>
 	</div>
   
+  <!-- Signup Form -->
   
 	<div id="signupForm" class="white-popup-block mfp-hide">	 
 	
@@ -349,11 +352,20 @@
     </div> <!-- signup-form-box end -->
 	    
 	</div> <!-- signupForm end -->
-  
 
   <!-- Google Map -->
   <section id="fh5co-home" data-section="home">
+    
+    <div id="nearest-map-locationField">
+      <input id="nearest-map-autocomplete" type="text" />
+    </div>
+    
     <div id="map"></div>
+    
+    <div id="nearest-listing">
+	    <table id="nearest-map-results"></table>
+	  </div>
+    
   </section>
   
   <!-- Product -->
@@ -366,10 +378,10 @@
 	        </div>
 	      </div>
 	      
-	      <script id="nearest-product-list-template" type="text/x-handlebars-template">
+	    <script id="nearest-product-list-template" type="text/x-handlebars-template">
       {{#each productData}}
         <div class="col-md-4 col-sm-6 col-xxs-12">
-          <a href="#product-detail-form" class="fh5co-project-item popup-with-form nearest-work-list-border">
+          <a href="#nearest-modal" class="fh5co-project-item popup-with-form nearest-work-list-border white-popup popup-modal">
             <img src="{{photo}}" alt="Image" class="img-responsive">
             <div class="fh5co-text">
             <h2>{{name}}</h2>
@@ -412,53 +424,6 @@
     </div>
   </section>
   
-  <!-- Product Detail Form -->
-  <form id="product-detail-form" class="mfp-hide">
-	  
-	  <div class="page-header">
-		  <h1>상품정보</h1>
-		  <table class="table table-striped">
-		
-		    <tr>
-		      <td rowspan="4"><img src=".." alt="Image"></td>
-		      <td>상품이름</td>
-		      <td>신라면</td>
-		      <td><input id="prodName" type="text" name="pd-name" placeholder="상품이름"></td>
-		    </tr>
-		    <tr>
-		      <td>가격</td>
-		      <td>2,500원</td>
-		      <td><input type="text" name="pd-price" placeholder="가격"></td>
-		    </tr>
-		    <tr>
-		      <td>수량</td>
-		      <td>25개</td>
-		      <td><input type="text" name="amount" placeholder="수량"></td>
-		    </tr>
-		    <tr>
-		      <td>할인률</td>
-		      <td>0%</td>
-		      <td>
-		        <select>
-		          <option selected="selected">0%</option>
-		          <option>5%</option>
-		          <option>10%</option>
-		          <option>15%</option>
-		          <option>20%</option>
-		          <option>25%</option>
-		        </select>
-		      </td>
-		    </tr>
-		  </table>
-		    <p class="form-btn">
-		      <button type="button" class="btn btn-primary">수정</button>
-		      <button type="button" class="btn btn-default">취소</button>
-		    </p>
-	  </div>
-
- 
-  </form>
-  
   <footer>
 	  <section class="foot-area">
 		  <div class="nearest-footer" style="text-align: center; width: 100%;">
@@ -470,8 +435,71 @@
   </footer>
   
   
+  <!-- Product Detail Form -->
+  
+  <div id="nearest-modal" class="white-popup-block mfp-hide">
+    <h1>상품상세정보</h1>
+    <br/>
+    <hr class="nearest-line"/>
+    <table style="width:100%">
+        <tr>
+            <th rowspan="9">
+                <img id="nearest-image" alt="No image" src="./foke.jpg">
+            </th>
+            <th style="width:5%"></th>
+            <th colspan="3"> <font id="nearest-item-title">우삼겹구이 300g BBQ</font></th>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font id="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
+               <span>진한마트</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font id="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
+               <span>1</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font id="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
+               <font id="nearest-purchase-pay">5900</font>&nbsp;원
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+                <font id="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
+                <input type="number" value="1" style="width:15%">
+            </td>
+        </tr>
+    </table>
+    <hr class="nearest-line"/><br/>
+    <div id="nearest-purchase-footer">
+        <font id="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
+        <font id="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
+    </div>
+    <br/><br/><br/>
+    <a class="yes" href="javascript:void(0);">찜</a>
+    <a class="no" href="javascript:void(0);">바로구매</a>
+  </div>
+  
+  
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c&callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c&callback=initMap&libraries=places"
     async defer>
   </script>
 
