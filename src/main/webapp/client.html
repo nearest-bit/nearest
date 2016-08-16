@@ -38,15 +38,21 @@
 <link rel="stylesheet" href="./resources/css/client_payment.css">
 <link rel="stylesheet" href="./resources/css/client_menu.css">
 <link rel="stylesheet" href="./resources/css/client_main.css">
-
+<!-- Main Header -->
+<link rel="stylesheet" href="./resources/css/main_header.css">
+<!-- Purchase List -->
+<link rel="stylesheet" href="./resources/css/client_purchase_list.css">
+<!-- input calendar -->
+<link rel="stylesheet" href="./resources/css/client_datepicker_style.css">
+<!-- Main Footer -->
+  <link rel="stylesheet" href="./resources/css/main_footer.css">
 
 <!-- JS Files -->
 
 <!-- jQuery -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 <!-- jQuery Easing -->
-<script
-	src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
+<script	src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
 <!-- Bootstrap -->
 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
@@ -56,24 +62,24 @@
 <!-- Counter -->
 <script src="./node_modules/jquery-countto/jquery.countTo.js"></script>
 <!-- Magnific Popup -->
-<script
-	src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script	src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
 <script src="./resources/js/magnific-popup-options.js"></script>
 <!-- Handlebars -->
 <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
 
 <script src="./resources/js/jquery.backstretch.min.js"></script>
 <script src="./resources/js/scripts.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-<script src="./resources/js/bootstrap-datetimepicker.js"></script>
+<script	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <!-- Modernizr JS -->
 <script src="./node_modules/npm-modernizr/modernizr.js"></script>
 <!-- FOR IE9 below -->
 <!--[if lt IE 9]>
   <script src="./js/respond.min.js"></script>
   <![endif]-->
-
+<!-- jquery-dateFormat -->
+<script src="./node_modules/jquery-dateformat/dist/jquery-dateFormat.js"></script>
+<!-- bootstrap-datepicker -->
+<script src="./resources/js/bootstrap-datepicker.js"></script>
 <!-- jQuery Cookie -->
 <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
 <!-- IamPort 결제 -->
@@ -106,86 +112,69 @@
 <body>
   <header role="banner" id="fh5co-header">
     <div class="container nearest-header-menu">
-        <div class="row box-shadow nearest-header-top-menu">
-        
-          <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
-            <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
-                  aria-hidden="true"
-                  onclick="myFunction()">
-            </span>
-            
-            <div id="myDropdown" class="nearest-dropdown-content">
-              <a href="./client.html">찜 목록</a>
-              <a href="./client.html">구매 목록</a>
-              <a href="./client.html">건의 사항</a>
-            </div>
-          </div>
-        
-          <div class="white-popup nearest-header-menu-btn" id="loginAfter">
-            <a id="myInfoBtn">
-              <strong>내정보</strong>
-            </a>
-            <strong>|</strong>
-            <a id="logoutBtn">
-              <strong>로그아웃</strong>
-            </a> 
-          </div>
-          
-          <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
-            <strong>REGISTER</strong>
-          </a>
-          
-          <a id="btnSplit" class="nearest-header-menu-btn">
-            <strong>|</strong>
-          </a>
-          
-          <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
-            <strong>LOGIN</strong>
-          </a>
-          
-          
-        
-        </div>
-      
-        <div class="row box-shadow nearest-header-logo">
-          <div>
-          
-            <img src="./resources/images/logo_2.png"/>
-            
-          </div> <!-- .nearest-header-nav end -->
-        </div>
-        
-        <div class="row box-shadow top-nav">
-          <div class="nearest-header-nav">
-            <div class="col-xs-2">
-              <select name="searchTag" class="form-control">
-                <option value="prods">제품검색</option>
-                <option value="marts">매장검색</option>
-              </select>
-            </div>
-            
-            <div class="col-xs-4">
-              <div class="input-group">
-                <input type="text"
-                       name="searchContent" 
-                       class="form-control" 
-                       placeholder="상품을 입력하세요.">
-                <span class="input-group-btn">
-                  <button id="nearest-search" 
-                          class="btn btn-default" 
-                          type="button"
-                          data-nav-section="work">
-                       검색
-                  </button>
-                </span>
-              </div>
-              <!-- /input-group -->
-            </div>
-            
-          </div> <!-- .nearest-header-nav end -->
-        </div>
-        
-      </div> <!-- container end -->
+	        <div class="wrapper">
+	          <div class="row box-shadow nearest-header-top-menu">
+	          
+	            <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
+	              <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
+	                    aria-hidden="true"
+	                    onclick="myFunction()">
+	       </span>
+	       
+	       <div id="myDropdown" class="nearest-dropdown-content">
+	         <a href="./client.html">찜 목록</a>
+	         <a href="./client.html">구매 목록</a>
+	         <a href="./client.html">건의 사항</a>
+	       </div>
+	     </div>
+	   
+	     <div class="white-popup nearest-header-menu-btn">
+	       <a id="logoutBtn" href="./">
+	         <strong>로그아웃</strong>
+	       </a> 
+	     </div>    
+	   
+	   </div>
+	  
+	   <div class="row box-shadow nearest-header-logo">
+	     <div>
+	     
+	       <img src="./resources/images/logo_2.png"/>
+	       
+	     </div> <!-- .nearest-header-nav end -->
+	   </div>
+	   
+	   <div class="row box-shadow top-nav">
+	     <p class="nearest-header-nav">
+	         <div class="col-xs-4">
+	           <select name="searchTag" class="form-control">
+	             <option value="prods">제품검색</option>
+	             <option value="marts">매장검색</option>
+	           </select>
+	         </div>
+	         
+	         <div class="col-xs-8">
+	           <div class="input-group">
+	             <input type="text"
+	                    name="searchContent" 
+	                    class="form-control" 
+	                    placeholder="상품을 입력하세요.">
+	             <span class="input-group-btn">
+	               <button id="nearest-search" 
+	                       class="btn btn-default" 
+	                       type="button"
+	                       data-nav-section="work">
+	                    검색
+	               </button>
+	             </span>
+	           </div>
+	           <!-- /input-group -->
+	         </div>
+	         
+	       </p> <!-- .nearest-header-nav end -->
+	     </div>
+	    </div>
+	  </div> <!-- container end -->
   </header>
 
   <div id="nearest-client-wrap" style="width: 1024px; margin: 0 auto;">
@@ -201,7 +190,7 @@
 	     </div>
 	   </div>
 	
-	
+	  <!-- start of JJimList -->
 		<section id="fh5co-about" data-section="about">
 			<div class="container">
 					<div class="col-md-12 section-heading text-center">
@@ -338,8 +327,126 @@
 						</table>
 					</div>
 	
-		</section>
+		</section><!-- End of JJimList -->
 		
+  
+  <section id="fh5co-counters" data-stellar-background-ratio="0.5">
+    
+    <div id="nearest-purchase-list" class="container">
+      <div class="row">
+        <div class="col-md-12 section-heading text-center to-animate">
+          <h2>구매내역</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-money to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="5" data-speed="5000" data-refresh-interval="50">89</span>
+            <span class="fh5co-counter-label">결제완료</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-inbox to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="15" data-speed="5000" data-refresh-interval="50">15</span>
+            <span class="fh5co-counter-label">준비중</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-lightbulb-o to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50">30</span>
+            <span class="fh5co-counter-label">준비완료</span>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="fh5co-counter to-animate">
+            <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
+            <span class="fh5co-counter-number js-counter" data-from="0" data-to="55" data-speed="5000" data-refresh-interval="50">55</span>
+            <span class="fh5co-counter-label">수령완료</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      </div>
+      <div class="row">
+        <div id="flight-datepicker" class="input-daterange input-group">
+          
+			    <div class="form-item">
+			      <label>Start Date</label><span class="fontawesome-calendar"></span>
+			      <input type="text" id="start-date" name="start" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm form-control"/><span class="date-text date-depart"></span>
+			    </div>
+			    <div class="form-item">
+			      <label>End Date</label><span class="fontawesome-calendar"></span>
+			      <input type="text" id="end-date" name="end" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm form-control"/><span class="date-text date-return"></span>
+			    </div>
+			  </div>      
+      </div>
+    </div>
+  </section>
+  
+  <section id="fh5co-work" data-section="work"
+    style="background-image: url(images/full_image_2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+    <div class="container">
+      <div class="row">
+        <!-- <div class="col-md-12 section-heading text-center">
+          <h2 class="to-animate">구매내역</h2>
+          <div class="search-form">
+            <button class="btn btn-info to-animate" id="order-btn"
+              type="button">구매내역조회</button>
+            <div id="nearest-order-search" class="to-animate">
+              <select>
+                <option selected="selected">구매완료</option>
+                <option>준비완료</option>
+                <option>수령완료</option>
+              </select> 
+              <input type="date" value="2016-08-13"> 
+              <input type="date" value="2016-08-20">
+              <button class="btn btn-info" type="button">조회</button>
+              <button class="btn btn-default" id="order-reset-btn" type="reset">취소</button>
+            </div>
+         </div>
+        </div> -->
+      <div class="row row-bottom-padded-sm">
+      
+        <div class="col-md-4 col-sm-6 col-xxs-12">
+          <a href="#" class="purchase-list fh5co-project-item popup-with-form"> 
+          <img src="./images/shinramyun.png" alt="Image" class="img-responsive">
+            <div class="fh5co-text">
+              <h2>아 여기 뭘 어떠케 해야되 씨바</h2>
+              
+              
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xxs-12">
+          <a href="#" class="purchase-list fh5co-project-item popup-with-form"> 
+          <img src="./images/shinramyun.png" alt="Image" class="img-responsive">
+            <div class="fh5co-text">
+              <h2>아 여기 뭘 어떠케 해야되 씨바</h2>
+              
+              
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4 col-sm-6 col-xxs-12">
+          <a href="#" class="purchase-list fh5co-project-item popup-with-form"> 
+          <img src="./images/shinramyun.png" alt="Image" class="img-responsive">
+            <div class="fh5co-text">
+              <h2>아 여기 뭘 어떠케 해야되 씨바</h2>
+              
+              
+            </div>
+          </a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </section>
+		
+		<!-- start payment popup -->
 		<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
 	    <div id="charge-form">
 	
@@ -421,8 +528,18 @@
 	      </div>
 	
 	    </div>
-	  </div>
+	  </div><!-- End of payment popup -->
 	</div>
+	
+	<footer>
+	 <section class="foot-area">
+      <div class="nearest-footer" style="text-align: center; width: 100%;">
+          <!-- (s)160524: 전자금융거래이용약관 -->
+          <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
+          <!-- (e)160524: 전자금융거래이용약관 -->
+      </div> <!--/.row -->
+    </section>
+	</footer>
 	
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
@@ -433,8 +550,10 @@
 	<script src="./resources/js/main_login.js"></script>
 	<script src="./resources/js/main_register.js"></script>
 	<script src="./resources/js/client_payment.js"></script>
+	<script src="./resources/js/client_purchase_list.js"></script>
 	<script type="text/javascript">
 	
+	    
 
 	</script>
 

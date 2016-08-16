@@ -3,3 +3,7 @@
 tbody > tr > td, tbody > tr > th {
 	vertical-align: middle !important;
 }
+#nearest-purchase-list {
+	
+	background-color: black; padding: 0em; border-radius: 20px;
+}

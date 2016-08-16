@@ -442,15 +442,7 @@
 
 		}
 	};
-
-
 	
-	
-
-
-	
-	
-
 	// Document on load.
 	$(function(){
 
@@ -465,7 +457,6 @@
 		navigationSection();
 
 		goToTop();
-
 
 		// Animations
 		homeAnimate();

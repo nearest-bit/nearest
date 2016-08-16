@@ -41,8 +41,13 @@
   <link rel="stylesheet" href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
   <!-- DropDown Menu -->
   <link rel="stylesheet" href="./resources/css/main_dropdown.css">
+  <!-- Main Header -->
+  <link rel="stylesheet" href="./resources/css/main_header.css">
+  <!-- Main Footer -->
+  <link rel="stylesheet" href="./resources/css/main_footer.css">
   
-
+  
+  
   <!-- JS Files -->
   
   <!-- jQuery -->
@@ -89,11 +94,6 @@
 	   border-radius: 2px 2px 0 0;
 	   padding: 0 auto !important;
 	}
-
-	.wrapper {
-	  width: 1024px;
-	  margin: 0 auto;
-	}
 	
 	/* 상품 상세 정보 */
 	#product-detail-form {
@@ -113,87 +113,88 @@
   
   <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
-    
-      <div class="container nearest-header-menu">
-        <div class="wrapper">
+    <div class="container nearest-header-menu">
+	      <div class="wrapper">
 	        <div class="row box-shadow nearest-header-top-menu">
 	        
 	          <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
 	            <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
 	                  aria-hidden="true"
 	                  onclick="myFunction()">
-	            </span>
-	            
-	            <div id="myDropdown" class="nearest-dropdown-content">
-	              <a href="./client.html">찜 목록</a>
-	              <a href="./client.html">구매 목록</a>
-	              <a href="./client.html">건의 사항</a>
-	            </div>
-	          </div>
-	        
-	          <div class="white-popup nearest-header-menu-btn" id="loginAfter">
-	            <a id="myInfoBtn">
-	              <strong>내정보</strong>
-	            </a>
-	            <strong>|</strong>
-	            <a id="logoutBtn">
-	              <strong>로그아웃</strong>
-	            </a> 
-	          </div>
-	          
-	          <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
-	            <strong>REGISTER</strong>
-	          </a>
-	          
-	          <a id="btnSplit" class="nearest-header-menu-btn">
-	            <strong>|</strong>
-	          </a>
-	          
-	          <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
-	            <strong>LOGIN</strong>
-	          </a>
-	          
-	          
-	        
-	        </div>
-	      
-		      <div class="row box-shadow nearest-header-logo">
-		        <div>
-		          <img src="./resources/images/logo_2.png"/>
-		        </div>
-		      </div>
-		      
-		      <div class="row box-shadow top-nav">
-	          <p class="nearest-header-nav">
-	            <div class="col-xs-4">
-	              <select name="searchTag" class="form-control">
-	                <option value="prods">제품검색</option>
-	                <option value="marts">매장검색</option>
-	              </select>
-	            </div>
-	            
-	            <div class="col-xs-8">
-	              <div class="input-group">
-	                <input type="text"
-	                       name="searchContent" 
-	                       class="form-control" 
-	                       placeholder="상품을 입력하세요.">
-	                <span class="input-group-btn">
-	                  <button id="nearest-search" 
-	                          class="btn btn-default" 
-	                          type="button"
-	                          data-nav-section="work">
-	                       검색
-	                  </button>
-	                </span>
-	              </div>
-	              <!-- /input-group -->
-	            </div>
-	            
-	          </p> <!-- .nearest-header-nav end -->
-	        </div>
-        </div><!-- wrapper end -->
-	    </div> <!-- container end -->
+	     </span>
+	     
+	     <div id="myDropdown" class="nearest-dropdown-content">
+	       <a href="./client.html">찜 목록</a>
+	       <a href="./client.html">구매 목록</a>
+	       <a href="./client.html">건의 사항</a>
+	     </div>
+	   </div>
+	 
+	   <div class="white-popup nearest-header-menu-btn" id="loginAfter">
+	     <a id="myInfoBtn">
+	       <strong>내정보</strong>
+	     </a>
+	     <strong>|</strong>
+	     <a id="logoutBtn">
+	       <strong>로그아웃</strong>
+	     </a> 
+	   </div>
+	   
+	   <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
+	     <strong>REGISTER</strong>
+	   </a>
+	   
+	   <a id="btnSplit" class="nearest-header-menu-btn">
+	     <strong>|</strong>
+	   </a>
+	   
+	   <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
+	     <strong>LOGIN</strong>
+	   </a>
+	   
+	   
+	 
+	 </div>
+	
+	 <div class="row box-shadow nearest-header-logo">
+	   <div>
+	   
+	     <img src="./resources/images/logo_2.png"/>
+	     
+	   </div> <!-- .nearest-header-nav end -->
+	 </div>
+	 
+	 <div class="row box-shadow top-nav">
+	   <p class="nearest-header-nav">
+	       <div class="col-xs-4">
+	         <select name="searchTag" class="form-control">
+	           <option value="prods">제품검색</option>
+	           <option value="marts">매장검색</option>
+	         </select>
+	       </div>
+	       
+	       <div class="col-xs-8">
+	         <div class="input-group">
+	           <input type="text"
+	                  name="searchContent" 
+	                  class="form-control" 
+	                  placeholder="상품을 입력하세요.">
+	           <span class="input-group-btn">
+	             <button id="nearest-search" 
+	                     class="btn btn-default" 
+	                     type="button"
+	                     data-nav-section="work">
+	                  검색
+	             </button>
+	           </span>
+	         </div>
+	         <!-- /input-group -->
+	       </div>
+	       
+	     </p> <!-- .nearest-header-nav end -->
+	   </div>
+	  </div>
+	</div> <!-- container end -->
   </header>
 
   <!-- Login Form -->
@@ -457,6 +458,16 @@
 
  
   </form>
+  
+  <footer>
+	  <section class="foot-area">
+		  <div class="nearest-footer" style="text-align: center; width: 100%;">
+		      <!-- (s)160524: 전자금융거래이용약관 -->
+		      <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
+		      <!-- (e)160524: 전자금융거래이용약관 -->
+		  </div> <!--/.row -->
+		</section>
+  </footer>
   
   
   <script

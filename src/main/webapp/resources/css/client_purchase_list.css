@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+#nearest-order-search {
+	display: none;
+}
+
+.purchase-list {
+	
+	border: 2px solid black;
+}
+
+#nearest-order-search > select, input, button {
+	color: black;
+	
+}
