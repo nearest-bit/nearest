@@ -353,7 +353,17 @@
 
   <!-- Google Map -->
   <section id="fh5co-home" data-section="home">
+    
+    <div id="nearest-map-locationField">
+      <input id="nearest-map-autocomplete" type="text" />
+    </div>
+    
     <div id="map"></div>
+    
+    <div id="nearest-listing">
+	    <table id="nearest-map-results"></table>
+	  </div>
+    
   </section>
   
   <!-- Product -->
@@ -471,7 +481,7 @@
   
   
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c&callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c&callback=initMap&libraries=places"
     async defer>
   </script>
 
