@@ -96,7 +96,9 @@ $('#nearest-search').click(function(){
       searchContent = $('input[name=searchContent]').val();
 //      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
       
-      $('.fh5co-project-item').magnificPopup();
+      $('.fh5co-project-item > img').magnificPopup();
+      
+      
     },
     error : function() {
       alert("error....");
@@ -129,6 +131,8 @@ $(document).on('click','#nearest-pageno > li',function (){
 	            return;
 	          }
 	    	$('#nearest-product-list').append(prodListTemplete(result));
+	    	
+	    	$('.fh5co-project-item > img').magnificPopup();
 	    },
 	    error : function() {
 	        alert("error....");
@@ -195,6 +199,8 @@ $(document).on('click', 'a[aria-label="Next"]', function() {
 				  $('span[data-next-page]').attr('data-next-page', nextPage);
 			  }
 			  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
+			  
+			  $('.fh5co-project-item > img').magnificPopup();
 			},
 			error : function() {
 			  alert("error....");
@@ -249,6 +255,8 @@ $(document).on('click', 'a[aria-label="Previous"]', function() {
 		  /*if( (totalPage - nextPage) < 6 ){}*/
 		  
 		  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
+		  
+		  $('.fh5co-project-item > img').magnificPopup();
 		},
 		error : function() {
 		  alert("error....");
