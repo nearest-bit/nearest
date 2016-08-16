@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품상세정보</title>
+<style>
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 50px;
+    background: rgba(0,0,0,.2);
+}
+
+#modal {
+    /* basic */
+    background-color: #fff;
+    margin: 0 auto;
+    width:50%;
+    padding: 30px;
+    text-align: center;
+    /* border-radius */
+    border-radius: 12px;
+    color: white;
+    /* box-shadow */
+    -webkit-box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
+    -moz-box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
+    box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
+    
+    background: #7d7e7d;
+    background: -moz-linear-gradient(top, #7d7e7d, #0e0e0e);
+    background: -webkit-linear-gradient(top, #7d7e7d, #0e0e0e);
+    background: -ms-linear-gradient(top, #7d7e7d, #0e0e0e);
+    background: -o-linear-gradient(top, #7d7e7d, #0e0e0e);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 );
+    background: linear-gradient(to bottom, #7d7e7d, #0e0e0e);
+    
+    border-top: 1px solid #666;
+    overflow: hidden;
+}
+
+#modal h1 {
+    text-align:left;
+    margin:0;
+    font-size:35px;
+    letter-spacing:-1px;
+    margin-bottom:4px;
+    text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
+}
+
+#modal > p {
+    text-align:right;
+    margin-top: 7px 0 25px;
+    color: #ccc;
+    font-size:25px;
+    text-shadow: 0 0px 5px rgba(0,0,0,.25), 0 -1px 1px #000;
+}
+
+hr.line {
+    border: none; border: 0.1px dashed;
+}
+
+#image {
+    width: 75%;
+    height: 75%
+}
+
+#item-title {
+    margin:0;
+    font-size:25px;
+    letter-spacing:-1px;
+    margin-bottom:4px;
+    text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
+}
+
+#item-detail {
+    margin:0;
+    font-size:18px;
+    letter-spacing:-1px;
+    margin-bottom:4px;
+    text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
+}
+
+#purchase-pay {
+    font-size: 23px;
+}
+
+#purchase-footer {
+    float: right;
+}
+
+.yes {
+    width: 30%;
+    background:green;
+    display:block;
+    padding:15px 35px;
+    float:left;
+    color:white;
+    text-decoration:none;
+    
+    font-weight:bold;
+    text-shadow: 0 0 10px #000;
+    border-top: 1px solid rgb(200,250,100);
+    font-size:20px;
+    
+    -webkit-box-shadow: rgba(255,255,255,.3) 0 2px 1px,rgba(0,0,0,.3) 0 -2px 1px, rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,50,0,.75) 0 0 40px inset;
+    -moz-box-shadow: rgba(255,255,255,.3) 0 2px 1px,rgba(0,0,0,.3) 0 -2px 1px, rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,50,0,.75) 0 0 40px inset;
+    box-shadow: rgba(255,255,255,.3) 0 2px 1px,rgba(0,0,0,.3) 0 -2px 1px, rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,50,0,.75) 0 0 40px inset;
+    
+    border-radius: 12px;
+    
+    background: #bfd255;
+    background: -webkit-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%);
+    background: -moz-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%);
+    background: -ms-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%);
+    background: -o-linear-gradient(top, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfd255', endColorstr='#9ecb2d',GradientType=0 );
+    background: linear-gradient(to bottom, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%);
+}
+
+.no {
+    width: 30%;
+    background: red; 
+    display: block;
+    padding: 15px 35px;
+    float: right;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    border-top: 1px solid rgb(250,150,100);
+    font-weight: bold;
+    
+    -webkit-box-shadow: rgba(255,255,255,.3) 0 2px 1px,rgba(0,0,0,.3) 0 -2px 1px, rgba(0,0,0,0.5) 0px 3px 10px, rgba(100,0,0,.75) 0 0 40px inset;
+    -moz-box-shadow: rgba(255,255,255,.3) 0 2px 1px,rgba(0,0,0,.3) 0 -2px 1px, rgba(0,0,0,0.5) 0px 3px 10px, rgba(100,0,0,.75) 0 0 40px inset;
+    box-shadow: rgba(255,255,255,.3) 0 2px 1px,rgba(0,0,0,.3) 0 -2px 1px, rgba(0,0,0,0.5) 0px 3px 10px, rgba(100,0,0,.75) 0 0 40px inset;
+    
+    text-shadow: 0 0 10px #000;
+    border-radius: 12px;
+    
+    background: #f3c5bd;
+    background: -webkit-linear-gradient(top, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 100%);
+    background: -moz-linear-gradient(top, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 100%);
+    background: -ms-linear-gradient(top, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 100%);
+    background: -o-linear-gradient(top, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3c5bd', endColorstr='#ff6600',GradientType=0 );
+    background: linear-gradient(to bottom, #f3c5bd 0%, #e86c57 50%, #ea2803 51%, #ff6600 100%);
+}
+
+/* a:active {
+    position: absolute;
+    top:3px;
+} */
+
+</style>
+</head>
+<body>
+    <div id="modal">
+    <h1>상품상세정보</h1>
+    <br/>
+    <hr class="line"/>
+    <table style="width:100%">
+        <tr>
+            <th rowspan="9">
+                <img id="image" alt="No image" src="./foke.jpg">
+            </th>
+            <th style="width:5%"></th>
+            <th colspan="3"> <font id="item-title">우삼겹구이 300g BBQ</font></th>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font id="item-detail">판매처&nbsp;:&nbsp;</font>
+               <span>진한마트</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font id="item-detail">현재 재고량&nbsp;:&nbsp;</font>
+               <span>1</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font id="item-detail">판매가&nbsp;:&nbsp;</font>
+               <font id="purchase-pay">5900</font>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+                <font id="item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
+                <input type="number" value="1" style="width:15%">
+            </td>
+        </tr>
+        <!-- <tr>
+            <td colspan="3"><hr/></td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:right">
+                <font id="item-detail">구매예정금액</font>&nbsp;&nbsp;&nbsp;
+                <span id="purchase-pay" style="color: red">5900</span>&nbsp;원
+            </td>
+        </tr> -->
+    </table>
+    <hr class="line"/><br/>
+    <div id="purchase-footer">
+        <font id="item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
+        <font id="purchase-pay" style="color: red">5900</font>&nbsp;원
+    </div>
+    <br/><br/><br/>
+    <a class="yes" href="javascript:void(0);">찜</a>
+    <a class="no" href="javascript:void(0);">바로구매</a>
+    <!-- <br>
+    <img id="image" alt="No Image"/>
+    
+    <p>우삼겹구이 300g BBQ </p>
+    <hr>
+    <div id="topDetail">
+    <span id="space">판매처&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
+    <span id="space">판매가&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
+    <span id="space">현재 재고량&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
+    </div>
+    <p/>
+    <br/><br/>
+    <div id="middleDetail">
+    <span id="space">구매수량&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text"/> </span>
+    </div>
+    <p/>
+    <br><hr><br/>
+    <div id="bottomDetail">
+    <a class="yes" href="javascript:void(0);">찜</a>
+    <a class="no" href="javascript:void(0);">바로구매</a>
+    </div> -->
+    </div>
+    
+</body>
+</html>
