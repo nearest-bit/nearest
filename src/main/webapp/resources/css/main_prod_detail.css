@@ -69,7 +69,7 @@ hr.nearest-line {
     float: right;
 }
 
-.yes {
+.nearest-item-cart {
     width: 30%;
     background:green;
     display:block;
@@ -98,7 +98,7 @@ hr.nearest-line {
     background: linear-gradient(to bottom, #bfd255 0%, #8eb92a 50%, #72aa00 51%, #9ecb2d 100%);
 }
 
-.no {
+.nearest-item-purchase {
     width: 30%;
     background: red; 
     display: block;
