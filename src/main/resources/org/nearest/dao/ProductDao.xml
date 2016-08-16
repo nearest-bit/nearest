@@ -18,10 +18,9 @@
 
   <select id="selectProdList" resultMap="productMap" parameterType="map">
     SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
-    count
     FROM prods
     WHERE prod_nm LIKE '%${prodName}%'
-    order by prod_nm asc
+    ORDER BY prod_nm asc
     limit #{startIndex}, #{len} 
   </select>
   
@@ -45,6 +44,11 @@
     WHERE  p.mt_no = m.mt_no AND m.mt_nm = #{value}
   </select>
   
-  
+  <select id="selectProd" resultMap="productMap" parameterType="int">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
+    FROM prods
+    WHERE prod_no=#{value}
+    ORDER BY prod_nm asc
+  </select>
 
 </mapper>

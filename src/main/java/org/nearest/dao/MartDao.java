@@ -7,5 +7,7 @@ import org.nearest.domain.Mart;
 
 public interface MartDao {
 	
-	List<Mart> selectList();
+	List<Mart> selectMartList();
+	
+	Mart selectMart(int no);
 }

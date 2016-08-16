@@ -381,11 +381,16 @@
 	    <script id="nearest-product-list-template" type="text/x-handlebars-template">
       {{#each productData}}
         <div class="col-md-4 col-sm-6 col-xxs-12">
-          <a href="#nearest-modal" class="fh5co-project-item popup-with-form nearest-work-list-border white-popup popup-modal">
-            <img src="{{photo}}" alt="Image" class="img-responsive">
+          <input type="hidden" value="{{no}}" />
+          <a class="fh5co-project-item popup-with-form nearest-work-list-border">
+            <img href="#nearest-modal" 
+                 src="./resources/images/shinramyun.png" 
+                 alt="Image" 
+                 class="img-responsive white-popup popup-modal"
+                 style="padding: 20px 40px 10px 40px;">
             <div class="fh5co-text">
-            <h2>{{name}}</h2>
-            <span>{{price}}원</span>
+              <h2>{{name}}</h2>
+              <span>{{price}}원</span>
             </div>
           </a>
         </div>
@@ -444,10 +449,15 @@
     <table style="width:100%">
         <tr>
             <th rowspan="9">
-                <img id="nearest-image" alt="No image" src="./foke.jpg">
+                <img id="nearest-item-image" alt="No image" src="./foke.jpg">
             </th>
             <th style="width:5%"></th>
-            <th colspan="3"> <font id="nearest-item-title">우삼겹구이 300g BBQ</font></th>
+            <th colspan="3"> 
+              <font id="nearest-item-title" 
+                    class="nearest-item-title">
+                    우삼겹구이 300g BBQ
+              </font>
+            </th>
         </tr>
         <tr>
             <td colspan="3"><hr class="nearest-line"/></td>
@@ -455,25 +465,15 @@
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font id="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
-               <span>진한마트</span>
+               <font class="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
+               <span id="nearest-item-mart">진한마트</span>
             </td>
         </tr>
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font id="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
-               <span>1</span>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
-            <td style="width:5%"></td>
-            <td colspan="3" style="text-align:right">
-               <font id="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
-               <font id="nearest-purchase-pay">5900</font>&nbsp;원
+               <font class="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
+               <span id="nearest-item-entity">1</span>
             </td>
         </tr>
         <tr>
@@ -482,15 +482,25 @@
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-                <font id="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
-                <input type="number" value="1" style="width:15%">
+               <font class="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
+               <font id="nearest-item-price" class="nearest-purchase-pay">5900</font>&nbsp;원
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+                <font class="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
+                <input id="nearest-item-purchase-entity" type="number" value="1" style="width:15%">
             </td>
         </tr>
     </table>
     <hr class="nearest-line"/><br/>
     <div id="nearest-purchase-footer">
-        <font id="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
-        <font id="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
+        <font class="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
+        <font id="nearest-item-all-price" class="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
     </div>
     <br/><br/><br/>
     <a class="yes" href="javascript:void(0);">찜</a>
@@ -512,7 +522,7 @@
   <script src="./resources/js/main_handlebars.js"></script>
   <script src="./resources/js/main_login.js"></script>
   <script src="./resources/js/main_register.js"></script>
-
+  <script src="./resources/js/main_prod_detail.js"></script>
 
   </body>
 </html>

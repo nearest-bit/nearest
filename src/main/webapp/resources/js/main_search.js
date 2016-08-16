@@ -96,7 +96,9 @@ $('#nearest-search').click(function(){
       searchContent = $('input[name=searchContent]').val();
 //      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
       
-      $('.fh5co-project-item').magnificPopup();
+      $('.fh5co-project-item > img').magnificPopup();
+      
+      
     },
     error : function() {
       alert("error....");

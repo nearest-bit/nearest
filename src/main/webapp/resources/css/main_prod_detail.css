@@ -40,12 +40,12 @@ hr.nearest-line {
     border: none; border: 0.1px dashed;
 }
 
-#nearest-image {
+.nearest-image {
     width: 75%;
     height: 75%
 }
 
-#nearest-item-title {
+.nearest-item-title {
     margin:0;
     font-size:25px;
     letter-spacing:-1px;
@@ -53,7 +53,7 @@ hr.nearest-line {
     text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
 }
 
-#nearest-item-detail {
+.nearest-item-detail {
     margin:0;
     font-size:18px;
     letter-spacing:-1px;
@@ -61,11 +61,11 @@ hr.nearest-line {
     text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
 }
 
-#nearest-purchase-pay {
+.nearest-purchase-pay {
     font-size: 23px;
 }
 
-#nearest-purchase-footer {
+.nearest-purchase-footer {
     float: right;
 }
 
