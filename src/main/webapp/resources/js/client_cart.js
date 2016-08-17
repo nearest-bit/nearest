@@ -30,12 +30,10 @@ function setTotalPrice() {
 $(function() {
 	var cartSource = '';
 	var cartListTempl = '';
-	alert($.cookie('client-menu'));
 	
 	if($.cookie('client-menu') == 'cart'){
 		cartSource = $('#nearest-cart-list').text();
 		cartListTempl = Handlebars.compile(cartSource);
-		alert(cartSource);
 		$.ajax({
 	          url : contextRoot + 'cart/getCart.do',
 	          datatype : 'json',
@@ -49,8 +47,7 @@ $(function() {
 	              alert('failure');
 	              return;
 	            }
-	            alert('success');
-	            alert(result.cartData);
+	            
 	            $('#nearest-cart-table').append(cartListTempl(result));
 	            $('#nearest-client-menu').addClass('active');
 	            
