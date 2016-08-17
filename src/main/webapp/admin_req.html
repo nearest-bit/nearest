@@ -38,7 +38,8 @@
 <link rel="stylesheet" href="./resources/css/client_payment.css">
 <link rel="stylesheet" href="./resources/css/client_menu.css">
 <link rel="stylesheet" href="./resources/css/client_main.css">
-
+<!-- jQueryUI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 
 <!-- JS Files -->
 
@@ -47,6 +48,8 @@
 <!-- jQuery Easing -->
 <script
 	src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
+<!-- jQuery UI -->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <!-- Bootstrap -->
 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
@@ -78,6 +81,8 @@
 <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
 <!-- IamPort 결제 -->
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
+<!-- admin 건의사항 -->
+<script src="./resources/js/admin_qna.js"></script>
 
 <style>
 #fh5co-header {
@@ -100,6 +105,19 @@
 #nearest-dropdown {
   display: none;
 }
+
+.nearest-search-form:not(button) {
+    color: #23527c !important;
+}
+
+#nearest-order-search {
+    display: none;
+}
+
+#nearest-request-search {
+    display: none;
+}
+
 </style>
 </head>
 
@@ -200,9 +218,155 @@
 	       </ul>
 	     </div>
 	   </div>
+	   
+	   <section id="fh5co-testimonials" data-section="testimonials">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-13 section-heading text-center">
+                    <h2 class="to-animate">Q & A</h2>
+                        <div class="nearest-search-form">
+                            <button class="btn btn-info to-animate" id="nearest-request-btn"
+                                type="button">건의사항조회</button>
+                            <div id="nearest-request-search" class="to-animate">
+                                <div class="col-xs-3">
+	                                <select class="form-control" name="finishTag">
+	                                    <option selected="selected">답변미완료</option>
+	                                    <option>답변완료</option>
+	                                </select>
+                                </div>
+                                <span>시작일 : </span>
+                                    <input id="sdate" type="text" size="10" maxlength="10">
+                                ~ 
+                                <span>종료일 : </span>    
+                                    <input id="edate" type="text" size="10" maxlength="10">
+                                    <br>
+                                    <br>
+                                    <button class="btn btn-info" type="button">조회</button>
+                                    <button class="btn btn-default" id="nearest-request-reset-btn"
+                                    type="reset">취소</button>
+                                   
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure>
+                                <img src="./resources/images/person1.jpg" alt="Person">
+                            </figure>
+                            <p>
+                                손진한<a class="popup-with-nearest-request-form" href="#nearest-request-form">&nbsp;&nbsp;답변하기</a>
+                                <span class="subtext">감귤</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure>
+                                <img src="./resources/images/person1.jpg" alt="Person">
+                            </figure>
+                            <p>
+                                손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+                                <span class="subtext">포도</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure>
+                                <img src="./resources/images/person1.jpg" alt="Person">
+                            </figure>
+                            <p>
+                                손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+                                <span class="subtext">딸기</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure>
+                                <img src="./resources/images/person1.jpg" alt="Person">
+                            </figure>
+                            <p>
+                                손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+                                <span class="subtext">배</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;수박이 아주 달아서 좋았어요!! &rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure>
+                                <img src="./resources/images/person1.jpg" alt="Person">
+                            </figure>
+                            <p>
+                                박철효<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+                                <span class="subtext">수박</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="box-testimony">
+                        <blockquote class="to-animate-2">
+                            <p>&ldquo;여름이라 시원한 콜라가 먹고싶은데 콜라가 너무 안시원해요!! 다음번엔 시원하게 보관해
+                                주세요!!&rdquo;</p>
+                        </blockquote>
+                        <div class="author to-animate">
+                            <figure>
+                                <img src="./resources/images/person1.jpg" alt="Person">
+                            </figure>
+                            <p>
+                                박정환<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+                                <span class="subtext">콜라</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
 	
-	
-	</div>
+  </div>
+  
+  <form id="nearest-request-form" class="white-popup-block mfp-hide">
+        <div class="page-header">
+            <h1>답변하기</h1>
+            <textarea rows="10%" cols="70%" placeholder="답변을 입력해 주세요.">
+            </textarea>
+            <br>
+            <button type="button" class="btn btn-primary">전송</button>
+            <button type="reset" class="btn btn-default">취소</button>
+        </div>
+
+    </form>
 	
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
