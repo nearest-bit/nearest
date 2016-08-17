@@ -194,7 +194,7 @@
 		<section id="fh5co-about" data-section="about">
 			<div class="container">
 					<div class="col-md-12 section-heading text-center">
-						<h2 class="to-animate">찜 목록( 3 )</h2>
+						<h2 class="to-animate">찜 목록</h2>
 	
 					</div>
 				</div>
@@ -211,8 +211,8 @@
 									<th style="text-align: center;">총합</th>
 								</tr>
 							</thead>
-							<tbody>
-							 <tr>
+							<tbody id="nearest-cart-table">
+							 <!-- <tr>
                   <th class="prod-info" scope="row">2</th>
                   <td class="prod-info">
                     <input type="checkbox">
@@ -240,66 +240,7 @@
                     <span value="3600">3,600</span>원
                     <p class="cart-prod-price" style="display: none;">3600</p>
                   </td>
-                </tr>
-								<tr>
-                  <th class="prod-info" scope="row">2</th>
-                  <td class="prod-info">
-                    <input type="checkbox">
-                  </td>
-                  <td width="13%">
-                    <img src="./resources/images/shinramyun.png" alt="Image" class="img-responsive">
-                  </td>
-                  <td class="prod-info">
-                    농심 신 라면 5개입 봉지
-                  </td>
-                  <td class="prod-info">
-                    <span>3,600</span>원
-                  </td>
-                  <td class="prod-info">
-                    <div class="number">
-                      <button type="button" class="btn btn-default btn-xs decreaseBtn">-</button>
-                      <span>1</span>
-                      <button type="button" class="btn btn-default btn-xs increaseBtn">+</button>
-                    </div>
-                  </td>
-                  <td class="prod-info">
-                    <a href="#">한빛마트</a>
-                  </td>
-                  <td class="prod-info">
-                    <span value="3600">3,600</span>원
-                    <p class="cart-prod-price" style="display: none;">3600</p>
-                  </td>
-                </tr>
-								<tr>
-                  <th class="prod-info" scope="row">2</th>
-                  <td class="prod-info">
-                    <input type="checkbox">
-                  </td>
-                  <td width="13%">
-                    <img src="./resources/images/shinramyun.png" alt="Image" class="img-responsive">
-                  </td>
-                  <td class="prod-info">
-                    농심 신 라면 5개입 봉지
-                  </td>
-                  <td class="prod-info">
-                    <span>3,600</span>원
-                  </td>
-                  <td class="prod-info">
-                    <div class="number">
-                      <button type="button" class="btn btn-default btn-xs decreaseBtn">-</button>
-                      <span>1</span>
-                      <button type="button" class="btn btn-default btn-xs increaseBtn">+</button>
-                    </div>
-                  </td>
-                  <td class="prod-info">
-                    <a href="#">한빛마트</a>
-                  </td>
-                  <td class="prod-info">
-                    <span value="3600">3,600</span>원
-                    <p class="cart-prod-price" style="display: none;">3600</p>
-                  </td>
-                </tr>
-	
+                </tr> -->
 							</tbody>
 							<tr>
 								<td colspan="8">
@@ -537,6 +478,40 @@
     </section>
 	</footer>
 	
+	<script id="nearest-cart-list" type="text/x-handlebars-template">
+    {{#each cartData}}
+      <tr>
+        <th class="prod-info" scope="row">1</th>
+        <td class="prod-info">
+          <input type="checkbox">
+        </td>
+        <td width="13%">
+          <img src="{{photo}}" alt="Image" class="img-responsive">
+        </td>
+        <td class="prod-info">
+           {{name}}
+        </td>
+        <td class="prod-info">
+          <span>{{price}}</span>
+        </td>
+        <td class="prod-info">
+          <div class="number">
+            <button type="button" class="btn btn-default btn-xs decreaseBtn">-</button>
+            <span>1</span>
+            <button type="button" class="btn btn-default btn-xs increaseBtn">+</button>
+          </div>
+        </td>
+        <td class="prod-info">
+          <a href="#">{{mart.name}}</a>
+        </td>
+        <td class="prod-info">
+          <span value="{{price}}">{{price}}</span>원
+          <p class="cart-prod-price" style="display: none;">{{price}}</p>
+        </td>
+      </tr>
+    {{/each}}
+	</script>
+	
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
 	<script src="./resources/js/main.js"></script>
@@ -550,7 +525,6 @@
 	<script src="./resources/js/client_cart.js"></script>
 	<script type="text/javascript">
 	
-	    
 
 	</script>
 

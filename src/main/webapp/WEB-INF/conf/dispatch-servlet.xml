@@ -16,6 +16,7 @@
   <mvc:annotation-driven />
   
   
+  
   <context:property-placeholder location="classpath:org/nearest/dao/jdbc.properties"/>
   
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

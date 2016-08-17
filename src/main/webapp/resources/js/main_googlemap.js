@@ -2,7 +2,12 @@ var myLocation = {
   lat : 37.492968,
   lng : 127.029334
 };
+
 var markerLocation = new Array();
+
+var nearLocation;
+var markers = new Array();
+var markersLength;
 
 var map, places;
 var autocomplete;
@@ -29,18 +34,22 @@ function initMap() {
   var image = './resources/images/map_marker.png';
   
   var geo_options = {
-    enableHighAccuracy: false, 
-    maximumAge        : 0
+    timeout: 0,
+	enableHighAccuracy: true, 
+    maximumAge        : Infinity
   };
   
   if (navigator.geolocation) {
+	  
     navigator.geolocation.watchPosition(function(position) {
       var pos = {
-//        lat: position.coords.latitude,
-//        lng: position.coords.longitude
-    	  lat: myLocation.lat,
-    	  lng: myLocation.lng
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+//        lat: myLocation.lat,
+//    	lng: myLocation.lng
       };
+      
+      myLocation = pos;
 
       map.setCenter(pos);
       
@@ -53,11 +62,10 @@ function initMap() {
 	  myMarker.setMap(map);
 	  
     }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
     }, function(){}, geo_options);
   } else {
     // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
+	
   }
   
   $.ajax({
@@ -96,15 +104,45 @@ function initMap() {
 			    title : '진한마트',
 			    icon : image
 			  });
+			  
+			  markers[i] = marker;
 			    
 			  setMarkerInfoWindow(marker, i, contentString);
 			}
+						
+			var markerLocationStr = '';
+			  
+			for(var i in markers) {
+			  markerLocationStr += markers[i].getPosition().lat() + ',' + markers[i].getPosition().lng();
+				  
+			  if(i != markers.length-1){
+				  markerLocationStr += '|';
+			  }
+			}
+			  
+			$.ajax({
+			  url: 'https://maps.googleapis.com/maps/api/distancematrix/json',
+			  method: 'post',
+			  dataType: 'json',
+			  data: {
+				  origins: myLocation.lat+','+myLocation.lng,
+				  destinations: markerLocationStr,
+				  language: 'ko-KO',
+				  key: 'AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c'
+			  },
+			  success: function(result) {
+				  alert(JSON.stringify(result));
+			  },
+			  error: function() {
+				  alert('Distance Error');
+			  }
+			});
 		}
 	  },
 	  error: function() {
 		  alert('ajax 접속 실패');
 	  }
-  })
+  });
 }
 
 function tilesLoaded() {
