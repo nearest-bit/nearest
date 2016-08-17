@@ -34,5 +34,24 @@ public class CartController {
 		
 		return new Gson().toJson(result);
 	}
+	
+	@RequestMapping(path="getCart", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String getCart(int clientNo){   
+      
+    Map<String, Object> result = new HashMap<>(); 
+
+    try {
+      result.put("cartData", cartService.getCart(clientNo));
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    
+    System.out.println(new Gson().toJson(result));
+    
+    return new Gson().toJson(result);
+  }
 		
 }

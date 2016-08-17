@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+	
 //금액 콤마
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -27,13 +27,43 @@ function setTotalPrice() {
 }
 
 //처음 들어왔을때 
-$(document).ready( function() {
+$(function() {
+	var cartSource = '';
+	var cartListTempl = '';
 	
-	setTotalPrice();
+	if($.cookie('client-menu') == 'cart'){
+		cartSource = $('#nearest-cart-list').text();
+		cartListTempl = Handlebars.compile(cartSource);
+		$.ajax({
+	          url : contextRoot + 'cart/getCart.do',
+	          datatype : 'json',
+	          method : 'post',
+	          data : {
+	            clientNo : $.cookie('loginId')
+	          },
+	          
+	          success : function(result) {
+	            if(result.status != 'success'){
+	              alert('failure');
+	              return;
+	            }
+	            
+	            $('#nearest-cart-table').append(cartListTempl(result));
+	            $('#nearest-client-menu').addClass('active');
+	            
+	            setTotalPrice();
+	          },
+	          
+	          error : function(request, status, error) {
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	          }
+	        });	
+	}
+	
 });
 
 //Quantity increase
-$('.increaseBtn').click(function() {
+$(document).on('click','.increaseBtn', function() {
 	var quantity = parseInt($(this).prev().text());
 	$(this).prev().text(quantity+1);
 	var price = $(this).parent().parent().next().next().find('span').attr('value') * (quantity+1);
@@ -43,7 +73,7 @@ $('.increaseBtn').click(function() {
 });
 
 //Quantity decrease
-$('.decreaseBtn').click(function() {
+$(document).on('click','.decreaseBtn', function() {
 	var quantity = parseInt($(this).next().text());
 	if (quantity == 1){
 		alert('최소 구매 수량 입니다.')
