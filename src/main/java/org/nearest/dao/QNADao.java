@@ -7,8 +7,8 @@ import org.nearest.domain.QNA;
 
 public interface QNADao {
 	void insert(QNA qna);
-	List<QNA> selectList(Map<String,Object> params);
-	QNA selectOne(int no);
+	List<QNA> selectQNAList(Map<String,Object> params);
+	QNA selectQNA(int no);
 	int update(QNA qna);
 	int delete(int no);
 }

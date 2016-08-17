@@ -21,9 +21,9 @@ public class QNAController {
 	
 	@Autowired QNAService qnaService;
 	
-	@RequestMapping(path="list", produces="application/json;charset=UTF-8")
+	@RequestMapping(path="QNAList", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String list(
+	public String QNAlist(
 			@RequestParam(defaultValue="1") int pageNo,
 			@RequestParam(defaultValue="5") int pageSize) {
 		
@@ -33,7 +33,6 @@ public class QNAController {
 				result.put("status", "success");
 				result.put("data", list);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				result.put("status", "failure");
 				e.printStackTrace();
 			}
@@ -69,7 +68,6 @@ public class QNAController {
 			qnaService.addQNA(qna);
 			result.put("status", "success");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			result.put("status", "failure");
 			e.printStackTrace();
 		}
@@ -84,7 +82,6 @@ public class QNAController {
 	      qnaService.updateQNA(qna);
 	      result.put("status", "success");
 	    } catch (Exception e) {
-	      // TODO Auto-generated catch block
 	      result.put("status", "failure");
 	      e.printStackTrace();
 	    }
