@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.nearest.domain.Cart;
-import org.nearest.domain.Client;
 import org.nearest.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

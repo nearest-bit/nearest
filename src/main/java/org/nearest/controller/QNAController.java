@@ -19,8 +19,8 @@ import com.google.gson.Gson;
 @RequestMapping("/qna/")
 public class QNAController {
 	
-	@Autowired
-	QNAService qnaService;
+	@Autowired QNAService qnaService;
+	
 	@RequestMapping(path="list", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String list(

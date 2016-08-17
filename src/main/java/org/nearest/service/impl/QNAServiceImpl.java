@@ -10,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class QNAServiceImpl implements QNAService{
 	
-	@Autowired
-	QNADao qnaDao;
+	@Autowired QNADao qnaDao;
 	
 	@Override
 	public void addQNA(QNA qna){
