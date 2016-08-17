@@ -22,15 +22,8 @@ $(document).on('click','#login-btn',function() {
 	if($.trim($('#login-form-username').val()) == ""){
 		alert("아이디를 입력하세요.");
 		return;
-	/*} else {
-		if($('#rememberId').prop('checked')) {
-			$('#login-form-username').val(loginId);
-		} else{
-			$.removeCookie('loginId');
-		}*/
 	}
 	
-	/* location.href = "./admin.html"; */
 	$.ajax({
 		url: contextRoot + 'client/login.do',
 		dataType: 'json',
@@ -49,7 +42,7 @@ $(document).on('click','#login-btn',function() {
 				$('#loginAfter').css('display', 'inline');
 			});
 			
-			var loginId = $.cookie('loginId', result.no, {expires : 1});
+			$.cookie('loginId', result.data.no, {expires : 1});
 		},
 		error: function(result) {
 			alert(result.status);
