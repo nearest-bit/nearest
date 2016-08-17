@@ -12,6 +12,8 @@ $(function() {
 			success: function(result) {
 				var data = result.productData;
 				
+				alert(productNo);
+				
 				$('#nearest-item-title').text(data.name);
 				$('#nearest-item-mart').text(data.mart.name);
 				$('#nearest-item-prod-no').val(productNo);
@@ -29,13 +31,19 @@ $(function() {
 		
 		var loginId = $.cookie('loginId');
 		
+		alert(loginId);
+		
 		if( loginId == undefined){
         	$.magnificPopup.close();
         	$('#loginBtn').click();
+        	
+        	return;
 	    }
 		
-		var cartClientNo = $.cookie('loginId');
+		var cartClientNo = loginId;
 		var cartProductNo = $('#nearest-item-prod-no').val();
+		
+		alert(cartProductNo);
 		
 		$.ajax({
 			url: contextRoot + 'cart/addCart.do',
@@ -62,6 +70,8 @@ $(function() {
 		if( loginId == undefined){
         	$.magnificPopup.close();
         	$('#loginBtn').click();
+        	
+        	return;
 	    }
 		
 		
