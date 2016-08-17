@@ -1,10 +1,6 @@
 /**
  * 
  */
-
-// cartListTemplete
-	var cartSource = #('#nearest-cart-list').text();
-	var cartListTempl = Handlebars.compile(source);
 	
 //금액 콤마
 function numberWithCommas(x) {
@@ -31,13 +27,46 @@ function setTotalPrice() {
 }
 
 //처음 들어왔을때 
-$(document).ready( function() {
+$(function() {
+	var cartSource = '';
+	var cartListTempl = '';
+	alert($.cookie('client-menu'));
 	
-	setTotalPrice();
+	if($.cookie('client-menu') == 'cart'){
+		cartSource = $('#nearest-cart-list').text();
+		cartListTempl = Handlebars.compile(cartSource);
+		alert(cartSource);
+		$.ajax({
+	          url : contextRoot + 'cart/getCart.do',
+	          datatype : 'json',
+	          method : 'post',
+	          data : {
+	            clientNo : $.cookie('loginId')
+	          },
+	          
+	          success : function(result) {
+	            if(result.status != 'success'){
+	              alert('failure');
+	              return;
+	            }
+	            alert('success');
+	            alert(result.cartData);
+	            $('#nearest-cart-table').append(cartListTempl(result));
+	            $('#nearest-client-menu').addClass('active');
+	            
+	            setTotalPrice();
+	          },
+	          
+	          error : function(request, status, error) {
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	          }
+	        });	
+	}
+	
 });
 
 //Quantity increase
-$('.increaseBtn').click(function() {
+$(document).on('click','.increaseBtn', function() {
 	var quantity = parseInt($(this).prev().text());
 	$(this).prev().text(quantity+1);
 	var price = $(this).parent().parent().next().next().find('span').attr('value') * (quantity+1);
@@ -47,7 +76,7 @@ $('.increaseBtn').click(function() {
 });
 
 //Quantity decrease
-$('.decreaseBtn').click(function() {
+$(document).on('click','.decreaseBtn', function() {
 	var quantity = parseInt($(this).next().text());
 	if (quantity == 1){
 		alert('최소 구매 수량 입니다.')

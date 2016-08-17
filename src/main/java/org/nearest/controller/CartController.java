@@ -8,7 +8,6 @@ import org.nearest.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -38,7 +37,7 @@ public class CartController {
 	
 	@RequestMapping(path="getCart", produces="application/json;charset=utf-8")
   @ResponseBody
-  public String getCart(@RequestParam int clientNo){   
+  public String getCart(int clientNo){   
       
     Map<String, Object> result = new HashMap<>(); 
 
@@ -49,6 +48,8 @@ public class CartController {
       result.put("status", "failure");
       e.printStackTrace();
     }
+    
+    System.out.println(new Gson().toJson(result));
     
     return new Gson().toJson(result);
   }

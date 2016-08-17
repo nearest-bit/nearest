@@ -199,7 +199,7 @@
 					</div>
 				</div>
 					<div id="jjimList" class="text-center to-animate">
-						<table id="nearest-cart-table" class="table" style="width: 100%; height: 100%;">
+						<table class="table" style="width: 100%; height: 100%;">
 							<thead class="thead-inverse">
 								<tr>
 									<th>#</th>
@@ -211,7 +211,7 @@
 									<th style="text-align: center;">총합</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="nearest-cart-table">
 							 <!-- <tr>
                   <th class="prod-info" scope="row">2</th>
                   <td class="prod-info">
@@ -486,13 +486,13 @@
           <input type="checkbox">
         </td>
         <td width="13%">
-          <img src="{{cartData.photo}}" alt="Image" class="img-responsive">
+          <img src="{{photo}}" alt="Image" class="img-responsive">
         </td>
         <td class="prod-info">
-           {{cartData.name}}
+           {{name}}
         </td>
         <td class="prod-info">
-          <span>{{cartData.price}}</span>
+          <span>{{price}}</span>
         </td>
         <td class="prod-info">
           <div class="number">
@@ -502,11 +502,11 @@
           </div>
         </td>
         <td class="prod-info">
-          <a href="#">{{cartData.mart.name}}</a>
+          <a href="#">{{mart.name}}</a>
         </td>
         <td class="prod-info">
-          <span value="{{cartData.price}}">{{cartData.price}}</span>원
-          <p class="cart-prod-price" style="display: none;">{{cartData.price}}</p>
+          <span value="{{price}}">{{price}}</span>원
+          <p class="cart-prod-price" style="display: none;">{{price}}</p>
         </td>
       </tr>
     {{/each}}
@@ -518,14 +518,13 @@
 	<script src="./resources/js/main_dropdown.js"></script>
 	<script src="./resources/js/main_search.js"></script>
 	<script src="./resources/js/main_handlebars.js"></script>
-	<script src="./resources/js/main_to_client.js"></script>
 	<script src="./resources/js/main_login.js"></script>
 	<script src="./resources/js/main_register.js"></script>
 	<script src="./resources/js/client_payment.js"></script>
 	<script src="./resources/js/client_purchase_list.js"></script>
 	<script src="./resources/js/client_cart.js"></script>
 	<script type="text/javascript">
-	    
+	
 
 	</script>
 
