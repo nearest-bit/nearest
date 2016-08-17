@@ -29,7 +29,7 @@ public class QNAController {
 		
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAlist(pageNo, pageSize);
+				List<QNA> list = qnaService.getQNAList(pageNo, pageSize);
 				result.put("status", "success");
 				result.put("data", list);
 			} catch (Exception e) {

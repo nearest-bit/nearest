@@ -7,7 +7,9 @@ import org.nearest.dao.QNADao;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class QNAServiceImpl implements QNAService{
 	
 	@Autowired QNADao qnaDao;
