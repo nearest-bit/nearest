@@ -2,6 +2,10 @@
  * 
  */
 
+// cartListTemplete
+	var cartSource = #('#nearest-cart-list').text();
+	var cartListTempl = Handlebars.compile(source);
+	
 //금액 콤마
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
