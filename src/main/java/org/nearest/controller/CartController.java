@@ -3,6 +3,8 @@ package org.nearest.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.nearest.domain.Cart;
 import org.nearest.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +42,6 @@ public class CartController {
   public String getCart(int clientNo){   
       
     Map<String, Object> result = new HashMap<>(); 
-
     try {
       result.put("cartData", cartService.getCart(clientNo));
       result.put("status", "success");
@@ -49,7 +50,26 @@ public class CartController {
       e.printStackTrace();
     }
     
-    System.out.println(new Gson().toJson(result));
+    return new Gson().toJson(result);
+  }
+	
+	@RequestMapping(path="removeCart", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String removeCart(String prodNo, int clientNo){   
+	  
+	  Map<String, Object> params = new HashMap<>();
+	  params.put("prodNo", prodNo);
+	  params.put("clientNo", clientNo);
+	  
+    Map<String, Object> result = new HashMap<>();
+    
+    try {
+      cartService.removeCart(params);
+      result.put("status", "success");
+    } catch(Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
     
     return new Gson().toJson(result);
   }

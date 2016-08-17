@@ -28,6 +28,12 @@ function setTotalPrice() {
 
 //처음 들어왔을때 
 $(function() {
+	
+	//handlebars @index 1부터
+	Handlebars.registerHelper("inc", function(value, options){
+		return parseInt(value) + 1;
+	});
+	
 	var cartSource = '';
 	var cartListTempl = '';
 	
@@ -47,8 +53,7 @@ $(function() {
 	              alert('failure');
 	              return;
 	            }
-	            
-	            $('#nearest-cart-table').append(cartListTempl(result));
+	            $('#nearest-cart-tbody').append(cartListTempl(result));
 	            $('#nearest-client-menu').addClass('active');
 	            
 	            setTotalPrice();
@@ -86,3 +91,43 @@ $(document).on('click','.decreaseBtn', function() {
 	setTotalPrice();
 });
 
+//delete cart
+$('#nearest-cart-delete').on('click', function(){
+	
+	var prodNo = '';
+	
+	if( $('#nearest-cart-tbody > tr').size() == 0 ){
+		alert('삭제할 상품이 없습니다.');
+	}else{
+		for(var i = 0;  i < $('input[type="checkbox"]:checked').size(); i++){
+			prodNo += $($('input[type="checkbox"]:checked')[i]).val();
+			if( i != $('input[type="checkbox"]:checked').size() - 1){
+				prodNo += ',';
+			}
+		}
+		
+		$.ajax({
+	          url : contextRoot + 'cart/removeCart.do',
+	          datatype : 'json',
+	          method : 'post',
+	          data : {
+	        	  prodNo : prodNo,
+	        	  clientNo : $.cookie('loginId')
+	          },
+	          
+	          success : function(result) {
+	            if(result.status != 'success'){
+	              alert('failure');
+	              return;
+	            }
+	            alert('삭제완료');
+	            $(location).attr('href','http://localhost:8080/nearest/client.html');
+	            
+	          },
+	          
+	          error : function(request, status, error) {
+	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	          }
+	        });
+	}
+});

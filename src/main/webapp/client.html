@@ -211,7 +211,7 @@
 									<th style="text-align: center;">총합</th>
 								</tr>
 							</thead>
-							<tbody id="nearest-cart-table">
+							<tbody id="nearest-cart-tbody">
 							 <!-- <tr>
                   <th class="prod-info" scope="row">2</th>
                   <td class="prod-info">
@@ -244,7 +244,7 @@
 							</tbody>
 							<tr>
 								<td colspan="8">
-									<button class="btn btn-default" type="button">삭제</button>
+									<button id="nearest-cart-delete" class="btn btn-default" type="button">삭제</button>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 찜목록에 담긴 상품은 30일간 보관되며 이후 삭제
 									됩니다.
 								</td>
@@ -481,9 +481,9 @@
 	<script id="nearest-cart-list" type="text/x-handlebars-template">
     {{#each cartData}}
       <tr>
-        <th class="prod-info" scope="row">1</th>
+        <th class="prod-info" scope="row">{{inc @index}}</th>
         <td class="prod-info">
-          <input type="checkbox">
+          <input type="checkbox" value="{{no}}">
         </td>
         <td width="13%">
           <img src="{{photo}}" alt="Image" class="img-responsive">

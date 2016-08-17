@@ -1,6 +1,7 @@
 package org.nearest.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.nearest.dao.CartDao;
 import org.nearest.domain.Cart;
@@ -23,6 +24,11 @@ public class CartServiceImpl implements CartService{
   public List<Product> getCart(int clientNo) {
     // TODO Auto-generated method stub
     return cartDao.selectCartList(clientNo);
+  }
+
+  @Override
+  public void removeCart(Map<String, Object> params) {
+    cartDao.deleteCart(params);
   }
 
 }

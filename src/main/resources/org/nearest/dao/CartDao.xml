@@ -51,5 +51,10 @@
     AND p.mt_no = m.mt_no 
     AND c.clnt_no = #{value}
   </select>
+  
+  <delete id="deleteCart" parameterType="map">
+    delete from temps 
+    where clnt_no = #{clientNo} AND prod_no in (${prodNo})
+  </delete>
 
 </mapper>
