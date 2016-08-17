@@ -19,16 +19,16 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public List<QNA> getQNAlist(int pageNo, int pageSize){
+	public List<QNA> getQNAList(int pageNo, int pageSize){
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("startIndex", (pageNo - 1) * pageSize);
 		params.put("len", pageSize);
-		return qnaDao.selectList(params);
+		return qnaDao.selectQNAList(params);
 	}
 	
 	@Override
 	public QNA getQNA(int no){
-		return qnaDao.selectOne(no);
+		return qnaDao.selectQNA(no);
 	}
 	
 	@Override
