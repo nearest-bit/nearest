@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.nearest.dao.OrderDao">
+  <resultMap type="order" id="orderMap">
+    <id     column="order_no"       property="no" />
+    <result column="order_dt"       property="orderDate" />
+    <result column="order_st"      property="orderState" />
+    <association property="mart" javaType="mart">
+      <result column="mt_no" property="no" javaType="INTEGER"/>
+    </association>
+    <association property="client" javaType="client">
+      <result column="clnt_no" property="no" javaType="INTEGER"/>
+    </association>
+  </resultMap>
+  
+  <insert id="insertOrder" parameterType="map">
+    insert into 
+    orders (order_dt, order_st, mt_no, clnt_no) 
+    values 
+      <foreach collection="list" item="item" separator=",">
+         ( now(), 1, #{martNo}, #{clientNo})  
+      </foreach>
+    <selectKey resultType="int" keyProperty="orderNo" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
+  </insert>
+
+  
+
+</mapper>

@@ -33,16 +33,20 @@ $(document).on('click','#login-btn',function() {
 		},
 		method: 'post',
 		success: function(result) {
-			$(function() {
-				$.magnificPopup.close();
-				$("#loginBtn").css("display", "none");
-				$("#signupBtn").css('display', 'none');
-				$("#btnSplit").css('display', 'none');
-				$('#nearest-dropdown').css('display', 'inline');
-				$('#loginAfter').css('display', 'inline');
-			});
-			
-			$.cookie('loginId', result.data.no, {expires : 1});
+			if(result.status == 'correct'){
+				$(function() {
+					$.magnificPopup.close();
+					$("#loginBtn").css("display", "none");
+					$("#signupBtn").css('display', 'none');
+					$("#btnSplit").css('display', 'none');
+					$('#nearest-dropdown').css('display', 'inline');
+					$('#loginAfter').css('display', 'inline');
+				});
+				
+				$.cookie('loginId', result.data.no, {expires : 1});
+			}else{
+				alert('id/password를 확인하세요');
+			}
 		},
 		error: function(result) {
 			alert(result.status);
