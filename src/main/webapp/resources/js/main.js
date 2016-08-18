@@ -135,7 +135,7 @@
 				header.addClass('navbar-fixed-top fh5co-animated slideInDown');
 				$('#fh5co-header .nearest-header-logo').css('display', 'none');
 				$('.nearest-header-top-menu').css('display', 'none');
-				$('.nearest-header-menu').css('background', '#222');
+				$('.nearest-header-menu').css('background', 'white');
 				$('.nearest-header-menu').css('padding', '0');
 				$('.top-nav button').css('margin-top', '0');
 				$('.nearest-header-nav > *').css('margin-top', '0');
@@ -442,15 +442,7 @@
 
 		}
 	};
-
-
 	
-	
-
-
-	
-	
-
 	// Document on load.
 	$(function(){
 
@@ -465,7 +457,6 @@
 		navigationSection();
 
 		goToTop();
-
 
 		// Animations
 		homeAnimate();

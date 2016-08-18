@@ -10,5 +10,7 @@ public interface ProductService {
   List<Product> getMartList(int currentPage, int length, String searchContent);
   int getTotal(String searchContent);
   int getTotalByMart(String searchContent);
+  
+  Product getProduct(int no);
 
 }

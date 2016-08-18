@@ -44,4 +44,9 @@ public class ProductServiceImpl implements ProductService {
     return productDao.selectProdTotalByMart(searchContent);
   }
 
+  @Override
+  public Product getProduct(int no) {
+	  return productDao.selectProd(no);
+  }
+
 }

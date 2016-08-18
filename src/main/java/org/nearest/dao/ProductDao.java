@@ -10,4 +10,6 @@ public interface ProductDao {
   List<Product> selectMartList(Map<String, Object> params);
   int selectProdTotal(String searchContent);
   int selectProdTotalByMart(String searchContent);
+  
+  Product selectProd(int no);
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.nearest.dao.CartDao">
+    
+  <resultMap type="cart" id="cartMap">
+    <result column="clnt_no" property="clientNo"></result>
+    <result column="prod_no" property="productNo"></result>
+  </resultMap>
+  
+  <resultMap type="product" id="productMap">
+    <id     column="prod_no"       property="no" />
+    <result column="prod_nm"       property="name" />
+    <result column="prod_pri"      property="price" />
+    <result column="prod_ent"      property="entity" />
+    <result column="prod_dis"      property="discountRate" />
+    <result column="prod_pic"      property="photo" />
+    <association property="mart" javaType="mart">
+      <result property="no" column="mt_no" javaType="INTEGER"/>
+      <result property="name" column="mt_nm" javaType="string"/>
+    </association>
+  </resultMap>
+  
+  <resultMap type="mart" id="martMap">
+    <id     column="mt_no"       property="no" />
+    <result column="mt_nm"       property="name" />
+    <result column="mt_addr"     property="addr" />
+    <result column="mt_addt"     property="addrDetail" />
+    <result column="mt_post"     property="postNo" />
+    <result column="mt_tel"      property="telNo" />
+    <result column="mt_lat"      property="latitude" />
+    <result column="mt_lng"      property="longitude" />
+    <association property="admin" javaType="admin">
+      <id column="admin_no" property="no" javaType="INTEGER" />
+    </association>
+  </resultMap>
+
+  
+  <insert id="insertCart" parameterType="cart">
+    insert into temps ( clnt_no, prod_no )
+    values ( #{clientNo}, #{productNo})
+  </insert>
+  
+  <select id="selectCartList" parameterType="int" resultMap="productMap,martMap">
+    select p.prod_no, prod_pic, prod_nm, prod_pri, prod_ent, p.mt_no, mt_nm
+    from clnts c, temps t, prods p, marts m
+    where c.clnt_no = t.clnt_no 
+    AND t.prod_no = p.prod_no 
+    AND p.mt_no = m.mt_no 
+    AND c.clnt_no = #{value}
+  </select>
+  
+  <delete id="deleteCart" parameterType="map">
+    delete from temps 
+    where clnt_no = #{clientNo} AND prod_no in (${prodNo})
+  </delete>
+
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.nearest.dao.QNADao">
+    <resultMap type="qna" id="qnaMap">
+        <id     column="req_no"     property="no"/>
+        <result column="req_dt"     property="createDate"/>
+        <result column="req_cnt"    property="content"/>
+        <result column="req_st"     property="status"/>
+        <result column="req_rcnt"   property="replyContent"/>
+        <result column="req_rdt"    property="replyDate"/>
+        <association property="mart" javaType="mart">
+            <id column="mt_no" property="no" javaType="INTEGER" />
+        </association>
+        <association property="client" javaType="client">
+            <id column="clnt_no" property="no" javaType="INTEGER" />
+        </association>
+    </resultMap>
+    
+    <select id="selectOne" resultMap="qnaMap" parameterType="int">
+        SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
+        FROM reqs
+        WHERE req_no = #{value}
+    </select>
+    
+    <select id="selectQNAList" resultMap="qnaMap">
+        select * from marts mt, reqs rq
+        where mt.mt_no = rq.mt_no
+  </select>
+</mapper>

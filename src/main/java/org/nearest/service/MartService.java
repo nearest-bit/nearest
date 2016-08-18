@@ -7,4 +7,6 @@ import org.nearest.domain.Mart;
 
 public interface MartService {
 	List<Mart> getMartList();
+	
+	Mart getMart(int no);
 }

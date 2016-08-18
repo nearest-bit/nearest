@@ -33,6 +33,10 @@ $(document).ready(function() {
 						if(event.target.id == 'signupForm') {
 							$.magnificPopup.close();
 						}
+						
+						if(event.target.id == 'modal') {
+							$.magnificPopup.close();
+						}
 					});
 				}
 			}
