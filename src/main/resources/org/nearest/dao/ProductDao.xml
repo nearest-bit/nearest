@@ -15,7 +15,13 @@
       <result property="no" column="mt_no" javaType="INTEGER"/>
     </association>
   </resultMap>
-
+  
+  <insert id="insertProduct" parameterType="product">
+    
+    inser
+  
+  </insert>
+  
   <select id="selectProdList" resultMap="productMap" parameterType="map">
     SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
     count

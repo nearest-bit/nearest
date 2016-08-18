@@ -22,9 +22,9 @@ public class AdminController {
 	@ResponseBody
 	public String login(@RequestParam String id,
 						@RequestParam String password) {
-		HashMap<String,Object> result = new HashMap<>();
+		HashMap<String,Object> result = new HashMap<>(); 
 		Admin admin = adminService.getAdmin(id);
-		
+				
 		try {
 			if(admin.getPassword().equals(password)) {
 				result.put("status", "correct");
@@ -39,4 +39,27 @@ public class AdminController {
 		
 		return new Gson().toJson(result);
 	}
+	
+  @RequestMapping(path="managerLogin",produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String managerLogin(@RequestParam String id,
+      @RequestParam String password) {
+    HashMap<String,Object> result = new HashMap<>();
+    Admin admin = adminService.checkboxLogin(id);
+        
+    try {
+      if(admin.getPassword().equals(password)) {
+        result.put("status", "correct");
+        result.put("data", admin);
+      } else {
+        result.put("status", "incorrect");
+      }
+      
+    } catch(Exception e) {
+      result.put("status", "error");
+    }
+    
+    return new Gson().toJson(result);
+  }
+
 }

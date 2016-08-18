@@ -15,4 +15,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao.selectOne(id);
 	}
 
+  @Override
+  public Admin checkboxLogin(String id) {
+    // TODO Auto-generated method stub
+    return adminDao.getManagerLogin(id);
+  }
+
 }

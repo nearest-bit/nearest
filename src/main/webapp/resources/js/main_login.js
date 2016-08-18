@@ -32,31 +32,53 @@ $(document).on('click','#login-btn',function() {
 		}*/
 	}
 	
-	/* location.href = "./admin.html"; */
-	$.ajax({
-		url: contextRoot + 'client/login.do',
-		dataType: 'json',
-		data: {
-			id: $('#login-form-username').val(),
-			password: $('#login-form-password').val()
-		},
-		method: 'post',
-		success: function(result) {
-			$(function() {
-				$.magnificPopup.close();
-				$("#loginBtn").css("display", "none");
-				$("#signupBtn").css('display', 'none');
-				$("#btnSplit").css('display', 'none');
-				$('#nearest-dropdown').css('display', 'inline');
-				$('#loginAfter').css('display', 'inline');
-			});
-			
-		},
-		error: function(result) {
-			alert(result.status);
-		}
-	});
-	
+	if($("input[name='managerLogin']").prop('checked', true)){
+		
+		$.ajax({
+			url: contextRoot + 'admin/managerLogin.do',
+			dataType: 'json',
+			data: {
+				id: $('#login-form-username').val(),
+				password: $('#login-form-password').val()
+			},
+			method: 'post',
+			success: function(result) {
+				location.href = './manager.html';
+			},
+			error: function(result) {
+				alert(result.status);
+			}
+		});
+		
+	}else{
+		
+		/* location.href = "./admin.html"; */
+		$.ajax({
+			url: contextRoot + 'client/login.do',
+			dataType: 'json',
+			data: {
+				id: $('#login-form-username').val(),
+				password: $('#login-form-password').val()
+			},
+			method: 'post',
+			success: function(result) {
+				$(function() {
+					$.magnificPopup.close();
+					$("#loginBtn").css("display", "none");
+					$("#signupBtn").css('display', 'none');
+					$("#btnSplit").css('display', 'none');
+					$('#nearest-dropdown').css('display', 'inline');
+					$('#loginAfter').css('display', 'inline');
+				});
+				
+			},
+			error: function(result) {
+				alert(result.status);
+			}
+		});
+		
+	}
+
 });
 
 $(document).on('click','#logoutBtn',function() {
