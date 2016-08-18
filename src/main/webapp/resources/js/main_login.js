@@ -42,7 +42,7 @@ $(document).on('click','#login-btn',function() {
 				$('#loginAfter').css('display', 'inline');
 			});
 			
-			$.cookie('loginId', result.data.no, {expires : 1});
+			$.cookie('loginId', result.data.id, {expires : 1});
 		},
 		error: function(result) {
 			alert(result.status);
@@ -53,12 +53,9 @@ $(document).on('click','#login-btn',function() {
 
 $(document).on('click','#logoutBtn',function() {
 	$.removeCookie('loginId');
+		
 	$(function() {
-		$("#loginBtn").css("display", 'inline');
-		$("#signupBtn").css('display', 'inline');
-		$("#btnSplit").css('display', 'inline');
-		$('#nearest-dropdown').css('display', 'none');
-		$('#loginAfter').css('display', 'none');
+		$(location).attr('href', contextRoot);
 	})
 });
 

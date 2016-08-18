@@ -72,7 +72,7 @@ function initMap() {
 	  url: contextRoot + 'mart/martList.do',
 	  dataType: 'json',
 	  method: 'post',
-	  success: function(result) {
+	  success: function(result) {		  
 		if(result.state != 'success') {
 			alert('Controller Exception 발생');
 		} else {
@@ -110,33 +110,13 @@ function initMap() {
 			  setMarkerInfoWindow(marker, i, contentString);
 			}
 						
-			var markerLocationStr = '';
+			var markerLocationArr = new Array();
 			  
 			for(var i in markers) {
-			  markerLocationStr += markers[i].getPosition().lat() + ',' + markers[i].getPosition().lng();
-				  
-			  if(i != markers.length-1){
-				  markerLocationStr += '|';
-			  }
+			  var tempPosition = new google.maps.LatLng(markers[i].getPosition)
+				
+			  markerLocationArr[i] = markers[i].getPosition();
 			}
-			  
-			$.ajax({
-			  url: 'https://maps.googleapis.com/maps/api/distancematrix/json',
-			  method: 'post',
-			  dataType: 'json',
-			  data: {
-				  origins: myLocation.lat+','+myLocation.lng,
-				  destinations: markerLocationStr,
-				  language: 'ko-KO',
-				  key: 'AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c'
-			  },
-			  success: function(result) {
-				  alert(JSON.stringify(result));
-			  },
-			  error: function() {
-				  alert('Distance Error');
-			  }
-			});
 		}
 	  },
 	  error: function() {
