@@ -111,18 +111,100 @@ function initMap() {
 			}
 						
 			var markerLocationArr = new Array();
+			var distanceArr = new Array();
 			  
 			for(var i in markers) {
 			  var tempPosition = new google.maps.LatLng(markers[i].getPosition)
 				
 			  markerLocationArr[i] = markers[i].getPosition();
 			}
+			
+			
+			for(var i in markerLocationArr) {
+				distanceArr[i] = getDistance(myLocation, markerLocationArr[i]);
+			}
+			
+			var minIndex = 0;
+			
+			for(var i in distanceArr) {
+				if (Math.min.apply(null, distanceArr) == distanceArr[i]) {
+					minIndex = i;
+				}
+			}
+						
+			var martName = markers[minIndex].getTitle();
+			
+			$('#nearest-product-list').children().remove();
+			$('#nearest-pageno').children().remove();
+			$('select[name="searchTag"] option:last-child').attr('selected', 'selected');
+			$('input[name="searchContent"]').val(martName);
+			
+			searchTag = $('select[name=searchTag]').val();
+		    searchContent = $('input[name=searchContent]').val();
+			
+			$.ajax({
+			  url: contextRoot + 'product/list.do',
+			  dataType: 'json',
+			  data: {
+				searchTag: 'marts',
+				searchContent: martName
+			  },
+			  method: 'post',
+			  success: function(result) {
+				  if(result.status != 'success'){
+			        alert('Controller 오류');
+			        return;
+			      }
+			        
+			      $('#nearest-product-list').append(prodListTemplete(result));
+			        
+			      total = JSON.stringify(result.total);
+			        
+			      if ( total % 9 != 0){
+			      	totalPage = parseInt( total / 9 ) + 1;
+			      }else{
+			    	totalPage = parseInt( total / 9 );
+			      }
+			      
+			      if ( totalPage >= 5) {
+			    	  pageUnit = 5; 
+			    	  nextPage = pageUnit + 1;
+			    	  
+			    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
+			      }else if( totalPage == 0 ){
+			    	  pageUnit = 0;
+			    	  $('span[data-next-page=""]').attr('data-next-page', '');
+			      }else{
+			    	  pageUnit = totalPage;
+			      }
+			        
+			      if (pageUnit >= 1){
+			      	for(var i=1; i<=pageUnit; i++){
+			       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
+			       	}
+			      }
+			        
+			      alert(pageUnit);
+			  },
+			  error: function() {
+				  alert('ajax 접속 실패');
+			  }
+			});
 		}
 	  },
 	  error: function() {
 		  alert('ajax 접속 실패');
 	  }
   });
+}
+
+function getDistance(orign, destination) {
+	var disX = orign.lat - destination.lat();
+	var disY = orign.lng - destination.lng();
+
+	var distance = Math.sqrt(Math.abs(disX*disX) + Math.abs(disY*disY));
+	
+	return distance;
 }
 
 function tilesLoaded() {
