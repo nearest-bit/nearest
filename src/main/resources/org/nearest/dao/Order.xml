@@ -20,8 +20,8 @@
     insert into 
     orders (order_dt, order_st, mt_no, clnt_no) 
     values 
-      <foreach collection="list" item="item" separator=",">
-         ( now(), 1, #{martNo}, #{clientNo})  
+      <foreach collection="allOrderData" item="item" separator=",">
+         ( now(), 1, #{item.noDuplMartNo}, #{clientNo})  
       </foreach>
     <selectKey resultType="int" keyProperty="orderNo" order="AFTER">
       SELECT LAST_INSERT_ID();
