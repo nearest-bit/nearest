@@ -1,5 +1,5 @@
 $(function() {
-	$(document).on('click', '.fh5co-project-item > img', function() {
+	$(document).on('click', '.fh5co-project-item > img', function() {		
 		var productNo = $(this).parent().prev().val();
 		
 		$.ajax({

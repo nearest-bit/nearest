@@ -183,8 +183,8 @@ function initMap() {
 			       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
 			       	}
 			      }
-			        
-			      alert(pageUnit);
+			      
+			      $('.fh5co-project-item > img').magnificPopup();
 			  },
 			  error: function() {
 				  alert('ajax 접속 실패');
