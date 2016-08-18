@@ -44,9 +44,6 @@ $(function() {
 	          url : contextRoot + 'cart/getCart.do',
 	          datatype : 'json',
 	          method : 'post',
-	          data : {
-	            clientNo : $.cookie('loginId')
-	          },
 	          
 	          success : function(result) {
 	            if(result.status != 'success'){
@@ -111,8 +108,7 @@ $('#nearest-cart-delete').on('click', function(){
 	          datatype : 'json',
 	          method : 'post',
 	          data : {
-	        	  prodNo : prodNo,
-	        	  clientNo : $.cookie('loginId')
+	        	  prodNo : prodNo
 	          },
 	          
 	          success : function(result) {
