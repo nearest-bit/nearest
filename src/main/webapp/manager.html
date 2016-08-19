@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Nearest</title>
+
+
+<!-- CSS Files -->
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="./resources/css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="./resources/css/icomoon.css">
+<!-- Simple Line Icons -->
+<link rel="stylesheet" href="./resources/css/simple-line-icons.css">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="./resources/css/magnific-popup.css">
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="./resources/css/bootstrap.css">
+<!-- Signup CSS -->
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link rel="stylesheet"
+	href="./resources/css/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="./resources/css/form-elements.css"> -->
+<link rel="stylesheet" href="./resources/css/main_signup.css">
+<link rel="stylesheet" href="./resources/css/style.css">
+<link rel="stylesheet" href="./resources/css/manager_top_menu.css">
+<link rel="stylesheet" href="./resources/css/main_login.css">
+<!-- BootStrap DateTimePicker -->
+<link rel="stylesheet"
+	href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+<!-- DropDown Menu -->
+<link rel="stylesheet" href="./resources/css/main_dropdown.css">
+<!-- Client Payment PopUp -->
+<link rel="stylesheet" href="./resources/css/client_payment.css">
+<link rel="stylesheet" href="./resources/css/client_menu.css">
+<link rel="stylesheet" href="./resources/css/client_main.css">
+<!-- Main Header -->
+<link rel="stylesheet" href="./resources/css/main_header.css">
+<!-- Purchase List -->
+<link rel="stylesheet" href="./resources/css/client_purchase_list.css">
+<!-- manager page css -->
+<link rel="stylesheet" href="./resources/css/manager.css">
+<!-- uploadimage css -->
+<link rel="stylesheet" href="./resources/css/manager_upload_images.css">
+
+<!-- JS Files -->
+
+<!-- jQuery -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script
+	src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
+<!-- Bootstrap -->
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="./node_modules/jquery-waypoints/waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="./resources/js/jquery.stellar.min.js"></script>
+<!-- Counter -->
+<script src="./node_modules/jquery-countto/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script
+	src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="./resources/js/magnific-popup-options.js"></script>
+<!-- Handlebars -->
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+
+<script src="./resources/js/jquery.backstretch.min.js"></script>
+<script src="./resources/js/scripts.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="./resources/js/bootstrap-datetimepicker.js"></script>
+<!-- Modernizr JS -->
+<script src="./node_modules/npm-modernizr/modernizr.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+  <script src="./js/respond.min.js"></script>
+  <![endif]-->
+
+<!-- jQuery Cookie -->
+<script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
+<!-- IamPort 결제 -->
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
+
+<script src="./resources/js/manager_upload_images.js"></script>
+
+<style>
+#fh5co-header {
+	position: inherit !important;
+}
+
+.nearest-header-menu {
+	position: inherit !important;
+}
+
+#product-detail-form {
+	background-color: white !important;
+}
+
+#loginAfter {
+	display: none;
+}
+
+#nearest-dropdown {
+	display: none;
+}
+</style>
+</head>
+
+<body>
+	<header role="banner" id="fh5co-header">
+		<div class="container nearest-header-menu">
+			<div class="wrapper">
+				<div class="row box-shadow nearest-header-top-menu">
+
+					<div id="nearest-dropdown"
+						class="nearest-dropdown nearest-header-menu-btn">
+						<span class="glyphicon glyphicon-align-justify nearest-drop-span"
+							aria-hidden="true" onclick="myFunction()"> </span>
+
+						<div id="myDropdown" class="nearest-dropdown-content">
+							<a href="./client.html">찜 목록</a> <a href="./client.html">구매
+								목록</a> <a href="./client.html">건의 사항</a>
+						</div>
+					</div>
+
+					<div class="white-popup nearest-header-menu-btn" id="loginAfter">
+						<a id="myInfoBtn"> <strong>내정보</strong>
+						</a> <strong>|</strong> <a id="logoutBtn" href="./index.html"> <strong>로그아웃</strong>
+						</a>
+					</div>
+
+					<a id="signupBtn" href="#signupForm"
+						class="white-popup popup-modal nearest-header-menu-btn"> <strong>REGISTER</strong>
+					</a> <a id="btnSplit" class="nearest-header-menu-btn"> <strong>|</strong>
+					</a> <a id="loginBtn" href="#loginForm"
+						class="white-popup popup-modal nearest-header-menu-btn"> <strong>LOGIN</strong>
+					</a>
+
+				</div>
+
+				<div class="row box-shadow nearest-header-logo">
+					<div>
+
+						<img src="./resources/images/logo_2.png" />
+
+					</div>
+					<!-- .nearest-header-nav end -->
+				</div>
+			</div>
+		</div>
+		<!-- container end -->
+	</header>
+
+	<div id="nearest-manager-wrap">
+
+		<div class="nearest-manager-list">
+			<ul class="nav nav-tabs nav-justified" id="nearest-manager-menu">
+				<li class="active"><a href="#">주문내역</a></li>
+				<li><a href="#">건의사항</a></li>
+				<li><a href="#">상품등록</a></li>
+				<li><a href="#">상품관리</a></li>
+			</ul>
+		</div>
+
+		<!-- start of joomoonList -->
+		<section id="fh5co-about" data-section="about">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate">주문내역</h2>
+						<div class="search-form">
+							<button class="btn btn-info to-animate" id="order-btn"
+								type="button">주문내역조회</button>
+							<div id="order-search" class="to-animate">
+								<select>
+									<option selected="selected">새 주문</option>
+									<option>준비완료</option>
+									<option>수령완료</option>
+								</select> <input type="date" value="2016-08-13"> <input
+									type="date" value="2016-08-20">
+								<button class="btn btn-info" type="button">조회</button>
+								<button class="btn btn-default" id="order-reset-btn"
+									type="reset">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div
+							class="fh5co-person text-center to-animate nearest-margin-bottom">
+							<h3>박정환</h3>
+							<div class="fh5co-position">
+								<p class="nearest-order-list-text">수령시간</p>
+								<p class="nearest-order-list-number">2016-08-01 16:00</p>
+								<p class="nearest-order-list-text">휴대번호</p>
+								<p class="nearest-order-list-number">010-5545-8877</p>
+							</div>
+
+
+							<button type="button" class="btn btn-info"
+								id="nearest-complete-btn">준비완료</button>
+							<a class="popup-with-form" href="#order-detail-form">
+								<button type="button" class="btn btn-primary">주문상세</button>
+							</a>
+
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div
+							class="fh5co-person text-center to-animate nearest-margin-bottom">
+							<h3>손진한</h3>
+							<div class="fh5co-position">
+								<p class="nearest-order-list-text">수령시간</p>
+								<p class="nearest-order-list-number">2016-08-01 16:00</p>
+								<p class="nearest-order-list-text">휴대번호</p>
+								<p class="nearest-order-list-number">010-5545-8877</p>
+							</div>
+							<button type="button" class="btn btn-info"
+								id="nearest-complete-btn">준비완료</button>
+							<a class="popup-with-form" href="#order-detail-form">
+								<button type="button" class="btn btn-primary">주문상세</button>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div
+							class="fh5co-person text-center to-animate nearest-margin-bottom">
+							<h3>김종국</h3>
+							<div class="fh5co-position">
+								<p class="nearest-order-list-text">수령시간</p>
+								<p class="nearest-order-list-number">2016-08-01 16:00</p>
+								<p class="nearest-order-list-text">휴대번호</p>
+								<p class="nearest-order-list-number">010-5545-8877</p>
+							</div>
+							<button type="button" class="btn btn-info"
+								id="nearest-complete-btn">준비완료</button>
+							<a class="popup-with-form" href="#order-detail-form">
+								<button type="button" class="btn btn-primary">주문상세</button>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div
+							class="fh5co-person text-center to-animate nearest-margin-bottom">
+							<h3>박상일</h3>
+							<div class="fh5co-position">
+								<p class="nearest-order-list-text">수령시간</p>
+								<p class="nearest-order-list-number">2016-08-01 16:00</p>
+								<p class="nearest-order-list-text">휴대번호</p>
+								<p class="nearest-order-list-number">010-5545-8877</p>
+							</div>
+							<button type="button" class="btn btn-info"
+								id="nearest-complete-btn">준비완료</button>
+							<a class="popup-with-form" href="#order-detail-form">
+								<button type="button" class="btn btn-primary">주문상세</button>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div
+							class="fh5co-person text-center to-animate nearest-margin-bottom">
+							<h3>정진원</h3>
+							<div class="fh5co-position">
+								<p class="nearest-order-list-text">수령시간</p>
+								<p class="nearest-order-list-number">2016-08-01 16:00</p>
+								<p class="nearest-order-list-text">휴대번호</p>
+								<p class="nearest-order-list-number">010-5545-8877</p>
+							</div>
+							<button type="button" class="btn btn-info"
+								id="nearest-complete-btn">준비완료</button>
+							<a class="popup-with-form" href="#order-detail-form">
+								<button type="button" class="btn btn-primary">주문상세</button>
+							</a>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12">
+						<div
+							class="fh5co-person text-center to-animate nearest-margin-bottom">
+							<h3>박철효</h3>
+							<div class="fh5co-position">
+								<p class="nearest-order-list-text">수령시간</p>
+								<p class="nearest-order-list-number">2016-08-01 16:00</p>
+								<p class="nearest-order-list-text">휴대번호</p>
+								<p class="nearest-order-list-number">010-5545-8877</p>
+							</div>
+
+
+							<button type="button" class="btn btn-info"
+								id="nearest-complete-btn">준비완료</button>
+							<a class="popup-with-form" href="#order-detail-form">
+								<button type="button" class="btn btn-primary">주문상세</button>
+							</a>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<form id="order-detail-form" class="white-popup-block mfp-hide"
+			data-effect="mfp-3d-unfold">
+			<div class="page-header nearest-popup-margin">
+				<h1>주문상세</h1>
+				<table class="table table-hover table-bordered">
+					<tr>
+						<th>상품코드</th>
+						<th>제품명</th>
+						<th>수량</th>
+						<th>가격</th>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+					<tr>
+						<td>10025</td>
+						<td>농심 신라면</td>
+						<td>5개</td>
+						<td>25,000원</td>
+					</tr>
+
+				</table>
+				<p style="text-align: right">
+					<button type="button" class="btn btn-info">준비완료</button>
+					<button type="button" class="btn btn-default">취소</button>
+				</p>
+			</div>
+		</form>
+		<!-- End of joomoonList -->
+
+		<!-- 건의사항 시작 -->
+		<section id="fh5co-testimonials" data-section="testimonials">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate">고객센터</h2>
+						<div class="row">
+							<div class="search-form">
+								<button class="btn btn-info to-animate" id="request-btn"
+									type="button">건의사항조회</button>
+								<div id="request-search" class="to-animate">
+									<select>
+										<option selected="selected">답변미완료</option>
+										<option>답변완료</option>
+									</select> <input type="date" value="2016-08-13"> <input
+										type="date" value="2016-08-20">
+									<button class="btn btn-info" type="button">조회</button>
+									<button class="btn btn-default" id="request-reset-btn"
+										type="reset">취소</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="box-testimony">
+							<blockquote class="to-animate-2">
+								<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+							</blockquote>
+							<div class="author to-animate">
+								<figure>
+									<img src="images/person1.jpg" alt="Person">
+								</figure>
+								<p>
+									손진한<a class="popup-with-request-form" href="#request-form">&nbsp;&nbsp;답변하기</a>
+									<span class="subtext">Creative Director</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-testimony">
+							<blockquote class="to-animate-2">
+								<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+							</blockquote>
+							<div class="author to-animate">
+								<figure>
+									<img src="images/person1.jpg" alt="Person">
+								</figure>
+								<p>
+									손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+									<span class="subtext">Creative Director</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-testimony">
+							<blockquote class="to-animate-2">
+								<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+							</blockquote>
+							<div class="author to-animate">
+								<figure>
+									<img src="images/person1.jpg" alt="Person">
+								</figure>
+								<p>
+									손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+									<span class="subtext">Creative Director</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-testimony">
+							<blockquote class="to-animate-2">
+								<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
+							</blockquote>
+							<div class="author to-animate">
+								<figure>
+									<img src="images/person1.jpg" alt="Person">
+								</figure>
+								<p>
+									손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+									<span class="subtext">Creative Director</span>
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-testimony">
+							<blockquote class="to-animate-2">
+								<p>&ldquo;수박이 아주 달아서 좋았어요!! &rdquo;</p>
+							</blockquote>
+							<div class="author to-animate">
+								<figure>
+									<img src="images/person1.jpg" alt="Person">
+								</figure>
+								<p>
+									박철효<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+									<span class="subtext">Creative Director</span>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="box-testimony">
+							<blockquote class="to-animate-2">
+								<p>&ldquo;여름이라 시원한 콜라가 먹고싶은데 콜라가 너무 안시원해요!! 다음번엔 시원하게 보관해
+									주세요!!&rdquo;</p>
+							</blockquote>
+							<div class="author to-animate">
+								<figure>
+									<img src="images/person1.jpg" alt="Person">
+								</figure>
+								<p>
+									박정환<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
+									<span class="subtext">Creative Director</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- 건의사항 끝 -->
+
+		<!-- start 상품등록 -->
+		<section id="fh5co-contact" data-section="contact">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate">상품등록</h2>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 subtext to-animate">
+								<h3>새로운 상품을 등록 합니다.</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row row-bottom-padded-md">
+					<div class="col-md-5 to-animate" id="nearest-newImage">
+
+						<div id="wrapp">
+							<div id="image-wrapp">
+								<div id="text-wrapp">
+									<span>Drop image to upload</span>
+								</div>
+								<div id="image-select">
+									<svg viewBox="0 0 170 150">
+							        <path d="M0,3.5 170,3.5 170,146.5 0,146.5z" />
+							      </svg>
+								</div>
+							</div>
+							<div class="button-wrapp">
+								<div class="button upload">
+									<span>Pick one</span> <input id="file-select" type="file">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+
+					<div class="col-md-7 to-animate">
+
+						<form class="form-horizontal">
+
+							<div class="form-group form-group-lg">
+								<label class="col-sm-3 control-label">상품명</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="text" placeholder="상품명">
+								</div>
+							</div>
+
+							<div class="form-group form-group-lg">
+								<label class="col-sm-3 control-label">가격</label>
+								<div class="col-sm-8">
+									<input class="form-control" type="text" placeholder="가격">
+								</div>
+							</div>
+							<div class="form-group form-group-lg">
+								<label class="col-sm-3 control-label">재고</label>
+								<div class="col-sm-3">
+									<input class="form-control" type="number" min="1" max="100"
+										value="1">
+								</div>
+							</div>
+							<div class="form-group form-group-lg">
+								<label class="col-sm-3 control-label">할인률</label>
+								<div class="col-sm-3">
+									<input class="form-control" type="number" min="5" max="100"
+										value="5" step="5" />
+								</div>
+								<p style="line-height: 1em">%</p>
+							</div>
+
+						</form>
+					</div>
+					<div class="col-md-12 to-animate">
+						<div class="form-group text-center nearest-padding-top-2">
+							<input class="btn btn-primary btn-lg" value="상품 등록" type="button">
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<!-- End of 상품등록 -->
+
+		<!-- 상품관리 시작 -->
+		<section id="fh5co-work" data-section="work">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate">상품관리</h2>
+
+					</div>
+				</div>
+				<div class="row row-bottom-padded-sm">
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xxs-12">
+						<a href="#test-form"
+							class="fh5co-project-item popup-with-form to-animate"> <img
+							src="./images/shinramyun.png" alt="Image" class="img-responsive">
+							<div class="fh5co-text">
+								<h2>신라면</h2>
+								<span>가격 2500원/수량 25개/할인율 5%</span>
+							</div>
+						</a>
+					</div>
+
+				</div>
+				<div class="row">
+					<nav class="col-md-12 text-center to-animate"
+						aria-label="Page navigation">
+						<ul class="pagination">
+							<li class="pagenav"><a href="#" aria-label="Previous"> <span
+									aria-hidden="true">&laquo;</span>
+							</a></li>
+							<li class="pagenav"><a href="#">1</a></li>
+							<li class="pagenav"><a href="#">2</a></li>
+							<li class="pagenav"><a href="#">3</a></li>
+							<li class="pagenav"><a href="#">4</a></li>
+							<li class="pagenav"><a href="#">5</a></li>
+							<li class="pagenav"><a href="#" aria-label="Next"> <span
+									aria-hidden="true">&raquo;</span>
+							</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+
+		</section>
+
+		<form id="test-form" class="mfp-hide">
+
+			<div class="page-header nearest-popup-margin table-responsive">
+				<h1>상품정보</h1>
+				<table class="table nearest-no-border">
+
+					<tr>
+						<td rowspan="3" width="40%"><img src="./resources/images/shinramyun.png" alt="Image" width="80%" align="center">
+						</td>
+						<td width="20%">상품명</td>
+						<td width="40%" class="nearest-text-left">
+						  <input type="text" class="form-control col-sm-8"
+						name="nearest-manager-pdName" placeholder="상품명">
+						</td>
+					</tr>
+					<tr>
+						<td>판매가</td>
+						<td class="nearest-text-left">
+							<input type="text" class="form-control col-sm-8" name="nearest-manager-pdPprice" placeholder="상품 이름">
+						</td>
+					</tr>
+					<tr>
+						<td>재고량</td>
+						<td class="nearest-text-left">
+							<input type="text" class="form-control col-sm-8" name="nearest-manager-amount" placeholder="상품 이름">
+						</td>
+					</tr>
+					<tr>
+					  
+					  <td>
+					     <button type="button" class="btn btn-primary">상품 이미지 수정</button>
+					  </td>
+						<td>할인률</td>
+						<td class="nearest-text-left"><select>
+								<option selected="selected">0%</option>
+								<option>5%</option>
+								<option>10%</option>
+								<option>15%</option>
+								<option>20%</option>
+								<option>25%</option>
+						    </select>
+						</td>
+					</tr>
+				</table>
+				<p class="form-btn">
+					<button type="button" class="btn btn-primary">수정</button>
+					<button type="button" class="btn btn-default">취소</button>
+				</p>
+			</div>
+
+		</form>
+		<!-- 상품관리 끝 -->
+
+	</div>
+	<!-- nearest-client-wrap end -->
+
+	<footer
+		style="text-align: center; margin: 0 auto; width: 1024px; height: 100px; background-color: yellow;">
+		<h1>Footer</h1>
+	</footer>
+
+
+	<script>
+		$(function() {
+			$('#order-btn').on('click', function() {
+				$('#order-search').css('display', 'block');
+				$('#order-btn').css('display', 'none');
+			});
+		});
+
+		$(function() {
+			$('#request-btn').on('click', function() {
+				$('#request-search').css('display', 'block');
+				$('#request-btn').css('display', 'none');
+			});
+		});
+
+		$(function() {
+			$('#order-reset-btn').on('click', function() {
+				$('#order-search').css('display', 'none');
+				$('#order-btn').css('display', '');
+			});
+		});
+
+		$(function() {
+			$('#request-reset-btn').on('click', function() {
+				$('#request-search').css('display', 'none');
+				$('#request-btn').css('display', '');
+			});
+		});
+
+		$(function() {
+			$('#nearest-complete-btn').on('click', function() {
+				$('.nearest-margin-bottom').css('background', 'gray');
+			});
+		})
+	</script>
+
+
+
+	<!-- Main JS (Do not remove) -->
+	<script src="./resources/js/app-context.js"></script>
+	<script src="./resources/js/main.js"></script>
+	<script src="./resources/js/main_dropdown.js"></script>
+	<script src="./resources/js/main_search.js"></script>
+	<script src="./resources/js/main_handlebars.js"></script>
+	<script src="./resources/js/main_login.js"></script>
+	<script src="./resources/js/main_register.js"></script>
+	<script src="./resources/js/client_payment.js"></script>
+	<script src="./resources/js/client_purchase_list.js"></script>
+	<script type="text/javascript">
+		
+	</script>
+
+
+</body>
+</html>
+

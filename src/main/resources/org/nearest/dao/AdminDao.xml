@@ -11,10 +11,13 @@
     <result column="admin_id"       property="id" />
     <result column="admin_pw"       property="password" />
   </resultMap>
-
+  
+  
   <select id="selectOne" resultMap="adminMap" parameterType="string">
     SELECT admin_no, admin_pn, admin_nm, admin_id, admin_pw
     FROM admins
     WHERE admin_id=#{value}
   </select>
+  
+  
 </mapper>
