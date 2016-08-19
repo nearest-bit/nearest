@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.nearest.domain.Product;
+import org.nearest.service.MartService;
 import org.nearest.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import com.google.gson.Gson;
 @RequestMapping("/product/")
 public class ProductController {
   
+  @Autowired
+  MartService martService;
   @Autowired
   ProductService productService;
   
@@ -51,6 +54,25 @@ public class ProductController {
         result.put("total", productService.getTotalByMart(searchContent));
       }
       
+    }catch (Exception e) {
+      e.printStackTrace();
+      result.put("status", "failure");
+    }
+    
+    return new Gson().toJson(result);
+  }
+  
+  @ResponseBody
+  @RequestMapping(path = "getProduct", produces = "application/json;charset=utf-8")
+  public String getProduct(int no){
+    
+    Map<String, Object> result = new HashMap<>();
+    Product product = productService.getProduct(no);
+    product.setMart(martService.getMart(product.getMart().getNo()));
+    
+    try{
+      result.put("status", "success");
+      result.put("productData", product);
     }catch (Exception e) {
       e.printStackTrace();
       result.put("status", "failure");

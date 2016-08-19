@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.nearest-footer {
+	text-align: center; 
+	width: 100%;
+}
+
+.nearest-footer-copyright {
+	font-weight: bold;
+	margin: 1%;
+}

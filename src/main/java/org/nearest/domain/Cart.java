@@ -7,26 +7,26 @@ public class Cart implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	// Field
-	protected Client client;
-	protected Product product;
+	protected int clientNo;
+	protected int productNo;
 	
 	// Getter, Setter
-	public Client getClient() {
-		return client;
+	public int getClientNo() {
+		return clientNo;
 	}
-	public void setClient(Client client) {
-		this.client = client;
+	public void setClientNo(int clientNo) {
+		this.clientNo = clientNo;
 	}
-	public Product getProduct() {
-		return product;
+	public int getProductNo() {
+		return productNo;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
 	}
 	
 	@Override
 	public String toString() {
-		return "Cart [client=" + client + ", product=" + product + "]";
+		return "Cart [client=" + clientNo + ", product=" + productNo + "]";
 	}
 		
 }

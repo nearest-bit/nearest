@@ -17,19 +17,18 @@
       <id column="admin_no" property="no" javaType="INTEGER" />
     </association>
   </resultMap>
-  
-  <resultMap type="admin" id="adminMap">
-    <id     column="admin_no"       property="no" />
-    <result column="admin_pn"       property="phone" />
-    <result column="admin_nm"       property="name" />
-    <result column="admin_id"       property="id" />
-    <result column="admin_pw"       property="password" />
-  </resultMap>
 
-  <select id="selectList" resultMap="martMap">
+  <select id="selectMartList" resultMap="martMap">
     SELECT
 		*
 		FROM admins ad, marts mt
 		WHERE ad.admin_no=mt.admin_no
+  </select>
+  
+  <select id="selectMart" resultMap="martMap" parameterType="int">
+    SELECT
+    *
+    FROM marts
+    WHERE mt_no=#{value}
   </select>
 </mapper>

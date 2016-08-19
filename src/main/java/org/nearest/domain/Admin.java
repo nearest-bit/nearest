@@ -12,8 +12,9 @@ public class Admin implements Serializable {
 	protected String name;
 	protected String id;
 	protected String password;
-	
-	// Getter, Setter
+
+	//Getter, Setter
+
 	public int getNo() {
 		return no;
 	}
@@ -44,10 +45,10 @@ public class Admin implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	@Override
-	public String toString() {
-		return "Admin [no=" + no + ", phone=" + phone + ", name=" + name + ", id=" + id + ", password=" + password
-				+ "]";
-	}
+  public String toString() {
+    return "Admin [no=" + no + ", phone=" + phone + ", name=" + name + ", id=" + id + ", password=" + password + "]";
+  }
+ 	
 }

@@ -1,7 +1,7 @@
 
 
-::-moz-selection { background: #19b9e7; color: #fff; text-shadow: none; }
-::selection { background: #19b9e7; color: #fff; text-shadow: none; }
+/* ::-moz-selection { background: #19b9e7; color: #fff; text-shadow: none; }
+::selection { background: #19b9e7; color: #fff; text-shadow: none; } */
 
 /***** Top content *****/
 
@@ -29,6 +29,7 @@
 
 .signup-form-box {
   margin: 0 35% 0 35%;
+  background: white;
 }
 
 .signup-form-top {

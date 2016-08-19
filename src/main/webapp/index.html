@@ -41,8 +41,15 @@
   <link rel="stylesheet" href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
   <!-- DropDown Menu -->
   <link rel="stylesheet" href="./resources/css/main_dropdown.css">
+  <!-- Main Header -->
+  <link rel="stylesheet" href="./resources/css/main_header.css">
+  <!-- Main Footer -->
+  <link rel="stylesheet" href="./resources/css/main_footer.css">
+  <!-- Main Product Detail -->
+  <link rel="stylesheet" href="./resources/css/main_prod_detail.css">
   
-
+  
+  
   <!-- JS Files -->
   
   <!-- jQuery -->
@@ -98,89 +105,98 @@
   #loginAfter {
     display: none;
   }
+  
+  #nearest-dropdown {
+    display: none;
+  }
   </style>
   </head>
   <body>
   
   <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
-      <div class="container nearest-header-menu">
-	      <div class="row box-shadow nearest-header-logo">
-	        <div>
+    <div class="container nearest-header-menu">
+	      <div class="wrapper">
+	        <div class="row box-shadow nearest-header-top-menu">
 	        
-	          <img src="./resources/images/logo_2.png"/>
-	          
-	        </div> <!-- .nearest-header-nav end -->
-	      </div>
-	      
-	      <div class="row box-shadow top-nav">
-          <div class="nearest-header-nav">
-            <div class="white-popup nearest-header-menu-btn" id="loginAfter">
-              <span id="loginView"></span>&nbsp;님 환영합니다.&nbsp;&nbsp;
-              <button id="myInfoBtn" type="button" class="btn btn-default">
-                <strong>내정보</strong>
-              </button>
-              <button id="logoutBtn" type="button" class="btn btn-default">
-                <strong>로그아웃</strong>
-              </button> 
-            </div>
-          
-            <a href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
-	            <button id="loginBtn" type="button" class="btn btn-default">
-	              <strong>LOGIN</strong>
-	            </button>
-            </a>
-            
-            <a href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
-              <button id="signupBtn" type="button" class="btn btn-default">
-                <strong>REGISTER</strong>
-              </button>
-            </a>
-          
-            <div class="nearest-dropdown"> 
-	            <button type="button" 
-	                    onclick="myFunction()"
-	                    class="btn btn-default nearest-dropbtn">
-	              
-	              <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
-	              
-	            </button>
-	            
-	            <div id="myDropdown" class="nearest-dropdown-content">
-						    <a href="#">찜 목록</a>
-						    <a href="#">구매 목록</a>
-						    <a href="#">건의 사항</a>
-						  </div>
-            </div>
-            
-            <div class="col-xs-4">
-              <div class="input-group">
-                <input type="text"
-                       name="searchContent" 
-                       class="form-control" 
-                       placeholder="상품을 입력하세요.">
-                <span class="input-group-btn">
-                  <button id="nearest-search" 
-                          class="btn btn-default" 
-                          type="button"
-                          data-nav-section="work">
-                       검색
-                  </button>
-                </span>
-              </div>
-              <!-- /input-group -->
-            </div>
-            
-            <div class="col-xs-2">
-              <select name="searchTag" class="form-control">
-                <option value="prods">제품검색</option>
-                <option value="marts">매장검색</option>
-              </select>
-            </div>
-          </div> <!-- .nearest-header-nav end -->
-        </div>
-        
-	    </div> <!-- container end -->
+	          <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
+	            <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
+	                  aria-hidden="true"
+	                  onclick="myFunction()">
+	     </span>
+	     
+	     <div id="myDropdown" class="nearest-dropdown-content">
+	       <a id="nearest-to-cart">찜 목록</a>
+	       <a id="nearest-to-purchase" href="./client.html">구매 목록</a>
+	       <a id="nearest-to-request" href="./client.html">건의 사항</a>
+	     </div>
+	   </div>
+	 
+	   <div class="white-popup nearest-header-menu-btn" id="loginAfter">
+	     <a id="myInfoBtn">
+	       <strong>내정보</strong>
+	     </a>
+	     <strong>|</strong>
+	     <a id="logoutBtn">
+	       <strong>로그아웃</strong>
+	     </a> 
+	   </div>
+	   
+	   <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
+	     <strong>REGISTER</strong>
+	   </a>
+	   
+	   <a id="btnSplit" class="nearest-header-menu-btn">
+	     <strong>|</strong>
+	   </a>
+	   
+	   <a id="loginBtn" href="#loginForm" class="white-popup popup-modal nearest-header-menu-btn">
+	     <strong>LOGIN</strong>
+	   </a>
+	   
+	   
+	 
+	 </div>
+	
+	 <div class="row box-shadow nearest-header-logo">
+	   <div>
+	   
+	     <img src="./resources/images/logo_2.png"/>
+	     
+	   </div> <!-- .nearest-header-nav end -->
+	 </div>
+	 
+	 <div class="row box-shadow top-nav">
+	   <p class="nearest-header-nav">
+	       <div class="col-xs-4">
+	         <select name="searchTag" class="form-control">
+	           <option value="prods">제품검색</option>
+	           <option value="marts">매장검색</option>
+	         </select>
+	       </div>
+	       
+	       <div class="col-xs-8">
+	         <div class="input-group">
+	           <input type="text"
+	                  name="searchContent" 
+	                  class="form-control" 
+	                  placeholder="상품을 입력하세요.">
+	           <span class="input-group-btn">
+	             <button id="nearest-search" 
+	                     class="btn btn-default" 
+	                     type="button"
+	                     data-nav-section="work">
+	                  검색
+	             </button>
+	           </span>
+	         </div>
+	         <!-- /input-group -->
+	       </div>
+	       
+	     </p> <!-- .nearest-header-nav end -->
+	   </div>
+	  </div>
+	</div> <!-- container end -->
   </header>
 
   <!-- Login Form -->
@@ -223,9 +239,11 @@
 	          </div>
 	        </form>
 	        
+	        <div></div>
 	        <div class="login-form-id-save">
-	           <p class="id-save"> 
-	              <label><input type="checkbox" id="rememberId"> 아이디 저장</label>
+	           <p class="id-save" style="margin-bottom: 5px"> 
+	              <label><input type="checkbox" id="rememberId" > 아이디 저장</label>
+	              <label><input type="checkbox" id="managerLogin" > 관리자 로그인</label>
 	           </p>
 	           <p class="find-id-password">  
 	             <a href="#">아이디 찾기</a>&nbsp;|&nbsp;<a href="#">비밀번호 찾기</a>
@@ -237,6 +255,7 @@
 	  </div>
 	</div>
   
+  <!-- Signup Form -->
   
 	<div id="signupForm" class="white-popup-block mfp-hide">	 
 	
@@ -335,44 +354,59 @@
     </div> <!-- signup-form-box end -->
 	    
 	</div> <!-- signupForm end -->
-  
 
   <!-- Google Map -->
   <section id="fh5co-home" data-section="home">
+    
+    <div id="nearest-map-locationField">
+      <input id="nearest-map-autocomplete" type="text" />
+    </div>
+    
     <div id="map"></div>
+    
+    <div id="nearest-listing">
+	    <table id="nearest-map-results"></table>
+	  </div>
+    
   </section>
   
   <!-- Product -->
   <section id="fh5co-work" data-section="work">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 section-heading text-center">
-          <h2 class="to-animate">상품검색</h2>
-        </div>
-      </div>
-      
-      <script id="nearest-product-list-template" type="text/x-handlebars-template">
+    <div class="wrapper">
+	    <div class="container">
+	      <div class="row">
+	        <div class="col-md-12 section-heading text-center">
+	          <h2 class="to-animate">상품검색</h2>
+	        </div>
+	      </div>
+	      
+	    <script id="nearest-product-list-template" type="text/x-handlebars-template">
       {{#each productData}}
         <div class="col-md-4 col-sm-6 col-xxs-12">
-          <a href="#product-detail-form" class="fh5co-project-item popup-with-form nearest-work-list-border">
-            <img src="{{photo}}" alt="Image" class="img-responsive">
+          <input type="hidden" value="{{no}}" />
+          <a class="fh5co-project-item popup-with-form nearest-work-list-border">
+            <img href="#nearest-modal" 
+                 src="./resources/images/shinramyun.png" 
+                 alt="Image" 
+                 class="img-responsive white-popup popup-modal"
+                 style="padding: 20px 40px 10px 40px;">
             <div class="fh5co-text">
-            <h2>{{name}}</h2>
-            <span>{{price}}원</span>
+              <h2>{{name}}</h2>
+              <span>{{price}}원</span>
             </div>
           </a>
         </div>
       {{/each}}
 	    </script>
-      
-      <div id="nearest-product-list" class="row row-bottom-padded-sm">
-      </div>
-      
-      <!-- Product Page Navigator -->
-      <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
+	      
+	      <div id="nearest-product-list" class="row row-bottom-padded-sm">
+	      </div>
+	      
+	      <!-- Product Page Navigator -->
+	      <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
               <li class="pagenav"><a>{{i}}</a></li>
       </script>
-      
+	      
       <div class="row">
           <nav class="col-md-12 text-center" aria-label="Page navigation">
             <ul class="pagination">
@@ -394,59 +428,91 @@
           </nav>
         </div>
       </div>
-
+    </div>
   </section>
   
+  <footer>
+	  <section class="foot-area">
+		  <div class="nearest-footer" style="text-align: center; width: 100%;">
+		      <!-- (s)160524: 전자금융거래이용약관 -->
+		      <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
+		      <!-- (e)160524: 전자금융거래이용약관 -->
+		  </div> <!--/.row -->
+		</section>
+  </footer>
+  
+  
   <!-- Product Detail Form -->
-  <form id="product-detail-form" class="mfp-hide">
-	  
-	  <div class="page-header">
-		  <h1>상품정보</h1>
-		  <table class="table table-striped">
-		
-		    <tr>
-		      <td rowspan="4"><img src=".." alt="Image"></td>
-		      <td>상품이름</td>
-		      <td>신라면</td>
-		      <td><input id="prodName" type="text" name="pd-name" placeholder="상품이름"></td>
-		    </tr>
-		    <tr>
-		      <td>가격</td>
-		      <td>2,500원</td>
-		      <td><input type="text" name="pd-price" placeholder="가격"></td>
-		    </tr>
-		    <tr>
-		      <td>수량</td>
-		      <td>25개</td>
-		      <td><input type="text" name="amount" placeholder="수량"></td>
-		    </tr>
-		    <tr>
-		      <td>할인률</td>
-		      <td>0%</td>
-		      <td>
-		        <select>
-		          <option selected="selected">0%</option>
-		          <option>5%</option>
-		          <option>10%</option>
-		          <option>15%</option>
-		          <option>20%</option>
-		          <option>25%</option>
-		        </select>
-		      </td>
-		    </tr>
-		  </table>
-		    <p class="form-btn">
-		      <button type="button" class="btn btn-primary">수정</button>
-		      <button type="button" class="btn btn-default">취소</button>
-		    </p>
-	  </div>
-
+  
+  <div id="nearest-modal" class="white-popup-block mfp-hide">
+    <h1>상품상세정보</h1>
+    <br/>
+    <hr class="nearest-line"/>
+    <table style="width:100%">
+        <tr>
+            <th rowspan="9">
+                <img id="nearest-item-image" alt="No image" src="./foke.jpg">
+            </th>
+            <th style="width:5%"></th>
+            <th colspan="3"> 
+              <font id="nearest-item-title" 
+                    class="nearest-item-title">
+                    우삼겹구이 300g BBQ
+              </font>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font class="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
+               <span id="nearest-item-mart">진한마트</span>
+               <input id="nearest-item-prod-no" type="hidden" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font class="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
+               <span id="nearest-item-entity">1</span>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font class="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
+               <font id="nearest-item-price" class="nearest-purchase-pay">5900</font>&nbsp;원
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3"><hr class="nearest-line"/></td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+                <font class="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
+                <input id="nearest-item-purchase-entity" type="number" value="1" style="width:15%">
+            </td>
+        </tr>
+    </table>
+    <hr class="nearest-line"/><br/>
+    <div id="nearest-purchase-footer">
+        <font class="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
+        <font id="nearest-item-all-price" class="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
+    </div>
+    <br/><br/><br/>
+    <a id="nearest-item-cart" class="nearest-item-cart" href="#">찜</a>
+    <a id="nearest-item-purchase" class="nearest-item-purchase" href="#">바로구매</a>
+  </div>
+  
  
-  </form>
-  
-  
   <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c&callback=initMap"
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOXeKvK29eIt2FyVq0hSYYra4FMXacO2c&callback=initMap&libraries=places"
     async defer>
   </script>
 
@@ -457,9 +523,16 @@
   <script src="./resources/js/main_search.js"></script>
   <script src="./resources/js/main_googlemap.js"></script>
   <script src="./resources/js/main_handlebars.js"></script>
+  <script src="./resources/js/main_to_client.js"></script>
   <script src="./resources/js/main_login.js"></script>
   <script src="./resources/js/main_register.js"></script>
-
+  <script src="./resources/js/main_prod_detail.js"></script>
+  
+  <script type="text/javascript">
+  
+	  
+	  
+  </script>
 
   </body>
 </html>
