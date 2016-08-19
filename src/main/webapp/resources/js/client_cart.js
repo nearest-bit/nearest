@@ -117,7 +117,7 @@ $('#nearest-cart-delete').on('click', function(){
 	              return;
 	            }
 	            alert('삭제되었습니다.');
-	            $(location).attr('href','http://localhost:8080/nearest/client.html');
+	            location.reload();
 	            
 	          },
 	          
