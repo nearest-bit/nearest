@@ -1,0 +1,294 @@
+
+svg {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/*---------------------------------------------------------------------------*/
+
+@keyframes new-wrapp {
+    0% { top: -200%; }
+    100% { top: 0; }
+}
+
+@keyframes show-fade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes show-up {
+    0% { top: 400px; }
+    100% { top: 0px; }
+}
+
+@keyframes img-show {
+    0% { height: 0; }
+    25% { height: 0; }
+    100% { height: 100%; }
+}
+
+@keyframes line-up {
+    0% { top: 245px; opacity: 0; }
+    10% { top: 245px; opacity: 1; }
+    85% { top: -5px; opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes check {
+    0% { height: 150px; width: 150px; }
+    100% { height: 100px; width: 100px; }
+}
+
+/*---------------------------------------------------------------------------*/
+
+#nearest-newImage {
+	min-height: 400px;
+}
+
+#wrapp {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(.21,.38,.57,1.35) 0s;
+    animation: new-wrapp 0.5s cubic-bezier(.21,.38,.57,1.35) 0s;
+}
+
+/*---------------------------------------------------------------------------*/
+
+#image-wrapp, #text-wrapp, #image-select,
+#image-select:before, .button {
+    transition: all 0.2s linear 0s;
+}
+
+#image-wrapp {
+    background: #7e5863;
+    position: relative;
+    width: 100%;
+    height: 75%;
+    box-sizing: border-box;
+}
+
+#image-wrapp.select {
+    height: 100%;
+}
+
+#text-wrapp {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    background: #ff7969;
+    color: #ffffff;
+}
+
+#text-wrapp span{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 50%;
+    margin-top: -0.7em;
+    animation: show-fade 0.2s linear 0s;
+}
+
+#image-wrapp.select #text-wrapp {
+    height: 15%;
+}
+
+#text-wrapp:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 0;
+    width: 0;
+    border: 10px solid transparent;
+    border-top-color: #ff7969;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+/*---------------------------------------------------------------------------*/
+
+#image-select path{
+    fill: none;
+    stroke: #ff7969;
+    stroke-width: 7;
+    stroke-dasharray: 13, 19;
+    stroke-linejoin: round;
+    stroke-linecap: square;
+}
+
+#image-select {
+    width: 180px;
+    height: 150px;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#image-select.hover {
+    width: 200px;
+    height: 170px;
+    background: #a55765;
+}
+
+.select #image-select{
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+#image-select:before {
+    content: "+";
+    display: block;
+    font-size: 2em;
+    color: #ff7969;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: -25px auto auto auto;
+}
+
+.select #image-select:before {
+    font-size: 0em;
+}
+
+/*---------------------------------------------------------------------------*/
+
+.button-wrapp {
+    background: #ffffff;
+    position: relative;
+    width: 100%;
+    height: 25%;
+    text-align: center;
+}
+
+.button {
+    width: 40%;
+    height: 60px;
+    line-height: 60px;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #ff7969;
+    border-bottom: solid 4px #f66351;
+}
+
+.button:hover {
+    background-color: #f66351;
+}
+
+.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.upload input {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------*/
+
+#image-view {
+    width: 250px;
+    height: 250px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border: 15px solid #ffffff;
+    background: #f66351;
+    animation: show-up 0.4s linear 0s;
+}
+
+.image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    animation: img-show 2.55s linear 0s;
+    overflow: hidden;
+}
+
+#image-view .image div {
+    bottom: 0;
+    position: absolute;
+    width: 220px !important;
+    height: 220px !important;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ .line {
+    width: 370px;
+    height: 10px;
+    left: -35px;
+    border-radius: 5px;
+    background: #ffb86f;
+    position: absolute;
+    opacity: 0;
+    top: -5px;
+    animation: line-up 2.7s linear 0.18s;
+}
+
+/*---------------------------------------------------------------------------*/
+
+#check {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background: #a55765;
+    text-align: center;
+    animation: check 0.15s linear 0s, show-fade 0.15s linear 0s;
+}
+
+ #check polyline{
+    fill: none;
+    stroke: #ffffff;
+    stroke-width: 5;
+}
+
+/*---------------------------------------------------------------------------*/
+
+.next {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: -350px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    animation: show-fade 0.15s linear 0s;
+}

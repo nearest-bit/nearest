@@ -1,5 +1,5 @@
 $(function() {
-	$(document).on('click', '.fh5co-project-item > img', function() {
+	$(document).on('click', '.fh5co-project-item > img', function() {		
 		var productNo = $(this).parent().prev().val();
 		
 		$.ajax({
@@ -11,9 +11,7 @@ $(function() {
 			},
 			success: function(result) {
 				var data = result.productData;
-				
-				alert(productNo);
-				
+								
 				$('#nearest-item-title').text(data.name);
 				$('#nearest-item-mart').text(data.mart.name);
 				$('#nearest-item-prod-no').val(productNo);
@@ -30,9 +28,7 @@ $(function() {
 		event.preventDefault();
 		
 		var loginId = $.cookie('loginId');
-		
-		alert(loginId);
-		
+				
 		if( loginId == undefined){
         	$.magnificPopup.close();
         	$('#loginBtn').click();
@@ -40,17 +36,13 @@ $(function() {
         	return;
 	    }
 		
-		var cartClientNo = loginId;
 		var cartProductNo = $('#nearest-item-prod-no').val();
-		
-		alert(cartProductNo);
-		
+				
 		$.ajax({
 			url: contextRoot + 'cart/addCart.do',
 			method: 'post',
 			dataType: 'json',
 			data: {
-				clientNo: cartClientNo,
 				productNo: cartProductNo				
 			},
 			success: function(result) {
@@ -73,7 +65,6 @@ $(function() {
         	
         	return;
 	    }
-		
 		
 	});
 });

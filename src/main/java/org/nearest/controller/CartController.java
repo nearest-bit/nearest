@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Cart;
+import org.nearest.domain.Client;
 import org.nearest.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,12 @@ public class CartController {
 	
 	@RequestMapping(path="addCart", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String addCart(Cart cart){		
+	public String addCart(int productNo, HttpSession session){		
 		  
 		Map<String, Object> result = new HashMap<>(); 
+		Cart cart = new Cart();
+		cart.setProductNo(productNo);
+		cart.setClientNo( ((Client)session.getAttribute("loginId")).getNo());
 
 		try {
 			cartService.addCart(cart);
@@ -39,7 +43,9 @@ public class CartController {
 	
 	@RequestMapping(path="getCart", produces="application/json;charset=utf-8")
   @ResponseBody
-  public String getCart(int clientNo){   
+  public String getCart(HttpSession session){   
+	
+	int clientNo = ((Client)session.getAttribute("loginId")).getNo();
       
     Map<String, Object> result = new HashMap<>(); 
     try {
@@ -55,11 +61,12 @@ public class CartController {
 	
 	@RequestMapping(path="removeCart", produces="application/json;charset=utf-8")
   @ResponseBody
-  public String removeCart(String prodNo, int clientNo){   
+  public String removeCart(String prodNo, HttpSession session){   
+	int clientNo = ((Client)session.getAttribute("loginId")).getNo();
 	  
-	  Map<String, Object> params = new HashMap<>();
-	  params.put("prodNo", prodNo);
-	  params.put("clientNo", clientNo);
+	Map<String, Object> params = new HashMap<>();
+	params.put("prodNo", prodNo);
+	params.put("clientNo", clientNo);
 	  
     Map<String, Object> result = new HashMap<>();
     

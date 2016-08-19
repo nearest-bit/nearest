@@ -129,7 +129,7 @@
 	     </div>
 	   
 	     <div class="white-popup nearest-header-menu-btn">
-	       <a id="logoutBtn" href="./">
+	       <a id="logoutBtn">
 	         <strong>로그아웃</strong>
 	       </a> 
 	     </div>    
@@ -414,7 +414,7 @@
 	            </div>
 	            <div class="form-group">
 	              <label class="sr-only" for="form-first-name">First name</label> 
-	              <input type="text" name="form-first-name" placeholder="이름.." class="form-first-name form-control" id="form-first-name">
+	              <input type="text" name="form-first-name" placeholder="이름.." class="form-first-name form-control" id="form-name">
 	            </div>
 	            <div class="form-group">
 	              <label class="sr-only" for="form-last-name">Phone number...</label> 
@@ -445,10 +445,11 @@
 	              </tr>
 	              <tr>
 	                <th>결제수단 선택</th>
-	                <td><input type="radio" name="purchaseMethod" value="card" checked="checked">&nbsp;신용카드
-	                  <input type="radio" name="purchaseMethod" value="phone">&nbsp;휴대폰 결제 
-	                  <input type="radio" name="purchaseMethod" value="trans">&nbsp;실시간 계좌이체 
-	                  <input type="radio" name="purchaseMethod" value="vbank">&nbsp;가상계좌
+	                <td>
+	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="card" checked="checked">&nbsp;신용카드
+	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="phone">&nbsp;휴대폰 결제 
+	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="trans">&nbsp;실시간 계좌이체 
+	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="vbank">&nbsp;가상계좌
 	                </td>
 	
 	              </tr>
@@ -483,7 +484,8 @@
       <tr>
         <th class="prod-info" scope="row">{{inc @index}}</th>
         <td class="prod-info">
-          <input type="checkbox" value="{{no}}">
+          <input type="checkbox" class="nearest-cart-prodNo" value="{{no}}">
+          <input type="hidden" class="nearest-cart-martNo" value="{{mart.no}}">
         </td>
         <td width="13%">
           <img src="{{photo}}" alt="Image" class="img-responsive">
@@ -497,7 +499,7 @@
         <td class="prod-info">
           <div class="number">
             <button type="button" class="btn btn-default btn-xs decreaseBtn">-</button>
-            <span>1</span>
+            <span class="nearest-prod-ent">1</span>
             <button type="button" class="btn btn-default btn-xs increaseBtn">+</button>
           </div>
         </td>

@@ -3,6 +3,8 @@ package org.nearest.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.nearest.domain.Client;
 import org.nearest.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,8 @@ public class ClientController {
 	@RequestMapping(path="login", produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String login(@RequestParam String id,
-						@RequestParam String password){
+						@RequestParam String password,
+						HttpSession session){
 		HashMap<String,Object> result = new HashMap<>();
 		Client client = clientService.getClient(id);
 		
@@ -30,6 +33,8 @@ public class ClientController {
 			if(client.getPassword().equals(password)) {
 				result.put("status", "correct");
 				result.put("data", client);
+				
+				session.setAttribute("loginId", client);
 			} else {
 				result.put("status", "incorrect");
 			}

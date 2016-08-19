@@ -2,7 +2,7 @@
 	$('#nearest-to-cart').click(function(e) {
 		  e.preventDefault();
 	  
-		  var url = 'http://localhost:8080/nearest/client.html';
+		  var url = contextRoot + 'client.html';
 		  
 		  $.cookie('client-menu', 'cart');
 		  

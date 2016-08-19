@@ -44,9 +44,6 @@ $(function() {
 	          url : contextRoot + 'cart/getCart.do',
 	          datatype : 'json',
 	          method : 'post',
-	          data : {
-	            clientNo : $.cookie('loginId')
-	          },
 	          
 	          success : function(result) {
 	            if(result.status != 'success'){
@@ -96,7 +93,7 @@ $('#nearest-cart-delete').on('click', function(){
 	
 	var prodNo = '';
 	
-	if( $('#nearest-cart-tbody > tr').size() == 0 ){
+	if( $('input[type="checkbox"]:checked').size() == 0 ){
 		alert('삭제할 상품이 없습니다.');
 	}else{
 		for(var i = 0;  i < $('input[type="checkbox"]:checked').size(); i++){
@@ -111,8 +108,7 @@ $('#nearest-cart-delete').on('click', function(){
 	          datatype : 'json',
 	          method : 'post',
 	          data : {
-	        	  prodNo : prodNo,
-	        	  clientNo : $.cookie('loginId')
+	        	  prodNo : prodNo
 	          },
 	          
 	          success : function(result) {
@@ -120,8 +116,8 @@ $('#nearest-cart-delete').on('click', function(){
 	              alert('failure');
 	              return;
 	            }
-	            alert('삭제완료');
-	            $(location).attr('href','http://localhost:8080/nearest/client.html');
+	            alert('삭제되었습니다.');
+	            location.reload();
 	            
 	          },
 	          
