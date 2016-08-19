@@ -22,7 +22,7 @@ public class ClientController {
 	@RequestMapping(path="login", produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String login(@RequestParam String id,
-						@RequestParam String password){
+						          @RequestParam String password){
 		HashMap<String,Object> result = new HashMap<>();
 		Client client = clientService.getClient(id);
 		

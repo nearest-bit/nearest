@@ -19,12 +19,5 @@
     WHERE admin_id=#{value}
   </select>
   
-  <select id="getManagerLogin" resultMap="adminMap" parameterType="admin">
-    
-    SELECT admin_no, admin_pn, admin_nm, admin_id, admin_pw
-    FROM admins
-    WHERE admin_id=#{id} and admin_pw=#{password}
-    
-  </select>
-
+  
 </mapper>
