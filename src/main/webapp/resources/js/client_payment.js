@@ -91,7 +91,7 @@ var IMP = window.IMP;
 
 		for( var i in $('.form-group > input[type="text"]')){
 			if( $($('.form-group > input[type="text"]')[i]).val() == null || $($('.form-group > input[type="text"]')[i]).val() == '' ){
-				alert('모든 정보를 입력 해주세요');
+				cartAlert(1);
 				return true;
 			} else if (i== $('.form-group > input[type="text"]').length-1) {
 				return false;
