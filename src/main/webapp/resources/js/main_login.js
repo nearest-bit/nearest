@@ -2,13 +2,11 @@
 $(document).on('click','#login-btn',function() {
 	
 	if($.trim($('#login-form-username').val()) == ""){
-		alert("아이디를 입력하세요.");
+		mainAlert('idEmpty');
 		return;
 	}
 	
 	if($('#managerLogin').is(':checked')){
-		alert($('#login-form-username').val());
-		alert( $('#login-form-password').val());
 		$.ajax({
 			url: contextRoot + 'admin/login.do',
 			dataType: 'json',

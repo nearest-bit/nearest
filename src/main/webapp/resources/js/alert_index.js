@@ -1,5 +1,5 @@
-function cartAlert(x) {
-	switch (x) {
+function cartAlert(option) {
+	switch (option) {
 	case 0:
 		/*swal("삭제할 상품이 없습니다.");*/
 		swal({
@@ -35,5 +35,19 @@ function cartAlert(x) {
 	 case 4:
 		sweetAlert("이런...", "최소 구매 수량 입니다!", "error");
 		break;
+	}
+}
+
+function mainAlert(option) {
+	switch (option) {
+		case 'idEmpty':
+			sweetAlert('아이디를 입력해주세요.', '','error');
+			break;
+		case 'idDuplicate':
+			sweetAlert('중복된 아이디입니다.', '','error');
+		case 'registSuccess':
+			sweetAlert('회원가입이 완료되었습니다.', '','success');
+		default:
+			break;
 	}
 }

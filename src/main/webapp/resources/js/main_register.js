@@ -1,6 +1,11 @@
 var duplicate = '';
   
   $(document).on('click','.regBtn', function(){
+	  if(duplicate == '') {
+		  mainAlert('idEmpty');
+		  return;
+	  }
+	  
 	  $.ajax({
 		  dataType : 'json',
 		  url : contextRoot + 'client/register.do',
@@ -15,10 +20,11 @@ var duplicate = '';
 		  success : function(result){
 			
 			  if(duplicate == true){
-				  alert('중복된 아이디 입니다')
+				  mainAlert('idDuplicate');
 				  return;
+				  
 			  }else{
-				  alert('회원가입 성공');
+				  mainAlert('registSuccess');
 			  }
 			  
 		  },

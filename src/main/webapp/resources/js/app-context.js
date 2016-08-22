@@ -1,1 +1,1 @@
-var contextRoot = "http://www.nearest.org:8080/nearest/";
+var contextRoot = "https://www.nearest.org:8080/nearest/";
