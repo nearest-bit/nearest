@@ -6,7 +6,7 @@ $(document).on('click','#login-btn',function() {
 		return;
 	}
 	
-	if($('#managerLogin').is(':checked')){
+	if($('#adminLogin').is(':checked')){
 		$.ajax({
 			url: contextRoot + 'admin/login.do',
 			dataType: 'json',
@@ -18,7 +18,7 @@ $(document).on('click','#login-btn',function() {
 			success: function(result) {
 				if(result.status == "correct"){
 					//alert('관리자 체크22');
-					$(location).attr('href', './manager.html');
+					$(location).attr('href', './admin.html');
 					
 					$("#loginBtn").css("display", "none");
 					$("#signupBtn").css('display', 'none');

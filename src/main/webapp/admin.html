@@ -27,7 +27,7 @@
 <!-- <link rel="stylesheet" href="./resources/css/form-elements.css"> -->
 <link rel="stylesheet" href="./resources/css/main_signup.css">
 <link rel="stylesheet" href="./resources/css/style.css">
-<link rel="stylesheet" href="./resources/css/manager_top_menu.css">
+<link rel="stylesheet" href="./resources/css/admin_top_menu.css">
 <link rel="stylesheet" href="./resources/css/main_login.css">
 <!-- BootStrap DateTimePicker -->
 <link rel="stylesheet"
@@ -43,9 +43,9 @@
 <!-- Purchase List -->
 <link rel="stylesheet" href="./resources/css/client_purchase_list.css">
 <!-- manager page css -->
-<link rel="stylesheet" href="./resources/css/manager.css">
+<link rel="stylesheet" href="./resources/css/admin.css">
 <!-- uploadimage css -->
-<!-- <link rel="stylesheet" href="./resources/css/manager_upload_images.css"> -->
+<!-- <link rel="stylesheet" href="./resources/css/admin_upload_images.css"> -->
 
 <!-- JS Files -->
 
@@ -87,7 +87,9 @@
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 <!-- jQuery Form -->
-<script src="./node_modules/jquery.form/jquery.form.js"></script>
+<script src="./node_modules/jquery-form/jquery.form.js"></script>
+<!-- jQuery File Upload -->
+<script src="./node_modules/jquery-file-upload/jquery.uploadfile.min.js"></script>
 
 <!-- <script src="./resources/js/manager_upload_images.js"></script> -->
 <style>
@@ -158,10 +160,10 @@
 		<!-- container end -->
 	</header>
 
-	<div id="nearest-manager-wrap">
+	<div id="nearest-admin-wrap">
 
-		<div class="nearest-manager-list">
-			<ul class="nav nav-tabs nav-justified" id="nearest-manager-menu">
+		<div class="nearest-admin-list">
+			<ul class="nav nav-tabs nav-justified" id="nearest-admin-menu">
 				<li class="active"><a href="#">주문내역</a></li>
 				<li><a href="#">건의사항</a></li>
 				<li><a href="#">상품등록</a></li>
@@ -526,10 +528,10 @@
 
 						<div class="nearest-upload-wrap">
 							<div class="nearest-upload-image">
-								<img src="./resources/images/shinramyun.png" alt="">
+								<img id="nearest-upload-image" src="./resources/images/shinramyun.png" alt="">
 							</div>
 							<div class="nearest-upload-button">
-								<label class="nearest-file-upload"><input type="file" />이미지 첨부</label>
+								<label class="nearest-file-upload"><input id="nearest-file-upload" type="file" />이미지 첨부</label>
 							</div>
 						</div>
 						
@@ -542,27 +544,27 @@
 							<div class="form-group form-group-lg">
 								<label class="col-sm-3 control-label">상품명</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" placeholder="상품명">
+									<input id="nearest-product-name" class="form-control" type="text" placeholder="상품명">
 								</div>
 							</div>
 
 							<div class="form-group form-group-lg">
 								<label class="col-sm-3 control-label">가격</label>
 								<div class="col-sm-8">
-									<input class="form-control" type="text" placeholder="가격">
+									<input id="nearest-product-price" class="form-control" type="text" placeholder="가격">
 								</div>
 							</div>
 							<div class="form-group form-group-lg">
 								<label class="col-sm-3 control-label">재고</label>
 								<div class="col-sm-3">
-									<input class="form-control" type="number" min="1" max="100"
+									<input id="nearest-product-entity" class="form-control" type="number" min="1" max="100"
 										value="1">
 								</div>
 							</div>
 							<div class="form-group form-group-lg">
 								<label class="col-sm-3 control-label">할인률</label>
 								<div class="col-sm-3">
-									<input class="form-control" type="number" min="5" max="100"
+									<input id="nearest-product-salerate" class="form-control" type="number" min="5" max="100"
 										value="5" step="5" />
 								</div>
 								<p style="line-height: 1em">%</p>
@@ -572,7 +574,7 @@
 					</div>
 					<div class="col-md-12 to-animate">
 						<div class="form-group text-center nearest-padding-top-2">
-							<input class="btn btn-primary btn-lg" value="상품 등록" type="button">
+							<input id="nearest-product-upload-btn" class="btn btn-primary btn-lg" value="상품 등록" type="button">
 						</div>
 					</div>
 				</div>
@@ -717,19 +719,19 @@
 						<td width="20%">상품명</td>
 						<td width="40%" class="nearest-text-left">
 						  <input type="text" class="form-control col-sm-8"
-						name="nearest-manager-pdName" placeholder="상품명">
+						name="nearest-admin-pdName" placeholder="상품명">
 						</td>
 					</tr>
 					<tr>
 						<td>판매가</td>
 						<td class="nearest-text-left">
-							<input type="text" class="form-control col-sm-8" name="nearest-manager-pdPprice" placeholder="상품 이름">
+							<input type="text" class="form-control col-sm-8" name="nearest-admin-pdPprice" placeholder="상품 이름">
 						</td>
 					</tr>
 					<tr>
 						<td>재고량</td>
 						<td class="nearest-text-left">
-							<input type="text" class="form-control col-sm-8" name="nearest-manager-amount" placeholder="상품 이름">
+							<input type="text" class="form-control col-sm-8" name="nearest-admin-amount" placeholder="상품 이름">
 						</td>
 					</tr>
 					<tr>
@@ -766,53 +768,16 @@
 		<h1>Footer</h1>
 	</footer>
 
-
-	<script>
-		$(function() {
-			$('#order-btn').on('click', function() {
-				$('#order-search').css('display', 'block');
-				$('#order-btn').css('display', 'none');
-			});
-		});
-
-		$(function() {
-			$('#request-btn').on('click', function() {
-				$('#request-search').css('display', 'block');
-				$('#request-btn').css('display', 'none');
-			});
-		});
-
-		$(function() {
-			$('#order-reset-btn').on('click', function() {
-				$('#order-search').css('display', 'none');
-				$('#order-btn').css('display', '');
-			});
-		});
-
-		$(function() {
-			$('#request-reset-btn').on('click', function() {
-				$('#request-search').css('display', 'none');
-				$('#request-btn').css('display', '');
-			});
-		});
-
-		$(function() {
-			$('#nearest-complete-btn').on('click', function() {
-				$('.nearest-margin-bottom').css('background', 'gray');
-			});
-		})
-	</script>
-
-
-
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
+	<script src="./resources/js/alert_index.js"></script>
 	<script src="./resources/js/main.js"></script>
 	<script src="./resources/js/main_dropdown.js"></script>
 	<script src="./resources/js/main_search.js"></script>
 	<script src="./resources/js/main_handlebars.js"></script>
 	<script src="./resources/js/main_login.js"></script>
 	<script src="./resources/js/main_register.js"></script>
+	<script src="./resources/js/admin.js"></script>
 	<script src="./resources/js/client_payment.js"></script>
 	<script src="./resources/js/client_purchase_list.js"></script>
 	<script type="text/javascript">
