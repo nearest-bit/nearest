@@ -18,7 +18,7 @@
     insert into 
     prod_orders (order_no, prod_no, order_ent)
     values
-    <foreach collection="list" item="item" separator=",">
+    <foreach collection="prodDataList" item="item" separator=",">
       (#{item.orderNo}, #{item.prodNo}, #{item.entity})
     </foreach> 
   </insert>

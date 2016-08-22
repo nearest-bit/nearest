@@ -200,11 +200,13 @@
 	       </ul>
 	     </div>
 	   </div>
-		<div class="container">
+	   <br/>
+	   <br/>
+	<div class="container">
 	<div id="listPage">
-	    <h1>게시물 목록</h1>
+	    <h1>내 게시물 목록</h1>
 	    <br/>
-	    <p><a href="add.do" class="btn btn-primary btn-sm">새 글</a></p>
+	    <p><a href="add.do" class="btn btn-primary btn-sm">건의사항 등록</a></p>
 	    <br/>
 	    <table id="boardTbl" class="table table-hover">
 	        <thead>
@@ -212,7 +214,7 @@
 	            <th>번호</th>
 	            <th>내용</th>
 	            <th>생성일</th>
-	            <th>조회수</th>
+	            <th>답변상황</th>
 	        </tr>
 	        </thead>
 	        <tbody>
@@ -223,7 +225,7 @@
 	<br/>
 	<br/>
 	<div id="formPage">
-	<h2>게시물 - 상세정보</h2>
+	<h2>건의사항 - 상세정보</h2>
 	<br/>
 	<br/>
 	<form class="form-horizontal">
@@ -231,12 +233,6 @@
 	    <label class="col-sm-2 control-label">번호</label>
 	    <div class="col-sm-10">
 	      <p id="fNo" class="form-control-static"></p>
-	    </div>
-	  </div>
-	  <div class="form-group">
-	    <label for="fTitle" class="col-sm-2 control-label">제목</label>
-	    <div class="col-sm-8">
-	      <input type="text" class="form-control" id="fTitle" placeholder="제목을 입력하세요.">
 	    </div>
 	  </div>
 	  
@@ -255,12 +251,6 @@
 	    </div>
 	  </div>
 	  
-	  <div class="form-group bit-view-form bit-hidden">
-	    <label class="col-sm-2 control-label">조회수</label>
-	    <div class="col-sm-10">
-	      <p id="fViewCount" class="form-control-static"></p>
-	    </div>
-	  </div>
 	  <div class="form-group">
 	    <div class="col-sm-offset-2 col-sm-10">
 	        <button id="addBtn" type="button" class="bit-new-form btn btn-primary btn-sm">등록</button>

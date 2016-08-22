@@ -78,7 +78,7 @@ $(document).on('click','.increaseBtn', function() {
 $(document).on('click','.decreaseBtn', function() {
 	var quantity = parseInt($(this).next().text());
 	if (quantity == 1){
-		alert('최소 구매 수량 입니다.')
+		cartAlert(4);
 		return;
 	}
 	$(this).next().text(quantity-1);
@@ -94,7 +94,7 @@ $('#nearest-cart-delete').on('click', function(){
 	var prodNo = '';
 	
 	if( $('input[type="checkbox"]:checked').size() == 0 ){
-		alert('삭제할 상품이 없습니다.');
+		cartAlert(0);
 	}else{
 		for(var i = 0;  i < $('input[type="checkbox"]:checked').size(); i++){
 			prodNo += $($('input[type="checkbox"]:checked')[i]).val();
@@ -116,8 +116,11 @@ $('#nearest-cart-delete').on('click', function(){
 	              alert('failure');
 	              return;
 	            }
-	            alert('삭제되었습니다.');
-	            $(location).attr('href','http://localhost:8080/nearest/client.html');
+	            cartAlert(2);
+	            $(document).on('click', '.confirm', function() {
+	            	location.reload();
+	            });
+	            
 	            
 	          },
 	          

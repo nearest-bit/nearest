@@ -38,41 +38,48 @@ var IMP = window.IMP;
 				msg += '상점 거래ID : ' + rsp.merchant_uid;
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
-				alert('결제성공 성현이형 사랑해');
 				//custom
-				var martNo = new Array();
-				var prodNo = new Array();
-				var prodEnt = new Array();
+				var martNo = '';
+				var prodNo = '';
+				var prodEnt = '';
 				for( var i=0; i<$('.nearest-cart-prodNo').size(); i++){
-					martNo[i] = $($('.nearest-cart-martNo')[i]).val();
-					prodNo[i] = $($('.nearest-cart-prodNo')[i]).val();
-					prodEnt[i] = $($('.nearest-prod-ent')[i]).val();
+					if (i == ($('.nearest-cart-prodNo').size() - 1) ){
+						martNo += $($('.nearest-cart-martNo')[i]).val();
+						prodNo += $($('.nearest-cart-prodNo')[i]).val();
+						prodEnt += $($('.nearest-prod-ent')[i]).text();
+					}else{
+						martNo += $($('.nearest-cart-martNo')[i]).val()+',';
+						prodNo += $($('.nearest-cart-prodNo')[i]).val()+',';
+						prodEnt += $($('.nearest-prod-ent')[i]).text()+',';
+					}
+					
 				}
 				
 				$.ajax({
-					url : contextRoot + 'order/addOrder.do',
-					datatype : 'json',
-					method : 'post',
-					data : {
-						martNo : martNo,
-						prodNo : prodNo,
-						prodEnt : prodEnt
-					},
-					success : function(result){
-						
-						if(result.status != 'success'){
-				              alert('failure');
-				              return;
-				        }
-						
-						alert('주문 등록 성공');
-					},
-					error : function(){
-						alert('error');
-					}
-				});
-				/*alert($($('.nearest-cart-prodNo')[0]).val()+'//'+$($('.nearest-cart-martNo')[0]).val()+'//'+$($('.nearest-prod-ent')[0]).text());
-				alert($($('.nearest-cart-prodNo')[1]).val()+'//'+$($('.nearest-cart-martNo')[1]).val()+'//'+$($('.nearest-prod-ent')[1]).text());*/
+			        url : contextRoot + 'order/addOrder.do',
+			        datatype : 'json',
+			        method : 'post',
+			        data : {
+			          martNo : martNo,
+			          prodNo : prodNo,
+			          prodEnt : prodEnt
+			        },
+			        success : function(result){
+			        	
+			         if(result.addOrder != 'success'){
+	                 alert('insert table orders failure');
+	                 return;
+			          }else if(result.addProdOrder != 'success'){
+			        	  alert('insert table prod_orders failure');
+			        	  return;
+			          }
+			          alert('주문 성공');
+			          $.magnificPopup.close();
+			        },
+			        error : function(){
+			          alert('주문 실패 error.....');
+			        }
+			      });
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;
@@ -84,7 +91,7 @@ var IMP = window.IMP;
 
 		for( var i in $('.form-group > input[type="text"]')){
 			if( $($('.form-group > input[type="text"]')[i]).val() == null || $($('.form-group > input[type="text"]')[i]).val() == '' ){
-				alert('모든 정보를 입력 해주세요');
+				cartAlert(1);
 				return true;
 			} else if (i== $('.form-group > input[type="text"]').length-1) {
 				return false;

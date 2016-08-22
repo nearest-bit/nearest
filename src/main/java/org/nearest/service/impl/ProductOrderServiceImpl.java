@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 public class ProductOrderServiceImpl implements ProductOrderService{
 
   @Autowired
-  ProductOrderDao productServiceDao;
+  ProductOrderDao productOrderDao;
   
   @Override
   public void addProdOrder(Map<String, Object> params) {
-    productServiceDao.insertProdDao(params);
+    productOrderDao.insertProdOrder(params);
   }
 
 }
