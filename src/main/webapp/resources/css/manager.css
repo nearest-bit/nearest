@@ -151,3 +151,28 @@ p {margin:0 !important}
 .nearest-text-left {
 	text-align: left !important;
 }
+
+.nearest-upload-wrap {
+	width: 100%;
+}
+.nearest-upload-image > img {
+	width: 100%;
+}
+
+.nearest-upload-button {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.nearest-file-upload {
+	  border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type="file"] {
+    display: none;
+}
+

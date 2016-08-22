@@ -45,7 +45,7 @@
 <!-- manager page css -->
 <link rel="stylesheet" href="./resources/css/manager.css">
 <!-- uploadimage css -->
-<link rel="stylesheet" href="./resources/css/manager_upload_images.css">
+<!-- <link rel="stylesheet" href="./resources/css/manager_upload_images.css"> -->
 
 <!-- JS Files -->
 
@@ -87,8 +87,7 @@
 <script type="text/javascript"
 	src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
 
-<script src="./resources/js/manager_upload_images.js"></script>
-
+<!-- <script src="./resources/js/manager_upload_images.js"></script> -->
 <style>
 #fh5co-header {
 	position: inherit !important;
@@ -521,23 +520,14 @@
 					</div>
 				</div>
 				<div class="row row-bottom-padded-md">
-					<div class="col-md-5 to-animate" id="nearest-newImage">
+					<div class="col-md-5 to-animate">
 
-						<div id="wrapp">
-							<div id="image-wrapp">
-								<div id="text-wrapp">
-									<span>Drop image to upload</span>
-								</div>
-								<div id="image-select">
-									<svg viewBox="0 0 170 150">
-							        <path d="M0,3.5 170,3.5 170,146.5 0,146.5z" />
-							      </svg>
-								</div>
+						<div class="nearest-upload-wrap">
+							<div class="nearest-upload-image">
+								<img src="./resources/images/shinramyun.png" alt="">
 							</div>
-							<div class="button-wrapp">
-								<div class="button upload">
-									<span>Pick one</span> <input id="file-select" type="file">
-								</div>
+							<div class="nearest-upload-button">
+								<label class="nearest-file-upload"><input type="file" />이미지 첨부</label>
 							</div>
 						</div>
 						
