@@ -102,8 +102,6 @@ public class ProductController {
 		String realPath = session.getServletContext().getRealPath("/resources/images/product");
 		String filePath = realPath + "\\" + imageFile.getOriginalFilename();
 		File resultFile = new File(filePath);
-		
-		System.out.println(filePath);
 				
 		product.setPhoto(filePath);
 						
