@@ -1,5 +1,7 @@
 package org.nearest.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,41 +89,34 @@ public class ProductController {
   
   
   
-  @RequestMapping(path="addProduct", produces="application/json;charset=utf-8")
+  @RequestMapping(path="addProduct")
 	@ResponseBody
 	public String addProduct(Product product,
 							 List<MultipartFile> imageFiles,
-							 HttpSession session) {
+							 HttpSession session) throws IOException {
 		HashMap<String,Object> result = new HashMap<>();
 		product.setMart((Mart)session.getAttribute("adminMart"));
 		
-		System.out.println(product);
-		System.out.println(imageFiles.get(0));
+		MultipartFile imageFile = imageFiles.get(0);
+		
+		String realPath = session.getServletContext().getRealPath("/resources/images/product");
+		String filePath = realPath + "\\" + imageFile.getOriginalFilename();
+		File resultFile = new File(filePath);
+		
+		System.out.println(filePath);
+				
+		product.setPhoto(filePath);
 						
 		try {
-//			productService.addProduct(product);			
+			imageFile.transferTo(resultFile);
+			productService.addProduct(product);			
 			result.put("status", "success");
 		} catch(Exception e) {
+			e.printStackTrace();
 			result.put("status", "error");
 		}
 		
 		return new Gson().toJson(result);
 	}
-	
-	/*@RequestMapping(path="addProductImage", produces="multipart/form-data;charset=utf-8")
-	@ResponseBody
-	public String addProductImage(MultipartFile imageFile,
-								  HttpSession session) {
-		HashMap<String,Object> result = new HashMap<>();
-		System.out.println(imageFile.getName());
-				
-		try {
-			System.out.println(session.getServletContext().getRealPath("/"));
-		} catch(Exception e) {
-			result.put("status", "error");
-		}
-		
-		return new Gson().toJson(result);
-	}*/
 
 }

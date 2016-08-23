@@ -18,8 +18,8 @@
   
   <insert id="insertProd" parameterType="product">
     INSERT
-    INTO prods(prod_nm, prod_pri, prod_ent, prod_dis, mt_no)
-    VALUES (#{name}, #{price}, #{entity}, #{discountRate}, #{mart.no});  
+    INTO prods(prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no)
+    VALUES (#{name}, #{price}, #{entity}, #{discountRate}, #{photo}, #{mart.no});  
   </insert>
   
   <select id="selectProdList" resultMap="productMap" parameterType="map">
