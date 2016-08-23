@@ -19,4 +19,10 @@ public class OrderServiceImpl implements OrderService {
     return orderDao.insertOrder(params);
   }
 
+  @Override
+  public Map<String, Object> getOrderCount(int clientNo) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderCount(clientNo);
+  }
+
 }

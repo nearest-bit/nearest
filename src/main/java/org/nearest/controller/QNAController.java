@@ -3,13 +3,15 @@ package org.nearest.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.nearest.domain.Client;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -23,15 +25,25 @@ public class QNAController {
 	
 	@RequestMapping(path="QNAList", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String QNAlist(
-			@RequestParam(defaultValue="1") int pageNo,
-			@RequestParam(defaultValue="5") int pageSize) {
+	public String QNAlist(HttpSession session) {
 		
-			HashMap<String,Object> result = new HashMap<String,Object>();
+			
+	  HashMap<String,Object> result = new HashMap<String,Object>();
+	  
+			
 			try {
-				List<QNA> list = qnaService.getQNAList(pageNo, pageSize);
+				List<QNA> list = qnaService.getQNAList(((Client)session.getAttribute("loginId")).getNo());
+				for (QNA qna : list) {
+          if(qna.getStatus() == 1){
+            qna.setReqStatus("읽지않음");
+          }else if(qna.getStatus() == 2){
+            qna.setReqStatus("읽음");
+          }else{
+            qna.setReqStatus("답변완료");
+          }
+        }
 				result.put("status", "success");
-				result.put("data", list);
+				result.put("reqData", list);
 			} catch (Exception e) {
 				result.put("status", "failure");
 				e.printStackTrace();

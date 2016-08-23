@@ -1,6 +1,5 @@
 package org.nearest.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.nearest.dao.QNADao;
@@ -20,16 +19,13 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public List<QNA> getQNAList(int pageNo, int pageSize){
-		HashMap<String,Object> params = new HashMap<>();
-		params.put("startIndex", (pageNo - 1) * pageSize);
-		params.put("len", pageSize);
-		return qnaDao.selectQNAList(params);
+	public List<QNA> getQNAList(int clientNo){
+		return qnaDao.selectQNAList(clientNo);
 	}
 	
 	@Override
 	public QNA getQNA(int no){
-		return qnaDao.selectQNA(no);
+		return qnaDao.selectOne(no);
 	}
 	
 	@Override
