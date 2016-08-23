@@ -11,13 +11,28 @@ public class QNA implements Serializable{
   
   protected int no;
   protected Date createDate;
+  protected String title;
   protected String content;
   protected int status;
   protected String replyContent;
   protected Date replyDate;
   protected Mart mart;
   protected Client client;
+  protected String reqStatus;
   
+  
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+  public String getReqStatus() {
+    return reqStatus;
+  }
+  public void setReqStatus(String reqStatus) {
+    this.reqStatus = reqStatus;
+  }
   public int getNo() {
     return no;
   }
@@ -69,9 +84,9 @@ public class QNA implements Serializable{
 
   @Override
   public String toString() {
-	  return "QNA [no=" + no + ", createDate=" + createDate + ", content=" + content + ", status=" + status
-			  + ", replyContent=" + replyContent + ", replyDate=" + replyDate + ", mart=" + mart + ", client=" + client
-			  + "]";
+    return "QNA [no=" + no + ", createDate=" + createDate + ", title=" + title + ", content=" + content + ", status="
+        + status + ", replyContent=" + replyContent + ", replyDate=" + replyDate + ", mart=" + mart + ", client="
+        + client + ", reqStatus=" + reqStatus + "]";
   }
 
 }

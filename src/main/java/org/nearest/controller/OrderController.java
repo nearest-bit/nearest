@@ -90,5 +90,20 @@ public class OrderController {
     
     return new Gson().toJson(result);
   }
+  
+  @RequestMapping(path = "orderCount", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String orderCount(HttpSession session){
+    Map<String, Object> result = null;
+    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    try {
+      result = orderService.getOrderCount(clientNo);
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
 
 }

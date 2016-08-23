@@ -8,7 +8,7 @@ public interface QNAService {
 	
 	void addQNA(QNA qna);
 	
-	List<QNA> getQNAList(int pageNo, int pageSize);
+	List<QNA> getQNAList(int clientNo);
 	QNA getQNA(int no);
 	int updateQNA(QNA qna);
 	int deleteQNA(int no);

@@ -27,6 +27,15 @@
       SELECT LAST_INSERT_ID();
     </selectKey>
   </insert>
+  
+  <select id="selectOrderCount" resultType="java.util.HashMap" parameterType="int">
+	  select distinct
+			(select count(*) from orders where ORDER_ST = 1 and clnt_no = #{value}) as paid,
+			(select count(*) from orders where ORDER_ST = 2 and clnt_no = #{value}) as preparing,
+			(select count(*) from orders where ORDER_ST = 3 and clnt_no = #{value}) as complete,
+			(select count(*) from orders where ORDER_ST = 4 and clnt_no = #{value}) as received
+		from orders
+  </select>
 
   
 

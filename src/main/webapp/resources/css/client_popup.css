@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 /* Styles for dialog window */
-#small-dialog {
+.small-dialog {
   background: white;
   padding: 20px 30px;
   text-align: left;
