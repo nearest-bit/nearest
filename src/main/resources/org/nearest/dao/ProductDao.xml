@@ -16,10 +16,10 @@
     </association>
   </resultMap>
   
-  <insert id="insertProduct" parameterType="product">
-    
-    inser
-  
+  <insert id="insertProd" parameterType="product">
+    INSERT
+    INTO prods(prod_nm, prod_pri, prod_ent, prod_dis, mt_no)
+    VALUES (#{name}, #{price}, #{entity}, #{discountRate}, #{mart.no});  
   </insert>
   
   <select id="selectProdList" resultMap="productMap" parameterType="map">

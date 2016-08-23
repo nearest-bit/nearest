@@ -31,4 +31,11 @@
     FROM marts
     WHERE mt_no=#{value}
   </select>
+  
+  <select id="selectMartByAdmin" resultMap="martMap" parameterType="int">
+    SELECT
+    *
+    FROM marts
+    WHERE admin_no=#{value}
+  </select>
 </mapper>

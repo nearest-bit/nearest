@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
+import org.nearest.domain.Mart;
 import org.nearest.domain.Product;
 import org.nearest.service.MartService;
 import org.nearest.service.ProductService;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
@@ -80,5 +84,44 @@ public class ProductController {
     
     return new Gson().toJson(result);
   }
+  
+  
+  
+  @RequestMapping(path="addProduct", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String addProduct(Product product,
+							 List<MultipartFile> imageFiles,
+							 HttpSession session) {
+		HashMap<String,Object> result = new HashMap<>();
+		product.setMart((Mart)session.getAttribute("adminMart"));
+		
+		System.out.println(product);
+		System.out.println(imageFiles.get(0));
+						
+		try {
+//			productService.addProduct(product);			
+			result.put("status", "success");
+		} catch(Exception e) {
+			result.put("status", "error");
+		}
+		
+		return new Gson().toJson(result);
+	}
+	
+	/*@RequestMapping(path="addProductImage", produces="multipart/form-data;charset=utf-8")
+	@ResponseBody
+	public String addProductImage(MultipartFile imageFile,
+								  HttpSession session) {
+		HashMap<String,Object> result = new HashMap<>();
+		System.out.println(imageFile.getName());
+				
+		try {
+			System.out.println(session.getServletContext().getRealPath("/"));
+		} catch(Exception e) {
+			result.put("status", "error");
+		}
+		
+		return new Gson().toJson(result);
+	}*/
 
 }

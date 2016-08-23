@@ -48,5 +48,9 @@ public class ProductServiceImpl implements ProductService {
   public Product getProduct(int no) {
 	  return productDao.selectProd(no);
   }
-
+  
+  @Override
+  public void addProduct(Product product) {
+	  productDao.insertProd(product);
+  }
 }

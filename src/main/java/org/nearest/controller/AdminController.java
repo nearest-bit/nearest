@@ -5,13 +5,13 @@ import java.util.HashMap;
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Admin;
-import org.nearest.domain.Product;
+import org.nearest.domain.Mart;
 import org.nearest.service.AdminService;
+import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 
@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 public class AdminController {
 	
 	@Autowired AdminService adminService;
+	@Autowired MartService martService;
 	
 	@RequestMapping(path="login",produces="application/json;charset=utf-8")
 	@ResponseBody
@@ -28,35 +29,19 @@ public class AdminController {
 						HttpSession session) {
 		HashMap<String,Object> result = new HashMap<>(); 
 		Admin admin = adminService.getAdmin(id);
+		Mart mart = martService.getMartByAdmin(admin.getNo());
 				
 		try {
 			if(admin.getPassword().equals(password)) {
 				result.put("status", "correct");
 				result.put("data", admin);
 				
-				session.setAttribute("loginId", admin);
+				session.setAttribute("adminId", admin);
+				session.setAttribute("adminMart", mart);
 			} else {
 				result.put("status", "incorrect");
 			}
 			
-		} catch(Exception e) {
-			result.put("status", "error");
-		}
-		
-		return new Gson().toJson(result);
-	}
-	
-	@RequestMapping(path="productUpload")
-	@ResponseBody
-	public String productUpload(Product product,
-								MultipartFile imageFile,
-								HttpSession session) {
-		HashMap<String,Object> result = new HashMap<>();
-		System.out.println(product);
-		System.out.println(imageFile.getName());
-				
-		try {
-			System.out.println(session.getServletContext().getRealPath("/"));
 		} catch(Exception e) {
 			result.put("status", "error");
 		}
