@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.nearest.dao.QNADao;
+import org.nearest.domain.Admin;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,11 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public List<QNA> getQNAList(int pageNo, int pageSize){
+	public List<QNA> getQNAList(int pageNo, int pageSize, Admin admin){
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("startIndex", (pageNo - 1) * pageSize);
 		params.put("len", pageSize);
+		params.put("adminInfo", admin.getNo());
 		return qnaDao.selectQNAList(params);
 	}
 	

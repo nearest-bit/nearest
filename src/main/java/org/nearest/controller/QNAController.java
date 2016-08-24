@@ -3,6 +3,9 @@ package org.nearest.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.nearest.domain.Admin;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +24,19 @@ public class QNAController {
 	
 	@Autowired QNAService qnaService;
 	
-	@RequestMapping(path="QNAList", produces="application/json;charset=UTF-8")
+	@RequestMapping(path="QNAlist", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String QNAlist(
 			@RequestParam(defaultValue="1") int pageNo,
-			@RequestParam(defaultValue="5") int pageSize) {
-		
+			@RequestParam(defaultValue="6") int pageSize,
+			@RequestParam HttpSession session) {
+			
+			Admin admin = (Admin)session.getAttribute("adminId");
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAList(pageNo, pageSize);
+				List<QNA> list = qnaService.getQNAList(pageNo, pageSize, admin);
 				result.put("status", "success");
-				result.put("data", list);
+				result.put("qnadata", list);
 			} catch (Exception e) {
 				result.put("status", "failure");
 				e.printStackTrace();
