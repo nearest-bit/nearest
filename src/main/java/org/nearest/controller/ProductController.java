@@ -35,15 +35,22 @@ public class ProductController {
   public String getProductList(@RequestParam String searchTag, 
                                @RequestParam String searchContent,
                                @RequestParam(defaultValue="1") int currentPage,
-                               @RequestParam(defaultValue="9") int length){
+                               @RequestParam(defaultValue="9") int length,
+                               @RequestParam(defaultValue="client") String option,
+                               HttpSession session){
     
     
     Map<String, Object> result = new HashMap<>();
     List<Product> products = null;
     
+    if(option.equals("admin")) {
+    	searchTag = "marts";
+    	searchContent = ((Mart)session.getAttribute("adminMart")).getName();
+    }
+    
     try{
       result.put("status", "success");
-      if (searchTag.equals("prods")) {
+      if(searchTag.equals("prods")) {
         
         products = productService.getProductList(currentPage, length, searchContent);
         
@@ -52,7 +59,7 @@ public class ProductController {
         
       } 
       
-      if(searchTag.equals("marts")){
+      if(searchTag.equals("marts")) {
         
         products = productService.getMartList(currentPage, length, searchContent);
         
@@ -67,6 +74,7 @@ public class ProductController {
     
     return new Gson().toJson(result);
   }
+ 
   
   @ResponseBody
   @RequestMapping(path = "getProduct", produces = "application/json;charset=utf-8")
@@ -103,11 +111,13 @@ public class ProductController {
 		String filePath = realPath + "\\" + imageFile.getOriginalFilename();
 		File resultFile = new File(filePath);
 				
-		product.setPhoto(filePath);
+		product.setPhoto("./resources/images/product/" + imageFile.getOriginalFilename());
 						
 		try {
 			imageFile.transferTo(resultFile);
-			productService.addProduct(product);			
+			productService.addProduct(product);
+			
+			result.put("photo", product.getPhoto());
 			result.put("status", "success");
 		} catch(Exception e) {
 			e.printStackTrace();

@@ -90,10 +90,14 @@
 <script src="./node_modules/jquery-form/jquery.form.js"></script>
 <!-- jQuery File Upload -->
 <script src="./node_modules/jquery.ui.widget/jquery.ui.widget.js"></script>
+<script src="./node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+<script src="./node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
 <script src="./node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="./node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
 <script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
 <script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
 
 <!-- <script src="./resources/js/manager_upload_images.js"></script> -->
 <style>
@@ -125,29 +129,11 @@
 			<div class="wrapper">
 				<div class="row box-shadow nearest-header-top-menu">
 
-					<div id="nearest-dropdown"
-						class="nearest-dropdown nearest-header-menu-btn">
-						<span class="glyphicon glyphicon-align-justify nearest-drop-span"
-							aria-hidden="true" onclick="myFunction()"> </span>
-
-						<div id="myDropdown" class="nearest-dropdown-content">
-							<a href="./client.html">찜 목록</a> <a href="./client.html">구매
-								목록</a> <a href="./client.html">건의 사항</a>
-						</div>
-					</div>
-
-					<div class="white-popup nearest-header-menu-btn" id="loginAfter">
-						<a id="myInfoBtn"> <strong>내정보</strong>
-						</a> <strong>|</strong> <a id="logoutBtn" href="./index.html"> <strong>로그아웃</strong>
+					<div class="white-popup nearest-header-menu-btn" id="loginBefore">
+						<a id="logoutBtn" href="./index.html">
+						  <strong>로그아웃</strong>
 						</a>
 					</div>
-
-					<a id="signupBtn" href="#signupForm"
-						class="white-popup popup-modal nearest-header-menu-btn"> <strong>REGISTER</strong>
-					</a> <a id="btnSplit" class="nearest-header-menu-btn"> <strong>|</strong>
-					</a> <a id="loginBtn" href="#loginForm"
-						class="white-popup popup-modal nearest-header-menu-btn"> <strong>LOGIN</strong>
-					</a>
 
 				</div>
 
@@ -544,8 +530,8 @@
 							<div class="row row-bottom-padded-md">
 								<div class="col-md-5 to-animate">
 										<div class="nearest-upload-wrap">
-											<div class="nearest-upload-image">
-												<img id="nearest-upload-image" src="./resources/images/shinramyun.png" alt="">
+											<div id="nearest-upload-image" class="nearest-upload-image">
+												<img src="./resources/images/shinramyun.png" alt="">
 											</div>
 											<div class="nearest-upload-button">
 												<label class="nearest-file-upload"><input id="nearest-file-upload" name="imageFiles" type="file" />이미지 첨부</label>
@@ -609,117 +595,50 @@
 		
 							</div>
 						</div>
-						<div class="row row-bottom-padded-sm">
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-							<div class="col-md-4 col-sm-6 col-xxs-12">
-								<a href="#test-form"
-									class="fh5co-project-item popup-with-form to-animate"> <img
-									src="./images/shinramyun.png" alt="Image" class="img-responsive">
-									<div class="fh5co-text">
-										<h2>신라면</h2>
-										<span>가격 2500원/수량 25개/할인율 5%</span>
-									</div>
-								</a>
-							</div>
-		
+						
+						<script id="nearest-admin-product-list-template" type="text/x-handlebars-template">
+              {{#each productData}}
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                  <a href="#test-form"
+                     class="fh5co-project-item popup-with-form"> <img
+                     src="{{photo}}" alt="Image" class="img-responsive">
+                    <div class="fh5co-text">
+                      <h2>{{name}}</h2>
+                      <span>가격 {{price}}원/수량 {{entity}}개/할인율 {{discountRate}}%</span>
+                    </div>
+                  </a>
+                </div>
+              {{/each}}
+            </script>
+            
+						<div id="nearest-admin-product-list" class="row row-bottom-padded-sm">
 						</div>
+						
+						
+						<script id="nearest-admin-product-pagenav-template" type="text/x-handlebars-template">
+              <li class="pagenav"><a>{{i}}</a></li>
+            </script>
+             
 						<div class="row">
-							<nav class="col-md-12 text-center to-animate"
-								aria-label="Page navigation">
-								<ul class="pagination">
-									<li class="pagenav"><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li class="pagenav"><a href="#">1</a></li>
-									<li class="pagenav"><a href="#">2</a></li>
-									<li class="pagenav"><a href="#">3</a></li>
-									<li class="pagenav"><a href="#">4</a></li>
-									<li class="pagenav"><a href="#">5</a></li>
-									<li class="pagenav"><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
+		          <nav class="col-md-12 text-center" aria-label="Page navigation">
+		            <ul class="pagination">
+		              <li class="pagenav">
+		                <a aria-label="Previous">
+		                  <span aria-hidden="true" data-previous-page="">&laquo;</span>
+		                </a>
+		              </li>
+		            </ul>
+		            <ul class="pagination" id="nearest-admin-pageno">	            
+		            </ul>
+		            <ul class="pagination">
+		              <li class="pagenav">
+		                <a aria-label="Next">
+		                  <span aria-hidden="true" data-next-page="">&raquo;</span>
+		                </a>
+		              </li>
+		            </ul>
+		          </nav>
+		        </div>
 					</div>
 		
 				</section>
@@ -782,23 +701,22 @@
 	</div>
 	<!-- nearest-client-wrap end -->
 
-	<footer
-		style="text-align: center; margin: 0 auto; width: 1024px; height: 100px; background-color: yellow;">
-		<h1>Footer</h1>
-	</footer>
+	<footer>
+    <section class="foot-area">
+      <div class="nearest-footer" style="text-align: center; width: 100%;">
+          <!-- (s)160524: 전자금융거래이용약관 -->
+          <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
+          <!-- (e)160524: 전자금융거래이용약관 -->
+      </div> <!--/.row -->
+    </section>
+  </footer>
 
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
 	<script src="./resources/js/alert_index.js"></script>
 	<script src="./resources/js/main.js"></script>
-	<script src="./resources/js/main_dropdown.js"></script>
-	<script src="./resources/js/main_search.js"></script>
-	<script src="./resources/js/main_handlebars.js"></script>
-	<script src="./resources/js/main_login.js"></script>
-	<script src="./resources/js/main_register.js"></script>
 	<script src="./resources/js/admin.js"></script>
-	<script src="./resources/js/client_payment.js"></script>
-	<script src="./resources/js/client_purchase_list.js"></script>
+	<script src="./resources/js/admin_manage.js"></script>
 	<script type="text/javascript">
 		
 	</script>

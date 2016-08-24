@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "blueimp-canvas-to-blob": "^3.3.0",
     "blueimp-file-upload": "^9.12.5",
+    "blueimp-load-image": "^2.6.1",
     "bootstrap": "^3.3.7",
     "bootstrap-datetimepicker": "0.0.7",
     "google-maps": "^3.2.1",
