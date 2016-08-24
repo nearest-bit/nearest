@@ -42,6 +42,39 @@ $( function() {
     });
 });
 
+$(function(){
+	$('#nearest-request-div').on('click', function() {
+		$.ajax({
+			url: contextRoot + 'qna/update.do',
+			dataType: 'json',
+			data: {
+				'replyContent': $('#login-form-username').val(),
+				'password': $('#login-form-password').val()
+			},
+			method: 'post',
+			success: function(result) {
+				if(result.status == "correct"){
+					//alert('관리자 체크22');
+					$(location).attr('href', './admin.html');
+					
+					$("#loginBtn").css("display", "none");
+					$("#signupBtn").css('display', 'none');
+					$("#btnSplit").css('display', 'none');
+					$('#nearest-dropdown').css('display', 'inline');
+					$('#loginAfter').css('display', 'inline');
+
+					$.cookie('loginId', result.data.no, {expires : 1});
+				}else{
+					alert('로그인이 실패하였습니다');
+				}
+			},
+			error: function(result) {
+				alert(result.status);
+			}
+		});
+	});
+});
+
 $(function() {
     $('#order-btn').on('click', function() {
         $('#order-search').css('display', 'block');
