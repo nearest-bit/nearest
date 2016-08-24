@@ -32,4 +32,12 @@
         WHERE req_no = #{value}
     </select>
     
+    <select id="selectQNAList" resultMap="qnaMap">
+        select req_cnt 
+        from reqs
+        where mt_no = #{adminInfo}
+        order by req_no desc
+        limit #{startIndex}, #{len}
+    </select>
+    
 </mapper>
