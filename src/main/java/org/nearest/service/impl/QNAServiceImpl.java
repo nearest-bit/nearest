@@ -21,7 +21,7 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public List<QNA> getQNAList(int pageNo, int pageSize, Admin admin){
+	public List<QNA> getQNAListByAdmin(int pageNo, int pageSize, Admin admin){
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("startIndex", (pageNo - 1) * pageSize);
 		params.put("len", pageSize);
@@ -35,8 +35,11 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public int updateQNA(QNA qna){
-		return qnaDao.update(qna);
+	public List<QNA> updateQNA(String replyContent, Admin admin){
+		HashMap<String,Object> replyInfo = new HashMap<>();
+		replyInfo.put("replyContent", replyContent);
+		replyInfo.put("adminNo", admin.getNo());
+		return qnaDao.update(replyInfo);
 	}
 	
 	@Override

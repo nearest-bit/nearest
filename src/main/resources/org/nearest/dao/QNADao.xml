@@ -32,7 +32,7 @@
         WHERE req_no = #{value}
     </select>
     
-    <select id="selectQNAList" resultMap="qnaMap">
+    <select id="selectQNAListByAdmin" resultMap="qnaMap">
         select req_cnt 
         from reqs
         where mt_no = #{adminInfo}
@@ -40,4 +40,10 @@
         limit #{startIndex}, #{len}
     </select>
     
+    <update id="updateQNA" parameterType="Map">
+        UPDATE reqs SET
+            req_cnt = #{replyContent},
+            req_st = 2
+        WHERE mt_no = #{adminNo}
+    </update>
 </mapper>

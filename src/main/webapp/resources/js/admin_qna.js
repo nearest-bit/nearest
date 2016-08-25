@@ -48,30 +48,25 @@ $(function(){
 			url: contextRoot + 'qna/update.do',
 			dataType: 'json',
 			data: {
-				'replyContent': $('#login-form-username').val(),
-				'password': $('#login-form-password').val()
+				'replyContent': $('#nearest-reply').text(),
 			},
 			method: 'post',
 			success: function(result) {
-				if(result.status == "correct"){
-					//alert('관리자 체크22');
-					$(location).attr('href', './admin.html');
-					
-					$("#loginBtn").css("display", "none");
-					$("#signupBtn").css('display', 'none');
-					$("#btnSplit").css('display', 'none');
-					$('#nearest-dropdown').css('display', 'inline');
-					$('#loginAfter').css('display', 'inline');
-
-					$.cookie('loginId', result.data.no, {expires : 1});
+				if(result.status == "success"){
+					alert('답변이 등록되었습니다.');
 				}else{
-					alert('로그인이 실패하였습니다');
+					alert('등록 오류');
 				}
 			},
 			error: function(result) {
 				alert(result.status);
 			}
 		});
+		if(result.replyStatus == 2){
+			
+		} else {
+			alert('답변 완료 오류');
+		}
 	});
 });
 

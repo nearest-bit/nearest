@@ -9,8 +9,8 @@ public interface QNAService {
 	
 	void addQNA(QNA qna);
 	
-	List<QNA> getQNAList(int pageNo, int pageSize, Admin admin);
+	List<QNA> getQNAListByAdmin(int pageNo, int pageSize, Admin admin);
 	QNA getQNA(int no);
-	int updateQNA(QNA qna);
+	List<QNA> updateQNA(String replyContent, Admin admin);
 	int deleteQNA(int no);
 }

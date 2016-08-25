@@ -34,7 +34,7 @@ public class QNAController {
 			Admin admin = (Admin)session.getAttribute("adminId");
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAList(pageNo, pageSize, admin);
+				List<QNA> list = qnaService.getQNAListByAdmin(pageNo, pageSize, admin);
 				result.put("status", "success");
 				result.put("qnadata", list);
 			} catch (Exception e) {
@@ -81,11 +81,14 @@ public class QNAController {
 	
 	@RequestMapping(path="update", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String update(QNA qna) {
+	public String update(String replyContent,
+						HttpSession session) {
+		Admin admin = (Admin)session.getAttribute("adminId");
 		HashMap<String,Object> result = new HashMap<>();
 		try {
-	      qnaService.updateQNA(qna);
+	      qnaService.updateQNA(replyContent, admin);
 	      result.put("status", "success");
+	      result.put("replyStatus", 2);
 	    } catch (Exception e) {
 	      result.put("status", "failure");
 	      e.printStackTrace();
