@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Admin;
+import org.nearest.domain.Client;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class QNAController {
 			Admin admin = (Admin)session.getAttribute("adminId");
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAList(pageNo, pageSize, admin);
+				List<QNA> list = qnaService.getQNAListByAdmin(pageNo, pageSize, admin);
 				
 				System.out.println(list);
 				
@@ -110,4 +111,30 @@ public class QNAController {
 		return new Gson().toJson(result);
 	}
 	
+  @RequestMapping(path="QNAList", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String QNAlistClient(HttpSession session) {
+    
+    
+    HashMap<String,Object> result = new HashMap<String,Object>();
+    
+    try {
+      List<QNA> list = qnaService.getQNAList(((Client)session.getAttribute("loginId")).getNo());
+      result.put("status", "success");
+      result.put("reqData", list);
+        for (QNA qna : list) {
+          if(qna.getStatus() == 1){
+            qna.setReqStatus("읽지않음");
+          }else if(qna.getStatus() == 2){
+            qna.setReqStatus("읽음");
+          }else{
+            qna.setReqStatus("답변완료");
+          }
+        }
+      }catch (Exception e) {
+        result.put("status", "failure");
+        e.printStackTrace();
+      } 
+      return new Gson().toJson(result);
+    }
 }

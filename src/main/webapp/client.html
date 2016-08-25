@@ -271,36 +271,6 @@
               <h2 style="font-size: 40px;">구매내역</h2>
             </div>
           </div>
-          <!-- <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="fh5co-counter to-animate">
-                <i class="fh5co-counter-icon icon-money to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="5" data-speed="5000" data-refresh-interval="50">89</span>
-                <span class="fh5co-counter-label">결제완료</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="fh5co-counter to-animate">
-                <i class="fh5co-counter-icon icon-inbox to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="15" data-speed="5000" data-refresh-interval="50">15</span>
-                <span class="fh5co-counter-label">준비중</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="fh5co-counter to-animate">
-                <i class="fh5co-counter-icon icon-lightbulb-o to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50">30</span>
-                <span class="fh5co-counter-label">준비완료</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="fh5co-counter to-animate">
-                <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="55" data-speed="5000" data-refresh-interval="50">55</span>
-                <span class="fh5co-counter-label">수령완료</span>
-              </div>
-            </div>
-          </div> -->
           <div class="row">
             <div id="flight-datepicker" class="input-daterange input-group">
               
@@ -324,74 +294,9 @@
       <section id="fh5co-work" data-section="work"
         style="background-image: url(images/full_image_2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
         <div class="container">
-          <div>
-            <!-- <div class="col-md-12 section-heading text-center">
-              <h2 class="to-animate">구매내역</h2>
-              <div class="search-form">
-                <button class="btn btn-info to-animate" id="order-btn"
-                  type="button">구매내역조회</button>
-                <div id="nearest-order-search" class="to-animate">
-                  <select>
-                    <option selected="selected">구매완료</option>
-                    <option>준비완료</option>
-                    <option>수령완료</option>
-                  </select> 
-                  <input type="date" value="2016-08-13"> 
-                  <input type="date" value="2016-08-20">
-                  <button class="btn btn-info" type="button">조회</button>
-                  <button class="btn btn-default" id="order-reset-btn" type="reset">취소</button>
-                </div>
-             </div>
-            </div> -->
-          <div class="row-bottom-padded-sm">
-          
-              <div class="purchase-list fh5co-project-item"> 
-                <div class="col-md-3" style="max-height:200px; text-align: center;">
-                 
-                  <h3>2016/04/24</h3>
-                  <h3><span class="label label-default">결제금액</span></h3>
-                  
-                  
-                  <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
-                  
-                </div>
-                <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
-                  <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table nearest-hover-table">
-                    <thead>
-                      <tr>
-                        <th>구매처</th>
-                        <th>구매상품</th>
-                        <th>가격</th>
-                        <th>상태</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="cursor:pointer;" class="nearest-order-list-detail">
-                          <td>진한마트</td>
-                          <td>신라면 외 5개</td>
-                          <td>12000원</td>
-                          <td><span class="label label-danger">결제완료</span></td>
-                        </tr>
-                      <tr style="cursor:pointer;" class="nearest-order-list-detail">
-                        <td>상혁마트</td>
-                        <td>유한락스(1L) 리필형 외 3개</td>
-                        <td>14000원</td>
-                        <td><span class="label label-warning">준비중</span></td>
-                      </tr>
-                      
-                     </tbody> 
-                  </table>
-                 
-                </div>
-              </div>
-              
-            
-              
-    
-                
+         <div>
+          <div id="nearest-purchase-list-div" class="row-bottom-padded-sm">
            
-            
-            
           </div>
         </div>
       </div>
@@ -427,43 +332,43 @@
           <br/>
           <br/>
           <div id="nearest-new-request-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
-					  <div id="formPage">
-		          <h2>새 문의사항</h2>
-		         
-		          <form class="form-horizontal">
-		            <div class="form-group bit-view-form bit-hidden">
-		              <label class="col-sm-2 control-label">문의처</label>
-		              <div class="col-sm-10">
-		                진한마트
-		              </div>
-		            </div>
-		            <div class="form-group">
-		              <label for="fTitle" class="col-sm-2 control-label">제목</label>
-		              <div class="col-sm-8">
-		                <input type="text" class="form-control" id="fTitle" placeholder="제목을 입력하세요.">
-		              </div>
-		            </div>
-		            
-		            <div class="form-group">
-		              <label for="fContent" class="col-sm-2 control-label">내용</label>
-		              <div class="col-sm-8">
-		                <textarea id="fContent" class="form-control" rows="4" 
-		                          placeholder="내용을 입력하세요."></textarea>
-		              </div>
-		            </div>
-		            
-		            
-		            <div class="form-group">
-		              <div class="col-sm-offset-2 col-sm-10">
-		                  <button id="addBtn" type="button" class="bit-new-form btn btn-primary btn-sm">등록</button>
-		                  <button id="resetBtn" type="reset" class="btn btn-warning btn-sm">취소</button>
-		              </div>
-		            </div>
-		            
-		          </form>    
-		          </div> <!-- #formPage -->
-					</div>
-					
+            <div id="formPage">
+              <h2>새 문의사항</h2>
+             
+              <form class="form-horizontal">
+                <div class="form-group bit-view-form bit-hidden">
+                  <label class="col-sm-2 control-label">문의처</label>
+                  <div class="col-sm-10">
+                    진한마트
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="fTitle" class="col-sm-2 control-label">제목</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="fTitle" placeholder="제목을 입력하세요.">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="fContent" class="col-sm-2 control-label">내용</label>
+                  <div class="col-sm-8">
+                    <textarea id="fContent" class="form-control" rows="4" 
+                              placeholder="내용을 입력하세요."></textarea>
+                  </div>
+                </div>
+                
+                
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                      <button id="addBtn" type="button" class="bit-new-form btn btn-primary btn-sm">등록</button>
+                      <button id="resetBtn" type="reset" class="btn btn-warning btn-sm">취소</button>
+                  </div>
+                </div>
+                
+              </form>    
+              </div> <!-- #formPage -->
+          </div>
+          
           <div id="footer"></div>
           
           </div> <!-- .container -->
@@ -637,41 +542,41 @@
           </div>
     
   </script>
-  
-  <script type="text/x-handlebars-templete">
-       <a href="#" class="purchase-list fh5co-project-item"> 
-         <div class="col-md-3" style="max-height:200px; text-align: center;">
-           <h3>2016/04/24</h3>
-           <h3><span class="label label-default">결제금액</span></h3>
-           <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
-               
-         </div>
-         <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
-           <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table">
-             <thead>
-               <tr>
-                 <th>상품명</th>
-                 <th>수량</th>
-                 <th>가격</th>
-                 <th>구매처</th>
-                 <th>상태</th>
-               </tr>
-             </thead>
-             <tbody>
-             </tbody> 
-           </table>
-         </div>
-       </a>
+
+  <script id="nearest-purchase-list-table-form" type="text/x-handlebars-templete">
+  {{#each this}}
+    <div class="purchase-list fh5co-project-item"> 
+      <div class="col-md-3" style="max-height:200px; text-align: center;">
+          <h4 style="font-size: 22px;"><span class="label label-danger">주문시간</span></h4>    
+          <h4 style="font-size: 22px;">{{this}}</h4>
+          <h4 style="font-size: 22px;"><span class="label label-default">결제금액</span></h4>    
+          <h1 style="margin-bottom:10px; color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
+      </div>
+      <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
+        <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table nearest-hover-table">
+          <thead>
+            <tr>
+              <th>구매처</th>
+              <th>구매상품</th>
+              <th>총구매가격</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody id="nearest-purchaseList-tr-{{@index}}">
+
+          </tbody> 
+        </table>
+      </div>
+    </div>    
+  {{/each}}
   </script>
-  
-  <script type="text/x-handlebars-templete">
-      <tr>
-        <td>신라면</td>
-        <td>5개</td>
-        <td>1200원</td>
-        <td>진한마트</td>
-        <td><span class="label label-danger">결제완료</span></td>
-      </tr>
+  <script id="nearest-purchase-list-table-content" type="text/x-handlebars-templete">
+    <tr style="cursor:pointer;" class="nearest-order-list-detail">
+      <td>{{martName}}</td>
+      <td>{{productName}} 포함 {{totalCount}}개</td>
+      <td>{{totalPrice}}원</td>
+      <td>{{state orderState}}</td>
+    </tr>
   </script>
   
   
@@ -685,7 +590,6 @@
   <script src="./resources/js/main.js"></script>
   <script src="./resources/js/main_dropdown.js"></script>
   <script src="./resources/js/main_search.js"></script>
-  <script src="./resources/js/main_handlebars.js"></script>
   <script src="./resources/js/main_register.js"></script>
   <script src="./resources/js/client_payment.js"></script>
   <script src="./resources/js/client_purchase_list.js"></script>
@@ -693,6 +597,82 @@
   <script src="./resources/js/client_order_list.js"></script>
   <script src="./resources/js/client_request.js"></script>
   <script src="./resources/js/logout.js"></script>
+  
+  <script type="text/javascript">
+  $(function(){
+    var purchaseListTableFormSource = $('#nearest-purchase-list-table-form').text();
+    var purchaseListTableFormTempl = Handlebars.compile(purchaseListTableFormSource);
+    var purchaseListTableContentSource = $('#nearest-purchase-list-table-content').text();
+    var purchaseListTableContentTempl = Handlebars.compile(purchaseListTableContentSource);
+    
+    Handlebars.registerHelper("state", function(value, options){
+    	 if(value == '1'){
+    		 return new Handlebars.SafeString('<span class="label label-danger">결제완료</span>');
+    	 }else if(value == '2'){
+    		 return new Handlebars.SafeString('<span class="label label-danger">준비중</span>');
+    	 }else if(value == '3'){
+    		 return new Handlebars.SafeString('<span class="label label-danger">준비완료</span>');
+    	 }else if(value == '4'){
+    		 return new Handlebars.SafeString('<span class="label label-danger">수령완료</span>');
+    	 }
+    });
+    
+    $.ajax({
+          url : contextRoot + 'order/orderList.do',
+          datatype : 'json',
+          method : 'post',
+          
+          success : function(result) {
+        	 /*  alert(result.orderList[0].orderDate == result.compareDateData[0]);
+        	  alert(JSON.stringify(result.orderList[0])); */
+        	  
+        	  
+            if(result.status != 'success'){
+              alert('failure');
+              return;
+            }if(result.orderList[0].orderDate)
+            $('#nearest-purchase-list-div').append(purchaseListTableFormTempl(result.orderDate));
+            
+            for(var i=0; i<result.orderList.length; i++){
+            	   for(var j=0; j<result.compareDateData.length; j++){
+            		   if(result.orderList[i].orderDate == result.compareDateData[j]){
+            			   var id = '#nearest-purchaseList-tr-'+j;
+            			   $(id).append(purchaseListTableContentTempl(result.orderList[i]));
+            		   }
+            	   }
+            }
+            
+          },
+          
+          error : function(request, status, error) {
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+          }
+        }); 
+  });
+  $(document).on('click','.nearest-order-list-detail',function(event) {
+    event.preventDefault();
+    
+    $.magnificPopup.open({
+      items: {
+        src: $('#nearest-purchase-dialog')
+      },
+      type: 'inline',
+
+      fixedContentPos: false,
+      fixedBgPos: true,
+
+      overflowY: 'auto',
+
+      closeBtnInside: true,
+      preloader: false,
+      
+      midClick: true,
+      removalDelay: 300,
+      mainClass: 'my-mfp-zoom-in'
+    });
+  });
+
+  </script>
 
 </body>
 </html>

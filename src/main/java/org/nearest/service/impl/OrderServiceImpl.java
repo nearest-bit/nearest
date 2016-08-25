@@ -1,5 +1,6 @@
 package org.nearest.service.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.nearest.dao.OrderDao;
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public ProductOrder getOrderList(int clientNo) {
+  public List<Object>getOrderList(int clientNo) {
     // TODO Auto-generated method stub
     return orderDao.selectOrderList(clientNo);
   }

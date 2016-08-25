@@ -10,31 +10,18 @@
     <result column="order_st"      property="orderState" />
     <association property="mart" javaType="mart">
       <result column="mt_no" property="no" javaType="INTEGER"/>
+      <result column="mt_nm" property="name" javaType="string"/>
     </association>
     <association property="client" javaType="client">
       <result column="clnt_no" property="no" javaType="INTEGER"/>
     </association>
   </resultMap>
   
-  <resultMap type="productOrder" id="productOrderMap">
-    <result column="order_ent" property="entity"/>
-    <collection property="order" column="order_no" ofType="order" javaType="java.util.List">
-      <id column="order_no" property="no" javaType="INTEGER"/>
-      <result column="order_st" property="orderState" javaType="INTEGER"/>
-      <result column="order_dt" property="orderDate" javaType="java.sql.Date"/>
-      <collection property="martList" column="mt_no" ofType="mart" javaType="java.util.List">
-        <result column="mt_no" property="no" javaType="INTEGER"/>
-        <result column="mt_nm" property="name" javaType="string"/>
-      </collection>
-      <collection property="product" column="prod_no" ofType="product" javaType="java.util.List">
-        <id column="prod_no" property="no" javaType="INTEGER"/>
-        <result column="prod_nm" property="name" javaType="string"/>
-        <result column="prod_pri" property="price" javaType="int"/>
-      </collection>
-    </collection>
+  <resultMap type="product" id="productMap">
+    <id column="prod_no" property="no" javaType="INTEGER"/>
+    <result column="prod_nm" property="name" javaType="string"/>
+    <result column="prod_pri" property="price" javaType="INTEGER"/>
   </resultMap>
-  
-  
   
   <insert id="insertOrder" parameterType="map">
     insert into 
@@ -56,14 +43,15 @@
 		from orders
   </select>
   
-  <select id="selectOrderList" resultMap="productOrderMap" parameterType="int">
-    select p.prod_no, p.prod_nm, po.order_ent, p.prod_pri, m.mt_nm, o.order_no, o.order_st, o.order_dt
-		from marts m, prods p, orders o, prod_orders po
-		where o.clnt_no = #{value}
-		and p.mt_no = m.mt_no
-		and m.mt_no = o.mt_no
-		and o.order_no = po.order_no
-		and po.prod_no = p.prod_no
+  <select id="selectOrderList" resultType="java.util.HashMap" parameterType="int">
+    select m.mt_nm martName, o.order_dt orderDate, p.prod_nm productName, sum(prod_pri) totalPrice, count(p.prod_no) totalCount, o.order_st orderState
+    from clnts c, orders o, prod_orders po, prods p, marts m
+    where c.clnt_no = o.clnt_no 
+    and o.order_no = po.order_no
+    and po.prod_no = p.prod_no
+    and p.mt_no = m.mt_no
+    and c.clnt_no = 1
+    group by o.order_no
   </select>
 
   
