@@ -28,14 +28,10 @@
 <link rel="stylesheet" href="./resources/css/main_signup.css">
 <link rel="stylesheet" href="./resources/css/style.css">
 <link rel="stylesheet" href="./resources/css/admin_top_menu.css">
-<link rel="stylesheet" href="./resources/css/main_login.css">
 <!-- BootStrap DateTimePicker -->
 <link rel="stylesheet"
 	href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
-<!-- DropDown Menu -->
-<link rel="stylesheet" href="./resources/css/main_dropdown.css">
 <!-- Client Payment PopUp -->
-<link rel="stylesheet" href="./resources/css/client_payment.css">
 <link rel="stylesheet" href="./resources/css/client_menu.css">
 <link rel="stylesheet" href="./resources/css/client_main.css">
 <!-- Main Header -->
@@ -148,7 +144,7 @@
 				<div class="row box-shadow nearest-header-top-menu">
 
 					<div class="white-popup nearest-header-menu-btn" id="loginBefore">
-						<a id="logoutBtn" href="./index.html">
+						<a id="logoutBtn">
 						  <strong>로그아웃</strong>
 						</a>
 					</div>
@@ -574,33 +570,6 @@
             
 						<div id="nearest-admin-product-list" class="row row-bottom-padded-sm">
 						</div>
-						
-						
-						<script id="nearest-admin-product-pagenav-template" type="text/x-handlebars-template">
-              <li class="pagenav"><a>{{i}}</a></li>
-            </script>
-             
-						<div class="row">
-		          <nav class="col-md-12 text-center" aria-label="Page navigation">
-		            <ul class="pagination">
-		              <li class="pagenav">
-		                <a aria-label="Previous">
-		                  <span aria-hidden="true" data-previous-page="">&laquo;</span>
-		                </a>
-		              </li>
-		            </ul>
-		            <ul class="pagination" id="nearest-admin-pageno">	            
-		            </ul>
-		            <ul class="pagination">
-		              <li class="pagenav">
-		                <a aria-label="Next">
-		                  <span aria-hidden="true" data-next-page="">&raquo;</span>
-		                </a>
-		              </li>
-		            </ul>
-		          </nav>
-		        </div>
-					</div>
 		
 				</section>
 				
@@ -677,6 +646,7 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
+	<script src="./resources/js/session_check.js"></script>
 	<script src="./resources/js/alert_index.js"></script>
 	<script src="./resources/js/main.js"></script>
 	<script src="./resources/js/admin.js"></script>
@@ -684,11 +654,8 @@
 	<script src="./resources/js/admin_manage_detail.js"></script>
 	<script src="./resources/js/admin_qna.js"></script>
 	<script src="./resources/js/admin_regist.js"></script>
-	<script type="text/javascript">
-		
-	</script>
-
-
+	<script src="./resources/js/logout.js"></script>
+	
 </body>
 </html>
 

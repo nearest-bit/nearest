@@ -1,13 +1,16 @@
 @CHARSET "UTF-8";
 
-
-
-.loginForm{
-  margin: 0 40% 0 40%;
+.loginForm {
+  /* margin: 15% 10% 0 10%; */
+  margin: 0 auto;
+  margin-top: 15%;
+  width: 350px;
+  height: 450px;
   background: white;
 }
 
 .login-form-box {
+	margin: 0 auto;
 	height: 100%;
 }
 
@@ -63,7 +66,7 @@
 }
 
 .find-id-password {
-  float: right;
+  float: left;
   color: #fff;
 }
 
