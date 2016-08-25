@@ -5,14 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpSession;
-
 import org.nearest.domain.Admin;
-<<<<<<< HEAD
 import org.nearest.domain.Mart;
-=======
 import org.nearest.domain.Order;
->>>>>>> 09d3b0c6d45ae14bb1c62e6be1cd06fa7e2e22f2
 import org.nearest.service.AdminService;
 import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
