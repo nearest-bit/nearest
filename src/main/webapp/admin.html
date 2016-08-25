@@ -46,6 +46,10 @@
 <link rel="stylesheet" href="./resources/css/admin.css">
 <!-- uploadimage css -->
 <!-- <link rel="stylesheet" href="./resources/css/admin_upload_images.css"> -->
+<!-- jQueryUI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<!-- magnific popup css -->
+<link rel="stylesheet" href="./resources/css/client_popup.css">
 
 <!-- JS Files -->
 
@@ -73,7 +77,6 @@
 <script src="./resources/js/scripts.js"></script>
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-<script src="./resources/js/bootstrap-datetimepicker.js"></script>
 <!-- Modernizr JS -->
 <script src="./node_modules/npm-modernizr/modernizr.js"></script>
 <!-- FOR IE9 below -->
@@ -99,6 +102,9 @@
 <script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
 <script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
 
+<!-- jQuery-ui (datepicker) -->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
 <!-- <script src="./resources/js/manager_upload_images.js"></script> -->
 <style>
 #fh5co-header {
@@ -119,6 +125,18 @@
 
 #nearest-dropdown {
 	display: none;
+}
+
+#nearest-request-search {
+    display: none;
+}
+
+.nearest-search-form:not(button) {
+    color: #23527c !important;
+}
+
+#nearest-order-search {
+    display: none;
 }
 </style>
 </head>
@@ -381,130 +399,72 @@
 				<section id="fh5co-testimonials" data-section="testimonials">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-12 section-heading text-center">
-								<h2 class="to-animate">고객센터</h2>
-								<div class="row">
-									<div class="search-form">
-										<button class="btn btn-info to-animate" id="request-btn"
-											type="button">건의사항조회</button>
-										<div id="request-search" class="to-animate">
-											<select>
-												<option selected="selected">답변미완료</option>
-												<option>답변완료</option>
-											</select> <input type="date" value="2016-08-13"> <input
-												type="date" value="2016-08-20">
-											<button class="btn btn-info" type="button">조회</button>
-											<button class="btn btn-default" id="request-reset-btn"
-												type="reset">취소</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="box-testimony">
-									<blockquote class="to-animate-2">
-										<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
-									</blockquote>
-									<div class="author to-animate">
-										<figure>
-											<img src="images/person1.jpg" alt="Person">
-										</figure>
-										<p>
-											손진한<a class="popup-with-request-form" href="#request-form">&nbsp;&nbsp;답변하기</a>
-											<span class="subtext">Creative Director</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="box-testimony">
-									<blockquote class="to-animate-2">
-										<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
-									</blockquote>
-									<div class="author to-animate">
-										<figure>
-											<img src="images/person1.jpg" alt="Person">
-										</figure>
-										<p>
-											손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
-											<span class="subtext">Creative Director</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="box-testimony">
-									<blockquote class="to-animate-2">
-										<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
-									</blockquote>
-									<div class="author to-animate">
-										<figure>
-											<img src="images/person1.jpg" alt="Person">
-										</figure>
-										<p>
-											손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
-											<span class="subtext">Creative Director</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="box-testimony">
-									<blockquote class="to-animate-2">
-										<p>&ldquo;과일이 너무 안신선해요. 과일을 신선하게 보관 해 주셨으면 좋겠어요.&rdquo;</p>
-									</blockquote>
-									<div class="author to-animate">
-										<figure>
-											<img src="images/person1.jpg" alt="Person">
-										</figure>
-										<p>
-											손진한<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
-											<span class="subtext">Creative Director</span>
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="box-testimony">
-									<blockquote class="to-animate-2">
-										<p>&ldquo;수박이 아주 달아서 좋았어요!! &rdquo;</p>
-									</blockquote>
-									<div class="author to-animate">
-										<figure>
-											<img src="images/person1.jpg" alt="Person">
-										</figure>
-										<p>
-											박철효<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
-											<span class="subtext">Creative Director</span>
-										</p>
-									</div>
-								</div>
-							</div>
-		
-							<div class="col-md-4">
-								<div class="box-testimony">
-									<blockquote class="to-animate-2">
-										<p>&ldquo;여름이라 시원한 콜라가 먹고싶은데 콜라가 너무 안시원해요!! 다음번엔 시원하게 보관해
-											주세요!!&rdquo;</p>
-									</blockquote>
-									<div class="author to-animate">
-										<figure>
-											<img src="images/person1.jpg" alt="Person">
-										</figure>
-										<p>
-											박정환<a href="http://freehtml5.co/" target="_blank">&nbsp;&nbsp;답변하기</a>
-											<span class="subtext">Creative Director</span>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+                <div class="col-md-13 section-heading text-center">
+                    <h2 class="to-animate">Q & A</h2>
+                    <div class="nearest-search-form">
+                        <button class="btn btn-info to-animate" id="nearest-request-btn"
+                            type="button">문의사항조회</button>
+                        <div id="nearest-request-search" class="to-animate">
+                            <div class="col-xs-3">
+                                <select class="form-control" name="finishTag">
+                                    <option selected="selected">답변미완료</option>
+                                    <option>답변완료</option>
+                                </select>
+                            </div>
+                            <span>시작일 : </span>
+                                <input id="sdate" type="text" size="10" maxlength="10">
+                            ~ 
+                            <span>종료일 : </span>    
+                                <input id="edate" type="text" size="10" maxlength="10">
+                                <br>
+                                <br>
+                                <button class="btn btn-info" type="button">조회</button>
+                                <button class="btn btn-default" id="nearest-request-reset-btn"
+                                type="reset">취소</button>
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+						
+						<script id="nearest-qna-list-template" type="text/x-handlebars-template">
+                {{#each qnadata}}
+                    <div class="col-md-4">
+                        <div class="box-testimony">
+                          <blockquote>
+                              <p>&ldquo;{{content}}&ldquo;</p>
+                          </blockquote>
+                          <div class="author">
+                            <p>{{client.name}}&nbsp;
+                              <a class="popup-with-zoom-anim nearest-answer-btn" href="#nearest-request-div">
+                                &nbsp;&nbsp;답변하기
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                     </div>
+                {{/each}}    
+            </script>
+						
+						<div id="nearest-qnaContent" class="row"></div>
 					</div>
 				</section>
 				<!-- 건의사항 끝 -->
 			</div>
+			
+			<!-- 답변하기 시작 -->
+        
+      <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+          <h2>답변하기</h2>
+          <textarea style="width: 100%; height: 200px" placeholder="답변을 입력해 주세요.">
+          </textarea>
+          <br>
+          <button type="button" class="btn btn-primary">전송</button>
+          <button type="reset" class="btn btn-default">취소</button>
+      </div>
+
+        
+      <!-- 답변하기 끝 -->
 			
 			<div id="regist" class="tab-pane fade">
 
@@ -599,7 +559,8 @@
 						<script id="nearest-admin-product-list-template" type="text/x-handlebars-template">
               {{#each productData}}
                 <div class="col-md-4 col-sm-6 col-xxs-12">
-                  <a href="#test-form"
+                  <input type="hidden" value="{{no}}" />
+                  <a href="#nearest-product-detail-form"
                      class="fh5co-project-item popup-with-form"> <img
                      src="{{photo}}" alt="Image" class="img-responsive">
                     <div class="fh5co-text">
@@ -644,7 +605,7 @@
 				</section>
 				
 
-				<form id="test-form" class="mfp-hide">
+				<form id="nearest-product-detail-form" class="mfp-hide small-dialog">
 		
 					<div class="page-header nearest-popup-margin table-responsive">
 						<h1>상품정보</h1>
@@ -655,20 +616,23 @@
 								</td>
 								<td width="20%">상품명</td>
 								<td width="40%" class="nearest-text-left">
-								  <input type="text" class="form-control col-sm-8"
-								name="nearest-admin-pdName" placeholder="상품명">
+								  <input type="text" 
+								         class="form-control col-sm-8"
+								         id="nearest-admin-item-title"
+								         placeholder="상품명" />
+								  <input id="nearest-admin-item-prod-no" type="hidden" value="" />
 								</td>
 							</tr>
 							<tr>
 								<td>판매가</td>
 								<td class="nearest-text-left">
-									<input type="text" class="form-control col-sm-8" name="nearest-admin-pdPprice" placeholder="상품 이름">
+									<input type="text" class="form-control col-sm-8" id="nearest-admin-item-price" placeholder="상품 이름">
 								</td>
 							</tr>
 							<tr>
 								<td>재고량</td>
 								<td class="nearest-text-left">
-									<input type="text" class="form-control col-sm-8" name="nearest-admin-amount" placeholder="상품 이름">
+									<input type="text" class="form-control col-sm-8" id="nearest-admin-item-entity" placeholder="상품 이름">
 								</td>
 							</tr>
 							<tr>
@@ -689,8 +653,8 @@
 							</tr>
 						</table>
 						<p class="form-btn">
-							<button type="button" class="btn btn-primary">수정</button>
-							<button type="button" class="btn btn-default">취소</button>
+							<button id="nearest-item-update" type="button" class="btn btn-primary">수정</button>
+							<button id="nearest-item-cancel" type="button" class="btn btn-default">취소</button>
 						</p>
 					</div>
 		
@@ -717,6 +681,9 @@
 	<script src="./resources/js/main.js"></script>
 	<script src="./resources/js/admin.js"></script>
 	<script src="./resources/js/admin_manage.js"></script>
+	<script src="./resources/js/admin_manage_detail.js"></script>
+	<script src="./resources/js/admin_qna.js"></script>
+	<script src="./resources/js/admin_regist.js"></script>
 	<script type="text/javascript">
 		
 	</script>

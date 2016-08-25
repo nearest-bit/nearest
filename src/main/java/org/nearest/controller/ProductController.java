@@ -84,6 +84,8 @@ public class ProductController {
     Product product = productService.getProduct(no);
     product.setMart(martService.getMart(product.getMart().getNo()));
     
+    System.out.println(product);
+    
     try{
       result.put("status", "success");
       result.put("productData", product);
