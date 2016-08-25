@@ -17,6 +17,7 @@
         </association>
         <association property="client" javaType="client">
             <id column="clnt_no" property="no" javaType="INTEGER" />
+            <result column="clnt_nm" property="name" javaType="string" />
         </association>
     </resultMap>
     
@@ -32,12 +33,13 @@
         WHERE req_no = #{value}
     </select>
     
-    <select id="selectQNAListByAdmin" resultMap="qnaMap">
-        select req_cnt 
-        from reqs
-        where mt_no = #{adminInfo}
-        order by req_no desc
-        limit #{startIndex}, #{len}
+    <select id="selectQNAListByAdmin" resultMap="qnaMap" parameterType="map">
+        SELECT r.req_cnt, c.clnt_nm
+        FROM reqs r, clnts c
+        WHERE r.clnt_no=c.clnt_no
+        AND mt_no = #{adminInfo}
+        ORDER BY req_no DESC
+        LIMIT #{startIndex}, #{len}
     </select>
     
     <update id="updateQNA" parameterType="Map">

@@ -29,12 +29,14 @@ public class QNAController {
 	public String QNAlist(
 			@RequestParam(defaultValue="1") int pageNo,
 			@RequestParam(defaultValue="6") int pageSize,
-			@RequestParam HttpSession session) {
+			HttpSession session) {
 			
 			Admin admin = (Admin)session.getAttribute("adminId");
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAListByAdmin(pageNo, pageSize, admin);
+				List<QNA> list = qnaService.getQNAList(pageNo, pageSize, admin);
+				
+				System.out.println(list);
 				result.put("status", "success");
 				result.put("qnadata", list);
 			} catch (Exception e) {

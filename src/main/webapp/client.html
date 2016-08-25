@@ -108,6 +108,14 @@
 #nearest-dropdown {
   display: none;
 }
+
+.nearest-purchased-list-table > tbody > tr > td{
+  border-top: 0px;
+  
+} 
+.nearest-hover-table > tbody > tr:hover{
+  background-color: #000000;
+}
 </style>
 </head>
 
@@ -306,7 +314,9 @@
               </div>
               
             </div>     
-            <p style="text-align: right; margin-right: 41px;"><input style="font-size: 15px; font-weight: 900;" class="btn btn-info" type="button" value="조회"></p> 
+            <p style="text-align: right; margin-right: 41px;">
+              <input id="nearest-order-searchBtn" style="font-size: 15px; font-weight: 900;" class="btn btn-info" type="button" value="조회">
+            </p> 
           </div>
         </div>
       </section>
@@ -335,156 +345,50 @@
             </div> -->
           <div class="row-bottom-padded-sm">
           
-            
-              <a href="#" class="purchase-list fh5co-project-item"> 
+              <div class="purchase-list fh5co-project-item"> 
                 <div class="col-md-3" style="max-height:200px; text-align: center;">
                  
                   <h3>2016/04/24</h3>
-                  <h3><span class="label label-danger">결제완료</span></h3>
+                  <h3><span class="label label-default">결제금액</span></h3>
                   
                   
                   <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
                   
                 </div>
-                <div class="col-md-9" style="overflow: auto; line-height:0;min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
-                  <table style=" margin-bottom:0px; color: white;" class="table table-condensed">
+                <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
+                  <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table nearest-hover-table">
+                    <thead>
                       <tr>
-                        <th>상품명</th>
-                        <th>수량</th>
-                        <th>가격</th>
                         <th>구매처</th>
+                        <th>구매상품</th>
+                        <th>가격</th>
+                        <th>상태</th>
                       </tr>
-                      <tr>
-                        <td>신라면</td>
-                        <td>5개</td>
-                        <td>1200원</td>
-                        <td>진한마트</td>
-                      </tr>
-                      <tr>
-                        <td>샴푸</td>
-                        <td>1개</td>
-                        <td>2500원</td>
-                        <td>진한마트</td>
+                    </thead>
+                    <tbody>
+                        <tr style="cursor:pointer;" class="nearest-order-list-detail">
+                          <td>진한마트</td>
+                          <td>신라면 외 5개</td>
+                          <td>12000원</td>
+                          <td><span class="label label-danger">결제완료</span></td>
+                        </tr>
+                      <tr style="cursor:pointer;" class="nearest-order-list-detail">
+                        <td>상혁마트</td>
+                        <td>유한락스(1L) 리필형 외 3개</td>
+                        <td>14000원</td>
+                        <td><span class="label label-warning">준비중</span></td>
                       </tr>
                       
+                     </tbody> 
                   </table>
                  
                 </div>
-              </a>
+              </div>
               
-              <a href="#" class="purchase-list fh5co-project-item"> 
-                <div class="col-md-3" style="max-height:200px; text-align: center;">
-                 
-                  <h3>2016/04/30</h3>
-                  <h3><span class="label label-warning">준비중</span></h3>
-                  
-                  
-                  <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">20,000 &#8361;</h1>
-                  
-                </div>
-                <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px;max-height:200px; background:#222; padding: 30px 15px;">
-                  <table style=" margin-bottom:0px; color: white;" class="table table-condensed">
-                      <tr>
-                        <th>상품명</th>
-                        <th>수량</th>
-                        <th>가격</th>
-                        <th>구매처</th>
-                      </tr>
-                      <tr>
-                        <td>신라면</td>
-                        <td>5개</td>
-                        <td>1200원</td>
-                        <td>진한마트</td>
-                      </tr>
-                     
-                  </table>
-                 
-                </div>
-              </a>
+            
               
-              <a href="#" class="purchase-list fh5co-project-item"> 
-                <div class="col-md-3" style="max-height:200px; text-align: center;">
-                 
-                  <h3>2016/06/24</h3>
-                  <h3><span class="label label-success">준비완료</span></h3>
-                  
-                  
-                  <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">18,500 &#8361;</h1>
-                  
-                </div>
-                <div class="col-md-9" style="overflow: auto; line-height:0;min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
-                  <table style=" margin-bottom:0px; color: white;" class="table table-condensed">
-                      <tr>
-                        <th>상품명</th>
-                        <th>수량</th>
-                        <th>가격</th>
-                        <th>구매처</th>
-                      </tr>
-                      <tr>
-                        <td>신라면</td>
-                        <td>5개</td>
-                        <td>1200원</td>
-                        <td>진한마트</td>
-                      </tr>
-                      <tr>
-                        <td>샴푸</td>
-                        <td>1개</td>
-                        <td>2500원</td>
-                        <td>진한마트</td>
-                      </tr>
-                      <tr>
-                        <td>유한락스 (1L) 리필형</td>
-                        <td>1개</td>
-                        <td>2500원</td>
-                        <td>진한마트</td>
-                      </tr>
-                      <tr>
-                        <td>유한락스 (1L) 리필형</td>
-                        <td>1개</td>
-                        <td>2500원</td>
-                        <td>진한마트</td>
-                      </tr>
-                      <tr>
-                        <td>유한락스 (1L) 리필형</td>
-                        <td>1개</td>
-                        <td>2500원</td>
-                        <td>진한마트</td>
-                      </tr>
-                      
-                  </table>
-                 
-                </div>
-              </a>
-              
-          <a href="#" class="purchase-list fh5co-project-item"> 
-                <div class="col-md-3" style="max-height:200px; text-align: center;">
-                 
-                  <h3>2016/04/30</h3>
-                  <h3><span class="label label-primary">수령완료</span></h3>
-                  
-                  
-                  <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">20,000 &#8361;</h1>
-                  
-                </div>
-                <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px;max-height:200px; background:#222; padding: 30px 15px;">
-                  <table style=" margin-bottom:0px; color: white;" class="table table-condensed">
-                      <tr>
-                        <th>상품명</th>
-                        <th>수량</th>
-                        <th>가격</th>
-                        <th>구매처</th>
-                      </tr>
-                      <tr>
-                        <td>신라면</td>
-                        <td>5개</td>
-                        <td>1200원</td>
-                        <td>진한마트</td>
-                      </tr>
-                     
-                  </table>
-                 
-                </div>
-              </a>
+    
+                
            
             
             
@@ -559,8 +463,7 @@
 		          </form>    
 		          </div> <!-- #formPage -->
 					</div>
-          
-          
+					
           <div id="footer"></div>
           
           </div> <!-- .container -->
@@ -710,37 +613,67 @@
   <script id="nearest-purchase-info" type="text/x-handlebars-templete">
 
       <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="fh5co-counter to-animate">
-                <i class="fh5co-counter-icon icon-money to-animate-2"></i>
+                <i class="fh5co-counter-icon icon-krw to-animate-2"></i>
                 <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{paid}}" data-speed="5000" data-refresh-interval="50">{{paid}}</span>
                 <span class="fh5co-counter-label">결제완료</span>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="fh5co-counter to-animate">
                 <i class="fh5co-counter-icon icon-inbox to-animate-2"></i>
                 <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{preparing}}" data-speed="5000" data-refresh-interval="50">{{preparing}}</span>
                 <span class="fh5co-counter-label">준비중</span>
               </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-              <div class="fh5co-counter to-animate">
-                <i class="fh5co-counter-icon icon-lightbulb-o to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{received}}" data-speed="5000" data-refresh-interval="50">{{received}}</span>
-                <span class="fh5co-counter-label">준비완료</span>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="fh5co-counter to-animate">
                 <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{complete}}" data-speed="5000" data-refresh-interval="50">{{complete}}</span>
-                <span class="fh5co-counter-label">수령완료</span>
+                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{received}}" data-speed="5000" data-refresh-interval="50">{{received}}</span>
+                <span class="fh5co-counter-label">준비완료</span>
               </div>
             </div>
           </div>
     
   </script>
+  
+  <script type="text/x-handlebars-templete">
+       <a href="#" class="purchase-list fh5co-project-item"> 
+         <div class="col-md-3" style="max-height:200px; text-align: center;">
+           <h3>2016/04/24</h3>
+           <h3><span class="label label-default">결제금액</span></h3>
+           <h1 style="color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
+               
+         </div>
+         <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
+           <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table">
+             <thead>
+               <tr>
+                 <th>상품명</th>
+                 <th>수량</th>
+                 <th>가격</th>
+                 <th>구매처</th>
+                 <th>상태</th>
+               </tr>
+             </thead>
+             <tbody>
+             </tbody> 
+           </table>
+         </div>
+       </a>
+  </script>
+  
+  <script type="text/x-handlebars-templete">
+      <tr>
+        <td>신라면</td>
+        <td>5개</td>
+        <td>1200원</td>
+        <td>진한마트</td>
+        <td><span class="label label-danger">결제완료</span></td>
+      </tr>
+  </script>
+  
   
   
   
@@ -761,7 +694,9 @@
   <script src="./resources/js/client_request.js"></script>
   
   <script type="text/javascript">
-
+  $('#nearest-order-searchBtn').on('click', function() {
+  	
+  });
 
   </script>
 

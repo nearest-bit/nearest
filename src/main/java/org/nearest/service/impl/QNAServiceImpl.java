@@ -26,7 +26,7 @@ public class QNAServiceImpl implements QNAService{
 		params.put("startIndex", (pageNo - 1) * pageSize);
 		params.put("len", pageSize);
 		params.put("adminInfo", admin.getNo());
-		return qnaDao.selectQNAList(params);
+		return qnaDao.selectQNAListByAdmin(params);
 	}
 	
 	@Override

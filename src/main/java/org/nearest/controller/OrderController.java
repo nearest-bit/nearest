@@ -94,15 +94,41 @@ public class OrderController {
   @RequestMapping(path = "orderCount", produces="application/json;charset=utf-8")
   @ResponseBody
   public String orderCount(HttpSession session){
-    Map<String, Object> result = null;
+    
     int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    Map<String, Object> result = new HashMap<>();
+    
+    
+    
     try {
-      result = orderService.getOrderCount(clientNo);
+      if( orderService.getOrderCount(clientNo) != null ) {
+        result = orderService.getOrderCount(clientNo);
+      }
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
       e.printStackTrace();
     }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(path = "orderList", produces = "application/json;charset=utf-8")
+  @ResponseBody
+  public String orderList(HttpSession session){
+    
+    int clientNo = 1;
+    Map<String, Object> result = new HashMap<>();
+    
+    try {
+      result.put("orderList", orderService.getOrderList(clientNo));
+      result.put("status", "success");
+    } catch (Exception e) {
+      // TODO: handle exception
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    
+    System.out.println(new Gson().toJson(result));
     return new Gson().toJson(result);
   }
 

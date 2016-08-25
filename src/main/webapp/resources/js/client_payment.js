@@ -73,8 +73,9 @@ var IMP = window.IMP;
 			        	  alert('insert table prod_orders failure');
 			        	  return;
 			          }
-			          alert('주문 성공');
+			          cartAlert(5);
 			          $.magnificPopup.close();
+			          location.reload();
 			        },
 			        error : function(){
 			          alert('주문 실패 error.....');
