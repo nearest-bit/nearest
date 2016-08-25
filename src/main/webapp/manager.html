@@ -192,10 +192,10 @@
 
 		<div class="nearest-manager-list">
 			<ul class="nav nav-tabs nav-justified" id="nearest-manager-menu">
-				<li class="active"><a href="#">주문내역</a></li>
-				<li><a href="#">건의사항</a></li>
-				<li><a href="#">상품등록</a></li>
-				<li><a href="#">상품관리</a></li>
+				<li class="active"><a href="#fh5co-about">주문내역</a></li>
+				<li><a href="#fh5co-testimonials">건의사항</a></li>
+				<li><a href="#fh5co-contact">상품등록</a></li>
+				<li><a href="#fh5co-work">상품관리</a></li>
 			</ul>
 		</div>
 
@@ -223,114 +223,9 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div
-							class="fh5co-person text-center to-animate nearest-margin-bottom">
-							<h3>박정환</h3>
-							<div class="fh5co-position">
-								<p class="nearest-order-list-text">수령시간</p>
-								<p class="nearest-order-list-number">2016-08-01 16:00</p>
-								<p class="nearest-order-list-text">휴대번호</p>
-								<p class="nearest-order-list-number">010-5545-8877</p>
-							</div>
-
-
-							<button type="button" class="btn btn-info"
-								id="nearest-complete-btn">준비완료</button>
-							<a class="popup-with-form" href="#order-detail-form">
-								<button type="button" class="btn btn-primary">주문상세</button>
-							</a>
-
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div
-							class="fh5co-person text-center to-animate nearest-margin-bottom">
-							<h3>손진한</h3>
-							<div class="fh5co-position">
-								<p class="nearest-order-list-text">수령시간</p>
-								<p class="nearest-order-list-number">2016-08-01 16:00</p>
-								<p class="nearest-order-list-text">휴대번호</p>
-								<p class="nearest-order-list-number">010-5545-8877</p>
-							</div>
-							<button type="button" class="btn btn-info"
-								id="nearest-complete-btn">준비완료</button>
-							<a class="popup-with-form" href="#order-detail-form">
-								<button type="button" class="btn btn-primary">주문상세</button>
-							</a>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div
-							class="fh5co-person text-center to-animate nearest-margin-bottom">
-							<h3>김종국</h3>
-							<div class="fh5co-position">
-								<p class="nearest-order-list-text">수령시간</p>
-								<p class="nearest-order-list-number">2016-08-01 16:00</p>
-								<p class="nearest-order-list-text">휴대번호</p>
-								<p class="nearest-order-list-number">010-5545-8877</p>
-							</div>
-							<button type="button" class="btn btn-info"
-								id="nearest-complete-btn">준비완료</button>
-							<a class="popup-with-form" href="#order-detail-form">
-								<button type="button" class="btn btn-primary">주문상세</button>
-							</a>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div
-							class="fh5co-person text-center to-animate nearest-margin-bottom">
-							<h3>박상일</h3>
-							<div class="fh5co-position">
-								<p class="nearest-order-list-text">수령시간</p>
-								<p class="nearest-order-list-number">2016-08-01 16:00</p>
-								<p class="nearest-order-list-text">휴대번호</p>
-								<p class="nearest-order-list-number">010-5545-8877</p>
-							</div>
-							<button type="button" class="btn btn-info"
-								id="nearest-complete-btn">준비완료</button>
-							<a class="popup-with-form" href="#order-detail-form">
-								<button type="button" class="btn btn-primary">주문상세</button>
-							</a>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div
-							class="fh5co-person text-center to-animate nearest-margin-bottom">
-							<h3>정진원</h3>
-							<div class="fh5co-position">
-								<p class="nearest-order-list-text">수령시간</p>
-								<p class="nearest-order-list-number">2016-08-01 16:00</p>
-								<p class="nearest-order-list-text">휴대번호</p>
-								<p class="nearest-order-list-number">010-5545-8877</p>
-							</div>
-							<button type="button" class="btn btn-info"
-								id="nearest-complete-btn">준비완료</button>
-							<a class="popup-with-form" href="#order-detail-form">
-								<button type="button" class="btn btn-primary">주문상세</button>
-							</a>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div
-							class="fh5co-person text-center to-animate nearest-margin-bottom">
-							<h3>박철효</h3>
-							<div class="fh5co-position">
-								<p class="nearest-order-list-text">수령시간</p>
-								<p class="nearest-order-list-number">2016-08-01 16:00</p>
-								<p class="nearest-order-list-text">휴대번호</p>
-								<p class="nearest-order-list-number">010-5545-8877</p>
-							</div>
-
-
-							<button type="button" class="btn btn-info"
-								id="nearest-complete-btn">준비완료</button>
-							<a class="popup-with-form" href="#order-detail-form">
-								<button type="button" class="btn btn-primary">주문상세</button>
-							</a>
-
-						</div>
-					</div>
+				
+					<!-- handlebars -->
+					<div id="nearest-orderList-append"></div>
 				</div>
 			</div>
 		</section>
@@ -507,11 +402,11 @@
 				<div class="row">
 					<div class="col-md-12 section-heading text-center">
 						<h2 class="to-animate">상품등록</h2>
-						<div class="row">
+						
 							<div class="col-md-8 col-md-offset-2 subtext to-animate">
 								<h3>새로운 상품을 등록 합니다.</h3>
 							</div>
-						</div>
+						
 					</div>
 				</div>
 				<div class="row row-bottom-padded-md">
@@ -718,8 +613,7 @@
 						</td>
 						<td width="20%">상품명</td>
 						<td width="40%" class="nearest-text-left">
-						  <input type="text" class="form-control col-sm-8"
-						name="nearest-manager-pdName" placeholder="상품명">
+						  <input type="text" class="form-control col-sm-8" name="nearest-manager-pdName" placeholder="상품명">
 						</td>
 					</tr>
 					<tr>
@@ -737,7 +631,7 @@
 					<tr>
 					  
 					  <td>
-					     <button type="button" class="btn btn-primary">상품 이미지 수정</button>
+					     <label class="nearest-file-upload"><input type="file" />이미지 첨부</label>
 					  </td>
 						<td>할인률</td>
 						<td class="nearest-text-left"><select>
@@ -798,11 +692,9 @@
 			});
 		});
 
-		$(function() {
-			$('#nearest-complete-btn').on('click', function() {
-				$('.nearest-margin-bottom').css('background', 'gray');
-			});
-		})
+		
+		
+		
 	</script>
     <script>
     var source = $('#nearest-qna-list-template').text();
@@ -834,6 +726,75 @@
     }
     </script>
 
+  <script id="nearest-order-list" type="text/x-handlebars-template">
+              {{#each data}}
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="fh5co-person text-center to-animate nearest-margin-bottom">
+                    <h3>{{client.name}}</h3>
+                    <div class="fh5co-position">
+                      <p class="nearest-order-list-text">수령시간</p>
+                      <p class="nearest-order-list-number">{{receiveTime}}</p>
+                      <p class="nearest-order-list-text">휴대번호</p>
+                      <p class="nearest-order-list-number">{{client.phone}}</p>
+                    </div>
+                    <button type="button" class="btn btn-info nearest-complete-btn">준비완료</button>
+                    <a class="popup-with-form nearest-orderDetail-btn" href="#order-detail-form">
+                      <button type="button" class="btn btn-primary">주문상세</button>
+                    </a>
+                  </div>
+                </div>
+              {{/each}} 
+  
+          </script>
+  
+  <script>
+	  
+	  $(function(){
+		  $.ajax({
+			  url: contextRoot + 'admin/orderList.do',
+			  dataType: 'json',
+			  method: 'post',
+			  success: function(result){
+				  
+				  var source   = $("#nearest-order-list").text();
+				  var template = Handlebars.compile(source);
+				  
+				  if (result.orderList != 'success') {
+				        alert('실행 중 오류 발생!');
+				        return;
+				        
+				  }
+				  console.log(result);
+				  
+				  $('#nearest-orderList-append').append(template(result));
+		
+					$('.nearest-orderDetail-btn').magnificPopup();
+				
+				  
+				  /* $('.nearest-complete-btn').on('click', function(){
+					  
+					  if($(this).parent().css('background', '')){
+						  $(this).parent().css('background', 'gray');
+					  }else{
+						  $(this).parent().remove('background', 'gray');
+					  }
+					  
+				  }); */
+				 
+				  
+			  },
+			  error: function(result) {
+				  alert('안돼!!!!!!!!!!!');
+			  }
+			  
+		  });  
+	  });
+	  
+	  
+	  
+  
+  
+  </script>
 
 	<!-- Main JS (Do not remove) -->
 	<script src="./resources/js/app-context.js"></script>
