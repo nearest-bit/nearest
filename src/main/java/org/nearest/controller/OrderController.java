@@ -1,5 +1,7 @@
 package org.nearest.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -118,17 +120,27 @@ public class OrderController {
     
     int clientNo = 1;
     Map<String, Object> result = new HashMap<>();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+    Set<String> table = new HashSet<>();
+    Set<Object> compareDateData = new HashSet<>();
     
     try {
-      result.put("orderList", orderService.getOrderList(clientNo));
+      List<Object> orderList = orderService.getOrderList(clientNo);
+      result.put("orderList", orderList);
+      for (int i=0; i<orderList.size(); i++) {
+        table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
+        compareDateData.add(((Map<String,Date>)orderList.get(i)).get("orderDate"));
+      }
+      result.put("orderDate", table);
+      result.put("compareDateData", compareDateData);
       result.put("status", "success");
     } catch (Exception e) {
-      // TODO: handle exception
       result.put("status", "failure");
       e.printStackTrace();
     }
     
     System.out.println(new Gson().toJson(result));
+    System.out.println(table);
     return new Gson().toJson(result);
   }
 

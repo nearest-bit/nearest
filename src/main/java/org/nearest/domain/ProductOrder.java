@@ -1,28 +1,27 @@
 package org.nearest.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class ProductOrder implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	// Field
-	protected List<Order> order;
-	protected List<Product> product;
+	protected Order order;
+	protected Product product;
 	protected int entity;
 	
 	// Getter, Setter
-	public List<Order> getOrder() {
+	public Order getOrder() {
 		return order;
 	}
-	public void setOrder(List<Order> order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
-	public List<Product> getProduct() {
+	public Product getProduct() {
 		return product;
 	}
-	public void setProduct(List<Product> product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 	public int getEntity() {

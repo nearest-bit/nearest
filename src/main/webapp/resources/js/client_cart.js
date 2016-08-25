@@ -34,33 +34,30 @@ $(function() {
 		return parseInt(value) + 1;
 	});
 	
-	var cartSource = '';
-	var cartListTempl = '';
+	var cartSource = $('#nearest-cart-list').text();
+	var cartListTempl = Handlebars.compile(cartSource);
+
+	$.ajax({
+	      url : contextRoot + 'cart/getCart.do',
+	      datatype : 'json',
+	      method : 'post',
+	      
+	      success : function(result) {
+	        if(result.status != 'success'){
+	          alert('failure');
+	          return;
+	        }
+	        $('#nearest-cart-tbody').append(cartListTempl(result));
+	        $('#nearest-client-menu').addClass('active');
+	        
+	        setTotalPrice();
+	      },
+	      
+	      error : function(request, status, error) {
+	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	      }
+	    });	
 	
-	if($.cookie('client-menu') == 'cart'){
-		cartSource = $('#nearest-cart-list').text();
-		cartListTempl = Handlebars.compile(cartSource);
-		$.ajax({
-	          url : contextRoot + 'cart/getCart.do',
-	          datatype : 'json',
-	          method : 'post',
-	          
-	          success : function(result) {
-	            if(result.status != 'success'){
-	              alert('failure');
-	              return;
-	            }
-	            $('#nearest-cart-tbody').append(cartListTempl(result));
-	            $('#nearest-client-menu').addClass('active');
-	            
-	            setTotalPrice();
-	          },
-	          
-	          error : function(request, status, error) {
-	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	          }
-	        });	
-	}
 	
 });
 
