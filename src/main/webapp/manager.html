@@ -688,11 +688,7 @@
 			});
 		});
 
-		$(function() {
-			$('#nearest-complete-btn').on('click', function() {
-				$('.nearest-margin-bottom').css('background', 'gray');
-			});
-		});
+		
 		
 		
 	</script>
@@ -708,9 +704,9 @@
                       <p class="nearest-order-list-text">휴대번호</p>
                       <p class="nearest-order-list-number">{{client.phone}}</p>
                     </div>
-                    <button type="button" class="btn btn-info" id="nearest-complete-btn">준비완료</button>
-                    <a class="popup-with-form" href="#order-detail-form">
-                      <button type="button" class="btn btn-primary" id="nearest-orderDetail-btn">주문상세</button>
+                    <button type="button" class="btn btn-info nearest-complete-btn">준비완료</button>
+                    <a class="popup-with-form nearest-orderDetail-btn" href="#order-detail-form">
+                      <button type="button" class="btn btn-primary">주문상세</button>
                     </a>
                   </div>
                 </div>
@@ -733,25 +729,26 @@
 				  if (result.orderList != 'success') {
 				        alert('실행 중 오류 발생!');
 				        return;
+				        
 				  }
 				  console.log(result);
 				  
 				  $('#nearest-orderList-append').append(template(result));
+		
+					$('.nearest-orderDetail-btn').magnificPopup();
+				
 				  
-				  /* if($('#nearest-orderDetail-btn').on('click', function(){
-				      
-					  var detailSource   = $("#order-detail-form").text();
-			      var detailTemplate = Handlebars.compile(detailSource);
+				  /* $('.nearest-complete-btn').on('click', function(){
 					  
-			      if(result.orderList != 'success') {
-			    	  alert('실행 중 오류 발생!');
-			    	  return;
-			      }
-			      console.log(result);
-					 }); 
-			    });
-				 }*/
-		  
+					  if($(this).parent().css('background', '')){
+						  $(this).parent().css('background', 'gray');
+					  }else{
+						  $(this).parent().remove('background', 'gray');
+					  }
+					  
+				  }); */
+				 
+				  
 			  },
 			  error: function(result) {
 				  alert('안돼!!!!!!!!!!!');

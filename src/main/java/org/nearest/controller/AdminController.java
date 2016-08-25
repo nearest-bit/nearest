@@ -66,8 +66,6 @@ public class AdminController {
 	      System.out.println("martNo: "+ martNo);    
 	      
 	      
-	     /* adminService.getMartNo(adminNo);*/
-	     /* adminService.getOrder(martNo);*/	      
 	      List<Order> list = adminService.getOrder(martNo);
 	      
 	      
