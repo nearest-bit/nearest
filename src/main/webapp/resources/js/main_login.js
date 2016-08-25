@@ -1,5 +1,15 @@
+$('#login-form-password').on('keydown', function(event){
+	console.log(event.keyCode);
+	if (event.keyCode == 13){
+		login();
+	}
+});
 
-$(document).on('click','#login-btn',function() {
+$('#login-btn').on('click', function(){
+	login();
+});
+
+function login(){
 	
 	if($.trim($('#login-form-username').val()) == ""){
 		alert("아이디를 입력하세요.");
@@ -22,7 +32,7 @@ $(document).on('click','#login-btn',function() {
 					//alert('관리자 체크22');
 					$(location).attr('href', './manager.html');
 					
-					$("#loginBtn").css("display", "none");
+					$("#loginBtn").css('display', 'none');
 					$("#signupBtn").css('display', 'none');
 					$("#btnSplit").css('display', 'none');
 					$('#nearest-dropdown').css('display', 'inline');
@@ -68,8 +78,9 @@ $(document).on('click','#login-btn',function() {
 			}
 		});
 		
-	}	
-});
+	}
+};
+
 
 $(document).on('click','#logoutBtn',function() {
 	$.removeCookie('loginId');

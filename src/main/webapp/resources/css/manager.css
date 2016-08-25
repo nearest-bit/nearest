@@ -27,6 +27,9 @@ p {margin:0 !important}
 
 .nearest-manager-list {
 	margin-top: 50px;
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .nearest-order-list-text {

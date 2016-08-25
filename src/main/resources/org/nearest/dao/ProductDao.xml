@@ -17,8 +17,7 @@
   </resultMap>
   
   <insert id="insertProduct" parameterType="product">
-    
-    inser
+  
   
   </insert>
   

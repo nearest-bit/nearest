@@ -12,6 +12,41 @@
     <result column="admin_pw"       property="password" />
   </resultMap>
   
+  <resultMap type="admin" id="adminOrderMap">
+    <result column="admin_no"       property="no" />
+    <association property="mart" javaType="mart">
+      <result property="admin" column="admin_no" javaType="INTEGER"/>
+      <result property="no" column="mart_no" javaType="INTEGER"/>
+    </association>
+    <association property="order" javaType="order">
+      <result property="client" column="clnt_no" javaType="INTEGER"/>
+    </association>
+    <association property="client" javaType="client">
+      <result property="client" column="clnt_no" javaType="INTEGER"/>
+      <result property="client" column="clnt_nm" javaType="STRING"/>
+      <result property="client" column="clnt_pn" javaType="STRING"/>
+    </association>
+  </resultMap>
+  
+  
+  <resultMap type="order" id="adminMartNoMap">
+    
+    <result column="mart_no"  property="no" />
+    <association property="admin" javaType="admin">
+      <result property="admin" column="admin_no" javaType="INTEGER"/>
+    </association>
+  
+  </resultMap>
+  
+  <resultMap type="order" id="orderNoMap">
+    <result column="order_no" property="no"/>
+    <association property="client" javaType="client">
+      <result column="clnt_no" property="no"/>
+      <result column="clnt_nm" property="name"/>
+      <result column="clnt_pn" property="phone"/>
+    </association>
+  </resultMap>
+  
   
   <select id="selectOne" resultMap="adminMap" parameterType="string">
     SELECT admin_no, admin_pn, admin_nm, admin_id, admin_pw
@@ -19,5 +54,21 @@
     WHERE admin_id=#{value}
   </select>
   
+    
+  
+  
+  <select id="selectOneMartNo" resultType="int" parameterType="INTEGER">
+    select mt.mt_no 
+    from admins ad, marts mt
+    where ad.ADMIN_NO = #{value} and ad.ADMIN_NO = mt.ADMIN_NO
+  </select>
+  
+  <select id="selectOrderList" resultMap="orderNoMap" parameterType="INTEGER">
+  
+    SELECT ord.order_no, ord.clnt_no, cl.clnt_nm, cl.clnt_pn
+    FROM marts mt, orders ord, clnts cl
+    WHERE mt.mt_no = #{value} AND mt.mt_no = ord.mt_no AND ord.clnt_no = cl.clnt_no
+  
+  </select>
   
 </mapper>
