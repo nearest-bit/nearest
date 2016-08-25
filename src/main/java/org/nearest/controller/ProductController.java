@@ -99,27 +99,38 @@ public class ProductController {
   
   
   
-  @RequestMapping(path="addProduct")
+  	@RequestMapping(path="addProduct")
 	@ResponseBody
 	public String addProduct(Product product,
 							 List<MultipartFile> imageFiles,
 							 HttpSession session) throws IOException {
 		HashMap<String,Object> result = new HashMap<>();
 		product.setMart((Mart)session.getAttribute("adminMart"));
+	
+		MultipartFile imageFile = null;
+		String realPath = null;
+		String filePath = null;
+		File resultFile = null;
 		
-		MultipartFile imageFile = imageFiles.get(0);
-		
-		String realPath = session.getServletContext().getRealPath("/resources/images/product");
-		String filePath = realPath + "\\" + imageFile.getOriginalFilename();
-		File resultFile = new File(filePath);
-				
-		product.setPhoto("./resources/images/product/" + imageFile.getOriginalFilename());
-						
+		String currentTime = String.valueOf(System.currentTimeMillis()); 
+	
 		try {
-			imageFile.transferTo(resultFile);
+		
+			if(imageFiles.size() != 0) {
+				imageFile = imageFiles.get(0);
+				
+				realPath = session.getServletContext().getRealPath("/resources/images/product");
+				filePath = realPath + "\\" + currentTime + imageFile.getOriginalFilename();
+				resultFile = new File(filePath);
+						
+				product.setPhoto("./resources/images/product/" + currentTime + imageFile.getOriginalFilename());
+				
+				imageFile.transferTo(resultFile);
+				result.put("photo", product.getPhoto());
+			}
+			
 			productService.addProduct(product);
 			
-			result.put("photo", product.getPhoto());
 			result.put("status", "success");
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -129,4 +140,58 @@ public class ProductController {
 		return new Gson().toJson(result);
 	}
 
+  	
+  	@RequestMapping(path="updateProduct")
+	@ResponseBody
+	public String updateProduct(Product product,
+							 List<MultipartFile> imageFiles,
+							 HttpSession session) throws IOException {
+		HashMap<String,Object> result = new HashMap<>();
+		product.setMart((Mart)session.getAttribute("adminMart"));
+		
+		System.out.println(imageFiles);
+		
+		MultipartFile imageFile = null;
+		String realPath = session.getServletContext().getRealPath("/resources/images/product");
+		String filePath = null;
+		File resultFile = null;
+		File prevFile = null;
+		
+		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "\\");
+		
+		String currentTime = String.valueOf(System.currentTimeMillis()); 
+		
+		System.out.println();
+	
+		try {
+		
+			if(imageFiles != null) {
+				imageFile = imageFiles.get(0);
+				
+				filePath = realPath + "\\" + currentTime + imageFile.getOriginalFilename();
+				resultFile = new File(filePath);
+				prevFile = new File(prevPath);
+				
+				System.out.println("filePath : " + filePath);
+				System.out.println("prevPath : " + prevPath);
+						
+				product.setPhoto("./resources/images/product/" + currentTime + imageFile.getOriginalFilename());
+				
+				prevFile.delete();
+				imageFile.transferTo(resultFile);
+				result.put("photo", product.getPhoto());
+			} else {
+				product.setPhoto(null);
+			}
+			
+			productService.updateProduct(product);
+			
+			result.put("status", "success");
+		} catch(Exception e) {
+			e.printStackTrace();
+			result.put("status", "error");
+		}
+		
+		return new Gson().toJson(result);
+	}
 }

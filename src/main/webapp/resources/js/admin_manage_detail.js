@@ -24,23 +24,41 @@ $(function() {
 		});
 	});
 	
-	$(document).on('click', '#nearest-item-update', function(event) {
+	$('.nearest-admin-list > ul > li > a[href="#manage"]').click(function () {
 		event.preventDefault();
 		
-		var adminProductNo = $('#nearest-item-prod-no').val();
-				
-		$.ajax({
-			url: contextRoot + 'product/updateProduct.do',
-			method: 'post',
-			dataType: 'json',
-			data: {
-				productNo: adminProductNo				
-			},
-			success: function(result) {
-			},
-			error: function() {
-				alert('ajax error');
+		/* 파일업로드 */
+		var detailImageList = new Array();
+		
+		$('#nearest-detail-file-upload').fileupload({
+			disableImageResize: false, 
+		    previewMaxWidth: 320, 
+		    previewMaxHeight: 320
+		}).on('fileuploadadd', function (e, data) {
+			if(detailImageList.length > 0) {
+				detailImageList.pop();
 			}
+			
+	        $.each(data.files, function (index, file) {	        	
+	        	detailImageList.push(file);
+	        });
+		}).on('fileuploadprocessalways', function(e, data) {
+	        
+			node = $("#nearest-detail-upload-image");
+			$("#nearest-detail-upload-image > img").remove();
+			$("#nearest-detail-upload-image > span").remove();
+			
+			var canvasIntodiv = $('<span class="imagewrapper"/>').append(data.files[0].preview);
+			$(canvasIntodiv.children()).attr('style', 'width: 400px; height: 280px;');
+			canvasIntodiv.appendTo(node);
+		  });
+		
+		$('#nearest-detail-image-fileupload').submit(function(event) {
+			event.preventDefault();
+			var productImageFile = $('#nearest-detail-file-upload');
+			
+			$(productImageFile).fileupload('send', {files: detailImageList});
+			$(productImageFile).fileupload('destroy');
 		});
 	});
 	

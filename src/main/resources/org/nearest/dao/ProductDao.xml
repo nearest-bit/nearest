@@ -22,6 +22,15 @@
     VALUES (#{name}, #{price}, #{entity}, #{discountRate}, #{photo}, #{mart.no});  
   </insert>
   
+  <insert id="updateProd" parameterType="product">
+    UPDATE prods
+    SET prod_nm=#{name}, prod_pri=#{price}, prod_ent=#{entity}, prod_dis=#{discountRate}, mt_no=#{mart.no} 
+    <if test="photo != null">
+    , prod_pic=#{photo}
+    </if>
+    WHERE prod_no=#{no}
+  </insert>
+  
   <select id="selectProdList" resultMap="productMap" parameterType="map">
     SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
     FROM prods

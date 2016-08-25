@@ -574,14 +574,21 @@
 				</section>
 				
 
-				<form id="nearest-product-detail-form" class="mfp-hide small-dialog">
+				<form id="nearest-product-detail-form" 
+				      class="mfp-hide small-dialog"
+              action="./product/updateProduct.do"
+              method="post"
+              enctype="multipart/form-data">
 		
 					<div class="page-header nearest-popup-margin table-responsive">
 						<h1>상품정보</h1>
 						<table class="table nearest-no-border">
 		
 							<tr>
-								<td rowspan="3" width="40%"><img id="nearest-detail-upload-image" src="./resources/images/shinramyun.png" alt="Image" width="80%">
+								<td rowspan="3" width="40%">
+								  <div id="nearest-detail-upload-image">
+                     <img id="nearest-detail-upload-image" name="imageFiles" src="./resources/images/shinramyun.png" alt="Image" width="80%">
+                  </div>
 								</td>
 								<td width="20%">상품명</td>
 								<td width="40%" class="nearest-text-left">
@@ -590,7 +597,7 @@
 								         id="nearest-admin-item-title"
 								         name="name"
 								         placeholder="상품명" />
-								  <input id="nearest-admin-item-prod-no" type="hidden" value="" />
+								  <input id="nearest-admin-item-prod-no" name="no" type="hidden" value="" />
 								</td>
 							</tr>
 							<tr>
@@ -624,7 +631,7 @@
 							</tr>
 						</table>
 						<p class="form-btn">
-							<button id="nearest-item-update" type="button" class="btn btn-primary">수정</button>
+							<input id="nearest-item-update" type="submit" class="btn btn-primary" value="수정" />
 							<button id="nearest-item-cancel" type="button" class="btn btn-default">취소</button>
 						</p>
 					</div>
