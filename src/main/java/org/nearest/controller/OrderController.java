@@ -118,7 +118,8 @@ public class OrderController {
   @ResponseBody
   public String orderList(HttpSession session){
     
-    int clientNo = 1;
+    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    System.out.println("clientNo : "+clientNo);
     Map<String, Object> result = new HashMap<>();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
     Set<String> table = new HashSet<>();

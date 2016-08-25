@@ -50,7 +50,7 @@
     and o.order_no = po.order_no
     and po.prod_no = p.prod_no
     and p.mt_no = m.mt_no
-    and c.clnt_no = 1
+    and c.clnt_no = #{value}
     group by o.order_no
   </select>
 
