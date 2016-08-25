@@ -16,6 +16,26 @@
     </association>
   </resultMap>
   
+  <resultMap type="productOrder" id="productOrderMap">
+    <result column="order_ent" property="entity"/>
+    <collection property="order" column="order_no" ofType="order" javaType="java.util.List">
+      <id column="order_no" property="no" javaType="INTEGER"/>
+      <result column="order_st" property="orderState" javaType="INTEGER"/>
+      <result column="order_dt" property="orderDate" javaType="java.sql.Date"/>
+      <collection property="martList" column="mt_no" ofType="mart" javaType="java.util.List">
+        <result column="mt_no" property="no" javaType="INTEGER"/>
+        <result column="mt_nm" property="name" javaType="string"/>
+      </collection>
+      <collection property="product" column="prod_no" ofType="product" javaType="java.util.List">
+        <id column="prod_no" property="no" javaType="INTEGER"/>
+        <result column="prod_nm" property="name" javaType="string"/>
+        <result column="prod_pri" property="price" javaType="int"/>
+      </collection>
+    </collection>
+  </resultMap>
+  
+  
+  
   <insert id="insertOrder" parameterType="map">
     insert into 
     orders (order_dt, order_st, mt_no, clnt_no) 
@@ -30,11 +50,20 @@
   
   <select id="selectOrderCount" resultType="java.util.HashMap" parameterType="int">
 	  select distinct
-			(select count(*) from orders where ORDER_ST = 1 and clnt_no = #{value}) as paid,
-			(select count(*) from orders where ORDER_ST = 2 and clnt_no = #{value}) as preparing,
-			(select count(*) from orders where ORDER_ST = 3 and clnt_no = #{value}) as complete,
-			(select count(*) from orders where ORDER_ST = 4 and clnt_no = #{value}) as received
+			(select count(DISTINCT(order_dt)) from orders where ORDER_ST = 1 and clnt_no = #{value}) as paid,
+			(select count(DISTINCT(order_dt)) from orders where ORDER_ST = 2 and clnt_no = #{value}) as preparing,
+			(select count(DISTINCT(order_dt)) from orders where ORDER_ST = 3 and clnt_no = #{value}) as complete
 		from orders
+  </select>
+  
+  <select id="selectOrderList" resultMap="productOrderMap" parameterType="int">
+    select p.prod_no, p.prod_nm, po.order_ent, p.prod_pri, m.mt_nm, o.order_no, o.order_st, o.order_dt
+		from marts m, prods p, orders o, prod_orders po
+		where o.clnt_no = #{value}
+		and p.mt_no = m.mt_no
+		and m.mt_no = o.mt_no
+		and o.order_no = po.order_no
+		and po.prod_no = p.prod_no
   </select>
 
   
