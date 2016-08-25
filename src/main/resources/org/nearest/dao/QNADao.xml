@@ -27,7 +27,7 @@
         WHERE r.mt_no = m.mt_no and clnt_no = #{value}
     </select>
     
-    <select id="selectOne" resultMap="qnaMap" parameterType="int">
+    <select id="selectQNA" resultMap="qnaMap" parameterType="int">
         SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
         FROM reqs
         WHERE req_no = #{value}

@@ -8,7 +8,7 @@ import org.nearest.domain.QNA;
 public interface QNAService {
 	
 	void addQNA(QNA qna);
-	
+	List<QNA> getQNAList(int clientNo);
 	List<QNA> getQNAListByAdmin(int pageNo, int pageSize, Admin admin);
 	QNA getQNA(int no);
 	List<QNA> updateQNA(String replyContent, Admin admin);

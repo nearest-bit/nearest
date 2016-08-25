@@ -6,7 +6,7 @@ $( function() {
 		var template = Handlebars.compile(source);
 		
 		$.ajax({
-	        url: contextRoot + 'qna/QNAlist.do',
+	        url: contextRoot + 'qna/QNAlistByAdmin.do',
 	        dataType: 'json',
 	        method: 'post',
 	        success: function(result) {

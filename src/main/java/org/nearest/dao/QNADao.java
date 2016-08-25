@@ -9,7 +9,7 @@ public interface QNADao {
 	void insert(QNA qna);
 	List<QNA> selectQNAList(int clientNo);
 	List<QNA> selectQNAListByAdmin(Map<String,Object> params);
-	QNA selectOne(int no);
+	QNA selectQNA(int no);
 	List<QNA> update(Map<String,Object> replyInfo);
 	int delete(int no);
 }

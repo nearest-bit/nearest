@@ -21,6 +21,11 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
+	public List<QNA> getQNAList(int clientNo){
+		return qnaDao.selectQNAList(clientNo);
+	}
+	
+	@Override
 	public List<QNA> getQNAListByAdmin(int pageNo, int pageSize, Admin admin){
 		HashMap<String,Object> params = new HashMap<>();
 		params.put("startIndex", (pageNo - 1) * pageSize);
@@ -31,7 +36,7 @@ public class QNAServiceImpl implements QNAService{
 	
 	@Override
 	public QNA getQNA(int no){
-		return qnaDao.selectOne(no);
+		return qnaDao.selectQNA(no);
 	}
 	
 	@Override
