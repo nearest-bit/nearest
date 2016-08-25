@@ -556,7 +556,7 @@
               {{#each productData}}
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                   <input type="hidden" value="{{no}}" />
-                  <a href="#nearest-product-detail-form"
+                  <a href="#nearest-detail-image-fileupload"
                      class="fh5co-project-item popup-with-form"> 
                     <img src="{{photo}}" alt="Image" class="img-responsive">
                     <div class="fh5co-text">
@@ -570,13 +570,13 @@
             
 						<div id="nearest-admin-product-list" class="row row-bottom-padded-sm">
 						</div>
-		
+		      </div>
 				</section>
 				
 
-				<form id="nearest-product-detail-form" 
+				<form id="nearest-detail-image-fileupload" 
 				      class="mfp-hide small-dialog"
-              action="./product/updateProduct.do"
+				      action="./product/updateProduct.do"
               method="post"
               enctype="multipart/form-data">
 		
@@ -587,7 +587,7 @@
 							<tr>
 								<td rowspan="3" width="40%">
 								  <div id="nearest-detail-upload-image">
-                     <img id="nearest-detail-upload-image" name="imageFiles" src="./resources/images/shinramyun.png" alt="Image" width="80%">
+                     <img id="nearest-detail-upload-image" src="./resources/images/shinramyun.png" alt="Image">
                   </div>
 								</td>
 								<td width="20%">상품명</td>

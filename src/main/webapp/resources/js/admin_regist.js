@@ -1,6 +1,8 @@
 $( function() {
 	
-	$('.nearest-admin-list > ul > li > a[href="#regist"]').click(function () {		
+	$('.nearest-admin-list > ul > li > a[href="#regist"]').click(function () {	
+//		$('#nearest-detail-file-upload').fileupload('destroy');
+		
 		var imageList = new Array();
 		var count = 1;
 		
@@ -8,10 +10,7 @@ $( function() {
 			disableImageResize: false, 
 		    previewMaxWidth: 320, 
 		    previewMaxHeight: 320
-		}).on('fileuploadadd', function (e, data) {
-			console.log('fileuploadadd : ' + count);
-			count++;
-			
+		}).on('fileuploadadd', function (e, data) {			
 			if(imageList.length > 0) {
 				imageList.pop();
 			}
@@ -21,7 +20,6 @@ $( function() {
 	        });
 		}).on('fileuploadprocessalways', function(e, data) {
 	        console.log('fileuploadprocessalways : ' + count);
-	        count++;
 			
 			node = $("#nearest-upload-image");
 			$("#nearest-upload-image > img").remove();
@@ -34,16 +32,11 @@ $( function() {
 		
 		$('#nearest-image-fileupload').submit(function(event) {
 			event.preventDefault();
-			var productImageFile = $('#nearest-image-file-upload');
 			
-			console.log('submit : ' + count);
-			count++;
+			var productImageFile = $('#nearest-file-upload');
 			
 			$(productImageFile).fileupload('send', {files: imageList});
 			$(productImageFile).fileupload('destroy');
-			
-			console.log('after fileupload : ' + count);
-			count++;
 		});
 	});
 });

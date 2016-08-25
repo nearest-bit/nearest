@@ -149,8 +149,8 @@ public class ProductController {
 		HashMap<String,Object> result = new HashMap<>();
 		product.setMart((Mart)session.getAttribute("adminMart"));
 		
-		System.out.println(imageFiles);
-		
+		System.out.println(imageFiles.get(0).getOriginalFilename());
+				
 		MultipartFile imageFile = null;
 		String realPath = session.getServletContext().getRealPath("/resources/images/product");
 		String filePath = null;
@@ -160,8 +160,6 @@ public class ProductController {
 		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "\\");
 		
 		String currentTime = String.valueOf(System.currentTimeMillis()); 
-		
-		System.out.println();
 	
 		try {
 		

@@ -25,7 +25,7 @@ $(function() {
 	});
 	
 	$('.nearest-admin-list > ul > li > a[href="#manage"]').click(function () {
-		event.preventDefault();
+//		$('#nearest-file-upload').fileupload('destroy');		
 		
 		/* 파일업로드 */
 		var detailImageList = new Array();
@@ -55,8 +55,9 @@ $(function() {
 		
 		$('#nearest-detail-image-fileupload').submit(function(event) {
 			event.preventDefault();
-			var productImageFile = $('#nearest-detail-file-upload');
 			
+			var productImageFile = $('#nearest-detail-file-upload');
+0			
 			$(productImageFile).fileupload('send', {files: detailImageList});
 			$(productImageFile).fileupload('destroy');
 		});
