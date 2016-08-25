@@ -35,6 +35,9 @@ function cartAlert(option) {
 	 case 4:
 		sweetAlert("이런...", "최소 구매 수량 입니다!", "error");
 		break;
+	 case 5:
+		 swal("주문 성공!", "", "success");
+		 break;
 	}
 }
 

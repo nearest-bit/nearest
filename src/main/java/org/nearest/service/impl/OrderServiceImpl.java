@@ -3,6 +3,7 @@ package org.nearest.service.impl;
 import java.util.Map;
 
 import org.nearest.dao.OrderDao;
+import org.nearest.domain.ProductOrder;
 import org.nearest.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,12 @@ public class OrderServiceImpl implements OrderService {
   public Map<String, Object> getOrderCount(int clientNo) {
     // TODO Auto-generated method stub
     return orderDao.selectOrderCount(clientNo);
+  }
+
+  @Override
+  public ProductOrder getOrderList(int clientNo) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderList(clientNo);
   }
 
 }
