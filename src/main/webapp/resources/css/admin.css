@@ -56,7 +56,16 @@ p {margin:0 !important}
 }
 
 .nearest-product-register > img {
-	width: 100%;
+	max-width: 400px; 
+	height: auto;
+	
+	width: 400px;
+	height: 280px;
+}
+
+#nearest-product-detail-form img {
+	width: 400px;
+  height: 280px;
 }
 
 .nearest-wrapp-position {
@@ -179,4 +188,12 @@ input[type="file"] {
     height: 400px;
     margin: 0 auto;
     position: relative;
+}
+
+.img-responsive {
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }

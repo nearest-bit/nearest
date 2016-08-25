@@ -16,6 +16,7 @@ $(function() {
 				$('#nearest-admin-item-prod-no').val(productNo);
 				$('#nearest-admin-item-entity').val(data.entity);
 				$('#nearest-admin-item-price').val(data.price);
+				$('#nearest-product-detail-form img').attr('src', data.photo);
 			},
 			error: function() {
 				

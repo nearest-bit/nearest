@@ -557,8 +557,8 @@
                 <div class="col-md-4 col-sm-6 col-xxs-12">
                   <input type="hidden" value="{{no}}" />
                   <a href="#nearest-product-detail-form"
-                     class="fh5co-project-item popup-with-form"> <img
-                     src="{{photo}}" alt="Image" class="img-responsive">
+                     class="fh5co-project-item popup-with-form"> 
+                    <img src="{{photo}}" alt="Image" class="img-responsive">
                     <div class="fh5co-text">
                       <h2>{{name}}</h2>
                       <span>가격 {{price}}원/수량 {{entity}}개/할인율 {{discountRate}}%</span>
@@ -581,13 +581,14 @@
 						<table class="table nearest-no-border">
 		
 							<tr>
-								<td rowspan="3" width="40%"><img src="./resources/images/shinramyun.png" alt="Image" width="80%" align="center">
+								<td rowspan="3" width="40%"><img id="nearest-detail-upload-image" src="./resources/images/shinramyun.png" alt="Image" width="80%">
 								</td>
 								<td width="20%">상품명</td>
 								<td width="40%" class="nearest-text-left">
 								  <input type="text" 
 								         class="form-control col-sm-8"
 								         id="nearest-admin-item-title"
+								         name="name"
 								         placeholder="상품명" />
 								  <input id="nearest-admin-item-prod-no" type="hidden" value="" />
 								</td>
@@ -595,28 +596,29 @@
 							<tr>
 								<td>판매가</td>
 								<td class="nearest-text-left">
-									<input type="text" class="form-control col-sm-8" id="nearest-admin-item-price" placeholder="상품 이름">
+									<input name="price" type="text" class="form-control col-sm-8" id="nearest-admin-item-price" placeholder="판매 가격">
 								</td>
 							</tr>
 							<tr>
 								<td>재고량</td>
 								<td class="nearest-text-left">
-									<input type="text" class="form-control col-sm-8" id="nearest-admin-item-entity" placeholder="상품 이름">
+									<input name="entity" type="text" class="form-control col-sm-8" id="nearest-admin-item-entity" placeholder="재고">
 								</td>
 							</tr>
 							<tr>
 							  
 							  <td>
-							     <button type="button" class="btn btn-primary">상품 이미지 수정</button>
+							     <label class="nearest-file-upload"><input id="nearest-detail-file-upload" name="imageFiles" type="file" /> 상품 이미지 수정</label>
 							  </td>
 								<td>할인률</td>
-								<td class="nearest-text-left"><select>
-										<option selected="selected">0%</option>
-										<option>5%</option>
-										<option>10%</option>
-										<option>15%</option>
-										<option>20%</option>
-										<option>25%</option>
+								<td class="nearest-text-left">
+								  <select name="discountRate">
+										<option selected="selected" value="0">0%</option>
+										<option value="5">5%</option>
+										<option value="10">10%</option>
+										<option value="15">15%</option>
+										<option value="20">20%</option>
+										<option value="25">25%</option>
 								    </select>
 								</td>
 							</tr>
@@ -626,7 +628,6 @@
 							<button id="nearest-item-cancel" type="button" class="btn btn-default">취소</button>
 						</p>
 					</div>
-		
 				</form>
 				<!-- 상품관리 끝 -->
 			</div>
