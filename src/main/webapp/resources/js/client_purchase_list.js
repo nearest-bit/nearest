@@ -29,11 +29,11 @@ $(function(){
     
     Handlebars.registerHelper("state", function(value, options){
     	 if(value == '1'){
-    		 return new Handlebars.SafeString('<span class="label label-danger">결제완료</span>');
+    		 return new Handlebars.SafeString('<span class="label label-primary">결제완료</span>');
     	 }else if(value == '2'){
-    		 return new Handlebars.SafeString('<span class="label label-danger">준비중</span>');
+    		 return new Handlebars.SafeString('<span class="label label-info">준비중</span>');
     	 }else if(value == '3'){
-    		 return new Handlebars.SafeString('<span class="label label-danger">준비완료</span>');
+    		 return new Handlebars.SafeString('<span class="label label-success">준비완료</span>');
     	 }else if(value == '4'){
     		 return new Handlebars.SafeString('<span class="label label-danger">수령완료</span>');
     	 }
@@ -52,16 +52,47 @@ $(function(){
             if(result.status != 'success'){
               alert('failure');
               return;
-            }if(result.orderList[0].orderDate)
+            }
+            
             $('#nearest-purchase-list-div').append(purchaseListTableFormTempl(result.orderDate));
             
             for(var i=0; i<result.orderList.length; i++){
             	   for(var j=0; j<result.compareDateData.length; j++){
             		   if(result.orderList[i].orderDate == result.compareDateData[j]){
-            			   var id = '#nearest-purchaseList-tr-'+j;
+            			   var id = '#nearest-purchaseList-tbody-'+j;
             			   $(id).append(purchaseListTableContentTempl(result.orderList[i]));
             		   }
             	   }
+            }
+            // 강사님 추천 Handlebars helper 함수 대체
+            /*for(var i=0; i<result.orderList.length; i++){
+         	   for(var j=0; j<result.compareDateData.length; j++){
+         		   if(result.orderList[i].orderDate == result.compareDateData[j]){
+         			   var id = '#nearest-purchaseList-tbody-'+j;
+         			   if (orderList[i].orderState == 1) {
+         				   orderList[i].orderStateLabel = '준비중';
+         				   orderList[i].orderStateCss = 'label-default';
+         			   } else if (orderList[i].orderState == 2) {
+         				   orderList[i].orderStateLabel = '준비완료';
+         				   orderList[i].orderStateCss = 'label-primitive';
+         			   } 
+         			   $(id).append(purchaseListTableContentTempl(result.orderList[i]));
+         		   }
+         	   }
+         }*/
+            
+            
+            for(var i=0; i<$('.nearest-purchased-list-table').length; i++){
+            	
+            	var tbodyId = '#nearest-purchaseList-tbody-'+i+' > tr > .nearest-mart-price';
+            	var totalPrice = 0;
+            	
+            	for(var j=0; j<$(tbodyId).length; j++){
+            		
+            		totalPrice += parseInt($($(tbodyId)[j]).attr('price-data'));
+            	
+            	}
+            	$('#nearest-putchase-total-price-'+i).html(totalPrice+'&#8361;');
             }
             
           },
@@ -73,23 +104,60 @@ $(function(){
   });
   $(document).on('click','.nearest-order-list-detail',function(event) {
     event.preventDefault();
+    $('.nearest-product-receipt-list-tr').remove();
+    var productReceiptList = $('#nearest-product-recipt-list').text();
+    var productReceiptListTempl = Handlebars.compile(productReceiptList);
     
-    $.magnificPopup.open({
-      items: {
-        src: $('#nearest-purchase-receipt')
-      },
-      type: 'inline',
+    $.ajax({
+    	url : contextRoot + 'order/myOrderList.do',
+    	datatype : 'json',
+    	method : 'post',
+    	data : {
+    		martNo : $(this).children('td').attr('mart-no'),
+    		orderNo : $(this).children('td').attr('order-no')
+    	},
+    	success : function(result){
+    		if(result.status != 'success'){
+    			alert('myOrderList Contriller Error....');
+    			return;
+    		}
+    		/*alert(result.orderDetail);*/
+    		var realTotalPrice = 0;
+    		$('#receipt-client-name').text(result.orderInfo.client.name);
+    		$('#receipt-mart-name').text(result.orderInfo.mart.name);
+    		$('#receipt-mart-tel').text(result.orderInfo.mart.telNo);
+    		$('#receipt-order-date').text(result.orderInfo.orderDate);
+    		$('#receipt-mart-addr').text(result.orderInfo.mart.addr);
+    		$('#receipt-mart-addrDetail').text(result.orderInfo.mart.addrDetail);
+    		for(var i=0; i<result.orderDetail.length; i++){
+    			result.orderDetail[i].totalPrice = result.orderDetail[i].price * result.orderDetail[i].orderEnt;
+    			realTotalPrice += (result.orderDetail[i].price * result.orderDetail[i].orderEnt);
+    		}
+    		$('#nearest-product-receipt').after(productReceiptListTempl(result.orderDetail));
+    		
+    		$('#nearest-receipt-real-total-price').text(realTotalPrice+'원');
+    		
+    		$.magnificPopup.open({
+    		      items: {
+    		        src: $('#nearest-purchase-receipt')
+    		      },
+    		      type: 'inline',
 
-      fixedContentPos: false,
-      fixedBgPos: true,
+    		      fixedContentPos: false,
+    		      fixedBgPos: true,
 
-      overflowY: 'auto',
+    		      overflowY: 'auto',
 
-      closeBtnInside: true,
-      preloader: false,
-      
-      midClick: true,
-      removalDelay: 300,
-      mainClass: 'my-mfp-zoom-in'
+    		      closeBtnInside: true,
+    		      preloader: false,
+    		      
+    		      midClick: true,
+    		      removalDelay: 300,
+    		      mainClass: 'my-mfp-zoom-in'
+    		    });
+    		
+    	}
     });
+    
+    
   });

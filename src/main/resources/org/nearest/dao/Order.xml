@@ -11,9 +11,13 @@
     <association property="mart" javaType="mart">
       <result column="mt_no" property="no" javaType="INTEGER"/>
       <result column="mt_nm" property="name" javaType="string"/>
+      <result column="mt_addr" property="addr"/>
+      <result column="mt_addt" property="addrDetail"/>
+      <result column="mt_tel" property="telNo"/>
     </association>
     <association property="client" javaType="client">
       <result column="clnt_no" property="no" javaType="INTEGER"/>
+      <result column="clnt_nm" property="name" javaType="string"/>
     </association>
   </resultMap>
   
@@ -44,7 +48,7 @@
   </select>
   
   <select id="selectOrderList" resultType="java.util.HashMap" parameterType="int">
-    select m.mt_nm martName, o.order_dt orderDate, p.prod_nm productName, sum(prod_pri) totalPrice, count(p.prod_no) totalCount, o.order_st orderState
+    select o.order_no orderNo, m.mt_no martNo, m.mt_nm martName, o.order_dt orderDate, p.prod_nm productName, sum(prod_pri) totalPrice, count(p.prod_no) totalCount, o.order_st orderState
     from clnts c, orders o, prod_orders po, prods p, marts m
     where c.clnt_no = o.clnt_no 
     and o.order_no = po.order_no
@@ -53,7 +57,28 @@
     and c.clnt_no = #{value}
     group by o.order_no
   </select>
+  
+  <select id="selectOrderInfoOne" resultMap="orderMap" parameterType="map">
+    select c.clnt_nm ,m.mt_nm, m.mt_addr, m.mt_addt, m.mt_tel, o.order_dt from marts m, orders o, clnts c
+    where m.mt_no = #{martNo}
+    and o.mt_no = m.mt_no
+    and o.order_no = #{orderNo}
+    and c.clnt_no = #{clientNo}
+    order by o.order_dt
+  </select>
+  
+  <select id="selectOrderDetailList" resultType="java.util.HashMap" parameterType="map">
+    select o.order_no orderNo, p.prod_nm prodName, po.order_ent orderEnt, p.prod_pri price 
+    from prods p, orders o, clnts c, prod_orders po, marts m
+    where c.clnt_no = #{clientNo}
+    and p.prod_no = po.prod_no
+    and po.order_no = o.order_no
+    and m.mt_no = o.mt_no
+    and m.mt_no = #{martNo}
+    and o.order_no = #{orderNo}
+  </select>
 
   
+
 
 </mapper>

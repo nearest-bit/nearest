@@ -377,10 +377,6 @@
     </div>
   </div>
   
-    
-  
-  
-    
     <!-- start payment popup -->
     <div id="nearest-purchase-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
       <div id="charge-form">
@@ -554,7 +550,7 @@
           <h4 style="font-size: 22px;"><span class="label label-danger">주문시간</span></h4>    
           <h4 style="font-size: 22px;">{{this}}</h4>
           <h4 style="font-size: 22px;"><span class="label label-default">결제금액</span></h4>    
-          <h1 style="margin-bottom:10px; color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
+          <h1 id="nearest-putchase-total-price-{{@index}}" style="margin-bottom:10px; color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;"></h1>
       </div>
       <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
         <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table nearest-hover-table">
@@ -566,7 +562,7 @@
               <th>상태</th>
             </tr>
           </thead>
-          <tbody id="nearest-purchaseList-tr-{{@index}}">
+          <tbody id="nearest-purchaseList-tbody-{{@index}}">
 
           </tbody> 
         </table>
@@ -576,14 +572,34 @@
   </script>
   <script id="nearest-purchase-list-table-content" type="text/x-handlebars-templete">
     <tr style="cursor:pointer;" class="nearest-order-list-detail">
-      <td>{{martName}}</td>
+      <td mart-no="{{martNo}}" order-no="{{orderNo}}">{{martName}}</td>
       <td>{{productName}} 포함 {{totalCount}}개</td>
-      <td>{{totalPrice}}원</td>
+      <td class="nearest-mart-price" price-data="{{totalPrice}}">{{totalPrice}}원</td>
+      
       <td>{{state orderState}}</td>
     </tr>
   </script>
-  
-  
+  <script id="nearest-product-recipt-list" type="text/x-handlebars-templete">
+    {{#each this}}
+    <tr class="nearest-product-receipt-list-tr">
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+        {{prodName}}
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">
+        {{orderEnt}}개
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">
+        {{price}}원
+      </td>
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">
+        {{totalPrice}}원
+      </td>
+    </tr>
+    {{/each}}
+
+  </script>
+  <!-- 강사님 추천 -->
+  <!-- <td><span class="label ${{orderStateCss}}">${{orderStateLabel}}</span></td> -->
   
   
   <!-- Main JS (Do not remove) -->
@@ -603,7 +619,7 @@
   <script src="./resources/js/logout.js"></script>
   
   <script type="text/javascript">
- 
+  
   </script>
 
 </body>

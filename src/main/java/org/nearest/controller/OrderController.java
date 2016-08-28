@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.nearest.service.OrderService;
 import org.nearest.service.ProductOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,10 +35,11 @@ public class OrderController {
   ProductOrderService productOrderService;
   
   @RequestMapping(path = "addOrder", method=RequestMethod.POST, produces = "applicetion/json;charset=utf-8")
-  @ResponseBody
+  @ResponseBody 
   public String addOrder(HttpSession session, @RequestParam(value="martNo") List<Integer> martNo,
                                               @RequestParam(value="prodNo") List<Integer> prodNo,
-                                              @RequestParam(value="prodEnt") List<Integer> prodEnt){
+                                              @RequestParam(value="prodEnt") List<Integer> prodEnt
+                                              ){
 
     int clientNo = ((Client)session.getAttribute("loginId")).getNo();
     //마트 중복 제거
@@ -122,14 +125,15 @@ public class OrderController {
     System.out.println("clientNo : "+clientNo);
     Map<String, Object> result = new HashMap<>();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
-    Set<String> table = new HashSet<>();
-    Set<Object> compareDateData = new HashSet<>();
+    Set<String> table = new TreeSet<>();
+    Set<Object> compareDateData = new TreeSet<>();
     
     try {
       List<Object> orderList = orderService.getOrderList(clientNo);
       result.put("orderList", orderList);
-      for (int i=0; i<orderList.size(); i++) {
+      for (int i=0; i < orderList.size(); i++) {
         table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
+        System.out.println(((Map<String,Date>)orderList.get(i)).get("orderDate"));
         compareDateData.add(((Map<String,Date>)orderList.get(i)).get("orderDate"));
       }
       result.put("orderDate", table);
@@ -141,7 +145,33 @@ public class OrderController {
     }
     
     System.out.println(new Gson().toJson(result));
+    System.out.println(result.get("orderDate"));
     System.out.println(table);
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(value = "myOrderList",produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String myOrderList(int martNo, int orderNo,HttpSession session){
+    
+    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    Map<String, Integer> params = new HashMap<>();
+    params.put("martNo", martNo);
+    params.put("orderNo", orderNo);
+    params.put("clientNo", clientNo);
+    Map<String, Object> result = new HashMap<>();
+    
+    try{
+      result.put("status", "success");
+      result.put("orderInfo", orderService.getOrderInfo(params));
+      result.put("orderDetail", orderService.getOrderDetailList(params));
+    }catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    System.out.println(orderService.getOrderInfo(params));
+    System.out.println(orderService.getOrderDetailList(params));
+    System.out.println(result);
     return new Gson().toJson(result);
   }
 
