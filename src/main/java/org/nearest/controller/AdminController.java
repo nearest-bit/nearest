@@ -61,12 +61,12 @@ public class AdminController {
 	  try {
 	    List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
 	      
-  	    result.put("orderList", "success");
+  	    result.put("state", "success");
   	    result.put("orderData", list);
 	   
 	  }catch (Exception e) {
 	    e.printStackTrace();
-	    result.put("orderList", "failure");
+	    result.put("state", "failure");
 	  }
 	  
 	  return new Gson().toJson(result);

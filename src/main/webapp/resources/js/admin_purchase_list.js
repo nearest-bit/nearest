@@ -81,6 +81,48 @@ $(function(){
 	    		
 	    	}
 	    });
+	    
+	    $.ajax({
+	    	url : contextRoot + 'order/updateOrderState.do',
+	    	datatype : 'json',
+	    	method : 'post',
+	    	data : {
+	    		orderNo : $(this).attr('order-no'),
+	    		orderState : $(this).attr('order-state'),
+	    		option : 1
+	    	},
+	    	success : function(result){
+	    		if(result.state != 'success') {
+	    			console.log(result.state);
+	    			return;
+	    		}
+	    	},
+	    	error : function() {
+	    		alert('ajax error');
+	    	}
+	    });
+    });
+    
+    $(document).on('click', '.nearest-complete-btn', function() {
+    	$.ajax({
+	    	url : contextRoot + 'order/updateOrderState.do',
+	    	datatype : 'json',
+	    	method : 'post',
+	    	data : {
+	    		orderNo : $(this).next().children().attr('order-no'),
+	    		orderState : $(this).next().children().attr('order-state'),
+	    		option : 2
+	    	},
+	    	success : function(result){
+	    		if(result.state != 'success') {
+	    			console.log(result.state);
+	    			return;
+	    		}
+	    	},
+	    	error : function() {
+	    		alert('ajax error');
+	    	}
+	    });
     });
     
   });

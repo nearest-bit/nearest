@@ -14,4 +14,6 @@ public interface OrderService {
   
   Order getOrderInfoByAdmin(Map<String, Integer> params);
   List<Map<String, Object>> getOrderDetailListByAdmin(Map<String, Integer> params);
+  
+  int updateOrderState(Map<String, Integer> params);
 }

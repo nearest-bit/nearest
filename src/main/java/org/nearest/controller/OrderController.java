@@ -28,6 +28,9 @@ import com.google.gson.Gson;
 @Controller
 @RequestMapping("/order/")
 public class OrderController {
+	
+	public static final int ORDER_STATE_OPTION_READY = 1;
+	public static final int ORDER_STATE_OPTION_READY_END = 2;
   
   @Autowired
   OrderService orderService;
@@ -195,4 +198,46 @@ public class OrderController {
     return new Gson().toJson(result);
   }
 
+
+  @RequestMapping(path = "updateOrderState", method=RequestMethod.POST, produces = "applicetion/json;charset=utf-8")
+  @ResponseBody 
+  public String updateOrderState(int orderNo, int orderState, int option){
+
+    Map<String, Object> result = new HashMap<>();
+    Map<String, Integer> params = new HashMap<>();
+    
+    switch(option) {
+    	case ORDER_STATE_OPTION_READY:
+    		if(orderState == 1) {
+    	    	params.put("orderNo", orderNo);
+    	    	params.put("orderState", 2);
+    	    } else {
+    	    	result.put("state", "Already OrderState >= 2");
+    	    	return new Gson().toJson(result);
+    	    }
+    		
+    		break;
+    	case ORDER_STATE_OPTION_READY_END:
+    		if(orderState == 2) {
+		    	params.put("orderNo", orderNo);
+		    	params.put("orderState", 3);
+		    } else {
+		    	result.put("state", "OrderState 1 or 2");
+		    	return new Gson().toJson(result);
+		    }
+    		break;
+    	default:
+    		break;
+    }
+    
+    try{
+      orderService.updateOrderState(params);
+      result.put("state", "success");
+    }catch (Exception e) {
+      e.printStackTrace();
+      result.put("state", "failure");
+    }
+   
+    return new Gson().toJson(result);
+  }
 }

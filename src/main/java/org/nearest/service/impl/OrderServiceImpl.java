@@ -57,4 +57,8 @@ public class OrderServiceImpl implements OrderService {
     // TODO Auto-generated method stub
     return orderDao.selectOrderDetailListByAdmin(params);
   }
+  
+  public int updateOrderState(Map<String, Integer> params) {
+	  return orderDao.updateOrderState(params);
+  }
 }
