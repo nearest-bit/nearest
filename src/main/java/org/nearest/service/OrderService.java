@@ -11,4 +11,7 @@ public interface OrderService {
   List<Object> getOrderList(int clientNo);
   Order getOrderInfo(Map<String, Integer> params);
   List<Map<String, Object>> getOrderDetailList(Map<String, Integer> params);
+  
+  Order getOrderInfoByAdmin(Map<String, Integer> params);
+  List<Map<String, Object>> getOrderDetailListByAdmin(Map<String, Integer> params);
 }

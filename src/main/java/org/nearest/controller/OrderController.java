@@ -13,11 +13,11 @@ import java.util.TreeSet;
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Client;
+import org.nearest.domain.Mart;
 import org.nearest.service.OrderService;
 import org.nearest.service.ProductOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -152,9 +152,23 @@ public class OrderController {
   
   @RequestMapping(value = "myOrderList",produces="application/json;charset=utf-8")
   @ResponseBody
-  public String myOrderList(int martNo, int orderNo,HttpSession session){
+  public String myOrderList(@RequestParam(defaultValue = "0") int martNo,
+		  					@RequestParam(defaultValue = "0") int clientNo,
+		  					int orderNo, 
+		  					HttpSession session){
+	String option = null;
+	  
+	if(martNo == 0) {
+		martNo = ((Mart)session.getAttribute("adminMart")).getNo();
+		option = "admin";
+	} else if(clientNo == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	}
+	
+	System.out.println(martNo);
+	System.out.println(orderNo);
+	System.out.println(clientNo);
     
-    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
     Map<String, Integer> params = new HashMap<>();
     params.put("martNo", martNo);
     params.put("orderNo", orderNo);
@@ -163,14 +177,20 @@ public class OrderController {
     
     try{
       result.put("status", "success");
-      result.put("orderInfo", orderService.getOrderInfo(params));
-      result.put("orderDetail", orderService.getOrderDetailList(params));
+      
+      if(option != null) {
+    	  result.put("orderInfo", orderService.getOrderInfoByAdmin(params));
+          result.put("orderDetail", orderService.getOrderDetailListByAdmin(params));  
+      } else {
+    	  result.put("orderInfo", orderService.getOrderInfo(params));
+          result.put("orderDetail", orderService.getOrderDetailList(params));
+      }
     }catch (Exception e) {
       result.put("status", "failure");
       e.printStackTrace();
     }
-    System.out.println(orderService.getOrderInfo(params));
-    System.out.println(orderService.getOrderDetailList(params));
+    System.out.println(result.get("orderInfo"));
+    System.out.println(result.get("orderDetail"));
     System.out.println(result);
     return new Gson().toJson(result);
   }

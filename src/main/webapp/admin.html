@@ -215,7 +215,7 @@
                      </div>
                      <button type="button" class="btn btn-info nearest-complete-btn">준비완료</button>
                      <a class="popup-with-form nearest-orderDetail-btn" href="#order-detail-form">
-                       <button type="button" class="btn btn-primary">주문상세</button>
+                       <button type="button" class="btn btn-primary nearest-order-list-detail" order-no="{{no}}" client-no="{{client.no}}">주문상세</button>
                      </a>
                  </div>
                </div>
@@ -227,82 +227,30 @@
 		        </div>
 		      </div>
 		    </section>
-	
-				<form id="order-detail-form" class="white-popup-block mfp-hide"
-					data-effect="mfp-3d-unfold">
-					<div class="page-header nearest-popup-margin">
-						<h1>주문상세</h1>
-						<table class="table table-hover table-bordered">
-							<tr>
-								<th>상품코드</th>
-								<th>제품명</th>
-								<th>수량</th>
-								<th>가격</th>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-							<tr>
-								<td>10025</td>
-								<td>농심 신라면</td>
-								<td>5개</td>
-								<td>25,000원</td>
-							</tr>
-		
-						</table>
-						<p style="text-align: right">
-							<button type="button" class="btn btn-info">준비완료</button>
-							<button type="button" class="btn btn-default">취소</button>
-						</p>
-					</div>
-				</form>
 				<!-- End of joomoonList -->
+				
+				<div id="nearest-receipt" class="zoom-anim-dialog mfp-hide small-dialog"><!-- receipt div --></div>
 			</div>
+			
+	  <script id="nearest-product-recipt-list" type="text/x-handlebars-templete">
+    {{#each this}}
+    <tr class="nearest-product-receipt-list-tr">
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+        {{prodName}}
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">
+        {{orderEnt}}개
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">
+        {{price}}원
+      </td>
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">
+        {{totalPrice}}원
+      </td>
+    </tr>
+    {{/each}}
+
+    </script>
 
       <div id="qna" class="tab-pane fade">
 				<!-- 건의사항 시작 -->
@@ -577,6 +525,7 @@
 	<script src="./resources/js/admin_manage_detail.js"></script>
 	<script src="./resources/js/admin_qna.js"></script>
 	<script src="./resources/js/admin_regist.js"></script>
+	<script src="./resources/js/admin_purchase_list.js"></script>
 	<script src="./resources/js/logout.js"></script>
 	
 </body>

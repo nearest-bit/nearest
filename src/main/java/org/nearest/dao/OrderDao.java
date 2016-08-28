@@ -12,4 +12,6 @@ public interface OrderDao {
     Order selectOrderInfoOne(Map<String, Integer> params);
     List<Map<String, Object>> selectOrderDetailList(Map<String, Integer> params);
     
+    Order selectOrderInfoOneByAdmin(Map<String, Integer> params);
+    List<Map<String, Object>> selectOrderDetailListByAdmin(Map<String, Integer> params);
 }

@@ -18,6 +18,7 @@
     <association property="client" javaType="client">
       <result column="clnt_no" property="no" javaType="INTEGER"/>
       <result column="clnt_nm" property="name" javaType="string"/>
+      <result column="clnt_pn" property="phone" javaType="string"/>
     </association>
   </resultMap>
   
@@ -65,7 +66,7 @@
     and o.order_no = #{orderNo}
     and c.clnt_no = #{clientNo}
     order by o.order_dt
-  </select>
+  </select>  
   
   <select id="selectOrderDetailList" resultType="java.util.HashMap" parameterType="map">
     select o.order_no orderNo, p.prod_nm prodName, po.order_ent orderEnt, p.prod_pri price 
@@ -79,6 +80,27 @@
   </select>
 
   
+  
+  <select id="selectOrderInfoOneByAdmin" resultMap="orderMap" parameterType="map">
+    SELECT c.clnt_nm, c.clnt_pn, m.mt_nm, o.order_dt 
+    FROM marts m, orders o, clnts c
+    WHERE m.mt_no = #{martNo}
+    and o.mt_no = m.mt_no
+    and o.order_no = #{orderNo}
+    and c.clnt_no = #{clientNo}
+    ORDER BY o.order_dt
+  </select>  
+  
+  <select id="selectOrderDetailListByAdmin" resultType="java.util.HashMap" parameterType="map">
+    SELECT o.order_no orderNo, p.prod_nm prodName, po.order_ent orderEnt, p.prod_pri price 
+    FROM prods p, orders o, clnts c, prod_orders po, marts m
+    WHERE c.clnt_no = #{clientNo}
+    and p.prod_no = po.prod_no
+    and po.order_no = o.order_no
+    and m.mt_no = o.mt_no
+    and m.mt_no = #{martNo}
+    and o.order_no = #{orderNo}
+  </select>
 
 
 </mapper>

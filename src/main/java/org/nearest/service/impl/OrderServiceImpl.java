@@ -45,4 +45,16 @@ public class OrderServiceImpl implements OrderService {
     return orderDao.selectOrderDetailList(params);
   }
 
+  
+  @Override
+  public Order getOrderInfoByAdmin(Map<String, Integer> params) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderInfoOneByAdmin(params);
+  }
+
+  @Override
+  public List<Map<String, Object>> getOrderDetailListByAdmin(Map<String, Integer> params) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderDetailListByAdmin(params);
+  }
 }
