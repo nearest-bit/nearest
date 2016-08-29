@@ -8,7 +8,7 @@ import org.nearest.domain.Order;
 public interface OrderService {
   int addOrder(Map<String, Object> params);
   Map<String, Object> getOrderCount(int clientNo);
-  List<Object> getOrderList(int clientNo);
+  List<Object> getOrderList(Map<String, Object> params);
   Order getOrderInfo(Map<String, Integer> params);
   List<Map<String, Object>> getOrderDetailList(Map<String, Integer> params);
   

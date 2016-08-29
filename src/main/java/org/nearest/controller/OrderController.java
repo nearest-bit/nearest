@@ -122,17 +122,25 @@ public class OrderController {
   
   @RequestMapping(path = "orderList", produces = "application/json;charset=utf-8")
   @ResponseBody
-  public String orderList(HttpSession session){
+  public String orderList(HttpSession session,
+                          @RequestParam(defaultValue = "") String startDate, 
+                          @RequestParam(defaultValue = "") String endDate){
     
     int clientNo = ((Client)session.getAttribute("loginId")).getNo();
     System.out.println("clientNo : "+clientNo);
+    Map<String, Object> params = new HashMap<>();
+    params.put("clientNo", clientNo);
+    params.put("startDate", startDate);
+    params.put("endDate", endDate);
+    
     Map<String, Object> result = new HashMap<>();
+        
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
     Set<String> table = new TreeSet<>();
     Set<Object> compareDateData = new TreeSet<>();
     
     try {
-      List<Object> orderList = orderService.getOrderList(clientNo);
+      List<Object> orderList = orderService.getOrderList(params);
       result.put("orderList", orderList);
       for (int i=0; i < orderList.size(); i++) {
         table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
