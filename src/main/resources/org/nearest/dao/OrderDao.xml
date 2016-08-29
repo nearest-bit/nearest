@@ -48,15 +48,19 @@
 		from orders
   </select>
   
-  <select id="selectOrderList" resultType="java.util.HashMap" parameterType="int">
+  <select id="selectOrderList" resultType="java.util.HashMap" parameterType="map">
     select o.order_no orderNo, o.order_st orderState, m.mt_no martNo, m.mt_nm martName, o.order_dt orderDate, p.prod_nm productName, sum(prod_pri) totalPrice, count(p.prod_no) totalCount, o.order_st orderState
     from clnts c, orders o, prod_orders po, prods p, marts m
     where c.clnt_no = o.clnt_no 
     and o.order_no = po.order_no
     and po.prod_no = p.prod_no
     and p.mt_no = m.mt_no
-    and c.clnt_no = #{value}
+    and c.clnt_no = #{clientNo}
+    <if test="startDate != '' and endDate != ''">
+    and date_format(o.order_dt, '%y/%m/%d') between date(#{startDate}) and date(#{endDate})
+    </if>
     group by o.order_no
+    order by o.order_dt desc
   </select>
   
   <select id="selectOrderInfoOne" resultMap="orderMap" parameterType="map">

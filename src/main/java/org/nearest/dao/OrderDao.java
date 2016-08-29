@@ -8,7 +8,7 @@ import org.nearest.domain.Order;
 public interface OrderDao {
     int insertOrder(Map<String, Object> params);
     Map<String, Object> selectOrderCount(int clientNo);
-    List<Object> selectOrderList(int clientNo);
+    List<Object> selectOrderList(Map<String, Object> params);
     Order selectOrderInfoOne(Map<String, Integer> params);
     List<Map<String, Object>> selectOrderDetailList(Map<String, Integer> params);
     

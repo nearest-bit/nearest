@@ -28,9 +28,9 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
-  public List<Object>getOrderList(int clientNo) {
+  public List<Object>getOrderList(Map<String, Object> params) {
     // TODO Auto-generated method stub
-    return orderDao.selectOrderList(clientNo);
+    return orderDao.selectOrderList(params);
   }
 
   @Override

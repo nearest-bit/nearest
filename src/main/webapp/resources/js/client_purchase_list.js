@@ -19,6 +19,8 @@ dateSelect.datepicker({
 });
 
 
+
+
 $(function(){
     var purchaseListTableFormSource = $('#nearest-purchase-list-table-form').text();
     var purchaseListTableFormTempl = Handlebars.compile(purchaseListTableFormSource);
@@ -39,68 +41,64 @@ $(function(){
     	 }
     });
     
-    $.ajax({
-          url : contextRoot + 'order/orderList.do',
-          datatype : 'json',
-          method : 'post',
-          
-          success : function(result) {
-        	 /*  alert(result.orderList[0].orderDate == result.compareDateData[0]);
-        	  alert(JSON.stringify(result.orderList[0])); */
-        	  
-        	  
-            if(result.status != 'success'){
-              alert('failure');
-              return;
-            }
-            
-            $('#nearest-purchase-list-div').append(purchaseListTableFormTempl(result.orderDate));
-            
-            for(var i=0; i<result.orderList.length; i++){
-            	   for(var j=0; j<result.compareDateData.length; j++){
-            		   if(result.orderList[i].orderDate == result.compareDateData[j]){
-            			   var id = '#nearest-purchaseList-tbody-'+j;
-            			   $(id).append(purchaseListTableContentTempl(result.orderList[i]));
-            		   }
-            	   }
-            }
-            // 강사님 추천 Handlebars helper 함수 대체
-            /*for(var i=0; i<result.orderList.length; i++){
-         	   for(var j=0; j<result.compareDateData.length; j++){
-         		   if(result.orderList[i].orderDate == result.compareDateData[j]){
-         			   var id = '#nearest-purchaseList-tbody-'+j;
-         			   if (orderList[i].orderState == 1) {
-         				   orderList[i].orderStateLabel = '준비중';
-         				   orderList[i].orderStateCss = 'label-default';
-         			   } else if (orderList[i].orderState == 2) {
-         				   orderList[i].orderStateLabel = '준비완료';
-         				   orderList[i].orderStateCss = 'label-primitive';
-         			   } 
-         			   $(id).append(purchaseListTableContentTempl(result.orderList[i]));
-         		   }
-         	   }
-         }*/
-            
-            
-            for(var i=0; i<$('.nearest-purchased-list-table').length; i++){
-            	
-            	var tbodyId = '#nearest-purchaseList-tbody-'+i+' > tr > .nearest-mart-price';
-            	var totalPrice = 0;
-            	
-            	for(var j=0; j<$(tbodyId).length; j++){
-            		
-            		totalPrice += parseInt($($(tbodyId)[j]).attr('price-data'));
-            	
-            	}
-            	$('#nearest-putchase-total-price-'+i).html(totalPrice+'&#8361;');
-            }
-            
-          },
-          
-          error : function(request, status, error) {
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-          }
-        }); 
+    function callOrderList() {
+   	 $.ajax({
+           url : contextRoot + 'order/orderList.do',
+           datatype : 'json',
+           method : 'post',
+           data :{
+         	  startDate : $('#nearest-order-start-date').val(),
+         	  endDate : $('#nearest-order-end-date').val()
+         	  
+           },
+           success : function(result) {
+         	 /*  alert(result.orderList[0].orderDate == result.compareDateData[0]);
+         	  alert(JSON.stringify(result.orderList[0])); */
+         	  
+             if(result.status != 'success'){
+               alert('failure');
+               return;
+             }
+             
+             $('#nearest-purchase-list-div').append(purchaseListTableFormTempl(result.orderDate));
+             for(var i=0; i<result.orderList.length; i++){
+             	   for(var j=0; j<result.compareDateData.length; j++){
+             		   if(result.orderList[i].orderDate == result.compareDateData[j]){
+             			   var id = '#nearest-purchaseList-tbody-'+j;
+             			   $(id).append(purchaseListTableContentTempl(result.orderList[i]));
+             		   }
+             	   }
+             }
+             
+             for(var i=0; i<$('.nearest-purchased-list-table').length; i++){
+             	
+             	var tbodyId = '#nearest-purchaseList-tbody-'+i+' > tr > .nearest-mart-price';
+             	var totalPrice = 0;
+             	
+             	for(var j=0; j<$(tbodyId).length; j++){
+             		
+             		totalPrice += parseInt($($(tbodyId)[j]).attr('price-data'));
+             	
+             	}
+             	$('#nearest-putchase-total-price-'+i).html(totalPrice+'&#8361;');
+             }
+             
+           },
+           
+           error : function(request, status, error) {
+             alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+           }
+         }); 
+   }
+    
+    callOrderList();
+    
+    $('#nearest-order-searchBtn').on('click', function() {
+    	
+    	$('#nearest-purchase-list-div > *').remove();
+    	callOrderList();
+    });
+    
   });
   $(document).on('click','.nearest-order-list-detail',function(event) {
     event.preventDefault();
