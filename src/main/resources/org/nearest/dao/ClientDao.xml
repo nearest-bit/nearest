@@ -25,4 +25,17 @@
     FROM clnts
     WHERE clnt_id=#{value}
   </select>
+  
+  <select id="selectAlert" resultType="java.util.HashMap" parameterType="int">
+    SELECT cr.cnt cnt_req, co.cnt cnt_order
+    FROM (SELECT COUNT(r.req_st) cnt
+          FROM clnts c, reqs r
+          WHERE c.clnt_no=r.clnt_no
+          AND r.req_st=3
+          AND c.clnt_no=#{clientNo}) cr, (SELECT COUNT(o.order_st) cnt
+																		            FROM clnts c, orders o
+																		            WHERE c.clnt_no=o.clnt_no
+																		            AND o.order_st=3
+																		            AND c.clnt_no=#{clientNo}) co
+  </select>
 </mapper>

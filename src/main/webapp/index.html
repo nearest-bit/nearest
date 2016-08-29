@@ -36,7 +36,6 @@
   <link rel="stylesheet" href="./resources/css/main_signup.css">
   <link rel="stylesheet" href="./resources/css/style.css">
   <link rel="stylesheet" href="./resources/css/main_top_menu.css">
-  <link rel="stylesheet" href="./resources/css/main_login.css">
   <!-- BootStrap DateTimePicker -->
   <link rel="stylesheet" href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
   <!-- DropDown Menu -->
@@ -128,15 +127,39 @@
 	   <div class="box-shadow nearest-header-top-menu">
           
             <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
-              <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
-                    aria-hidden="true"
-                    onclick="myFunction()">
-               </span>
+              <div style="position: absolute;">
+                <div style="position: absolute; margin-left: 10px;">
+	                <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
+	                    aria-hidden="true">
+	                </span>
+                </div>
+                <div style="position: absolute; 
+                            width: 20px; 
+                            height: 24px;
+                            margin-left: 10px;">
+                  <div style="width: 60%;
+                              height: 55%;
+                              float: right;
+                              border-radius: 10px;
+                              margin: 2px -3px;
+                              background: #003f50;"></div>
+                </div>
+                <div id="nearest-dropdown-alert" 
+                     style="position: absolute; 
+                            width: 20px; 
+                            height: 24px; 
+                            font-size: 1rem; 
+                            color: white;
+                            font-weight: bold;
+                            margin-left: 10px;">
+                    1
+                </div>
+              </div>
                
                <div id="myDropdown" class="nearest-dropdown-content">
-                 <a id="nearest-to-cart" href="./client.html">찜 목록</a>
-                 <a id="nearest-to-purchase" href="./client.html">구매 목록</a>
-                 <a id="nearest-to-request" href="./client.html">건의 사항</a>
+                 <a id="nearest-to-cart" href="#">찜 목록</a>
+                 <a id="nearest-to-purchase" href="#">구매 목록 &nbsp;</a>
+                 <a id="nearest-to-request" href="#">건의 사항 &nbsp;</a>
                </div>
              </div>
            

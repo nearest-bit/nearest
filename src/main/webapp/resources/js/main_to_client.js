@@ -1,13 +1,20 @@
+$(function() {
+	$('#nearest-to-cart').click(function() {
+		$.cookie('clientMenu', 'cart');
+		
+		$(location).attr('href', './client.html');
+	});
 	
-	$('#nearest-to-cart').click(function(e) {
-		  e.preventDefault();
-	  
-		  var url = contextRoot + 'client.html';
-		  
-//		  $.cookie('client-menu', 'cart');
-		  
-		  $(location).attr('href',url);
-		 
-	  });
+	$('#nearest-to-purchase').click(function() {
+		$.cookie('clientMenu', 'purchase');
+		
+		$(location).attr('href', './client.html');	
+	});
 	
+	$('#nearest-to-request').click(function() {
+		$.cookie('clientMenu', 'request');
+		
+		$(location).attr('href', './client.html');
+	});
+});
 	
