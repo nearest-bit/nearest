@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.scripting.xmltags.TrimSqlNode;
 import org.nearest.domain.Admin;
 import org.nearest.domain.Client;
 import org.nearest.domain.QNA;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -25,34 +23,6 @@ import com.google.gson.Gson;
 public class QNAController {
 	
 	@Autowired QNAService qnaService;
-	
-    @RequestMapping(path="QNAList", produces="application/json;charset=UTF-8")
-    @ResponseBody
-    public String QNAlist(HttpSession session) {
-        
-        HashMap<String,Object> result = new HashMap<String,Object>();
-  
-        
-        try {
-            List<QNA> list = qnaService.getQNAList(((Client)session.getAttribute("loginId")).getNo());
-            for (QNA qna : list) {
-		      if(qna.getStatus() == 1){
-		        qna.setReqStatus("��������");
-		      }else if(qna.getStatus() == 2){
-		        qna.setReqStatus("����");
-		      }else{
-		        qna.setReqStatus("�亯�Ϸ�");
-		      }
-		    }
-            result.put("status", "success");
-            result.put("data", list);
-            result.put("reqData", list);
-        } catch (Exception e) {
-            result.put("status", "failure");
-            e.printStackTrace();
-        }
-		return new Gson().toJson(result);
-	}
 	
 	@RequestMapping(path="QNAlistByAdmin", produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -97,25 +67,25 @@ public class QNAController {
 		return new Gson().toJson(result);
 	}
 	
-	@RequestMapping(path="add", method=RequestMethod.GET)
-	public String form() {
-		return "qna/form";
-	}
-	
-	@RequestMapping(path="add", produces="application/json;charset=UTF-8")
-	@ResponseBody
-	public String add(QNA qna) {
-		
-		HashMap<String,Object> result = new HashMap<>();
-		try {
-			qnaService.addQNA(qna);
-			result.put("status", "success");
-		} catch (Exception e) {
-			result.put("status", "failure");
-			e.printStackTrace();
-		}
-	return new Gson().toJson(result);
-	}
+//	@RequestMapping(path="add", method=RequestMethod.GET)
+//	public String form() {
+//		return "qna/form";
+//	}
+//	
+//	@RequestMapping(path="add", produces="application/json;charset=UTF-8")
+//	@ResponseBody
+//	public String add(QNA qna) {
+//		
+//		HashMap<String,Object> result = new HashMap<>();
+//		try {
+//			qnaService.addQNA(qna);
+//			result.put("status", "success");
+//		} catch (Exception e) {
+//			result.put("status", "failure");
+//			e.printStackTrace();
+//		}
+//	return new Gson().toJson(result);
+//	}
 	
 	@RequestMapping(path="updateQNA", produces="application/json;charset=UTF-8")
 	@ResponseBody
