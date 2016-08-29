@@ -289,7 +289,7 @@
                 </div>
             </div>
 						
-						<script id="nearest-qna-list-template" type="text/x-handlebars-template">
+			<script id="nearest-qna-list-template" type="text/x-handlebars-template">
                 {{#each qnadata}}
                     <div class="col-md-4">
                         <div style="float:none;" class="box-testimony">
@@ -297,9 +297,9 @@
                               <p>&ldquo;{{content}}&ldquo;</p>
                           </blockquote>
                           <div class="author">
-                            <p>{{client.name}}&nbsp;
-                              <a class="popup-with-zoom-anim nearest-answer-btn" href="#nearest-request-div">
-                                &nbsp;&nbsp;답변하기
+                            <p content-no="{{no}}" client-no="{{client.no}}">{{client.name}}&nbsp;
+                              <a reply-status="{{status}}" class="popup-with-zoom-anim nearest-answer-btn" href="#nearest-request-div">
+                                &nbsp;&nbsp;{{reqStatus}}
                               </a>
                             </p>
                           </div>
@@ -315,15 +315,22 @@
 			</div>
 			
 			<!-- 답변하기 시작 -->
-        
+      
       <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+      <h2>답변하기</h2>
+      <textarea id="nearest-replyContent" style="width: 100%; height: 200px"></textarea>
+      <br>
+          <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
+          <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>      
+      </div>
+      <!-- <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
           <h2>답변하기</h2>
-          <textarea style="width: 100%; height: 200px" placeholder="답변을 입력해 주세요.">
+          <textarea id="nearest-replyContent" style="width: 100%; height: 200px" placeholder="답변을 입력해 주세요.">
           </textarea>
           <br>
-          <button type="button" class="btn btn-primary">전송</button>
-          <button type="reset" class="btn btn-default">취소</button>
-      </div>
+          <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
+          <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>
+      </div> -->
 
         
       <!-- 답변하기 끝 -->
