@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.nearest.dao.OrderDao;
-import org.nearest.domain.ProductOrder;
+import org.nearest.domain.Order;
 import org.nearest.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,4 +33,32 @@ public class OrderServiceImpl implements OrderService {
     return orderDao.selectOrderList(clientNo);
   }
 
+  @Override
+  public Order getOrderInfo(Map<String, Integer> params) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderInfoOne(params);
+  }
+
+  @Override
+  public List<Map<String, Object>> getOrderDetailList(Map<String, Integer> params) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderDetailList(params);
+  }
+
+  
+  @Override
+  public Order getOrderInfoByAdmin(Map<String, Integer> params) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderInfoOneByAdmin(params);
+  }
+
+  @Override
+  public List<Map<String, Object>> getOrderDetailListByAdmin(Map<String, Integer> params) {
+    // TODO Auto-generated method stub
+    return orderDao.selectOrderDetailListByAdmin(params);
+  }
+  
+  public int updateOrderState(Map<String, Integer> params) {
+	  return orderDao.updateOrderState(params);
+  }
 }

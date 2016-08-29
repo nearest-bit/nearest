@@ -36,7 +36,6 @@ $( function() {
 			var productImageFile = $('#nearest-file-upload');
 			
 			$(productImageFile).fileupload('send', {files: imageList});
-			$(productImageFile).fileupload('destroy');
 		});
 	});
 });

@@ -2,6 +2,7 @@ package org.nearest.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,8 +85,6 @@ public class ProductController {
     Product product = productService.getProduct(no);
     product.setMart(martService.getMart(product.getMart().getNo()));
     
-    System.out.println(product);
-    
     try{
       result.put("status", "success");
       result.put("productData", product);
@@ -106,6 +105,11 @@ public class ProductController {
 							 HttpSession session) throws IOException {
 		HashMap<String,Object> result = new HashMap<>();
 		product.setMart((Mart)session.getAttribute("adminMart"));
+		
+		String name = product.getName();
+		/*name = URLEncoder.encode(name, "utf-8");
+		
+		System.out.println(name);*/
 	
 		MultipartFile imageFile = null;
 		String realPath = null;

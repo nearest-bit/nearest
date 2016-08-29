@@ -39,7 +39,7 @@
 </style>
 </head>
 <body>
-<div class="zoom-anim-dialog mfp-hide" id="nearest-purchase-receipt" style="width: 800px; margin: 0 auto;">
+<div class="zoom-anim-dialog mfp-hide" id="nearest-purchase-receipt" style="width: 800px; max-height:528px; margin: 0 auto; overflow: auto;">
 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
   <tbody><tr>
     <td height="20"></td>
@@ -73,7 +73,7 @@
                         </tr>
                         <tr>
                           <td style="font-size: 25px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                           <strong>손진한 님</strong>
+                           <strong id="receipt-client-name"></strong> <span style="font-size: 20px; font-weight: bold;">님</span>
                             <br><br> <span style="font-size: 15px; font-weight: bold;">저희 가게를 이용해주셔서 <br>감사합니다.</span>
                           </td>
                         </tr>
@@ -89,7 +89,7 @@
                         </tr>
                         <tr>
                           <td style="font-size: 30px; color: #ff0000; letter-spacing: -1px; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 1; vertical-align: top; text-align: right;">
-                            구매내역
+                            <strong>구매내역</strong>
                           </td>
                         </tr>
                         <tr>
@@ -101,7 +101,8 @@
                         </tr>
                         <tr>
                           <td style="font-size: 20px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
-                            <strong>진한마트</strong><br>  <br><strong>tel.</strong> 010-2215-4454<br><br><span>2016. 08. 26 11:12:30</span>
+                            <strong id="receipt-mart-name"></strong><br>  <br><strong>tel.</strong> <span id="receipt-mart-tel"></span> <br><br><span id="receipt-order-date"></span>
+                            <br><br><strong id="receipt-mart-addr"></strong><br><strong id="receipt-mart-addrDetail"></strong>
                           </td>
                         </tr>
                       </tbody>
@@ -139,26 +140,28 @@
                       <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
                        <strong>상품</strong> 
                       </th>
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
+                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="left">
                         <strong>수량</strong>
                       </th>
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
+                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="center">
                         <strong>가격</strong>
                       </th>
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
+                      
+                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; text-align:right; vertical-align: top; padding: 0 0 7px;" align="right">
                         <strong>총 가격</strong>
                       </th>
                     </tr>
                     <tr>
                       <td height="1" style="background: #bebebe;" colspan="4"></td>
                     </tr>
-                    <tr>
+                    <tr id="nearest-product-receipt">
                       <td height="10" colspan="4"></td>
                     </tr>
-                    <tr>
+                    
+                   <!--  <tr>
                       <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">신라면(5개입)</td>
-                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;">2개</td>
-                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1200원</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">2개</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">1200원</td>
                       <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">2400원</td>
                     </tr>
                     <tr>
@@ -166,10 +169,10 @@
                     </tr>
                     <tr>
                       <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">유한락스(1L) 리필형</td>
-                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;">1개</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">1개</td>
                       <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">5500원</td>
                       <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">5500원</td>
-                    </tr>
+                    </tr> -->
                     <tr>
                       <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
                     </tr>
@@ -205,7 +208,7 @@
                         <strong>총 결제액</strong>
                       </td>
                       <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
-                        <strong>7900원</strong>
+                        <strong id="nearest-receipt-real-total-price"></strong>
                       </td>
                     </tr>
                   </tbody>

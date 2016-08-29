@@ -16,7 +16,7 @@ $(function() {
 				$('#nearest-admin-item-prod-no').val(productNo);
 				$('#nearest-admin-item-entity').val(data.entity);
 				$('#nearest-admin-item-price').val(data.price);
-				$('#nearest-product-detail-form img').attr('src', data.photo);
+				$('#nearest-detail-image-fileupload img').attr('src', data.photo);
 			},
 			error: function() {
 				
@@ -57,9 +57,7 @@ $(function() {
 			event.preventDefault();
 			
 			var productImageFile = $('#nearest-detail-file-upload');
-0			
 			$(productImageFile).fileupload('send', {files: detailImageList});
-			$(productImageFile).fileupload('destroy');
 		});
 	});
 	

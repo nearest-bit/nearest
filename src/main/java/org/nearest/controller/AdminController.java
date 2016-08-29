@@ -59,27 +59,16 @@ public class AdminController {
 	  HashMap<String, Object> result = new HashMap<>();
 	  
 	  try {
-	    
-	      Admin admin = (Admin)session.getAttribute("loginSession");
+	    List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
 	      
-	      int adminNo = admin.getNo();
-	      System.out.println("adminNo: "+adminNo);
-	      
-	      int martNo = adminService.getMartNo(adminNo);
-	      System.out.println("martNo: "+ martNo);    
-	      
-	      
-	      List<Order> list = adminService.getOrder(martNo);
-	      
-	      
-  	    result.put("orderList", "success");
-  	    result.put("data", list);
-  	    System.out.println("list: "+list);
+  	    result.put("state", "success");
+  	    result.put("orderData", list);
 	   
 	  }catch (Exception e) {
 	    e.printStackTrace();
-	    result.put("orderList", "failure");
+	    result.put("state", "failure");
 	  }
-    return new Gson().toJson(result);
+	  
+	  return new Gson().toJson(result);
 	}
 }

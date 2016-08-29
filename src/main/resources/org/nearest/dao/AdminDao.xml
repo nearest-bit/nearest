@@ -5,45 +5,28 @@
   
 <mapper namespace="org.nearest.dao.AdminDao">
   <resultMap type="admin" id="adminMap">
-    <id     column="admin_no"       property="no" />
+    <result column="admin_no"       property="no" />
     <result column="admin_pn"       property="phone" />
     <result column="admin_nm"       property="name" />
     <result column="admin_id"       property="id" />
-    <result column="admin_pw"       property="password" />
-  </resultMap>
+    <result column="admin_pw"       property="password" />    
+  </resultMap>  
   
-  <resultMap type="admin" id="adminOrderMap">
-    <result column="admin_no"       property="no" />
+  <resultMap type="order" id="orderMap">
+    <id     column="order_no"       property="no" />
+    <result column="order_dt"       property="orderDate" />
+    <result column="order_st"      property="orderState" />
     <association property="mart" javaType="mart">
-      <result property="admin" column="admin_no" javaType="INTEGER"/>
-      <result property="no" column="mart_no" javaType="INTEGER"/>
-    </association>
-    <association property="order" javaType="order">
-      <result property="client" column="clnt_no" javaType="INTEGER"/>
+      <result column="mt_no" property="no" javaType="INTEGER"/>
+      <result column="mt_nm" property="name" javaType="string"/>
+      <result column="mt_addr" property="addr"/>
+      <result column="mt_addt" property="addrDetail"/>
+      <result column="mt_tel" property="telNo"/>
     </association>
     <association property="client" javaType="client">
-      <result property="client" column="clnt_no" javaType="INTEGER"/>
-      <result property="client" column="clnt_nm" javaType="STRING"/>
-      <result property="client" column="clnt_pn" javaType="STRING"/>
-    </association>
-  </resultMap>
-  
-  
-  <resultMap type="order" id="adminMartNoMap">
-    
-    <result column="mart_no"  property="no" />
-    <association property="admin" javaType="admin">
-      <result property="admin" column="admin_no" javaType="INTEGER"/>
-    </association>
-  
-  </resultMap>
-  
-  <resultMap type="order" id="orderNoMap">
-    <result column="order_no" property="no"/>
-    <association property="client" javaType="client">
-      <result column="clnt_no" property="no"/>
-      <result column="clnt_nm" property="name"/>
-      <result column="clnt_pn" property="phone"/>
+      <result column="clnt_no" property="no" javaType="INTEGER"/>
+      <result column="clnt_nm" property="name" javaType="string"/>
+      <result column="clnt_pn" property="phone" javaType="string"/>
     </association>
   </resultMap>
   
@@ -53,22 +36,20 @@
     FROM admins
     WHERE admin_id=#{value}
   </select>
-  
-    
-  
-  
+   
   <select id="selectOneMartNo" resultType="int" parameterType="INTEGER">
-    select mt.mt_no 
-    from admins ad, marts mt
-    where ad.ADMIN_NO = #{value} and ad.ADMIN_NO = mt.ADMIN_NO
+    SELECT mt.mt_no 
+    FROM admins ad, marts mt
+    WHERE ad.ADMIN_NO = #{value} 
+    AND ad.ADMIN_NO = mt.ADMIN_NO
   </select>
   
-  <select id="selectOrderList" resultMap="orderNoMap" parameterType="INTEGER">
-  
-    SELECT ord.order_no, ord.clnt_no, cl.clnt_nm, cl.clnt_pn
-    FROM marts mt, orders ord, clnts cl
-    WHERE mt.mt_no = #{value} AND mt.mt_no = ord.mt_no AND ord.clnt_no = cl.clnt_no
-  
+  <select id="selectOrderList" resultMap="orderMap" parameterType="INTEGER">
+    SELECT o.order_no, o.order_st, o.clnt_no, c.clnt_nm, c.clnt_pn
+    FROM marts m, orders o, clnts c
+    WHERE m.mt_no = #{value} 
+    AND m.mt_no = o.mt_no 
+    AND o.clnt_no = c.clnt_no
   </select>
   
 </mapper>

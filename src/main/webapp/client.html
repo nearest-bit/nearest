@@ -122,8 +122,15 @@
 <body>
   <header role="banner" id="fh5co-header">
     <div class="container nearest-header-menu">
-          <div class="wrapper">
-            <div class="row box-shadow nearest-header-top-menu">
+      <div class="wrapper container">
+       <div style="float: left;" class="row box-shadow nearest-header-logo">
+         <div>
+       
+           <img src="./resources/images/logo_2.png"/>
+         
+          </div> <!-- .nearest-header-nav end -->
+        </div>
+         <div style="margin-right: 1%;" class="row box-shadow nearest-header-top-menu">
             
               <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
                 <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
@@ -138,7 +145,7 @@
          </div>
        </div>
      
-       <div class="white-popup nearest-header-menu-btn">
+       <div style="font-size: 22px;" class="white-popup nearest-header-menu-btn">
          <a id="logoutBtn">
            <strong>로그아웃</strong>
          </a> 
@@ -146,13 +153,7 @@
      
      </div>
     
-     <div class="row box-shadow nearest-header-logo">
-       <div>
-       
-         <img src="./resources/images/logo_2.png"/>
-         
-       </div> <!-- .nearest-header-nav end -->
-     </div>
+     
      
      <div class="row box-shadow top-nav">
        <p class="nearest-header-nav">
@@ -191,7 +192,7 @@
 
   <div class="container">
   
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nearest-menu-tab-bar">
       <li class="active"><a data-toggle="tab" href="#home">찜 목록</a></li>
       <li><a data-toggle="tab" href="#menu1">구매내역</a></li>
       <li><a data-toggle="tab" href="#menu2">고객센터</a></li>
@@ -201,10 +202,10 @@
       <div id="home" class="tab-pane fade in active">
         
         
-       <section id="fh5co-about" data-section="about">
+       <section id="fh5co-about" class="nearest-client-component" data-section="about">
         <div class="container">
             <div class="col-md-12 section-heading text-center">
-              <h2 class="to-animate">찜 목록</h2>
+              <h2 style="font-weight: bold;" class="to-animate">찜 목록</h2>
     
             </div>
           </div>
@@ -268,7 +269,7 @@
         <div id="nearest-purchase-list" class="container">
           <div class="row">
             <div class="col-md-12 section-heading text-center to-animate">
-              <h2 style="font-size: 40px;">구매내역</h2>
+              <h2 style="font-weight:bold; color:black; font-size: 40px;">구매내역</h2>
             </div>
           </div>
           <div class="row">
@@ -305,9 +306,9 @@
       </div>
       <div id="menu2" class="tab-pane fade">
         
-        <div id="nearest-request" class="container">
+        <div id="nearest-request" class="container nearest-client-component">
           <div id="listPage">
-              <h2>문의하기</h2>
+              <h2 style="font-weight: bold;">문의하기</h2>
               <br/>
               
               <a class="popup-with-zoom-anim" href="#nearest-new-request-dialog">
@@ -377,10 +378,6 @@
     </div>
   </div>
   
-    
-  
-  
-    
     <!-- start payment popup -->
     <div id="nearest-purchase-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
       <div id="charge-form">
@@ -539,7 +536,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="fh5co-counter to-animate">
                 <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{received}}" data-speed="5000" data-refresh-interval="50">{{received}}</span>
+                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{complete}}" data-speed="5000" data-refresh-interval="50">{{complete}}</span>
                 <span class="fh5co-counter-label">준비완료</span>
               </div>
             </div>
@@ -554,7 +551,7 @@
           <h4 style="font-size: 22px;"><span class="label label-danger">주문시간</span></h4>    
           <h4 style="font-size: 22px;">{{this}}</h4>
           <h4 style="font-size: 22px;"><span class="label label-default">결제금액</span></h4>    
-          <h1 style="margin-bottom:10px; color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;">25,000 &#8361;</h1>
+          <h1 id="nearest-putchase-total-price-{{@index}}" style="margin-bottom:10px; color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;"></h1>
       </div>
       <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
         <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table nearest-hover-table">
@@ -566,7 +563,7 @@
               <th>상태</th>
             </tr>
           </thead>
-          <tbody id="nearest-purchaseList-tr-{{@index}}">
+          <tbody id="nearest-purchaseList-tbody-{{@index}}">
 
           </tbody> 
         </table>
@@ -576,14 +573,34 @@
   </script>
   <script id="nearest-purchase-list-table-content" type="text/x-handlebars-templete">
     <tr style="cursor:pointer;" class="nearest-order-list-detail">
-      <td>{{martName}}</td>
+      <td mart-no="{{martNo}}" order-no="{{orderNo}}">{{martName}}</td>
       <td>{{productName}} 포함 {{totalCount}}개</td>
-      <td>{{totalPrice}}원</td>
+      <td class="nearest-mart-price" price-data="{{totalPrice}}">{{totalPrice}}원</td>
+      
       <td>{{state orderState}}</td>
     </tr>
   </script>
-  
-  
+  <script id="nearest-product-recipt-list" type="text/x-handlebars-templete">
+    {{#each this}}
+    <tr class="nearest-product-receipt-list-tr">
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+        {{prodName}}
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">
+        {{orderEnt}}개
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">
+        {{price}}원
+      </td>
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">
+        {{totalPrice}}원
+      </td>
+    </tr>
+    {{/each}}
+
+  </script>
+  <!-- 강사님 추천 -->
+  <!-- <td><span class="label ${{orderStateCss}}">${{orderStateLabel}}</span></td> -->
   
   
   <!-- Main JS (Do not remove) -->
@@ -603,7 +620,7 @@
   <script src="./resources/js/logout.js"></script>
   
   <script type="text/javascript">
- 
+  
   </script>
 
 </body>

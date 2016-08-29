@@ -4,7 +4,7 @@
 	  
 		  var url = contextRoot + 'client.html';
 		  
-		  $.cookie('client-menu', 'cart');
+//		  $.cookie('client-menu', 'cart');
 		  
 		  $(location).attr('href',url);
 		 

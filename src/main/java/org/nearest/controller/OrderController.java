@@ -8,10 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Client;
+import org.nearest.domain.Mart;
 import org.nearest.service.OrderService;
 import org.nearest.service.ProductOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ import com.google.gson.Gson;
 @Controller
 @RequestMapping("/order/")
 public class OrderController {
+	
+	public static final int ORDER_STATE_OPTION_READY = 1;
+	public static final int ORDER_STATE_OPTION_READY_END = 2;
   
   @Autowired
   OrderService orderService;
@@ -33,10 +38,11 @@ public class OrderController {
   ProductOrderService productOrderService;
   
   @RequestMapping(path = "addOrder", method=RequestMethod.POST, produces = "applicetion/json;charset=utf-8")
-  @ResponseBody
+  @ResponseBody 
   public String addOrder(HttpSession session, @RequestParam(value="martNo") List<Integer> martNo,
                                               @RequestParam(value="prodNo") List<Integer> prodNo,
-                                              @RequestParam(value="prodEnt") List<Integer> prodEnt){
+                                              @RequestParam(value="prodEnt") List<Integer> prodEnt
+                                              ){
 
     int clientNo = ((Client)session.getAttribute("loginId")).getNo();
     //마트 중복 제거
@@ -122,14 +128,15 @@ public class OrderController {
     System.out.println("clientNo : "+clientNo);
     Map<String, Object> result = new HashMap<>();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
-    Set<String> table = new HashSet<>();
-    Set<Object> compareDateData = new HashSet<>();
+    Set<String> table = new TreeSet<>();
+    Set<Object> compareDateData = new TreeSet<>();
     
     try {
       List<Object> orderList = orderService.getOrderList(clientNo);
       result.put("orderList", orderList);
-      for (int i=0; i<orderList.size(); i++) {
+      for (int i=0; i < orderList.size(); i++) {
         table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
+        System.out.println(((Map<String,Date>)orderList.get(i)).get("orderDate"));
         compareDateData.add(((Map<String,Date>)orderList.get(i)).get("orderDate"));
       }
       result.put("orderDate", table);
@@ -141,8 +148,96 @@ public class OrderController {
     }
     
     System.out.println(new Gson().toJson(result));
+    System.out.println(result.get("orderDate"));
     System.out.println(table);
     return new Gson().toJson(result);
   }
+  
+  @RequestMapping(value = "myOrderList",produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String myOrderList(@RequestParam(defaultValue = "0") int martNo,
+		  					@RequestParam(defaultValue = "0") int clientNo,
+		  					int orderNo, 
+		  					HttpSession session){
+	String option = null;
+	  
+	if(martNo == 0) {
+		martNo = ((Mart)session.getAttribute("adminMart")).getNo();
+		option = "admin";
+	} else if(clientNo == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	}
+	
+	System.out.println(martNo);
+	System.out.println(orderNo);
+	System.out.println(clientNo);
+    
+    Map<String, Integer> params = new HashMap<>();
+    params.put("martNo", martNo);
+    params.put("orderNo", orderNo);
+    params.put("clientNo", clientNo);
+    Map<String, Object> result = new HashMap<>();
+    
+    try{
+      result.put("status", "success");
+      
+      if(option != null) {
+    	  result.put("orderInfo", orderService.getOrderInfoByAdmin(params));
+          result.put("orderDetail", orderService.getOrderDetailListByAdmin(params));  
+      } else {
+    	  result.put("orderInfo", orderService.getOrderInfo(params));
+          result.put("orderDetail", orderService.getOrderDetailList(params));
+      }
+    }catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    System.out.println(result.get("orderInfo"));
+    System.out.println(result.get("orderDetail"));
+    System.out.println(result);
+    return new Gson().toJson(result);
+  }
 
+
+  @RequestMapping(path = "updateOrderState", method=RequestMethod.POST, produces = "applicetion/json;charset=utf-8")
+  @ResponseBody 
+  public String updateOrderState(int orderNo, int orderState, int option){
+
+    Map<String, Object> result = new HashMap<>();
+    Map<String, Integer> params = new HashMap<>();
+    
+    switch(option) {
+    	case ORDER_STATE_OPTION_READY:
+    		if(orderState == 1) {
+    	    	params.put("orderNo", orderNo);
+    	    	params.put("orderState", 2);
+    	    } else {
+    	    	result.put("state", "Already OrderState >= 2");
+    	    	return new Gson().toJson(result);
+    	    }
+    		
+    		break;
+    	case ORDER_STATE_OPTION_READY_END:
+    		if(orderState == 2) {
+		    	params.put("orderNo", orderNo);
+		    	params.put("orderState", 3);
+		    } else {
+		    	result.put("state", "OrderState 1 or 2");
+		    	return new Gson().toJson(result);
+		    }
+    		break;
+    	default:
+    		break;
+    }
+    
+    try{
+      orderService.updateOrderState(params);
+      result.put("state", "success");
+    }catch (Exception e) {
+      e.printStackTrace();
+      result.put("state", "failure");
+    }
+   
+    return new Gson().toJson(result);
+  }
 }
