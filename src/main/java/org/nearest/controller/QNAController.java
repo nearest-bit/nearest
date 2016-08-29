@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.scripting.xmltags.TrimSqlNode;
 import org.nearest.domain.Admin;
 import org.nearest.domain.Client;
 import org.nearest.domain.QNA;
@@ -55,17 +56,22 @@ public class QNAController {
 	
 	@RequestMapping(path="QNAlistByAdmin", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String QNAlistByAdmin(
-			@RequestParam(defaultValue="1") int pageNo,
-			@RequestParam(defaultValue="6") int pageSize,
-			HttpSession session) {
+	public String QNAlistByAdmin(HttpSession session) {
 			
 			Admin admin = (Admin)session.getAttribute("adminId");
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAListByAdmin(pageNo, pageSize, admin);
+				List<QNA> list = qnaService.getQNAListByAdmin(admin);
+				for (QNA qna : list) {
+				      if(qna.getStatus() == 1){
+				        qna.setReqStatus("답변하기");
+				      }else if(qna.getStatus() == 2){
+				        qna.setReqStatus("답변완료");
+				      }else{
+				        qna.setReqStatus("오류");
+				      }
+				    }
 				
-				System.out.println(list);
 				result.put("status", "success");
 				result.put("qnadata", list);
 			} catch (Exception e) {
@@ -78,7 +84,8 @@ public class QNAController {
 	@RequestMapping(path="detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String detail(int no) {
-		HashMap<String,Object> result = new HashMap<>();try {
+		HashMap<String,Object> result = new HashMap<>();
+		try {
 			result.put("status", "success");
 			result.put("data", qnaService.getQNA(no));
 		} catch (Exception e) {
@@ -110,22 +117,44 @@ public class QNAController {
 	return new Gson().toJson(result);
 	}
 	
-	@RequestMapping(path="update", produces="application/json;charset=UTF-8")
+	@RequestMapping(path="updateQNA", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String update(String replyContent,
+						int clientNo,
+						int contentNo,
 						HttpSession session) {
 		Admin admin = (Admin)session.getAttribute("adminId");
+		QNA qna = (QNA)qnaService.getQNAForStatus(clientNo, contentNo);
 		HashMap<String,Object> result = new HashMap<>();
+		
+		System.out.println(replyContent+" "+clientNo+" "+admin+" "+contentNo);
 		try {
-	      qnaService.updateQNA(replyContent, admin);
+	      qnaService.updateQNA(replyContent, clientNo, admin, contentNo);
 	      result.put("status", "success");
-	      result.put("replyStatus", 2);
+	      result.put("replyStatus", qna.getReqStatus());
 	    } catch (Exception e) {
 	      result.put("status", "failure");
 	      e.printStackTrace();
 	    }
 	    return new Gson().toJson(result);
 	  }
+	
+	@RequestMapping(path="reqContent", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectContent(int reqNo){
+		
+		HashMap<String,Object> result = new HashMap<>();
+		try {
+			QNA qna = (QNA)qnaService.getQNA(reqNo);
+			result.put("status", "success");
+			result.put("content", qna.getReplyContent());
+		} catch (Exception e) {
+			result.put("status", "failure");
+			e.printStackTrace();
+		}
+	return new Gson().toJson(result);
+		
+	}
 	
 	@RequestMapping(path="delete", produces="application/json;charset=UTF-8")
 	@ResponseBody

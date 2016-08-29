@@ -10,6 +10,7 @@ public interface QNADao {
 	List<QNA> selectQNAList(int clientNo);
 	List<QNA> selectQNAListByAdmin(Map<String,Object> params);
 	QNA selectQNA(int no);
-	List<QNA> update(Map<String,Object> replyInfo);
+	QNA selectQNAForStatus(Map<String,Object> param);
+	int updateQNA(Map<String,Object> replyInfo);
 	int delete(int no);
 }

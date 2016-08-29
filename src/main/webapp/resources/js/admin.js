@@ -43,6 +43,10 @@ $(function() {
 		$('.nearest-margin-bottom').css('background', 'gray');
 	});
 	
+	$('#reply-reset-btn').on('click', function() {
+		$.magnificPopup.close();
+	});
+	
 	var imageList = new Array();
 	
 	$('#nearest-file-upload').fileupload({
