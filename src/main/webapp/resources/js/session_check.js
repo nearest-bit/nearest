@@ -11,7 +11,7 @@ $.ajax({
 			var url = $(location).attr('href');
 			
 			if(url == contextRoot || url == contextRoot + 'index.html') {
-				$("#loginBtn").css('display', 'none');
+			    $("#loginBtn").css('display', 'none');
 			    $("#signupBtn").css('display', 'none');
 			    $("#btnSplit").css('display', 'none');
 			    $('#nearest-dropdown').css('display', 'inline');
@@ -37,9 +37,10 @@ $.ajax({
 					error: function() {
 						
 					}
-				});	
+				});	  
 			}
 		}
+		
 		console.log('sessionLogin:' + sessionLogin);
 	},
 	error: function() {
