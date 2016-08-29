@@ -122,8 +122,15 @@
 <body>
   <header role="banner" id="fh5co-header">
     <div class="container nearest-header-menu">
-          <div class="wrapper">
-            <div class="row box-shadow nearest-header-top-menu">
+      <div class="wrapper">
+       <div style="float: left;" class="row box-shadow nearest-header-logo">
+         <div>
+       
+           <img src="./resources/images/logo_2.png"/>
+         
+          </div> <!-- .nearest-header-nav end -->
+        </div>
+         <div class="row box-shadow nearest-header-top-menu">
             
               <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
                 <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
@@ -138,7 +145,7 @@
          </div>
        </div>
      
-       <div class="white-popup nearest-header-menu-btn">
+       <div style="font-size: 22px;" class="white-popup nearest-header-menu-btn">
          <a id="logoutBtn">
            <strong>로그아웃</strong>
          </a> 
@@ -146,13 +153,7 @@
      
      </div>
     
-     <div class="row box-shadow nearest-header-logo">
-       <div>
-       
-         <img src="./resources/images/logo_2.png"/>
-         
-       </div> <!-- .nearest-header-nav end -->
-     </div>
+     
      
      <div class="row box-shadow top-nav">
        <p class="nearest-header-nav">
@@ -191,7 +192,7 @@
 
   <div class="container">
   
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nearest-menu-tab-bar">
       <li class="active"><a data-toggle="tab" href="#home">찜 목록</a></li>
       <li><a data-toggle="tab" href="#menu1">구매내역</a></li>
       <li><a data-toggle="tab" href="#menu2">고객센터</a></li>
@@ -201,7 +202,7 @@
       <div id="home" class="tab-pane fade in active">
         
         
-       <section id="fh5co-about" data-section="about">
+       <section id="fh5co-about" class="nearest-client-component" data-section="about">
         <div class="container">
             <div class="col-md-12 section-heading text-center">
               <h2 class="to-animate">찜 목록</h2>
@@ -535,7 +536,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="fh5co-counter to-animate">
                 <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
-                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{received}}" data-speed="5000" data-refresh-interval="50">{{received}}</span>
+                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{complete}}" data-speed="5000" data-refresh-interval="50">{{complete}}</span>
                 <span class="fh5co-counter-label">준비완료</span>
               </div>
             </div>
