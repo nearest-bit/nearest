@@ -3,6 +3,8 @@ package org.nearest.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -136,19 +138,23 @@ public class OrderController {
     Map<String, Object> result = new HashMap<>();
         
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
-    Set<String> table = new TreeSet<>();
+    Set<String> table = new HashSet<>();
     Set<Object> compareDateData = new TreeSet<>();
+    List<Object> compareDateDataList = new ArrayList<>();
     
     try {
       List<Object> orderList = orderService.getOrderList(params);
       result.put("orderList", orderList);
       for (int i=0; i < orderList.size(); i++) {
         table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
-        System.out.println(((Map<String,Date>)orderList.get(i)).get("orderDate"));
         compareDateData.add(((Map<String,Date>)orderList.get(i)).get("orderDate"));
       }
+      
+      compareDateDataList.addAll(compareDateData);      
+      Collections.reverse(compareDateDataList);
+      
       result.put("orderDate", table);
-      result.put("compareDateData", compareDateData);
+      result.put("compareDateData", compareDateDataList);
       result.put("status", "success");
     } catch (Exception e) {
       result.put("status", "failure");
@@ -157,16 +163,16 @@ public class OrderController {
     
     System.out.println(new Gson().toJson(result));
     System.out.println(result.get("orderDate"));
-    System.out.println(table);
+    System.out.println(result.get("compareDateData"));
     return new Gson().toJson(result);
   }
   
   @RequestMapping(value = "myOrderList",produces="application/json;charset=utf-8")
   @ResponseBody
   public String myOrderList(@RequestParam(defaultValue = "0") int martNo,
-		  					@RequestParam(defaultValue = "0") int clientNo,
-		  					int orderNo, 
-		  					HttpSession session){
+            		  					@RequestParam(defaultValue = "0") int clientNo,
+            		  					int orderNo, 
+            		  					HttpSession session){
 	String option = null;
 	  
 	if(martNo == 0) {

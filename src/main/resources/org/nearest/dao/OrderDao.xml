@@ -60,6 +60,7 @@
     and date_format(o.order_dt, '%y/%m/%d') between date(#{startDate}) and date(#{endDate})
     </if>
     group by o.order_no
+    order by o.order_dt desc
   </select>
   
   <select id="selectOrderInfoOne" resultMap="orderMap" parameterType="map">

@@ -61,7 +61,6 @@ $(function(){
              }
              
              $('#nearest-purchase-list-div').append(purchaseListTableFormTempl(result.orderDate));
-             
              for(var i=0; i<result.orderList.length; i++){
              	   for(var j=0; j<result.compareDateData.length; j++){
              		   if(result.orderList[i].orderDate == result.compareDateData[j]){
