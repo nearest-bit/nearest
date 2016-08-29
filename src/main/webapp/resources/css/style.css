@@ -770,13 +770,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fh5co-counters .fh5co-counter .fh5co-counter-number {
   font-size: 40px;
-  color: #fff;
+  color: #57d3aa;
   font-weight: 300;
 }
 #fh5co-counters .fh5co-counter .fh5co-counter-label {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(0, 0, 0);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 #fh5co-testimonials .box-testimony {
