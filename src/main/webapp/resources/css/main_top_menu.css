@@ -31,7 +31,8 @@
 }
 
 .nearest-header-logo > div > img {
-	width: 300px;
+	width: 140px;
+	float: left;
 }
 
 .nearest-header-top-menu {
@@ -49,7 +50,7 @@
 
 /* Product Detail Item Border */
 .nearest-work-list-border {
-	border: 2px solid black;
+cursor: pointer;
 }
 
 /* PageNavigation Hover Background */
