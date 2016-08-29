@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000;
   font-family: "Source Sans Pro", Arial, sans-serif;
   font-weight: 400;
-  margin: 0 0 30px 0;
+ /*  margin: 0 0 30px 0; */
 }
 
 /* ::-webkit-selection {
@@ -872,7 +872,7 @@ h1, h2, h3, h4, h5, h6 {
   /* text-decoration: underline; */
 }
 #fh5co-work a:hover {
-  color: white;
+  /* color: white; */
 }
 /* #fh5co-work:before, #fh5co-work:after {
   position: absolute;

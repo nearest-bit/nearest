@@ -6,17 +6,26 @@
     <resultMap type="qna" id="qnaMap">
         <id     column="req_no"     property="no"/>
         <result column="req_dt"     property="createDate"/>
+        <result column="req_title"     property="title"/>
         <result column="req_cnt"    property="content"/>
         <result column="req_st"     property="status"/>
         <result column="req_rcnt"   property="replyContent"/>
         <result column="req_rdt"    property="replyDate"/>
         <association property="mart" javaType="mart">
             <id column="mt_no" property="no" javaType="INTEGER" />
+            <result column="mt_nm" property="name" javaType="string"/>
         </association>
         <association property="client" javaType="client">
             <id column="clnt_no" property="no" javaType="INTEGER" />
+            <result column="clnt_nm" property="name" javaType="string" />
         </association>
     </resultMap>
+    
+    <select id="selectQNAList" resultMap="qnaMap" parameterType="int">
+        SELECT req_no, req_title, req_cnt, req_dt, req_st, mt_nm
+        FROM reqs r, marts m
+        WHERE r.mt_no = m.mt_no and clnt_no = #{value}
+    </select>
     
     <select id="selectOne" resultMap="qnaMap" parameterType="int">
         SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
@@ -24,8 +33,13 @@
         WHERE req_no = #{value}
     </select>
     
-    <select id="selectQNAList" resultMap="qnaMap">
-        select * from marts mt, reqs rq
-        where mt.mt_no = rq.mt_no
-  </select>
+    <select id="selectQNAListByAdmin" resultMap="qnaMap" parameterType="map">
+        SELECT r.req_cnt, c.clnt_nm
+        FROM reqs r, clnts c
+        WHERE r.clnt_no=c.clnt_no
+        AND mt_no = #{adminInfo}
+        ORDER BY req_no DESC
+        LIMIT #{startIndex}, #{len}
+    </select>
+    
 </mapper>

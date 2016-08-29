@@ -15,10 +15,11 @@ public class Order implements Serializable {
 	protected Client client;
 	
 	// Getter, Setter
-	public int getNo() {
+
+  public int getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+  public void setNo(int no) {
 		this.no = no;
 	}
 	public Date getOrderDate() {
@@ -47,9 +48,9 @@ public class Order implements Serializable {
 	}
 	
 	@Override
-	public String toString() {
-		return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", mart=" + mart
-				+ ", client=" + client + "]";
-	}
+  public String toString() {
+    return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", mart=" + mart
+        + ", client=" + client + "]";
+  }
 	
 }

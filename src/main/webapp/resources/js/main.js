@@ -131,7 +131,7 @@
 		   	var header = $('#fh5co-header'),
 				scrlTop = $(this).scrollTop();
 
-			if ( scrlTop > 500 && scrlTop <= 2000 ) {
+			if ( scrlTop > 700 && scrlTop <= 2000 ) {
 				header.addClass('navbar-fixed-top fh5co-animated slideInDown');
 				$('#fh5co-header .nearest-header-logo').css('display', 'none');
 				$('.nearest-header-top-menu').css('display', 'none');

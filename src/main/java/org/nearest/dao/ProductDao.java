@@ -12,4 +12,6 @@ public interface ProductDao {
   int selectProdTotalByMart(String searchContent);
   
   Product selectProd(int no);
+  void insertProd(Product product);
+  int updateProd(Product product);
 }

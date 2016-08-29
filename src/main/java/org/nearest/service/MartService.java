@@ -9,4 +9,5 @@ public interface MartService {
 	List<Mart> getMartList();
 	
 	Mart getMart(int no);
+	Mart getMartByAdmin(int adminNo);
 }

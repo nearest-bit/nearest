@@ -12,5 +12,6 @@ public interface ProductService {
   int getTotalByMart(String searchContent);
   
   Product getProduct(int no);
-
+  void addProduct(Product product);
+  int updateProduct(Product product);
 }

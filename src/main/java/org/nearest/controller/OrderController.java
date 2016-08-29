@@ -1,5 +1,7 @@
 package org.nearest.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -88,6 +90,58 @@ public class OrderController {
       result.put("addProdOrder", "failure");
     }
     
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(path = "orderCount", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String orderCount(HttpSession session){
+    
+    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    Map<String, Object> result = new HashMap<>();
+    
+    
+    
+    try {
+      if( orderService.getOrderCount(clientNo) != null ) {
+        result = orderService.getOrderCount(clientNo);
+      }
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
+  
+  @RequestMapping(path = "orderList", produces = "application/json;charset=utf-8")
+  @ResponseBody
+  public String orderList(HttpSession session){
+    
+    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    System.out.println("clientNo : "+clientNo);
+    Map<String, Object> result = new HashMap<>();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+    Set<String> table = new HashSet<>();
+    Set<Object> compareDateData = new HashSet<>();
+    
+    try {
+      List<Object> orderList = orderService.getOrderList(clientNo);
+      result.put("orderList", orderList);
+      for (int i=0; i<orderList.size(); i++) {
+        table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
+        compareDateData.add(((Map<String,Date>)orderList.get(i)).get("orderDate"));
+      }
+      result.put("orderDate", table);
+      result.put("compareDateData", compareDateData);
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    
+    System.out.println(new Gson().toJson(result));
+    System.out.println(table);
     return new Gson().toJson(result);
   }
 

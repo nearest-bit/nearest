@@ -23,5 +23,10 @@ public class MartServiceImpl implements MartService {
 	public Mart getMart(int no) {
 		return martDao.selectMart(no);
 	}
+	
+	@Override
+	public Mart getMartByAdmin(int adminNo) {
+		return martDao.selectMartByAdmin(adminNo);
+	}
 
 }

@@ -34,33 +34,30 @@ $(function() {
 		return parseInt(value) + 1;
 	});
 	
-	var cartSource = '';
-	var cartListTempl = '';
+	var cartSource = $('#nearest-cart-list').text();
+	var cartListTempl = Handlebars.compile(cartSource);
+
+	$.ajax({
+	      url : contextRoot + 'cart/getCart.do',
+	      datatype : 'json',
+	      method : 'post',
+	      
+	      success : function(result) {
+	        if(result.status != 'success'){
+	          alert('failure');
+	          return;
+	        }
+	        $('#nearest-cart-tbody').append(cartListTempl(result));
+	        $('#nearest-client-menu').addClass('active');
+	        
+	        setTotalPrice();
+	      },
+	      
+	      error : function(request, status, error) {
+	        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	      }
+	    });	
 	
-	if($.cookie('client-menu') == 'cart'){
-		cartSource = $('#nearest-cart-list').text();
-		cartListTempl = Handlebars.compile(cartSource);
-		$.ajax({
-	          url : contextRoot + 'cart/getCart.do',
-	          datatype : 'json',
-	          method : 'post',
-	          
-	          success : function(result) {
-	            if(result.status != 'success'){
-	              alert('failure');
-	              return;
-	            }
-	            $('#nearest-cart-tbody').append(cartListTempl(result));
-	            $('#nearest-client-menu').addClass('active');
-	            
-	            setTotalPrice();
-	          },
-	          
-	          error : function(request, status, error) {
-	            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	          }
-	        });	
-	}
 	
 });
 
@@ -78,7 +75,7 @@ $(document).on('click','.increaseBtn', function() {
 $(document).on('click','.decreaseBtn', function() {
 	var quantity = parseInt($(this).next().text());
 	if (quantity == 1){
-		alert('최소 구매 수량 입니다.')
+		cartAlert(4);
 		return;
 	}
 	$(this).next().text(quantity-1);
@@ -94,7 +91,7 @@ $('#nearest-cart-delete').on('click', function(){
 	var prodNo = '';
 	
 	if( $('input[type="checkbox"]:checked').size() == 0 ){
-		alert('삭제할 상품이 없습니다.');
+		cartAlert(0);
 	}else{
 		for(var i = 0;  i < $('input[type="checkbox"]:checked').size(); i++){
 			prodNo += $($('input[type="checkbox"]:checked')[i]).val();
@@ -116,8 +113,11 @@ $('#nearest-cart-delete').on('click', function(){
 	              alert('failure');
 	              return;
 	            }
-	            alert('삭제되었습니다.');
-	            location.reload();
+	            cartAlert(2);
+	            $(document).on('click', '.confirm', function() {
+	            	location.reload();
+	            });
+	            
 	            
 	          },
 	          
