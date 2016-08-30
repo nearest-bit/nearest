@@ -28,8 +28,6 @@ var previousPage = "";
 // 총 데이터의 수
 var total = "";
 
-var indexOption = "";
-
 var searchMartName;
 
 // 검색 했을때 
@@ -61,7 +59,9 @@ $('#nearest-search').click(function(){
       
     data : {
       searchTag : $('select[name="searchTag"]').val(),
-      searchContent : $('input[name="searchContent"]').val()
+      searchContent : $('input[name="searchContent"]').val(),
+      currentPage: currentPage,
+      option: 'client'
     },
     success : function(result) {
       if(result.status != 'success'){
@@ -103,13 +103,13 @@ $('#nearest-search').click(function(){
   
 });
 
-$(function() {
+$(function() {	
 	if(searchMartName != undefined) {
 		indexOption = 'index';
 	}
 	
 	switch(indexOption){
-		case 'index':
+		case 'index':			
 			$(window).scroll(function() {
 				if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
 					currentPage++;

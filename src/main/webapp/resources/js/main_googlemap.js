@@ -14,6 +14,8 @@ var autocomplete;
 
 var infowindows = new Array();
 
+var indexOption = "index";
+
 function initMap() {
 
   var mapOptions = {
