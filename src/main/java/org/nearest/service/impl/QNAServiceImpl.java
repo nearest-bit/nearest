@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.nearest.dao.QNADao;
 import org.nearest.domain.Admin;
+import org.nearest.domain.Mart;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class QNAServiceImpl implements QNAService{
 	
 	@Override
 	public void addQNA(QNA qna){
-		qnaDao.insert(qna);
+		qnaDao.insertQNA(qna);
 	}
 	
 	@Override
@@ -48,4 +49,10 @@ public class QNAServiceImpl implements QNAService{
 	public int deleteQNA(int no){
 		return qnaDao.delete(no);
 	}
+
+  @Override
+  public List<Mart> getOrderMartList(int clientNo) {
+    
+    return qnaDao.selectOrderMartList(clientNo);
+  }
 }

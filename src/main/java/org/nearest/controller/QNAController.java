@@ -7,12 +7,12 @@ import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Admin;
 import org.nearest.domain.Client;
+import org.nearest.domain.Mart;
 import org.nearest.domain.QNA;
 import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -63,15 +63,13 @@ public class QNAController {
 		return new Gson().toJson(result);
 	}
 	
-	@RequestMapping(path="add", method=RequestMethod.GET)
-	public String form() {
-		return "qna/form";
-	}
-	
 	@RequestMapping(path="add", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String add(QNA qna) {
-		
+	public String add(QNA qna, int martNo, HttpSession session) {
+	  
+		qna.setMart(new Mart(martNo));
+		qna.setClient(new Client(((Client)session.getAttribute("loginId")).getNo()));
+		System.out.println(qna);
 		HashMap<String,Object> result = new HashMap<>();
 		try {
 			qnaService.addQNA(qna);
@@ -131,6 +129,25 @@ public class QNAController {
             qna.setReqStatus("답변완료");
           }
         }
+      }catch (Exception e) {
+        result.put("status", "failure");
+        e.printStackTrace();
+      } 
+      return new Gson().toJson(result);
+    }
+  
+  @RequestMapping(path="orderMartList", produces="application/json;charset=UTF-8")
+  @ResponseBody
+  public String orderMartList(HttpSession session) {
+    
+    
+    HashMap<String,Object> result = new HashMap<String,Object>();
+    
+    try {
+      List<Mart> orderMartList = qnaService.getOrderMartList(((Client)session.getAttribute("loginId")).getNo());
+      result.put("status", "success");
+      result.put("orderMartList", orderMartList);
+        
       }catch (Exception e) {
         result.put("status", "failure");
         e.printStackTrace();

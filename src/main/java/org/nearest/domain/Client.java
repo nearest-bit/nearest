@@ -17,7 +17,15 @@ public class Client implements Serializable{
     protected String id;
     protected String password;
     
-    
+    //Constructor
+    public Client() {
+     
+    }
+    public Client(int no) {
+      super();
+      this.no = no;
+    }
+   
     public int getNo() {
       return no;
     }
