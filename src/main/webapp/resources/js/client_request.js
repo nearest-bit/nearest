@@ -10,6 +10,7 @@ function clientRequest() {
 			var source = $('#nearest-req-list').html();
 		    var templete = Handlebars.compile(source);
 		    $('#nearest-req > tbody').append(templete(result));
+		    $('#nearest-client-req-popup').load('client_req_form.html');
 			
 		},
 		
