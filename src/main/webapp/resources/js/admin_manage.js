@@ -77,20 +77,12 @@ $( function() {
 		    	  pageUnit = 5; 
 		    	  nextPage = pageUnit + 1;
 		    	  
-		    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
 		      }else if( totalPage == 0 ){
 		    	  pageUnit = 0;
-		    	  $('span[data-next-page=""]').attr('data-next-page', '');
 		      }else{
 		    	  pageUnit = totalPage;
 		      }
 		        
-		      if (pageUnit >= 1){
-		      	for(var i=1; i<=pageUnit; i++){
-		       		$('#nearest-admin-pageno').append(pageNavTemplete({i}));   		
-		       	}
-		      }
-	//		      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
 		      
 		      $('.fh5co-project-item').magnificPopup();
 		      
@@ -102,7 +94,7 @@ $( function() {
 		});
 
 	    $(window).scroll(function() {
-			if($(window).scrollTop() >= $(document).height()-$(window).height()) {
+			if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
 				currentPage++;
 				
 				$.ajax({
@@ -138,20 +130,11 @@ $( function() {
 				    	  pageUnit = 5; 
 				    	  nextPage = pageUnit + 1;
 				    	  
-				    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
 				      }else if( totalPage == 0 ){
 				    	  pageUnit = 0;
-				    	  $('span[data-next-page=""]').attr('data-next-page', '');
 				      }else{
 				    	  pageUnit = totalPage;
 				      }
-				        
-				      if (pageUnit >= 1){
-				      	for(var i=1; i<=pageUnit; i++){
-				       		$('#nearest-admin-pageno').append(pageNavTemplete({i}));   		
-				       	}
-				      }
-			//		      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
 				      
 				      $('.fh5co-project-item').magnificPopup();
 				      

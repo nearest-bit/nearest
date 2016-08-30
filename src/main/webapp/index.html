@@ -352,7 +352,7 @@
       {{#each productData}}
         <div class="col-md-4 col-sm-6 col-xxs-12">
           <input type="hidden" value="{{no}}" />
-          <a class="fh5co-project-item popup-with-form nearest-work-list-border">
+          <a class="fh5co-project-item popup-with-form nearest-work-list-border" href="#nearest-modal">
             <img href="#nearest-modal" 
                  src="./resources/images/shinramyun.png" 
                  alt="Image" 
@@ -366,35 +366,9 @@
         </div>
       {{/each}}
 	    </script>
-	      
-	      <div id="nearest-product-list" class="row row-bottom-padded-sm">
-	      </div>
-	      
-	      <!-- Product Page Navigator -->
-	      <script id="nearest-product-pagenav-template" type="text/x-handlebars-template">
-              <li class="pagenav"><a>{{i}}</a></li>
-      </script>
-	      
-      <div class="row">
-          <nav class="col-md-12 text-center" aria-label="Page navigation">
-            <ul class="pagination">
-              <li class="pagenav">
-                <a aria-label="Previous">
-                  <span aria-hidden="true" data-previous-page="">&laquo;</span>
-                </a>
-              </li>
-            </ul>
-            <ul class="pagination" id="nearest-pageno">
-            </ul>
-            <ul class="pagination">
-              <li class="pagenav">
-                <a aria-label="Next">
-                  <span aria-hidden="true" data-next-page="">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
+
+      <div id="nearest-product-list" class="row row-bottom-padded-sm"></div>
+
       </div>
     </div>
   </section>
@@ -490,8 +464,8 @@
   <script src="./resources/js/alert_index.js"></script>
   <script src="./resources/js/main.js"></script>
   <script src="./resources/js/main_dropdown.js"></script>
-  <script src="./resources/js/main_search.js"></script>
   <script src="./resources/js/main_googlemap.js"></script>
+  <script src="./resources/js/main_search.js"></script>
   <script src="./resources/js/main_to_client.js"></script>
   <script src="./resources/js/main_register.js"></script>
   <script src="./resources/js/main_prod_detail.js"></script>

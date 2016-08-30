@@ -27,11 +27,12 @@ $(function() {
 	$(document).on('click', '#nearest-item-cart', function(event) {
 		event.preventDefault();
 		
-		var loginId = $.cookie('loginId');
+		var loginId = sessionLogin;
 				
-		if( loginId == undefined){
+		if( loginId == false){
         	$.magnificPopup.close();
-        	$('#loginBtn').click();
+        	
+        	$(location).attr('href', './login.html');
         	
         	return;
 	    }
@@ -57,11 +58,12 @@ $(function() {
 	$(document).on('click', '#nearest-item-purchase', function(event) {
 		event.preventDefault();
 		
-		var loginId = $.cookie('loginId');
+		var loginId = sessionLogin;
 		
-		if( loginId == undefined){
+		if( loginId == false){
         	$.magnificPopup.close();
-        	$('#loginBtn').click();
+
+        	$(location).attr('href', './login.html');
         	
         	return;
 	    }
