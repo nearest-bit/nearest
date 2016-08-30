@@ -33,19 +33,25 @@
         order by req_no desc
     </select>
     
-    <select id="selectOne" resultMap="qnaMap" parameterType="int">
+    <select id="selectQNA" resultMap="qnaMap" parameterType="int">
         SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
         FROM reqs
         WHERE req_no = #{value}
     </select>
     
+    <select id="selectQNAForStatus" resultMap="qnaMap" parameterType="map">
+        SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
+        FROM reqs
+        WHERE clnt_no = #{clientNo}
+        AND req_no = #{contentNo}
+    </select>
+    
     <select id="selectQNAListByAdmin" resultMap="qnaMap" parameterType="map">
-        SELECT r.req_cnt, c.clnt_nm
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no
         FROM reqs r, clnts c
         WHERE r.clnt_no=c.clnt_no
         AND mt_no = #{adminInfo}
         ORDER BY req_no DESC
-        LIMIT #{startIndex}, #{len}
     </select>
     
     <select id="selectOrderMartList" resultMap="martMap" parameterType="int">
@@ -61,4 +67,13 @@
         values(now(), #{title}, #{content}, 1, #{mart.no}, #{client.no})
     </select>
     
+    <update id="updateQNA" parameterType="Map">
+        UPDATE reqs SET
+            req_rcnt = #{replyContent},
+            req_st = 2,
+            req_rdt = now()
+        WHERE mt_no = #{adminNo}
+        AND clnt_no = #{clientNo}
+        AND req_no = #{contentNo}
+    </update>
 </mapper>

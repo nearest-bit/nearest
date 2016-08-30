@@ -22,27 +22,38 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
-	public List<QNA> getQNAListByAdmin(int pageNo, int pageSize, Admin admin){
+	public List<QNA> getQNAList(int clientNo){
+		return qnaDao.selectQNAList(clientNo);
+	}
+	
+	@Override
+	public List<QNA> getQNAListByAdmin(Admin admin){
 		HashMap<String,Object> params = new HashMap<>();
-		params.put("startIndex", (pageNo - 1) * pageSize);
-		params.put("len", pageSize);
 		params.put("adminInfo", admin.getNo());
 		return qnaDao.selectQNAListByAdmin(params);
 	}
-	@Override
-  public List<QNA> getQNAList(int clientNo){
-    return qnaDao.selectQNAList(clientNo);
-	}
-
 	
 	@Override
 	public QNA getQNA(int no){
-		return qnaDao.selectOne(no);
+		return qnaDao.selectQNA(no);
 	}
 	
 	@Override
-	public int updateQNA(QNA qna){
-		return qnaDao.update(qna);
+	public QNA getQNAForStatus(int clientNo, int contentNo){
+		HashMap<String,Object> param = new HashMap<>();
+		param.put("clientNo", clientNo);
+		param.put("contentNo", contentNo);
+		return qnaDao.selectQNAForStatus(param);
+	}
+	
+	@Override
+	public int updateQNA(String replyContent, int clientNo, Admin admin, int contentNo){
+		HashMap<String,Object> replyInfo = new HashMap<>();
+		replyInfo.put("replyContent", replyContent);
+		replyInfo.put("clientNo", clientNo);
+		replyInfo.put("adminNo", admin.getNo());
+		replyInfo.put("contentNo", contentNo);
+		return qnaDao.updateQNA(replyInfo);
 	}
 	
 	@Override

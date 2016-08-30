@@ -1,12 +1,11 @@
 $( function() {
 	
 	$('.nearest-admin-list > ul > li > a[href="#qna"]').click(function () {
-		
+		$('#nearest-qnaContent > *').remove();
 		var source = $('#nearest-qna-list-template').text();
 		var template = Handlebars.compile(source);
-		
 		$.ajax({
-	        url: contextRoot + 'qna/QNAlist.do',
+	        url: contextRoot + 'qna/QNAlistByAdmin.do',
 	        dataType: 'json',
 	        method: 'post',
 	        success: function(result) {
@@ -62,5 +61,71 @@ $( function() {
 	    $('#edate').datepicker("option", "onClose", function ( selectedDate ) {
 	        $("#sdate").datepicker( "option", "maxDate", selectedDate );
 	    });
+	});
+});
+
+$(function(){
+	
+	var clientNoForReply = '';
+	var replyStatus = '';
+	var reqNo = '';
+	var replyContent = '';
+	var reqCnt = '';
+	$(document).on('click','.nearest-answer-btn ', function() {
+		clientNoForReply = $(this).parent().attr('client-no');
+		replyStatus = $(this).attr('reply-status');
+		reqNo = $(this).parent().attr('content-no');
+		$.ajax({
+			url: contextRoot + 'qna/reqContent.do',
+			dataType: 'json',
+			data: {
+				'reqNo': reqNo
+			},
+			method: 'post',
+			success: function(result){
+				if(result.status == "success"){
+					alert('답변하신 내용입니다.');
+					$('#nearest-replyContent').val(result.content);
+				}else{
+					alert('조회 오류');
+				}	
+			},
+			error: function(result){
+				alert('조회 오류');
+			}
+		});
+	});
+	
+	$('#nearest-reply-btn').on('click', function() {
+		alert($('#nearest-replyContent').val());
+		alert(clientNoForReply);
+		alert(reqNo);
+		$.ajax({
+			url: contextRoot + 'qna/updateQNA.do',
+			dataType: 'json',
+			data: {
+				'replyContent': $('#nearest-replyContent').val(),
+				'clientNo': clientNoForReply,
+				'contentNo': reqNo
+			},
+			method: 'post',
+			success: function(result) {
+				if(result.status == "success"){
+					alert('답변이 등록되었습니다.');
+					$.magnificPopup.close();
+				}else{
+					alert('등록 오류');
+				}
+			},
+			error: function(result) {
+				alert(result.status);
+			}
+		});
+		
+		if(result.replyStatus == 2){
+			$('#nearest-answer-btn').css('display', 'none');
+		} else {
+			alert('답변 완료 오류');
+		}
 	});
 });

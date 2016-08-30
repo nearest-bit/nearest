@@ -13,7 +13,6 @@ import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -25,19 +24,23 @@ public class QNAController {
 	
 	@Autowired QNAService qnaService;
 	
-	@RequestMapping(path="QNAlist", produces="application/json;charset=UTF-8")
+	@RequestMapping(path="QNAlistByAdmin", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String QNAlist(
-			@RequestParam(defaultValue="1") int pageNo,
-			@RequestParam(defaultValue="6") int pageSize,
-			HttpSession session) {
+	public String QNAlistByAdmin(HttpSession session) {
 			
 			Admin admin = (Admin)session.getAttribute("adminId");
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
-				List<QNA> list = qnaService.getQNAListByAdmin(pageNo, pageSize, admin);
-				
-				System.out.println(list);
+				List<QNA> list = qnaService.getQNAListByAdmin(admin);
+				for (QNA qna : list) {
+				      if(qna.getStatus() == 1){
+				        qna.setReqStatus("답변하기");
+				      }else if(qna.getStatus() == 2){
+				        qna.setReqStatus("답변완료");
+				      }else{
+				        qna.setReqStatus("오류");
+				      }
+				    }
 				
 				result.put("status", "success");
 				result.put("qnadata", list);
@@ -51,7 +54,8 @@ public class QNAController {
 	@RequestMapping(path="detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String detail(int no) {
-		HashMap<String,Object> result = new HashMap<>();try {
+		HashMap<String,Object> result = new HashMap<>();
+		try {
 			result.put("status", "success");
 			result.put("data", qnaService.getQNA(no));
 		} catch (Exception e) {
@@ -70,6 +74,7 @@ public class QNAController {
 		qna.setMart(new Mart(martNo));
 		qna.setClient(new Client(((Client)session.getAttribute("loginId")).getNo()));
 		System.out.println(qna);
+		
 		HashMap<String,Object> result = new HashMap<>();
 		try {
 			qnaService.addQNA(qna);
@@ -81,19 +86,43 @@ public class QNAController {
 	return new Gson().toJson(result);
 	}
 	
-	@RequestMapping(path="update", produces="application/json;charset=UTF-8")
+	@RequestMapping(path="updateQNA", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String update(QNA qna) {
+	public String update(String replyContent,
+						int clientNo,
+						int contentNo,
+						HttpSession session) {
+		Admin admin = (Admin)session.getAttribute("adminId");
+		QNA qna = (QNA)qnaService.getQNAForStatus(clientNo, contentNo);
 		HashMap<String,Object> result = new HashMap<>();
+		
+		System.out.println(replyContent+" "+clientNo+" "+admin+" "+contentNo);
 		try {
-	      qnaService.updateQNA(qna);
+	      qnaService.updateQNA(replyContent, clientNo, admin, contentNo);
 	      result.put("status", "success");
+	      result.put("replyStatus", qna.getReqStatus());
 	    } catch (Exception e) {
 	      result.put("status", "failure");
 	      e.printStackTrace();
 	    }
 	    return new Gson().toJson(result);
 	  }
+	
+	@RequestMapping(path="reqContent", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String selectContent(int reqNo){
+		HashMap<String,Object> result = new HashMap<>();
+		try {
+			QNA qna = (QNA)qnaService.getQNA(reqNo);
+			result.put("status", "success");
+			result.put("content", qna.getReplyContent());
+		} catch (Exception e) {
+			result.put("status", "failure");
+			e.printStackTrace();
+		}
+	return new Gson().toJson(result);
+		
+	}
 	
 	@RequestMapping(path="delete", produces="application/json;charset=UTF-8")
 	@ResponseBody

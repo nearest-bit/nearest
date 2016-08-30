@@ -1,8 +1,4 @@
-/**
- * 
- */
-
-$(function() {
+function clientRequest() {
 	
 	$.ajax({
 		url : contextRoot + 'qna/QNAList.do',
@@ -21,8 +17,9 @@ $(function() {
 			alert('getRequerst error...');
 		}
 	});
-});
+	
+	$('#nearest-new-reqBtn').on('click', function(event) {
+		event.preventDefault();
+	});
+};
 
-$('#nearest-new-reqBtn').on('click', function(event) {
-	event.preventDefault();
-});
