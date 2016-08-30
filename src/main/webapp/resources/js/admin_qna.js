@@ -84,19 +84,19 @@ $(function(){
 			method: 'post',
 			success: function(result){
 				if(result.status == "success"){
-					if(result.reqMessage == "답변완료"){
+					if(result.reqMessage == 2){
 						swal({
 							title: "답변하신 내용입니다.",
-							text: "이 창은 3초뒤 자동으로 사라집니다.",
-							timer: 3000,
+							text: "이 창은 2초뒤 자동으로 사라집니다.",
+							timer: 2000,
 							showConfirmButton: false
 						});
 						/*alert('답변하신 내용입니다.');*/
 					} else {
 						swal({
 							title: "답변을 등록해주세요.",
-							text: "이 창은 3초뒤 자동으로 사라집니다.",
-							timer: 3000,
+							text: "이 창은 2초뒤 자동으로 사라집니다.",
+							timer: 2000,
 							showConfirmButton: false
 						});
 					}
@@ -112,9 +112,9 @@ $(function(){
 	});
 	
 	$('#nearest-reply-btn').on('click', function() {
-		alert($('#nearest-replyContent').val());
+		/*alert($('#nearest-replyContent').val());
 		alert(clientNoForReply);
-		alert(reqNo);
+		alert(reqNo);*/
 		$.ajax({
 			url: contextRoot + 'qna/updateQNA.do',
 			dataType: 'json',
@@ -128,7 +128,7 @@ $(function(){
 				if(result.status == "success"){
 					swal(
 						"답변이 등록되었습니다!",
-						"확인버튼을 눌러주세요.",
+						"OK버튼을 눌러주세요.",
 						"success"
 					);
 					/*alert('답변이 등록되었습니다.');*/

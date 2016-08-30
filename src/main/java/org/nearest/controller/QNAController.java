@@ -116,7 +116,7 @@ public class QNAController {
 			QNA qna = (QNA)qnaService.getQNA(reqNo);
 			result.put("status", "success");
 			result.put("content", qna.getReplyContent());
-			result.put("reqMessage", qna.getReqStatus());
+			result.put("reqMessage", qna.getStatus());
 		} catch (Exception e) {
 			result.put("status", "failure");
 			e.printStackTrace();
