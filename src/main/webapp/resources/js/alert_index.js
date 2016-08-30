@@ -38,6 +38,15 @@ function cartAlert(option) {
 	 case 5:
 		 swal("주문 성공!", "", "success");
 		 break;
+	 
+	}
+}
+
+function qnaAlert(option) {
+	switch (option) {
+		case 'noCheckMart':
+		   sweetAlert("문의처를 선택해주세요!", "", "error");
+		   break;
 	}
 }
 

@@ -299,7 +299,7 @@
               <br/>
               
               <a class="popup-with-zoom-anim" href="#nearest-new-request-dialog">
-                <button class="btn btn-primary btn-sm">새 글</button>
+                <button id="nearest-new-qnaBtn" class="btn btn-primary btn-sm">새 글</button>
               </a>
               <br/>
               <table id="nearest-req" class="table table-hover">
@@ -321,26 +321,26 @@
           <br/>
           <div id="nearest-new-request-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
             <div id="formPage">
-              <h2>새 문의사항</h2>
+              <h2 style="margin: 10px 0 19px 89px">새 문의사항</h2>
              
               <form class="form-horizontal">
-                <div class="form-group bit-view-form bit-hidden">
+                <div class="form-group" style="margin-left: 3px;">
                   <label class="col-sm-2 control-label">문의처</label>
-                  <div class="col-sm-10">
-                    진한마트
-                  </div>
+                  <select id="QNAselectBox" class="form-control" style="width: 200px;">
+                    <option id="nearest-select-ordered-mart" style="font-weight: bold;" value="">최근 주문한 마트</option>
+                  </select> 
                 </div>
                 <div class="form-group">
                   <label for="fTitle" class="col-sm-2 control-label">제목</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="fTitle" placeholder="제목을 입력하세요.">
+                    <input type="text" class="form-control" id="nearest-req-title" placeholder="제목을 입력하세요.">
                   </div>
                 </div>
                 
                 <div class="form-group">
                   <label for="fContent" class="col-sm-2 control-label">내용</label>
                   <div class="col-sm-8">
-                    <textarea id="fContent" class="form-control" rows="4" 
+                    <textarea id="nearest-req-content" class="form-control" rows="4" 
                               placeholder="내용을 입력하세요."></textarea>
                   </div>
                 </div>
@@ -348,7 +348,7 @@
                 
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                      <button id="addBtn" type="button" class="bit-new-form btn btn-primary btn-sm">등록</button>
+                      <button id="QNAaddBtn" type="button" class="bit-new-form btn btn-primary btn-sm">등록</button>
                       <button id="resetBtn" type="reset" class="btn btn-warning btn-sm">취소</button>
                   </div>
                 </div>
@@ -586,8 +586,15 @@
     {{/each}}
 
   </script>
-  <!-- 강사님 추천 -->
   <!-- <td><span class="label ${{orderStateCss}}">${{orderStateLabel}}</span></td> -->
+  <script id="nearest-ordered-mart-list" type="text/x-handlebars-templete">
+  {{#each this}}
+
+    
+    <option value="{{no}}">{{name}}</option>
+
+  {{/each}}
+  </script>
   
   
   <!-- Main JS (Do not remove) -->
@@ -604,11 +611,35 @@
   <script src="./resources/js/client_purchase_list.js"></script>
   <script src="./resources/js/client_cart.js"></script>
   <script src="./resources/js/client_order_list.js"></script>
+  <script src="./resources/js/client_qna.js"></script>
   <script src="./resources/js/client_request.js"></script>
   <script src="./resources/js/logout.js"></script>
   
   <script type="text/javascript">
-   
+    $('#QNAaddBtn').on('click', function() {
+    	
+    	if($('#QNAselectBox option:selected').val() == ''){
+    		qnaAlert('noCheckMart');
+    		return;
+    	}
+    	
+    	$.ajax({
+    		url : contextRoot + 'qna/add.do',
+    		datatype : 'json',
+    		method : 'post',
+    		data : {
+    			martNo : $('#QNAselectBox option:selected').val(),
+    			title : $('#nearest-req-title').val(),
+    			content : $('#nearest-req-content').val()
+    		},
+    	  success : function(result){
+    		  clientRequest();
+    	  },
+    	  error : function() {
+    		  alert('Controller Error....');
+    	  }
+    	});
+    });
   </script>
 
 </body>

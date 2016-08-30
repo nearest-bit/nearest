@@ -21,10 +21,16 @@
         </association>
     </resultMap>
     
+    <resultMap type="mart" id="martMap">
+      <id column="mt_no" property="no" javaType="INTEGER"/>
+      <result column="mt_nm" property="name" javaType="string"/>
+    </resultMap>
+    
     <select id="selectQNAList" resultMap="qnaMap" parameterType="int">
         SELECT req_no, req_title, req_cnt, req_dt, req_st, mt_nm
         FROM reqs r, marts m
         WHERE r.mt_no = m.mt_no and clnt_no = #{value}
+        order by req_no desc
     </select>
     
     <select id="selectQNA" resultMap="qnaMap" parameterType="int">
@@ -46,6 +52,19 @@
         WHERE r.clnt_no=c.clnt_no
         AND mt_no = #{adminInfo}
         ORDER BY req_no DESC
+    </select>
+    
+    <select id="selectOrderMartList" resultMap="martMap" parameterType="int">
+		    select distinct m.mt_no, m.mt_nm
+		    from marts m, orders o, clnts c
+		    where m.mt_no = o.mt_no
+		    and o.clnt_no = c.clnt_no
+		    and c.clnt_no = #{value}
+    </select>
+    
+    <select id="insertQNA" parameterType="qna">
+        insert into reqs(req_dt, req_title, req_cnt, req_st, mt_no, clnt_no)
+        values(now(), #{title}, #{content}, 1, #{mart.no}, #{client.no})
     </select>
     
     <update id="updateQNA" parameterType="Map">
