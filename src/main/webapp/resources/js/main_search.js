@@ -66,7 +66,7 @@ $('#nearest-search').click(function(){
         
       $('#nearest-product-list').append(prodListTemplete(result));
       
-      var item = document.getElementsByClassName('fh5co-project-item');
+      /*var item = document.getElementsByClassName('fh5co-project-item');
       
       for(var i = 0; i < result.productData.length; i++) {
     	  if(result.productData[i].discountRate != '0') {
@@ -80,7 +80,7 @@ $('#nearest-search').click(function(){
         	  
   			  $(item[i]).children('.fh5co-text').append(discountSpan);
           }
-      }
+      }*/
         
 //      alert(JSON.stringify(result.total));
       total = JSON.stringify(result.total);
