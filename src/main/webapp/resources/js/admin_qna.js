@@ -10,7 +10,7 @@ $( function() {
 	        method: 'post',
 	        success: function(result) {
 	            if(result.status != 'success'){
-	                  alert('실행 중 오류 발생!');
+	                  swal('실행 중 오류 발생!');
 	                  return;
 	            }
 	            
@@ -18,7 +18,7 @@ $( function() {
 	            $('.nearest-answer-btn').magnificPopup();
 	        },
 	        error: function(){
-	            alert('서버 요청 오류!');
+	            swal('서버 요청 오류!');
 	        }
 	        
 	    });
@@ -84,14 +84,29 @@ $(function(){
 			method: 'post',
 			success: function(result){
 				if(result.status == "success"){
-					alert('답변하신 내용입니다.');
+					if(result.reqMessage == "답변완료"){
+						swal({
+							title: "답변하신 내용입니다.",
+							text: "이 창은 3초뒤 자동으로 사라집니다.",
+							timer: 3000,
+							showConfirmButton: false
+						});
+						/*alert('답변하신 내용입니다.');*/
+					} else {
+						swal({
+							title: "답변을 등록해주세요.",
+							text: "이 창은 3초뒤 자동으로 사라집니다.",
+							timer: 3000,
+							showConfirmButton: false
+						});
+					}
 					$('#nearest-replyContent').val(result.content);
 				}else{
-					alert('조회 오류');
+					swal('조회 오류');
 				}	
 			},
 			error: function(result){
-				alert('조회 오류');
+				swal('조회 오류');
 			}
 		});
 	});
@@ -111,21 +126,26 @@ $(function(){
 			method: 'post',
 			success: function(result) {
 				if(result.status == "success"){
-					alert('답변이 등록되었습니다.');
+					swal(
+						"답변이 등록되었습니다!",
+						"확인버튼을 눌러주세요.",
+						"success"
+					);
+					/*alert('답변이 등록되었습니다.');*/
 					$.magnificPopup.close();
 				}else{
-					alert('등록 오류');
+					swal('등록 오류');
 				}
 			},
 			error: function(result) {
-				alert(result.status);
+				swal(result.status);
 			}
 		});
 		
 		if(result.replyStatus == 2){
 			$('#nearest-answer-btn').css('display', 'none');
 		} else {
-			alert('답변 완료 오류');
+			swal('답변 완료 오류');
 		}
 	});
 });
