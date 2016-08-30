@@ -34,11 +34,11 @@ public class QNAController {
 				List<QNA> list = qnaService.getQNAListByAdmin(admin);
 				for (QNA qna : list) {
 				      if(qna.getStatus() == 1){
-				        qna.setReqStatus("´äº¯ÇÏ±â");
+				        qna.setReqStatus("ë‹µë³€í•˜ê¸°");
 				      }else if(qna.getStatus() == 2){
-				        qna.setReqStatus("´äº¯¿Ï·á");
+				        qna.setReqStatus("ë‹µë³€ì™„ë£Œ");
 				      }else{
-				        qna.setReqStatus("¿À·ù");
+				        qna.setReqStatus("ì˜¤ë¥˜");
 				      }
 				    }
 				
@@ -116,7 +116,7 @@ public class QNAController {
 			QNA qna = (QNA)qnaService.getQNA(reqNo);
 			result.put("status", "success");
 			result.put("content", qna.getReplyContent());
-			result.put("reqMessage", qna.getReqStatus());
+			result.put("reqMessage", qna.getStatus());
 		} catch (Exception e) {
 			result.put("status", "failure");
 			e.printStackTrace();
@@ -152,11 +152,11 @@ public class QNAController {
       result.put("reqData", list);
         for (QNA qna : list) {
           if(qna.getStatus() == 1){
-            qna.setReqStatus("ÀĞÁö¾ÊÀ½");
+            qna.setReqStatus("ì½ì§€ì•ŠìŒ");
           }else if(qna.getStatus() == 2){
-            qna.setReqStatus("ÀĞÀ½");
+            qna.setReqStatus("ì½ìŒ");
           }else{
-            qna.setReqStatus("´äº¯¿Ï·á");
+            qna.setReqStatus("ë‹µë³€ì™„ë£Œ");
           }
         }
       }catch (Exception e) {
