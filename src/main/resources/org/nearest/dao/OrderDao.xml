@@ -96,7 +96,7 @@
   </select>  
   
   <select id="selectOrderDetailListByAdmin" resultType="java.util.HashMap" parameterType="map">
-    SELECT o.order_no orderNo, p.prod_nm prodName, po.order_ent orderEnt, p.prod_pri price 
+    SELECT o.order_no orderNo, p.prod_nm prodName, p.prod_dis discountRate, po.order_ent orderEnt, p.prod_pri price 
     FROM prods p, orders o, clnts c, prod_orders po, marts m
     WHERE c.clnt_no = #{clientNo}
     and p.prod_no = po.prod_no

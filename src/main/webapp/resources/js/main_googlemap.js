@@ -157,6 +157,22 @@ function initMap() {
 			      }
 			        
 			      $('#nearest-product-list').append(prodListTemplete(result));
+			      
+			      var item = document.getElementsByClassName('fh5co-project-item');
+			      
+			      for(var i = 0; i < result.productData.length; i++) {
+			    	  if(result.productData[i].discountRate != '0') {
+			        	  var discountPrice = result.productData[i].price - (result.productData[i].price * result.productData[i].discountRate / 100);
+			        	  discountPrice = parseInt(discountPrice);
+			        	  
+			        	  var discountSpan = $('<span>').text(' ' + discountPrice + '원').css('color', 'red');
+			        	  
+			        	  $(item[i]).children('.fh5co-text').css('text-decoration', '');
+			        	  $(item[i]).children('.fh5co-text').children('span').css('text-decoration', 'line-through');
+			        	  
+			  			  $(item[i]).children('.fh5co-text').append(discountSpan);
+			          }
+			      }
 			        
 			      total = JSON.stringify(result.total);
 			        
