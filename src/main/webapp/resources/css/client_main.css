@@ -15,3 +15,7 @@ tbody > tr > td, tbody > tr > th {
 #nearest-request{
 	padding: 2em 0;
 }
+
+.nearest-client-req-tr{
+	cursor: pointer;
+}

@@ -3,7 +3,6 @@ package org.nearest.controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -138,7 +137,8 @@ public class OrderController {
     Map<String, Object> result = new HashMap<>();
         
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
-    Set<String> table = new HashSet<>();
+    Set<String> table = new TreeSet<>();
+    List<Object> compareDateDataOrder = new ArrayList<>();
     Set<Object> compareDateData = new TreeSet<>();
     List<Object> compareDateDataList = new ArrayList<>();
     
@@ -152,8 +152,10 @@ public class OrderController {
       
       compareDateDataList.addAll(compareDateData);      
       Collections.reverse(compareDateDataList);
+      compareDateDataOrder.addAll(table);      
+      Collections.reverse(compareDateDataOrder);
       
-      result.put("orderDate", table);
+      result.put("orderDate", compareDateDataOrder);
       result.put("compareDateData", compareDateDataList);
       result.put("status", "success");
     } catch (Exception e) {

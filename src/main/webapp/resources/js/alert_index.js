@@ -42,10 +42,13 @@ function cartAlert(option) {
 	}
 }
 
-function qnaAlert(option) {
+function clientQnaAlert(option) {
 	switch (option) {
 		case 'noCheckMart':
 		   sweetAlert("문의처를 선택해주세요!", "", "error");
+		   break;
+		case 'addQnaSuccess':
+		   sweetAlert("문의사항 등록 완료!", "", "success");
 		   break;
 	}
 }
