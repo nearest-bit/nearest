@@ -59,7 +59,7 @@ public class AdminController {
 	  HashMap<String, Object> result = new HashMap<>();
 	  
 	  try {
-	    List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
+	      List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
 	      
   	    result.put("state", "success");
   	    result.put("orderData", list);

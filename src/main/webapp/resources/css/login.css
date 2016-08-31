@@ -1,31 +1,62 @@
 @CHARSET "UTF-8";
 
-.loginForm {
-  /* margin: 15% 10% 0 10%; */
-  margin: 0 auto;
-  margin-top: 15%;
-  width: 350px;
-  height: 450px;
-  background: white;
+#loginForm-wrap {
+	position:absolute;
+	display:table;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%
+	
 }
 
-.login-form-box {
-	margin: 0 auto;
-	height: 100%;
+.nearest-loginForm {
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle;
+  background: #edede3;
 }
+
+/* login tab button */
+.login-tab-group {
+  list-style:none;
+  padding:0;
+}
+
+.login-tab-group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+.login-form-box {
+  display:inline-block;
+  background: #13232f;
+  opacity: 0.9;
+  padding: 40px 20px 10px 20px;
+  width:500px;
+  border-radius:10px;
+  box-shadow:0 4px 10px 4px rgba(19, 35, 47, 0.3);
+
+}
+.form-group:last-child {
+  display:none;
+}
+
+/* end */
 
 .login-form-top {
   overflow: hidden;
   padding: 0 25px 15px 25px;
-  background: #444;
-  background: rgba(0, 0, 0, 0.35);
-  -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+  
   text-align: left;
 }
 
 .login-form-top-left {
   width: 100%;
-  padding-top: 25px;
+  padding: 10px 0 30px 0;
 }
 
 .login-form-top-left h3 { margin-top: 0; color: #fff; text-align: center;}
@@ -44,9 +75,7 @@
 
 .login-form-bottom {
   padding: 30px 25px 0px 25px;
-  background: #444;
-  background: rgba(0, 0, 0, 0.3);
-  -moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+  
   text-align: left;
 }
 
@@ -66,7 +95,8 @@
 }
 
 .find-id-password {
-  float: left;
+  float: right;
+  margin-top: 20px;
   color: #fff;
 }
 
@@ -92,14 +122,12 @@
   height: 100px;
 }
 
-.login-form-bottom form button.btn {
+.form-group button.btn {
   width: 100%;
-  background: #19b9e7;
+  background: #179b77;
+  color: #ffffff;
 }
 
-.login-form-bottom form button.btn {
-   color: #fff;
-}
 
 .login-form-bottom form .input-error {
   border-color: #19b9e7;
