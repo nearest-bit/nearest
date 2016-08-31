@@ -104,7 +104,10 @@
 
 <!-- jQuery-ui (datepicker) -->
 <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-
+<!-- SummerNote(글작성기) include summernote js-->
+<script src="./node_modules/summernote/dist/summernote.js"></script>
+<!-- SummerNote css -->
+<link href="./node_modules/summernote/dist/summernote.css" rel="stylesheet">
 <!-- <script src="./resources/js/manager_upload_images.js"></script> -->
 <style>
 #fh5co-header {
@@ -311,7 +314,6 @@
                      </div>
                 {{/each}}    
             </script>
-						
 						<div id="nearest-qnaContent" class="row"></div>
 					</div>
 				</section>
@@ -319,14 +321,23 @@
 			</div>
 			
 			<!-- 답변하기 시작 -->
-      
-      <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+			  
+		      <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+		            <div id="qna-title" style="height: 30px; line-height: 30px; margin-top: 15px">
+		            <p id="qnaId" style="float: left; text-align: center; font-size: 30px"></p>&nbsp;&nbsp;<p style="float: left; text-align: center">님에 대한 답변</p>
+		            </div>
+		            <br>
+		            <div id="summernote"></div>
+		            <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
+		            <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>
+		      </div>
+      <!-- <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
       <h2>답변하기</h2>
       <textarea id="nearest-replyContent" style="width: 100%; height: 200px"></textarea>
       <br>
           <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
           <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>      
-      </div>
+      </div> -->
       <!-- <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
           <h2>답변하기</h2>
           <textarea id="nearest-replyContent" style="width: 100%; height: 200px" placeholder="답변을 입력해 주세요.">

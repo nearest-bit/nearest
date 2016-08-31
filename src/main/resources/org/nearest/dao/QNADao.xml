@@ -34,8 +34,8 @@
     </select>
     
     <select id="selectQNA" resultMap="qnaMap" parameterType="int">
-        SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
-        FROM reqs
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_no, c.clnt_nm 
+        FROM reqs r, clnts c
         WHERE req_no = #{value}
     </select>
     

@@ -114,6 +114,8 @@ public class QNAController {
 		HashMap<String,Object> result = new HashMap<>();
 		try {
 			QNA qna = (QNA)qnaService.getQNA(reqNo);
+			System.out.println(qna.getClient().getName());
+			result.put("clntName", qna.getClient().getName());
 			result.put("status", "success");
 			result.put("content", qna.getReplyContent());
 			result.put("reqMessage", qna.getStatus());
