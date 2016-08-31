@@ -31,6 +31,5 @@ public class AdminServiceImpl implements AdminService {
     System.out.println("orderNo: "+orderNo);
     return adminDao.selectOrderList(orderNo);
   }
-
  
 }
