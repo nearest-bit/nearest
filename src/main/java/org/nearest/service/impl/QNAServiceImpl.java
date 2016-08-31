@@ -66,4 +66,6 @@ public class QNAServiceImpl implements QNAService{
     
     return qnaDao.selectOrderMartList(clientNo);
   }
+
+
 }
