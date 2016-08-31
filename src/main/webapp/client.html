@@ -127,7 +127,7 @@
         
            <div class="row box-shadow nearest-header-logo">
              <div>
-               <img src="./resources/images/logo_2.png"/>
+               <img style="cursor: pointer;" id="nearest-logo" src="./resources/images/logo_2.png"/>
              </div> <!-- .nearest-header-nav end -->
              <div class="box-shadow nearest-header-top-menu">
                   
@@ -664,7 +664,7 @@
   <script src="./resources/js/alert_index.js"></script>
   <script src="./resources/js/main.js"></script>
   <script src="./resources/js/main_dropdown.js"></script>
-  <script src="./resources/js/main_search.js"></script>
+  <!-- <script src="./resources/js/main_search.js"></script> -->
   <script src="./resources/js/main_register.js"></script>
   <script src="./resources/js/client.js"></script>
   <script src="./resources/js/client_payment.js"></script>
@@ -676,7 +676,9 @@
   <script src="./resources/js/logout.js"></script>
   
   <script type="text/javascript">
-    
+    $('#nearest-logo').on('click', function() {
+    	location.href='index.html';
+    });
   </script>
 
 </body>
