@@ -135,7 +135,7 @@
 		   	
 		   	var currentScroll;
 		   	
-		   	if(locationHref != contextRoot+'admin.html') {
+		   	if(locationHref == contextRoot || locationHref == contextRoot+'index.html') {
 		   		if ( scrlTop > headerHeight ) {
 		   			if ( !header.hasClass('navbar-fixed-top') ){
 			   			
