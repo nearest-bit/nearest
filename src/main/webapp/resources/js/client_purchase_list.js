@@ -117,6 +117,7 @@ function clientPurchase(){
         			alert('myOrderList Contriller Error....');
         			return;
         		}
+        		$('.nearest-product-receipt-list-tr').remove();
         		/*alert(result.orderDetail);*/
         		var realTotalPrice = 0;
         		$('#receipt-client-name').text(result.orderInfo.client.name);

@@ -27,7 +27,7 @@
     </resultMap>
     
     <select id="selectQNAList" resultMap="qnaMap" parameterType="int">
-        SELECT req_no, req_title, req_cnt, req_dt, req_st, mt_nm
+        SELECT m.mt_no, req_no, req_title, req_cnt, req_dt, req_st, mt_nm, req_rcnt, req_rdt
         FROM reqs r, marts m
         WHERE r.mt_no = m.mt_no and clnt_no = #{value}
         order by req_no desc
@@ -76,4 +76,6 @@
         AND clnt_no = #{clientNo}
         AND req_no = #{contentNo}
     </update>
+    
+    
 </mapper>

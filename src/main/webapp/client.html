@@ -498,11 +498,39 @@
   <script id="nearest-req-list" type="text/x-handlebars-template">
     {{#each reqData}}
       <tr class="nearest-client-req-tr">
-        <td data="{{no}}">{{no}}</td>
+        <td req-no="{{no}}">{{no}}</td>
         <td data="{{title}}">{{title}}</td>
         <td data="{{createDate}}">{{createDate}}</td>
-        <td data="{{mart.no}}">{{mart.name}}</td>
+        <td mart-no="{{mart.no}}">{{mart.name}}</td>
         <td data="{{status}}">{{reqStatus}}</td>
+      </tr>
+      <tr class="nearest-Qna" style="display : none;">
+        <td colspan="5">
+          <div class="comments-container">
+      
+          <ul class="comments-list" style="margin: 0; padding: 0;">
+            <li>
+              <div class="comment-main-level">
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-head">
+                  <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">Q</h1>
+                   {{content}}
+                  </div>
+                  {{#if request}}
+                  <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-content">
+                  <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">A</h1>
+                    {{replyContent}}
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+            </li>
+      
+      
+          </ul>
+          </div>
+        </td>
       </tr>
     {{/each}}
   </script>
@@ -599,31 +627,6 @@
 
   {{/each}}
   </script>
-  <script id="nearest-client-QNA-div" type="text/x-handlebars-templete">
-    <div id="nearest-client-req-form" class="nearest-client-req-form" >
-
-      <div class="comments-container">
-
-        <ul id="comments-list" class="comments-list" style="margin: 0; padding: 0;">
-          <li>
-            <div class="comment-main-level">
-              <!-- Contenedor del Comentario -->
-              <div class="comment-box">
-                <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-head">
-                <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">Q</h1>
-                                        안녕하세요
-                </div>
-                <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-content">
-                <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">A</h1>
-                                        네 안녕하세요
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </script>
   
   
   <!-- Main JS (Do not remove) -->
@@ -645,45 +648,7 @@
   <script src="./resources/js/logout.js"></script>
   
   <script type="text/javascript">
-    $('#QNAaddBtn').on('click', function() {
-    	
-    	if($('#QNAselectBox option:selected').val() == ''){
-    		clientQnaAlert('noCheckMart');
-    		return;
-    	}
-    	
-    	
-    	$.ajax({
-    		url : contextRoot + 'qna/add.do',
-    		datatype : 'json',
-    		method : 'post',
-    		data : {
-    			martNo : $('#QNAselectBox option:selected').val(),
-    			title : $('#nearest-req-title').val(),
-    			content : $('#nearest-req-content').val()
-    		},
-    	  success : function(result){
-    		  clientQnaAlert('addQnaSuccess');
-    		  $.magnificPopup.close(); 
-    		  clientRequest();
-    		  
-    	  },
-    	  error : function() {
-    		  alert('Controller Error....');
-    	  }
-    	});
-    });
     
-    $(document).on('click', '.nearest-client-req-tr', function(){
-    	
-    	if($(this).next('.nearest-Qna').html() == undefined){
-    		$(this).after('<tr class="nearest-Qna"><td colspan="5">'+$('#nearest-client-req-form').html()+'</td></tr>');	
-    	}else{
-    		$(this).next('.nearest-Qna').remove();
-    	}
-    	
-    	
-    });
   </script>
 
 </body>
