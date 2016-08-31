@@ -1,3 +1,7 @@
+$('#nearest-logo').on('click', function() {
+  	location.href='index.html';
+});
+
 $(function() {
 	var menu = $.cookie('clientMenu');
 	

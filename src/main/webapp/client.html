@@ -120,62 +120,62 @@
 </head>
 
 <body>
+  <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
     <div class="container nearest-header-menu">
-      <div class="wrapper container">
-       <div style="float: left;" class="row box-shadow nearest-header-logo">
-         <div>
-       
-           <img src="./resources/images/logo_2.png"/>
-         
-          </div> <!-- .nearest-header-nav end -->
+        <div class="wrapper">
+        
+           <div class="row box-shadow nearest-header-logo">
+             <div>
+               <img style="cursor: pointer;" id="nearest-logo" src="./resources/images/logo_2.png"/>
+             </div> <!-- .nearest-header-nav end -->
+             <div class="box-shadow nearest-header-top-menu">
+                  
+             <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
+               <div style="position: absolute;">
+                 <div style="position: absolute; margin-left: 10px;">
+                  <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
+                      aria-hidden="true">
+                  </span>
+                 </div>
+                 <div style="position: absolute; 
+                             width: 20px; 
+                             height: 24px;
+                             margin-left: 10px;">
+                   <div style="width: 60%;
+                               height: 55%;
+                               float: right;
+                               border-radius: 10px;
+                               margin: 2px -3px;
+                               background: #003f50;"></div>
+                 </div>
+                 <div id="nearest-dropdown-alert" 
+                      style="position: absolute; 
+                             width: 20px; 
+                             height: 24px; 
+                             font-size: 1rem; 
+                             color: white;
+                             font-weight: bold;
+                             margin-left: 10px;">
+                     1
+                 </div>
+               </div>
+              </div>
+            
+              <div style="font-size: 22px;" class="white-popup nearest-header-menu-btn">
+				         <a id="logoutBtn">
+				           <strong style="cursor: pointer;">로그아웃</strong>
+				         </a> 
+				       </div> 
+            
+            
+            </div>
+           </div>
+           
         </div>
-     <div style="margin-right: 1%;" class="row box-shadow nearest-header-top-menu">
-     
-       <div style="font-size: 22px;" class="white-popup nearest-header-menu-btn">
-         <a id="logoutBtn">
-           <strong style="cursor: pointer;">로그아웃</strong>
-         </a> 
-       </div>    
-     
-     </div>
-    
-     
-     
-     <div class="row box-shadow top-nav">
-       <p class="nearest-header-nav">
-           <div class="col-xs-4">
-             <select name="searchTag" class="form-control">
-               <option value="prods">제품검색</option>
-               <option value="marts">매장검색</option>
-             </select>
-           </div>
-           
-           <div class="col-xs-8">
-             <div class="input-group">
-               <input type="text"
-                      name="searchContent" 
-                      class="form-control" 
-                      placeholder="상품을 입력하세요.">
-               <span class="input-group-btn">
-                 <button id="nearest-search" 
-                         class="btn btn-default" 
-                         type="button"
-                         data-nav-section="work"
-                         style="height: 45px;">
-                      검색
-                 </button>
-               </span>
-             </div>
-             <!-- /input-group -->
-           </div>
-           
-         </p> <!-- .nearest-header-nav end -->
-       </div>
-      </div>
-    </div> <!-- container end -->
+   </div> <!-- container end -->
   </header>
-
+  
   <div id="nearest-client-wrap" style="width: 1024px; margin: 0 auto;">
 
   <div class="container">
@@ -358,7 +358,6 @@
               </div> <!-- #formPage -->
           </div>
           
-          <div id="footer"></div>
           
           </div> <!-- .container -->
         
@@ -451,7 +450,7 @@
   </div>
   
   <footer>
-   <section class="foot-area">
+   <section class="foot-area" style="height: 150px;">
       <div class="nearest-footer" style="text-align: center; width: 100%;">
           <!-- (s)160524: 전자금융거래이용약관 -->
           <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
@@ -498,11 +497,39 @@
   <script id="nearest-req-list" type="text/x-handlebars-template">
     {{#each reqData}}
       <tr class="nearest-client-req-tr">
-        <td data="{{no}}">{{no}}</td>
+        <td req-no="{{no}}">{{no}}</td>
         <td data="{{title}}">{{title}}</td>
         <td data="{{createDate}}">{{createDate}}</td>
-        <td data="{{mart.no}}">{{mart.name}}</td>
+        <td mart-no="{{mart.no}}">{{mart.name}}</td>
         <td data="{{status}}">{{reqStatus}}</td>
+      </tr>
+      <tr class="nearest-Qna" style="display : none;">
+        <td colspan="5">
+          <div class="comments-container">
+      
+          <ul class="comments-list" style="margin: 0; padding: 0;">
+            <li>
+              <div class="comment-main-level">
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-head">
+                  <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">Q</h1>
+                   {{content}}
+                  </div>
+                  {{#if request}}
+                  <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-content">
+                  <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">A</h1>
+                    {{replyContent}}
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+            </li>
+      
+      
+          </ul>
+          </div>
+        </td>
       </tr>
     {{/each}}
   </script>
@@ -599,31 +626,6 @@
 
   {{/each}}
   </script>
-  <script id="nearest-client-QNA-div" type="text/x-handlebars-templete">
-    <div id="nearest-client-req-form" class="nearest-client-req-form" >
-
-      <div class="comments-container">
-
-        <ul id="comments-list" class="comments-list" style="margin: 0; padding: 0;">
-          <li>
-            <div class="comment-main-level">
-              <!-- Contenedor del Comentario -->
-              <div class="comment-box">
-                <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-head">
-                <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">Q</h1>
-                                        안녕하세요
-                </div>
-                <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-content">
-                <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">A</h1>
-                                        네 안녕하세요
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </script>
   
   
   <!-- Main JS (Do not remove) -->
@@ -633,7 +635,7 @@
   <script src="./resources/js/alert_index.js"></script>
   <script src="./resources/js/main.js"></script>
   <script src="./resources/js/main_dropdown.js"></script>
-  <script src="./resources/js/main_search.js"></script>
+  <!-- <script src="./resources/js/main_search.js"></script> -->
   <script src="./resources/js/main_register.js"></script>
   <script src="./resources/js/client.js"></script>
   <script src="./resources/js/client_payment.js"></script>
@@ -645,44 +647,8 @@
   <script src="./resources/js/logout.js"></script>
   
   <script type="text/javascript">
-    $('#QNAaddBtn').on('click', function() {
-    	
-    	if($('#QNAselectBox option:selected').val() == ''){
-    		clientQnaAlert('noCheckMart');
-    		return;
-    	}
-    	
-    	
-    	$.ajax({
-    		url : contextRoot + 'qna/add.do',
-    		datatype : 'json',
-    		method : 'post',
-    		data : {
-    			martNo : $('#QNAselectBox option:selected').val(),
-    			title : $('#nearest-req-title').val(),
-    			content : $('#nearest-req-content').val()
-    		},
-    	  success : function(result){
-    		  clientQnaAlert('addQnaSuccess');
-    		  $.magnificPopup.close(); 
-    		  clientRequest();
-    		  
-    	  },
-    	  error : function() {
-    		  alert('Controller Error....');
-    	  }
-    	});
-    });
-    
-    $(document).on('click', '.nearest-client-req-tr', function(){
-    	
-    	if($(this).next('.nearest-Qna').html() == undefined){
-    		$(this).after('<tr class="nearest-Qna"><td colspan="5">'+$('#nearest-client-req-form').html()+'</td></tr>');	
-    	}else{
-    		$(this).next('.nearest-Qna').remove();
-    	}
-    	
-    	
+    $('#nearest-logo').on('click', function() {
+    	location.href='index.html';
     });
   </script>
 

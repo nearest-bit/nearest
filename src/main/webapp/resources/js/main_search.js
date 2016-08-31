@@ -17,7 +17,7 @@ var pageUnit = "" ;
 var totalPage = "";
 
 // 현재 페이지
-var currentPage = "";
+var currentPage = 1;
 
 // 다음 페이지 번호
 var nextPage = "";
@@ -28,15 +28,18 @@ var previousPage = "";
 // 총 데이터의 수
 var total = "";
 
+var searchMartName;
+
 // 검색 했을때 
 $('#nearest-search').click(function(){
+	indexOption = "search";
 	
 	//초기화
 	searchTag = "";
 	searchContent = "";
 	pageUnit = "" ;
 	totalPage = "";
-	currentPage = "";
+	currentPage = 1;
 	nextPage = "";
 	previousPage = "";
 	total = "";
@@ -56,7 +59,9 @@ $('#nearest-search').click(function(){
       
     data : {
       searchTag : $('select[name="searchTag"]').val(),
-      searchContent : $('input[name="searchContent"]').val()
+      searchContent : $('input[name="searchContent"]').val(),
+      currentPage: currentPage,
+      option: 'client'
     },
     success : function(result) {
       if(result.status != 'success'){
@@ -66,23 +71,6 @@ $('#nearest-search').click(function(){
         
       $('#nearest-product-list').append(prodListTemplete(result));
       
-      /*var item = document.getElementsByClassName('fh5co-project-item');
-      
-      for(var i = 0; i < result.productData.length; i++) {
-    	  if(result.productData[i].discountRate != '0') {
-        	  var discountPrice = result.productData[i].price - (result.productData[i].price * result.productData[i].discountRate / 100);
-        	  discountPrice = parseInt(discountPrice);
-        	  
-        	  var discountSpan = $('<span>').text(' ' + discountPrice + '원').css('color', 'red');
-        	          	  
-        	  $(item[i]).children('.fh5co-text').css('text-decoration', '');
-        	  $(item[i]).children('.fh5co-text').children('span').css('text-decoration', 'line-through');
-        	  
-  			  $(item[i]).children('.fh5co-text').append(discountSpan);
-          }
-      }*/
-        
-//      alert(JSON.stringify(result.total));
       total = JSON.stringify(result.total);
         
       if ( total % 9 != 0){
@@ -95,22 +83,14 @@ $('#nearest-search').click(function(){
     	  pageUnit = 5; 
     	  nextPage = pageUnit + 1;
     	  
-    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
       }else if( totalPage == 0 ){
     	  pageUnit = 0;
-    	  $('span[data-next-page=""]').attr('data-next-page', '');
       }else{
     	  pageUnit = totalPage;
       }
-        
-      if (pageUnit >= 1){
-      	for(var i=1; i<=pageUnit; i++){
-       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-       	}
-      }
+      
       searchTag = $('select[name=searchTag]').val();
       searchContent = $('input[name=searchContent]').val();
-//      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
       
       $('.fh5co-project-item > img').magnificPopup();
       
@@ -120,162 +100,128 @@ $('#nearest-search').click(function(){
       alert("error....");
     }
   });
+  
 });
 
-//페이지 번호 눌렀을때
-$(document).on('click','#nearest-pageno > li',function (){
+$(function() {	
+	if(searchMartName != undefined) {
+		indexOption = 'index';
+	}
 	
-	$('#nearest-product-list').children().remove();
+	switch(indexOption){
+		case 'index':			
+			$(window).scroll(function() {
+				if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
+					currentPage++;
+					
+					console.log('currentPage : ' + currentPage);
+					
+					$.ajax({
+					    url :  contextRoot + 'product/list.do',
+					    datatype : 'json',
+					    method : 'post',
+					      
+					    data : {
+					      searchTag: 'marts',
+						  searchContent: searchMartName,
+					      currentPage : currentPage,
+					      option: 'client'
+					    },
+					    success : function(result) {
+					      			    	
+					      if(result.status != 'success'){
+					        alert('검색오류');
+					        return;
+					      }
+					        
+					      $('#nearest-product-list').append(prodListTemplete(result));
+					        
+				//		      alert(JSON.stringify(result.total));
+					      total = JSON.stringify(result.total);
+					        
+					      if ( total % 9 != 0){
+					      	totalPage = parseInt( total / 9 ) + 1;
+					      }else{
+					    	totalPage = parseInt( total / 9 );
+					      }
+					      
+					      if ( totalPage >= 5) {
+					    	  pageUnit = 5; 
+					    	  nextPage = pageUnit + 1;
+					    	  
+					      }else if( totalPage == 0 ){
+					    	  pageUnit = 0;
+					      }else{
+					    	  pageUnit = totalPage;
+					      }
+					      
+					      $('.fh5co-project-item').magnificPopup();
+					      
+					      
+					    },
+					    error : function() {
+					      alert("error....");
+					    }
+					});
+				}
+			});
+			
+			break;
+		case 'search':
+			$(window).scroll(function() {
+				if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
+					currentPage++;
+					
+					$.ajax({
+					    url :  contextRoot + 'product/list.do',
+					    datatype : 'json',
+					    method : 'post',
+					      
+					    data : {
+					      searchTag : $('select[name="searchTag"]').val(),
+					      searchContent : $('input[name="searchContent"]').val(),
+					      currentPage : currentPage,
+					      option: 'client'
+					    },
+					    success : function(result) {
+					      			    	
+					      if(result.status != 'success'){
+					        alert('검색오류');
+					        return;
+					      }
+					        
+					      $('#nearest-product-list').append(prodListTemplete(result));
+					        
+					      total = JSON.stringify(result.total);
+					        
+					      if ( total % 9 != 0){
+					      	totalPage = parseInt( total / 9 ) + 1;
+					      }else{
+					    	totalPage = parseInt( total / 9 );
+					      }
+					      
+					      if ( totalPage >= 5) {
+					    	  pageUnit = 5; 
+					    	  nextPage = pageUnit + 1;
+					    	  
+					      }else if( totalPage == 0 ){
+					    	  pageUnit = 0;
+					      }else{
+					    	  pageUnit = totalPage;
+					      }
+					      
+					      $('.fh5co-project-item').magnificPopup();
+					      
+					      
+					    },
+					    error : function() {
+					      alert("error....");
+					    }
+					});
+				}
+			});
+			
+			break;
+	}
 	
-	currentpage = $(this).children('a').text();
-	
-//	alert(searchTag+'//'+searchContent+"//"+currentpage);
-	
-	$.ajax({
-	    url :  contextRoot + 'product/list.do',
-	    datatype : 'json',
-	    method : 'post',
-	      
-	    data : {
-	      searchTag : searchTag,
-	      searchContent : searchContent,
-	      currentPage : currentpage
-	    },
-	    success : function(result) {
-	    	if(result.status != 'success'){
-	            alert('재검색오류');
-	            return;
-	          }
-	    	$('#nearest-product-list').append(prodListTemplete(result));
-	    	
-	    	$('.fh5co-project-item > img').magnificPopup();
-	    },
-	    error : function() {
-	        alert("error....");
-	    }
-  });
-});
-
-function search(){
-
-	
-}
-
-//다음 버튼 눌렀을때
-$(document).on('click', 'a[aria-label="Next"]', function() {
-	
-//	alert('currentPage = ' + $(this).children('span').attr('data-next-page'));
-	currentPage = $(this).children('span').attr('data-next-page');
-	
-	$('#nearest-product-list').children().remove();
-	  $('#nearest-pageno').children().remove();
-	  
-	  if( $(this).children('span').attr('data-next-page') == '' ){
-		  alert('끝 페이지 입니다.');
-	  }
-		$.ajax({
-		    url :  contextRoot + 'product/list.do',
-			datatype : 'json',
-			method : 'post',
-		  
-			data : {
-			  searchTag : searchTag,
-			  searchContent : searchContent,
-			  currentPage : currentPage
-			},
-			success : function(result) {
-			  if(result.status != 'success'){
-			    alert('검색오류');
-			    return;
-			  }
-			    
-			  $('#nearest-product-list').append(prodListTemplete(result));
-			    
-			  if( totalPage >= (nextPage + 5)) {
-				  pageUnit = (nextPage + 5);
-				  
-				  $('span[data-next-page=""]').attr('data-next-page', nextPage);
-
-			  }else{
-				  pageUnit = totalPage+1;
-				  $('span[data-next-page]').attr('data-next-page', '');
-			  }
-			  
-			  previousPage = nextPage - 1;
-			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
-			 
-			  if (pageUnit >= 1){
-			  	for(var i=nextPage; i < pageUnit; i++){
-			   		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-			   	}
-			  	
-			  }
-			  if(totalPage >= pageUnit){
-			      nextPage = pageUnit;
-				  $('span[data-next-page]').attr('data-next-page', nextPage);
-			  }
-			  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
-			  
-			  $('.fh5co-project-item > img').magnificPopup();
-			},
-			error : function() {
-			  alert("error....");
-			}
-	  });
-	  
-});
-
-//이전 버튼 눌렀을때
-$(document).on('click', 'a[aria-label="Previous"]', function() {
-	
-	currentPage = $(this).children('span').attr('data-previous-page');
-	
-	$('#nearest-product-list').children().remove();
-	$('#nearest-pageno').children().remove();
-	  
-	  $.ajax({
-	    url :  contextRoot + 'product/list.do',
-		datatype : 'json',
-		method : 'post',
-	  
-		data : {
-		  searchTag : searchTag,
-		  searchContent : searchContent,
-		  currentPage : previousPage
-		},
-		success : function(result) {
-		  if(result.status != 'success'){
-		    alert('검색오류');
-		    return;
-		  }
-		  
-		  $('#nearest-product-list').append(prodListTemplete(result));
-		  
-		  if (pageUnit >= 1){
-		  	for(var i=(previousPage - 4); i <= previousPage; i++){
-		   		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-		   	}
-		  	
-		  }
-		  if(previousPage > 5 ){
-			  previousPage -= 5 ;
-			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
-		  }
-		  if( nextPage > 6 && (totalPage - nextPage) > 6){
-			  nextPage -= 5;  
-		  }
-		  if( currentPage == 5 ){
-			  nextPage = 6;
-		  }
-		  $('span[data-next-page]').attr('data-next-page', nextPage);
-		  /*if( (totalPage - nextPage) < 6 ){}*/
-		  
-		  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
-		  
-		  $('.fh5co-project-item > img').magnificPopup();
-		},
-		error : function() {
-		  alert("error....");
-		}
-  });
 });

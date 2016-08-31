@@ -164,20 +164,26 @@ public class ProductController {
 		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "\\");
 		
 		String currentTime = String.valueOf(System.currentTimeMillis()); 
+		
+		File folder = new File(realPath);
+		
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
 	
 		try {
 		
 			if(imageFiles != null) {
 				imageFile = imageFiles.get(0);
 				
-				filePath = realPath + "\\" + currentTime + imageFile.getOriginalFilename();
+				filePath = realPath + "\\" + currentTime + URLEncoder.encode(imageFile.getOriginalFilename(), "utf-8");
 				resultFile = new File(filePath);
 				prevFile = new File(prevPath);
 				
 				System.out.println("filePath : " + filePath);
 				System.out.println("prevPath : " + prevPath);
 						
-				product.setPhoto("./resources/images/product/" + currentTime + imageFile.getOriginalFilename());
+				product.setPhoto("./resources/images/product/" + currentTime + URLEncoder.encode(imageFile.getOriginalFilename(), "utf-8"));
 				
 				prevFile.delete();
 				imageFile.transferTo(resultFile);

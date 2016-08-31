@@ -14,6 +14,8 @@ var autocomplete;
 
 var infowindows = new Array();
 
+var indexOption = "index";
+
 function initMap() {
 
   var mapOptions = {
@@ -133,6 +135,7 @@ function initMap() {
 			}
 						
 			var martName = markers[minIndex].getTitle();
+			searchMartName = martName;
 			
 			$('#nearest-product-list').children().remove();
 			$('#nearest-pageno').children().remove();
@@ -157,22 +160,6 @@ function initMap() {
 			      }
 			        
 			      $('#nearest-product-list').append(prodListTemplete(result));
-			      
-			      /*var item = document.getElementsByClassName('fh5co-project-item');
-			      
-			      for(var i = 0; i < result.productData.length; i++) {
-			    	  if(result.productData[i].discountRate != '0') {
-			        	  var discountPrice = result.productData[i].price - (result.productData[i].price * result.productData[i].discountRate / 100);
-			        	  discountPrice = parseInt(discountPrice);
-			        	  
-			        	  var discountSpan = $('<span>').text(' ' + discountPrice + '원').css('color', 'red');
-			        	  
-			        	  $(item[i]).children('.fh5co-text').css('text-decoration', '');
-			        	  $(item[i]).children('.fh5co-text').children('span').css('text-decoration', 'line-through');
-			        	  
-			  			  $(item[i]).children('.fh5co-text').append(discountSpan);
-			          }
-			      }*/
 			        
 			      total = JSON.stringify(result.total);
 			        
@@ -185,27 +172,21 @@ function initMap() {
 			      if ( totalPage >= 5) {
 			    	  pageUnit = 5; 
 			    	  nextPage = pageUnit + 1;
-			    	  
-			    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
+			    
 			      }else if( totalPage == 0 ){
 			    	  pageUnit = 0;
-			    	  $('span[data-next-page=""]').attr('data-next-page', '');
 			      }else{
 			    	  pageUnit = totalPage;
 			      }
-			        
-			      if (pageUnit >= 1){
-			      	for(var i=1; i<=pageUnit; i++){
-			       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-			       	}
-			      }
 			      
-			      $('.fh5co-project-item > img').magnificPopup();
+			      $('.fh5co-project-item').magnificPopup();
 			  },
 			  error: function() {
 				  alert('ajax 접속 실패');
 			  }
 			});
+			
+			
 		}
 	  },
 	  error: function() {

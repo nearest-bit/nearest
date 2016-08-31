@@ -47,6 +47,9 @@ function clientCart() {
 	          alert('failure');
 	          return;
 	        }
+	        
+	        $('#nearest-cart-tbody').children().remove();
+	        
 	        $('#nearest-cart-tbody').append(cartListTempl(result));
 	        $('#nearest-client-menu').addClass('active');
 	        

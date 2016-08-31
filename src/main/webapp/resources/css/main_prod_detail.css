@@ -4,14 +4,25 @@
     /* basic */
     background-color: #fff;
     margin: 0 auto;
-    width: 60%;
+    width: 50%;
     padding: 30px;
     text-align: center;
     /* border-radius */
     border-radius: 12px;
-    color: white;
+    color: #337ab7;
+    font-weight: bold;
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e4efc0+0,abbd73+100;Olive+3D+%232 */
+			background: #e4efc0; /* Old browsers */
+			background: -moz-linear-gradient(45deg,  #e4efc0 0%, #abbd73 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(45deg,  #e4efc0 0%,#abbd73 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(45deg,  #e4efc0 0%,#abbd73 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4efc0', endColorstr='#abbd73',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    
+    
     /* box-shadow */
-    -webkit-box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
+    /* -webkit-box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
     -moz-box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
     box-shadow: rgba(0,0,0,0.5) 0px 3px 10px, rgba(0,0,0,.75) 0 0 70px inset;
     
@@ -21,7 +32,7 @@
     background: -ms-linear-gradient(top, #7d7e7d, #0e0e0e);
     background: -o-linear-gradient(top, #7d7e7d, #0e0e0e);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 );
-    background: linear-gradient(to bottom, #7d7e7d, #0e0e0e);
+    background: linear-gradient(to bottom, #7d7e7d, #0e0e0e); */
     
     border-top: 1px solid #666;
     overflow: hidden;
@@ -37,7 +48,10 @@
 }
 
 hr.nearest-line {
-    border: none; border: 0.1px dashed;
+   /* border: 1px solid #acacac; */
+   height: 1px;
+   color: #acacac;
+   background-color: #bebebe;
 }
 
 .nearest-image {
@@ -50,15 +64,22 @@ hr.nearest-line {
     font-size:25px;
     letter-spacing:-1px;
     margin-bottom:4px;
-    text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
+    color: #2f5677;
+    /* text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25); */
 }
 
 .nearest-item-detail {
     margin:0;
+    color: black;
     font-size:18px;
     letter-spacing:-1px;
     margin-bottom:4px;
-    text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25);
+    /* text-shadow: 0 -1px 1px #000, 0 0px 5px rgba(0,0,0,.25); */
+}
+
+.nearest-item-total {
+	font-size: 22px;
+	color: #2f5677;
 }
 
 .nearest-purchase-pay {
