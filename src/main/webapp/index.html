@@ -201,13 +201,13 @@
 
   <!-- Signup Form -->
   
-	<div id="signupForm" class="white-popup-block mfp-hide">	 
-	
+	<div id="signupForm" class="white-popup-block mfp-hide">
+	 
     <div class="signup-form-box">
       <div class="signup-form-top">
         <div class="signup-form-top-left">
           <h2><strong>Nearest</strong></h2>
-          <p>위치기반 간편쇼핑 Nearest 가입을 환영합니다.</p>
+          <p style="text-align:left; margin-top:30px;">위치기반 간편쇼핑<br />Nearest 가입을 환영합니다.</p>
         </div>
 
         <div class="signup-form-top-right">
@@ -222,7 +222,7 @@
 		 <input type="text" 
 		        name="reg-id" 
 		        placeholder="아이디를 입력하세요." 
-		        class="form-first-name form-control" 
+		        class="form-first-name form-control form-control-bg" 
 		        id="form-id">	  
 		        <span id="nearest-checkDupl"></span>                        
          </div>
@@ -232,7 +232,7 @@
 		 <input type="password" 
 		        name="reg-password" 
 		        placeholder="패스워드를 입력하세요." 
-		        class="form-last-name form-control" 
+		        class="form-last-name form-control form-control-bg" 
 		        id="form-password">
          </div>
                  
@@ -241,7 +241,7 @@
 	   <input type="text" 
 	          name="reg-name" 
 	          placeholder="이름을 입력하세요." 
-	          class="form-last-name form-control" 
+	          class="form-last-name form-control form-control-bg" 
 	          id="form-name">
 	 </div>
            
@@ -250,7 +250,7 @@
            <div class='input-group date' id='datepicker1'>
                <input type='text' 
                       name="reg-birth"
-                      class="form-control birth-font-color" 
+                      class="form-control birth-font-color form-control-bg" 
                       placeholder="생년월일을 선택하세요."/>
                <span class="input-group-addon">
                  <span class="glyphicon glyphicon-calendar"></span>
@@ -278,7 +278,7 @@
            <input type="text" 
                   name="reg-email" 
                   placeholder="이메일을 입력하세요." 
-                  class="form-email form-control" 
+                  class="form-email form-control form-control-bg" 
                   id="form-email">
          </div>
          
@@ -288,7 +288,7 @@
            <input name="reg-phone"
                   type="text" 
                   placeholder="핸드폰 번호를 입력하세요." 
-                  class="form-about-yourself form-control"/>
+                  class="form-about-yourself form-control form-control-bg"/>
          </div>
 
          <button name="regBtn" type="button" class="btn regBtn">회원가입</button>
@@ -296,7 +296,7 @@
      </div> <!-- signup-form-bottom end -->
        
     </div> <!-- signup-form-box end -->
-	    
+    
 	</div> <!-- signupForm end -->
 
   <!-- Google Map -->
@@ -394,11 +394,10 @@
     <hr class="nearest-line"/>
     <table style="width:100%">
         <tr>
-            <th rowspan="9">
+            <th rowspan="9" class="text-center">
                 <img id="nearest-item-image" alt="No image" src="./foke.jpg">
             </th>
-            <th style="width:5%"></th>
-            <th colspan="3"> 
+            <th colspan="4" class="text-center"> 
               <font id="nearest-item-title" 
                     class="nearest-item-title">
                     우삼겹구이 300g BBQ
@@ -406,12 +405,9 @@
             </th>
         </tr>
         <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font class="nearest-item-detail">판매처&nbsp;:&nbsp;</font>
+               <font class="nearest-item-detail">판매처: &nbsp;</font>
                <span id="nearest-item-mart">진한마트</span>
                <input id="nearest-item-prod-no" type="hidden" value="" />
             </td>
@@ -419,37 +415,31 @@
         <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font class="nearest-item-detail">현재 재고량&nbsp;:&nbsp;</font>
+               <font class="nearest-item-detail">현재 재고량: &nbsp;</font>
                <span id="nearest-item-entity">1</span>
             </td>
         </tr>
         <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-               <font class="nearest-item-detail">판매가&nbsp;:&nbsp;</font>
+               <font class="nearest-item-detail">판매가: &nbsp;</font>
                <font id="nearest-item-price" class="nearest-purchase-pay">5900</font>&nbsp;원
             </td>
         </tr>
         <tr>
-            <td colspan="3"><hr class="nearest-line"/></td>
-        </tr>
-        <tr>
             <td style="width:5%"></td>
             <td colspan="3" style="text-align:right">
-                <font class="nearest-item-detail">구매수량&nbsp;&nbsp;&nbsp;</font>
-                <input id="nearest-item-purchase-entity" type="number" value="1" style="width:15%">
+                <font class="nearest-item-detail">구매수량: &nbsp;</font>
+                <input id="nearest-item-purchase-entity" type="number" value="1" min="1" style="width:15%">
             </td>
         </tr>
     </table>
     <hr class="nearest-line"/><br/>
     <div id="nearest-purchase-footer">
-        <font class="nearest-item-detail">구매 예정 금액</font>&nbsp;&nbsp;:&nbsp;&nbsp;
-        <font id="nearest-item-all-price" class="nearest-purchase-pay" style="color: red">5900</font>&nbsp;원
+        <font class="nearest-item-total">구매 예정 금액:</font>&nbsp;&nbsp;
+        <font id="nearest-item-all-price" class="nearest-purchase-pay" style="color: red">5900원</font>
     </div>
-    <br/><br/><br/>
+    <br/><br/>
     <a id="nearest-item-cart" class="nearest-item-cart" href="#">찜</a>
     <a id="nearest-item-purchase" class="nearest-item-purchase" href="#">바로구매</a>
   </div>

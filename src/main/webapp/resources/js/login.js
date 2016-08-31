@@ -76,4 +76,20 @@ $(document).on('click','#login-btn',function() {
 	}	
 });
 
+/*$('.login-tab a').on('click', function (e) {
+	  
+	  e.preventDefault();
+	  
+	  $(this).parent().addClass('active');
+	  $(this).parent().siblings().removeClass('active');
+	  
+	  target = $(this).attr('href');
+
+	  $('.login-form-bottom > div').not(target).hide();
+	  
+	  $(target).fadeIn(600);
+	  
+	});
+*/
+
 $('.find-id-password > a').magnificPopup();
