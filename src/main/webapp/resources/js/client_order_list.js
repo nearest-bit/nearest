@@ -8,6 +8,7 @@
 		 success : function(result){
 			 if(result.status != 'success'){
 				 alert('Controller Error....');
+				 return;
 			 }
 			 
 			 var source = $('#nearest-purchase-info').html();

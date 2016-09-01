@@ -49,8 +49,8 @@ function clientPurchase(){
          	  
            },
            success : function(result) {
-         	 /*  alert(result.orderList[0].orderDate == result.compareDateData[0]);
-         	  alert(JSON.stringify(result.orderList[0])); */
+         	  /*alert(result.orderList[0].orderDate == result.compareDateData[0]);
+         	  alert(JSON.stringify(result.orderList[0]));*/
          	  
              if(result.status != 'success'){
                alert('failure');
