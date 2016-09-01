@@ -1,5 +1,6 @@
 package org.nearest.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,5 +103,51 @@ public class ClientController {
 		}
 
 		return new Gson().toJson(result);
+	}
+	@RequestMapping(path="myinfo", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String myinfo(HttpSession session){
+	  
+	  Map<String, Object> result = new HashMap<>();
+	  SimpleDateFormat birth = new SimpleDateFormat("yyyy년 MM월 dd일");
+	  Client clientInfo;
+	  
+	  try {
+	    clientInfo = clientService.getClient(((Client)session.getAttribute("loginId")).getId());
+	    result.put("data", clientInfo);
+	    result.put("birth", birth.format(clientInfo.getBirth()));
+	    result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+      
+    }
+	  
+	  return new Gson().toJson(result);
+	}
+	
+	@RequestMapping(path="update", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String update(HttpSession session, String password, String email){
+	  
+	  
+	  Map<String, Object> params = new HashMap<>();
+	  params.put("clientNo", ((Client)session.getAttribute("loginId")).getNo());
+	  params.put("password", password);
+	  params.put("email", email);
+	  Map<String, Object> result = new HashMap<>();
+	  System.out.println("email : "+email);
+    System.out.println("password : "+password);
+    System.out.println("clientNo : "+((Client)session.getAttribute("loginId")).getNo());
+	  
+	  try {
+      System.out.println(clientService.changeClientInfo(params));
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+	  
+	  return new Gson().toJson(result);
 	}
 }

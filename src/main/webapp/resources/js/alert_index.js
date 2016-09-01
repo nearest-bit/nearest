@@ -53,6 +53,23 @@ function clientQnaAlert(option) {
 	}
 }
 
+function clientInfoUpdate(option) {
+	switch (option) {
+		case 'noPassword':
+		   sweetAlert("비밀번호를 입력해주세요!", "", "error");
+		   break;
+		case 'checkPassword':
+			   sweetAlert("비밀번호가 일치하지 않습니다!", "", "error");
+			   break;
+		case 'incorrectEmail':
+			   sweetAlert("이메일 형식이 일치하지 않습니다!", "", "error");
+			   break;
+		case 'successUpdate':
+		   sweetAlert("회원정보 수정 완료!", "", "success");
+		   break;
+	}
+}
+
 function mainAlert(option) {
 	switch (option) {
 		case 'idEmpty':

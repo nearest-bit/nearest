@@ -9,4 +9,5 @@ public interface ClientService {
 	Client getClient(String id);
 	void addClient(Client client);
 	Map<String,Object> checkAlert(int clientNo);
+	int changeClientInfo(Map<String, Object> params);
 }
