@@ -32,6 +32,7 @@ public class QNAController {
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			try {
 				List<QNA> list = qnaService.getQNAListByAdmin(admin);
+				System.out.println(list);
 				for (QNA qna : list) {
 				      if(qna.getStatus() == 1){
 				        qna.setReqStatus("답변하기");
