@@ -37,19 +37,16 @@ var duplicate = '';
   $('input[name="reg-id"]').on('keyup', function(event){
 	  $.ajax({
 		  dataType : 'json',
-		  url : contextRoot + 'client/checkDupl.do',
+		  url : nodeRoot + 'client/checkDupl.do',
 		  data : {
 			  id : $('input[name="reg-id"]').val()
 		  },
 		  success : function(result){
-			  if(result.status != 'success'){
-				  alert('서버 오류...');
-				  return;
-			  }
-			   if( result.check == 'true' ){
+			  
+			  if( result == true ){						  
 				  $('#nearest-checkDupl').text('중복된 아이디 입니다').css('color', 'red');
 				  duplicate = true;
-			  }else{
+			  }else if( result == false ){				  
 				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', 'blue');
 				  duplicate = false;
 			  }

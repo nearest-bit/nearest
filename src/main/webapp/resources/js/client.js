@@ -18,6 +18,10 @@ $(function() {
 			$('.nearest-menu-tab-bar a[href="#menu2"]').click();
 			clientRequest();
 			break;
+		default:
+			$('.nearest-menu-tab-bar a[href="#home"]').click();
+			clientCart();
+			break;
 	}
 	
 	$.removeCookie('clientMenu');
