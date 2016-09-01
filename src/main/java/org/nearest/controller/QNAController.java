@@ -51,6 +51,56 @@ public class QNAController {
 		return new Gson().toJson(result);
 	}
 	
+	@RequestMapping(path="QNAlistByCalendar", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String QNAlistByCalendar(HttpSession session,
+									String qnaStatus,
+									String startDate,
+									String endDate) {
+		int qnaSt = 0;
+		Admin admin = (Admin)session.getAttribute("adminId");
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		
+		try {
+			if (qnaStatus.equals("답변미완료")) {
+				qnaSt = 1;
+				List<QNA> list = qnaService.getQNAlistByCalendar(admin, startDate, endDate, qnaSt);
+				for (QNA qna : list) {
+				      if(qna.getStatus() == 1){
+				        qna.setReqStatus("답변하기");
+				      }else if(qna.getStatus() == 2){
+				        qna.setReqStatus("답변완료");
+				      }else{
+				        qna.setReqStatus("오류");
+				      }
+				}
+				
+				result.put("status", "success");
+				result.put("qnadata", list);
+			} else if (qnaStatus.equals("답변완료")){
+				qnaSt = 2;
+				List<QNA> list = qnaService.getQNAlistByCalendar(admin, startDate, endDate, qnaSt);
+				for (QNA qna : list) {
+				      if(qna.getStatus() == 1){
+				        qna.setReqStatus("답변하기");
+				      }else if(qna.getStatus() == 2){
+				        qna.setReqStatus("답변완료");
+				      }else{
+				        qna.setReqStatus("오류");
+				      }
+				}
+				
+				result.put("status", "success");
+				result.put("qnadata", list);
+			}
+			
+		} catch (Exception e) {
+			result.put("status", "failure");
+			e.printStackTrace();
+		}
+		return new Gson().toJson(result);
+	}
+	
 	@RequestMapping(path="detail", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String detail(int no) {
@@ -114,6 +164,8 @@ public class QNAController {
 		HashMap<String,Object> result = new HashMap<>();
 		try {
 			QNA qna = (QNA)qnaService.getQNA(reqNo);
+			System.out.println(qna.getClient().getName());
+			result.put("clntName", qna.getClient().getName());
 			result.put("status", "success");
 			result.put("content", qna.getReplyContent());
 			result.put("reqMessage", qna.getStatus());
