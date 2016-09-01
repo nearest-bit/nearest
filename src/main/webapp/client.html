@@ -413,8 +413,10 @@
               <table class="table table-striped">
                 <tr>
                   <th>수령 가능 시간</th>
-                  <td><input type="datetime-local"> ~ <input
-                    type="datetime-local"></td>
+                  <td>
+                    <input id="nearest-receive-time" type="datetime-local">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>이용약관 동의</strong>&nbsp; <input id="nearest-agree" type="checkbox">
+                  </td>
                 </tr>
                 <tr>
                   <th>결제수단 선택</th>
@@ -466,6 +468,9 @@
         <td class="prod-info">
           <input type="checkbox" class="nearest-cart-prodNo" value="{{no}}">
           <input type="hidden" class="nearest-cart-martNo" value="{{mart.no}}">
+          <input type="hidden" class="nearest-cart-prodName" value="{{name}}">
+          <input type="hidden" class="nearest-cart-price" value="{{price}}">
+          <input type="hidden" class="nearest-cart-discount" value="{{discountRate}}">
         </td>
         <td width="13%">
           <img src="{{photo}}" alt="Image" class="img-responsive">

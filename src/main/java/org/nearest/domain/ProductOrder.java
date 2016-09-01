@@ -9,6 +9,9 @@ public class ProductOrder implements Serializable {
 	// Field
 	protected Order order;
 	protected Product product;
+	protected String orderName;
+	protected int orderPrice;
+	protected int orderDiscount;
 	protected int entity;
 	
 	// Getter, Setter
@@ -31,9 +34,28 @@ public class ProductOrder implements Serializable {
 		this.entity = entity;
 	}
 	
-	@Override
-	public String toString() {
-		return "ProductOrder [order=" + order + ", product=" + product + ", entity=" + entity + "]";
-	}
+	public String getOrderName() {
+    return orderName;
+  }
+  public void setOrderName(String orderName) {
+    this.orderName = orderName;
+  }
+  public int getOrderPrice() {
+    return orderPrice;
+  }
+  public void setOrderPrice(int orderPrice) {
+    this.orderPrice = orderPrice;
+  }
+  public int getOrderDiscount() {
+    return orderDiscount;
+  }
+  public void setOrderDiscount(int orderDiscount) {
+    this.orderDiscount = orderDiscount;
+  }
+  @Override
+  public String toString() {
+    return "ProductOrder [order=" + order + ", product=" + product + ", orderName=" + orderName + ", orderPrice="
+        + orderPrice + ", orderDiscount=" + orderDiscount + ", entity=" + entity + "]";
+  }
 	
 }

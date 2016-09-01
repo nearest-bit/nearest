@@ -30,7 +30,7 @@
   </insert>
   
   <select id="selectCartList" parameterType="int" resultMap="productMap">
-    select p.prod_no, prod_pic, prod_nm, prod_pri, prod_ent, p.mt_no, mt_nm
+    select p.prod_no, prod_pic, prod_nm, prod_pri, prod_ent, p.mt_no, mt_nm, prod_dis
     from clnts c, temps t, prods p, marts m
     where c.clnt_no = t.clnt_no 
     AND t.prod_no = p.prod_no 

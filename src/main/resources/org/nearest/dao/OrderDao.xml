@@ -30,10 +30,10 @@
   
   <insert id="insertOrder" parameterType="map">
     insert into 
-    orders (order_dt, order_st, mt_no, clnt_no) 
+    orders (order_dt, order_st, mt_no, clnt_no, order_re_dt) 
     values 
       <foreach collection="noDuplMartNo" item="item" separator=",">
-         ( now(), 1, #{item}, #{clientNo})  
+         ( now(), 1, #{item}, #{clientNo}, date_format(#{receiveDataTime},'%Y-%m-%dT%H:%i'))  
       </foreach>
     <selectKey resultType="int" keyProperty="orderNo" order="AFTER">
       SELECT LAST_INSERT_ID();
@@ -73,7 +73,7 @@
   </select>  
   
   <select id="selectOrderDetailList" resultType="java.util.HashMap" parameterType="map">
-    select o.order_no orderNo, p.prod_nm prodName, po.order_ent orderEnt, p.prod_pri price 
+    SELECT o.order_no orderNo, po.order_nm prodName, po.order_dis discountRate, po.order_ent orderEnt, po.order_pri price 
     from prods p, orders o, clnts c, prod_orders po, marts m
     where c.clnt_no = #{clientNo}
     and p.prod_no = po.prod_no
@@ -96,7 +96,7 @@
   </select>  
   
   <select id="selectOrderDetailListByAdmin" resultType="java.util.HashMap" parameterType="map">
-    SELECT o.order_no orderNo, p.prod_nm prodName, p.prod_dis discountRate, po.order_ent orderEnt, p.prod_pri price 
+    SELECT o.order_no orderNo, po.order_nm prodName, po.order_dis discountRate, po.order_ent orderEnt, po.order_pri price  
     FROM prods p, orders o, clnts c, prod_orders po, marts m
     WHERE c.clnt_no = #{clientNo}
     and p.prod_no = po.prod_no
