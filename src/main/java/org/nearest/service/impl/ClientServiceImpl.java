@@ -28,4 +28,9 @@ public class ClientServiceImpl implements ClientService {
 	public Map<String,Object> checkAlert(int clientNo) {
 		return clientDao.selectAlert(clientNo);
 	}
+
+  @Override
+  public int changeClientInfo(Map<String, Object> params) {
+    return clientDao.updateClient(params);
+  }
 }

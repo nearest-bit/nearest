@@ -42,9 +42,13 @@ public class OrderController {
   @ResponseBody 
   public String addOrder(HttpSession session, @RequestParam(value="martNo") List<Integer> martNo,
                                               @RequestParam(value="prodNo") List<Integer> prodNo,
-                                              @RequestParam(value="prodEnt") List<Integer> prodEnt
+                                              @RequestParam(value="prodEnt") List<Integer> prodEnt,
+                                              @RequestParam(value="prodName") List<String> prodName,
+                                              @RequestParam(value="price") List<String> price,
+                                              @RequestParam(value="discount") List<String> discount,
+                                              String receiveDataTime
                                               ){
-
+    
     int clientNo = ((Client)session.getAttribute("loginId")).getNo();
     //마트 중복 제거
     Set<Integer> removeDuplication = new HashSet<>(martNo);
@@ -53,6 +57,7 @@ public class OrderController {
     Map<String, Object> params = new HashMap<>();
     params.put("noDuplMartNo", noDuplMartNo);
     params.put("clientNo", clientNo);
+    params.put("receiveDataTime", receiveDataTime);
     
     Map<String, Object> result = new HashMap<>();
     try{
@@ -62,6 +67,7 @@ public class OrderController {
       e.printStackTrace();
       result.put("addOrder", "failure");
     }
+    
     
     Map<String, Object> data = new HashMap<>();
     
@@ -76,6 +82,10 @@ public class OrderController {
       Map<String, Object> prodData = new HashMap<>();
       prodData.put("prodNo", prodNo.get(i));
       prodData.put("entity", prodEnt.get(i));
+      prodData.put("prodName", prodName.get(i));
+      prodData.put("price", price.get(i));
+      prodData.put("discount", discount.get(i));
+      
       for (int j = 0; j < orderNo.size(); j++) {
         if(martNo.get(i).equals(noDuplMartNo.get(j))){
           prodData.put("orderNo", orderNo.get(j));

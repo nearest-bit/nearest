@@ -8,6 +8,11 @@
 	margin: 2% 10% 2% 10%;
 }
 
+#loginAfter > a {
+	cursor: pointer;
+	
+}
+
 .nearest-header-nav {
   text-align: center;
 }

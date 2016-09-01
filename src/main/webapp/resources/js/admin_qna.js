@@ -1,3 +1,4 @@
+
 $( function() {
 	
 	$('.nearest-admin-list > ul > li > a[href="#qna"]').click(function () {
@@ -63,6 +64,39 @@ $( function() {
 	    });
 	});
 });
+function callQNAListByCalendar(){
+	$('#nearest-qnaContent > *').remove();
+	var source = $('#nearest-qna-list-template').text();
+	var template = Handlebars.compile(source);
+	$.ajax({
+		url : contextRoot + 'qna/QNAlistByCalendar.do',
+        datatype : 'json',
+        method : 'post',
+        data :{
+      	  qnaStatus : $('#nearest-select').children('option:selected').text(),
+          startDate : $('#sdate').val(),
+      	  endDate : $('#edate').val()
+        },
+        success : function(result) {
+        	 if(result.status != 'success'){
+                 swal('실행 중 오류 발생!');
+                 return;
+           }
+           
+           $('#nearest-qnaContent').append(template(result));
+           $('.nearest-answer-btn').magnificPopup();
+        },
+        error: function(result){
+        	swal('조회 오류');
+        }
+	});
+};
+
+$(function(){
+	$(document).on('click','#nearest-find ', function() {
+		callQNAListByCalendar();
+	});
+});
 
 $(function(){
 	
@@ -71,7 +105,14 @@ $(function(){
 	var reqNo = '';
 	var replyContent = '';
 	var reqCnt = '';
+	  
 	$(document).on('click','.nearest-answer-btn ', function() {
+		
+		$('#summernote').summernote({
+			placeholder: "답변을 입력해주세요.",
+			height: 200,
+		});
+		
 		clientNoForReply = $(this).parent().attr('client-no');
 		replyStatus = $(this).attr('reply-status');
 		reqNo = $(this).parent().attr('content-no');
@@ -79,28 +120,22 @@ $(function(){
 			url: contextRoot + 'qna/reqContent.do',
 			dataType: 'json',
 			data: {
+				'clientNo' : clientNoForReply,
 				'reqNo': reqNo
 			},
 			method: 'post',
 			success: function(result){
 				if(result.status == "success"){
 					if(result.reqMessage == 2){
-						swal({
-							title: "답변하신 내용입니다.",
-							text: "이 창은 2초뒤 자동으로 사라집니다.",
-							timer: 2000,
-							showConfirmButton: false
-						});
-						/*alert('답변하신 내용입니다.');*/
+						$('#qnaId').text('\" '+result.clntName+' \"');
+						swal("답변하신 내용입니다.");
+						$('#summernote').summernote('code', result.content);
 					} else {
-						swal({
-							title: "답변을 등록해주세요.",
-							text: "이 창은 2초뒤 자동으로 사라집니다.",
-							timer: 2000,
-							showConfirmButton: false
-						});
+						$('#qnaId').text('\" '+result.clntName+' \"');
+						swal("답변을 등록해주세요.");
+						$('#summernote').summernote('code', '');
 					}
-					$('#nearest-replyContent').val(result.content);
+					
 				}else{
 					swal('조회 오류');
 				}	
@@ -119,7 +154,7 @@ $(function(){
 			url: contextRoot + 'qna/updateQNA.do',
 			dataType: 'json',
 			data: {
-				'replyContent': $('#nearest-replyContent').val(),
+				'replyContent': $('#summernote').summernote('code'),
 				'clientNo': clientNoForReply,
 				'contentNo': reqNo
 			},
@@ -133,6 +168,8 @@ $(function(){
 					);
 					/*alert('답변이 등록되었습니다.');*/
 					$.magnificPopup.close();
+					location.reload();
+					/*$('.nearest-admin-list > ul > li > a').attr('aria-expanded', 'true');*/
 				}else{
 					swal('등록 오류');
 				}
@@ -142,10 +179,5 @@ $(function(){
 			}
 		});
 		
-		if(result.replyStatus == 2){
-			$('#nearest-answer-btn').css('display', 'none');
-		} else {
-			swal('답변 완료 오류');
-		}
 	});
 });

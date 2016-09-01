@@ -35,7 +35,7 @@ $(document).on('click','#login-btn',function() {
 					
 					$(location).attr('href', './admin.html');
 				}else{
-					alert('로그인이 실패하였습니다');
+					clientLogin('loginFail');
 				}
 			},
 			error: function(result) {
@@ -64,7 +64,7 @@ $(document).on('click','#login-btn',function() {
 						
 						$(location).attr('href', contextRoot);
 					}else{
-						alert('id/password를 확인하세요');
+						clientLogin('incorrectInfo');
 					}
 				});
 			},

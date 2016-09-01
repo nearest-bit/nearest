@@ -30,6 +30,7 @@
     "magnific-popup": "^1.1.0",
     "npm-modernizr": "^2.8.3",
     "respondjs": "^0.3.0",
+    "summernote": "^0.8.2",
     "sweetalert": "^1.1.3"
   }
 }
