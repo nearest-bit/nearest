@@ -62,7 +62,7 @@ public class ClientController {
 		return new Gson().toJson(result);
 	}
 
-	@RequestMapping(path = "checkDupl", produces = "application/json;charset=utf-8")
+	/*@RequestMapping(path = "checkDupl", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String checkDuplication(@RequestParam String id) {
 
@@ -84,7 +84,7 @@ public class ClientController {
 		}
 
 		return new Gson().toJson(result);
-	}
+	}*/
 	
 	@RequestMapping(path = "checkAlert", produces = "application/json;charset=utf-8")
 	@ResponseBody
