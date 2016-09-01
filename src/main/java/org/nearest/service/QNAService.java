@@ -11,6 +11,7 @@ public interface QNAService {
 	List<Mart> getOrderMartList(int clientNo);
 	List<QNA> getQNAList(int clientNo);
 	List<QNA> getQNAListByAdmin(Admin admin);
+	List<QNA> getQNAlistByCalendar(Admin admin, String sdate, String edate, int qnaSt);
 	QNA getQNA(int no);
 	QNA getQNAForStatus(int clientNo, int contentNo);
 	int updateQNA(String replyContent, int clientNo, Admin admin, int contentNo);

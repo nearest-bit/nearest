@@ -64,6 +64,39 @@ $( function() {
 	    });
 	});
 });
+function callQNAListByCalendar(){
+	$('#nearest-qnaContent > *').remove();
+	var source = $('#nearest-qna-list-template').text();
+	var template = Handlebars.compile(source);
+	$.ajax({
+		url : contextRoot + 'qna/QNAlistByCalendar.do',
+        datatype : 'json',
+        method : 'post',
+        data :{
+      	  qnaStatus : $('#nearest-select').children('option:selected').text(),
+          startDate : $('#sdate').val(),
+      	  endDate : $('#edate').val()
+        },
+        success : function(result) {
+        	 if(result.status != 'success'){
+                 swal('실행 중 오류 발생!');
+                 return;
+           }
+           
+           $('#nearest-qnaContent').append(template(result));
+           $('.nearest-answer-btn').magnificPopup();
+        },
+        error: function(result){
+        	swal('조회 오류');
+        }
+	});
+};
+
+$(function(){
+	$(document).on('click','#nearest-find ', function() {
+		callQNAListByCalendar();
+	});
+});
 
 $(function(){
 	

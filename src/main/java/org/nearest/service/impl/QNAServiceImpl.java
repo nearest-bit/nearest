@@ -34,6 +34,17 @@ public class QNAServiceImpl implements QNAService{
 	}
 	
 	@Override
+	public List<QNA> getQNAlistByCalendar(Admin admin, String sdate, String edate, int qnaSt){
+		HashMap<String,Object> params = new HashMap<>();
+		params.put("adminInfo", admin.getNo());
+		params.put("startDate", sdate);
+		params.put("endDate", edate);
+		params.put("qnaStatus", qnaSt);
+		System.out.println(params.toString());
+		return qnaDao.selectQNAlistByCalendar(params);
+	}
+	
+	@Override
 	public QNA getQNA(int no){
 		return qnaDao.selectQNA(no);
 	}

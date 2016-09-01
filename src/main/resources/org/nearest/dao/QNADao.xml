@@ -33,10 +33,23 @@
         order by req_no desc
     </select>
     
+    <select id="selectQNAlistByCalendar" resultMap="qnaMap" parameterType="map">
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no
+        FROM reqs r, clnts c
+        WHERE r.clnt_no=c.clnt_no
+        AND mt_no = #{adminInfo}
+        <if test="startDate != '' and endDate != ''">
+        AND date_format(r.req_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
+        </if>
+        AND r.req_st = #{qnaStatus}
+        ORDER BY req_no DESC
+    </select>
+    
     <select id="selectQNA" resultMap="qnaMap" parameterType="int">
         SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_no, c.clnt_nm 
         FROM reqs r, clnts c
-        WHERE req_no = #{value}
+        WHERE r.clnt_no=c.clnt_no
+        AND req_no = #{value}
     </select>
     
     <select id="selectQNAForStatus" resultMap="qnaMap" parameterType="map">
