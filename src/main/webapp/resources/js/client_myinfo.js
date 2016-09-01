@@ -98,3 +98,11 @@ function emailCheck(strEmail)
 		  }
 	  });
   });
+  
+$('#update-password-check').on('keyup', function() {
+	if( $('#update-password').val() != $('#update-password-check').val() ){
+		$('#alert-check-password').text('비밀번호가 일치하지 않습니다.').css('color', 'red');
+	}else{
+		$('#alert-check-password').text('비밀번호가 일치합니다.').css('color', 'blue');
+	}
+});

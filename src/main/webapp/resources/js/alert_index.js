@@ -70,6 +70,18 @@ function clientInfoUpdate(option) {
 	}
 }
 
+function clientLogin(option) {
+	switch (option) {
+		case 'incorrectInfo':
+		   sweetAlert("ID/Password를 확인하세요!", "", "error");
+		   break;
+		case 'loginFail':
+			   sweetAlert("로그인이 실패하였습니다!", "", "error");
+			   break;
+
+	}
+}
+
 function mainAlert(option) {
 	switch (option) {
 		case 'idEmpty':
