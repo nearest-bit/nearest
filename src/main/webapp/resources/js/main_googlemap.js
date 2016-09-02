@@ -92,16 +92,17 @@ function initMap() {
 			
 			for ( var i in markerLocation) {
 				
-			  var contentString = '<div>';
-			  contentString += '    <div class="fh5co-person text-center nearest-map-infowindow">';
-			  contentString += '      <img src="./resources/images/person1.jpg" alt="Image" style="width:70%; height:30%;">';
-			  contentString += '      <h3>'+ martList[i].name +'</h3>';
+			  var contentString = '<div style="min-width: 200px;">';
+			  contentString += '    <div class="text-center nearest-map-infowindow" style="text-align: left;">';
+			  contentString += '      <h4 style="margin-bottom: 0;">'+ martList[i].name +'</h4>';
+			  contentString += '      <hr style="border-color: red; margin: 5px 0 5px 0;" />';
 			  contentString += '      <span class="fh5co-position">'+ martList[i].telNo +'</span>';
-			  contentString += '      <p>'+ martList[i].addr +'</p>';
+			  contentString += '      <p style="margin: 10px 0 0 0;">'+ martList[i].addr +'</p>';
 			  contentString += '      <p>'+ martList[i].addrDetail +'</p>';
-			  contentString += '	  <button type="button" class="infowindow-btn" value="'+ martList[i].name +'">마트 물품 보기</button>';
+			  contentString += '	  <a class="infowindow-btn" href="#" style="color: blue;" data-martname="'+martList[i].name+'">마트 물품 보기</a>';
 			  contentString += '    </div>';
 			  contentString += '   </div>';
+			  
 				  
 			  var marker = new google.maps.Marker({
 			    position : markerLocation[i],
@@ -313,47 +314,13 @@ function setMarkerInfoWindow (marker, index, content) {
 		
 		infowindow.open(map, marker);
 	});
-	
-	google.maps.event.addListener(infowindow, 'domready', function() {
-
-		   // Reference to the DIV which receives the contents of the infowindow using jQuery
-		   var iwOuter = $('.gm-style-iw');
-
-		   /* The DIV we want to change is above the .gm-style-iw DIV.
-		    * So, we use jQuery and create a iwBackground variable,
-		    * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
-		    */
-		   var iwBackground = iwOuter.prev();
-
-		   // Remove the background shadow DIV
-		   iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-
-		   // Remove the white background DIV
-		   iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
-		   var iwCloseBtn = iwOuter.next();
-
-	    		// Apply the desired effect to the close button
-	    		iwCloseBtn.css({
-	    		  opacity: '1', // by default the close button has an opacity of 0.7
-	    		  right: '15%', 
-	    		  top: '2%', // button repositioning
-	    		  border: '7px solid #48b5e9', // increasing button border and new color
-	    		  'border-radius': '4px', // circular effect
-	    		  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
-	    		  });
-	
-	    		// The API automatically applies 0.7 opacity to the button after the mouseout event.
-	    		// This function reverses this event to the desired value.
-	    		iwCloseBtn.mouseout(function(){
-	    		  $(this).css({opacity: '1'});
-	    		});
-		});
 }
 
 $(function() {
-	$(document).on('click', '.infowindow-btn', function() {
-		var martName = $(this).val();
+	$(document).on('click', '.infowindow-btn', function(event) {
+		event.preventDefault();
+		
+		var martName = $(this).attr('data-martname');
 		
 		$('#nearest-product-list').children().remove();
 		$('#nearest-pageno').children().remove();
@@ -426,8 +393,6 @@ $(function() {
 		       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
 		       	}
 		      }
-		        
-		      alert(pageUnit);
 		  },
 		  error: function() {
 			  alert('ajax 접속 실패');

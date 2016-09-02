@@ -92,7 +92,7 @@
   
   <style>
 	/* Google Map InfoWindow */
-	.gm-style-iw {
+	/* .gm-style-iw {
 	   width: 250px !important;
 	   top: 15px !important;
 	   left: 0 !important;
@@ -101,7 +101,7 @@
 	   border: 1px solid rgba(72, 181, 233, 0.6);
 	   border-radius: 2px 2px 0 0;
 	   padding: 0 auto !important;
-	}
+	} */
 	
 	/* 상품 상세 정보 */
 	#product-detail-form {
@@ -456,52 +456,59 @@
   <!-- Product Detail Form -->
   
   <div id="nearest-modal" class="white-popup-block mfp-hide">
-    
-   
-    <div class="nearest-prodDetail-wrap">
-        
-        <div class="nearest-left-image">
-          <img alt="" src="./resources/images/grape.png">
-        </div>
-        
-        <div class="nearest-right-content">
-          <div class="nearest-detail-prod-name">
-            <h3>농심 신라면 1박스</h3>
-          </div>
-          <div class="nearest-detail-prod-price">
-            <h3>₩7,000</h3>
-          </div>
-          <div class="nearest-detail-prod-stock">
-            <p class="nearest-detail-font-size">재고 수량</p>
-            <p>8개</p>
-          </div>
-          <div class="nearest-detail-mart-name">
-            <p class="nearest-detail-font-size">판매처</p>
-            <p>진한마트</p>
-          </div>
-          
-          <div class="nearest-detail-btn">
-	          <p>
-	            <button type="button" class="btn btn-success btn-lg btn-block">찜하기</button>
-	          </p>
-	          <p>
-	            <button type="button" class="btn btn-primary btn-lg btn-block">바로구매</button>
-	          </p>
-          </div>
-        </div>
-        
+    <h1>상품상세정보</h1>
+    <br/>
+    <hr class="nearest-line"/>
+    <table style="width:100%">
+        <tr>
+            <th rowspan="9" class="text-center">
+                <img id="nearest-item-image" alt="No image" src="./foke.jpg">
+            </th>
+            <th colspan="4" class="text-center"> 
+              <font id="nearest-item-title" 
+                    class="nearest-item-title">
+                    우삼겹구이 300g BBQ
+              </font>
+            </th>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font class="nearest-item-detail">판매처: &nbsp;</font>
+               <span id="nearest-item-mart">진한마트</span>
+               <input id="nearest-item-prod-no" type="hidden" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font class="nearest-item-detail">현재 재고량: &nbsp;</font>
+               <span id="nearest-item-entity">1</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+               <font class="nearest-item-detail">판매가: &nbsp;</font>
+               <font id="nearest-item-price" class="nearest-purchase-pay">5900</font>&nbsp;원
+            </td>
+        </tr>
+        <tr>
+            <td style="width:5%"></td>
+            <td colspan="3" style="text-align:right">
+                <font class="nearest-item-detail">구매수량: &nbsp;</font>
+                <input id="nearest-item-purchase-entity" type="number" value="1" min="1" style="width:15%">
+            </td>
+        </tr>
+    </table>
+    <hr class="nearest-line"/><br/>
+    <div id="nearest-purchase-footer">
+        <font class="nearest-item-total">구매 예정 금액:</font>&nbsp;&nbsp;
+        <font id="nearest-item-all-price" class="nearest-purchase-pay" style="color: red">5900원</font>
     </div>
-    
-    <!-- <div class="nearest-prod-detail-btn">
-       <p style="float:left; width:45%;">
-         <button type="button" class="btn btn-success btn-lg btn-block">찜하기</button>
-       </p>
-       <p style="float:right; width:45%">  
-         <button type="button" class="btn btn-primary btn-lg btn-block">바로구매</button>
-       </p>
-     </div>  -->
-    
-	   
+    <br/><br/>
+    <a id="nearest-item-cart" class="nearest-item-cart" href="#">찜</a>
+    <a id="nearest-item-purchase" class="nearest-item-purchase" href="#">바로구매</a>
   </div>
   
  
