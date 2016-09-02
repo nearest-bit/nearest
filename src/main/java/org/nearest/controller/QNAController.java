@@ -200,7 +200,7 @@ public class QNAController {
     HashMap<String,Object> result = new HashMap<String,Object>();
     
     try {
-      List<QNA> list = qnaService.getQNAList(((Client)session.getAttribute("loginId")).getNo());
+      List<QNA> list = qnaService.getQNAList(((Client)session.getAttribute("adminId")).getNo());
       result.put("status", "success");
       result.put("reqData", list);
         for (QNA qna : list) {
