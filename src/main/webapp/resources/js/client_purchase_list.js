@@ -120,15 +120,24 @@ function clientPurchase(){
         		$('.nearest-product-receipt-list-tr').remove();
         		/*alert(result.orderDetail);*/
         		var realTotalPrice = 0;
+        		var discountPrice = 0;
+        		
         		$('#receipt-client-name').text(result.orderInfo.client.name);
         		$('#receipt-mart-name').text(result.orderInfo.mart.name);
         		$('#receipt-mart-tel').text(result.orderInfo.mart.telNo);
         		$('#receipt-order-date').text(result.orderInfo.orderDate);
         		$('#receipt-mart-addr').text(result.orderInfo.mart.addr);
         		$('#receipt-mart-addrDetail').text(result.orderInfo.mart.addrDetail);
-        		for(var i=0; i<result.orderDetail.length; i++){
-        			result.orderDetail[i].totalPrice = result.orderDetail[i].price * result.orderDetail[i].orderEnt;
-        			realTotalPrice += (result.orderDetail[i].price * result.orderDetail[i].orderEnt);
+ 
+        		
+        		for(var i=0; i<result.orderDetail.length; i++){        			
+        			discountPrice = result.orderDetail[i].price - (result.orderDetail[i].price * result.orderDetail[i].discountRate / 100); 
+        			discountPrice = parseInt(discountPrice);
+        			
+        			result.orderDetail[i].price = discountPrice;
+        			
+        			result.orderDetail[i].totalPrice = discountPrice * result.orderDetail[i].orderEnt;
+        			realTotalPrice += (discountPrice * result.orderDetail[i].orderEnt);
         		}
         		$('#nearest-product-receipt').after(productReceiptListTempl(result.orderDetail));
         		

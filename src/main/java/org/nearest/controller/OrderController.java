@@ -174,8 +174,8 @@ public class OrderController {
     }
     
     System.out.println(new Gson().toJson(result));
-    System.out.println(result.get("orderDate"));
-    System.out.println(result.get("compareDateData"));
+//    System.out.println(result.get("orderDate"));
+//    System.out.println(result.get("compareDateData"));
     return new Gson().toJson(result);
   }
   
@@ -220,7 +220,6 @@ public class OrderController {
     }
     System.out.println(result.get("orderInfo"));
     System.out.println(result.get("orderDetail"));
-    System.out.println(result);
     return new Gson().toJson(result);
   }
 

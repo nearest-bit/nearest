@@ -49,6 +49,8 @@ public class ProductController {
     	searchContent = ((Mart)session.getAttribute("adminMart")).getName();
     }
     
+    result.put("currentPage", currentPage);
+    
     try{
       result.put("status", "success");
       if(searchTag.equals("prods")) {

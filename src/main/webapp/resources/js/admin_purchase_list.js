@@ -52,10 +52,17 @@ $(function(){
 	    		$('#receipt-mart-name').text(result.orderInfo.client.name);
 	    		$('#receipt-mart-tel').text(result.orderInfo.client.phone);
 	    		$('#receipt-order-date').text(result.orderInfo.orderDate);
-	    		for(var i=0; i<result.orderDetail.length; i++){
-	    			result.orderDetail[i].totalPrice = result.orderDetail[i].price * result.orderDetail[i].orderEnt;
-	    			realTotalPrice += (result.orderDetail[i].price * result.orderDetail[i].orderEnt);
-	    		}
+	    		
+	    		for(var i=0; i<result.orderDetail.length; i++){        			
+        			discountPrice = result.orderDetail[i].price - (result.orderDetail[i].price * result.orderDetail[i].discountRate / 100); 
+        			discountPrice = parseInt(discountPrice);
+        			
+        			result.orderDetail[i].price = discountPrice;
+        			
+        			result.orderDetail[i].totalPrice = discountPrice * result.orderDetail[i].orderEnt;
+        			realTotalPrice += (discountPrice * result.orderDetail[i].orderEnt);
+        		}
+	    		
 	    		$('#nearest-product-receipt').after(productReceiptListTempl(result.orderDetail));
 	    		
 	    		$('#nearest-receipt-real-total-price').text(realTotalPrice+'원');

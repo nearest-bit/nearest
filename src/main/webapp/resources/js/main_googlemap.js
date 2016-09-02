@@ -160,6 +160,21 @@ function initMap() {
 			      }
 			        
 			      $('#nearest-product-list').append(prodListTemplete(result));
+			      
+			      var products = result.productData;
+			      var indexProducts = $('.fh5co-project-item');
+			      var discountPrice;
+			      
+			      for (var i in products) {
+			    	  
+			    	  if(products[i].discountRate > 0) {			    		  
+			    		  $(indexProducts[i]).children('.fh5co-text').children('span').text(products[i].price);
+			    		  $(indexProducts[i]).children('.fh5co-text').children('span').css('text-decoration', 'line-through');
+			    		  
+			    		  discountPrice = $('<span>').text(' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100)) + ' 원');
+			    		  $(indexProducts[i]).children('.fh5co-text').children('span').after(discountPrice);
+			    	  }
+			      }
 			        
 			      total = JSON.stringify(result.total);
 			        

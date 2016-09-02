@@ -53,6 +53,25 @@ function clientCart() {
 	        $('#nearest-cart-tbody').append(cartListTempl(result));
 	        $('#nearest-client-menu').addClass('active');
 	        
+	        var totalDiscountPrice;
+	        
+	        var products = result.cartData;
+		    var cartHiddenProducts = $('.nearest-cart-price');
+		    var cartProducts = $('.nearest-cart-price-display');
+		    var cartTotalProducts = $('.nearest-cart-total-price-display');
+		    var cartTotalPrices = $('.cart-prod-price');
+		      
+		    for (var i in products) {		  
+		    	totalDiscountPrice = parseInt(products[i].price - (products[i].price * products[i].discountRate / 100));
+		    	
+		    	$(cartHiddenProducts[i]).text(totalDiscountPrice + ' 원');
+		    	$(cartProducts[i]).text(totalDiscountPrice + ' 원');
+		    	$(cartTotalProducts[i]).text(totalDiscountPrice + ' 원');
+		    	$(cartTotalProducts[i]).attr('value', totalDiscountPrice);
+		    	$(cartTotalPrices[i]).text(totalDiscountPrice);
+		    	
+		    }
+	        
 	        setTotalPrice();
 	      },
 	      
@@ -66,7 +85,7 @@ function clientCart() {
 		var quantity = parseInt($(this).prev().text());
 		$(this).prev().text(quantity+1);
 		var price = $(this).parent().parent().next().next().find('span').attr('value') * (quantity+1);
-		$(this).parent().parent().next().next().find('span').text(numberWithCommas(price));
+		$(this).parent().parent().next().next().find('span').text(numberWithCommas(price) + ' 원');
 		$(this).parent().parent().next().next().find('p').text(price);
 		setTotalPrice();
 	});
@@ -80,7 +99,7 @@ function clientCart() {
 		}
 		$(this).next().text(quantity-1);
 		var price = $(this).parent().parent().next().next().find('span').attr('value') * (quantity-1);
-		$(this).parent().parent().next().next().find('span').text(numberWithCommas(price));
+		$(this).parent().parent().next().next().find('span').text(numberWithCommas(price) + ' 원');
 		$(this).parent().parent().next().next().find('p').text(price);
 		setTotalPrice();
 	});
