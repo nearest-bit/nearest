@@ -82,6 +82,15 @@ function clientLogin(option) {
 	}
 }
 
+function clientAlert(option) {
+	switch (option) {
+		case 'nodata':
+		   sweetAlert("검색결과가 없습니다!", "", "error");
+		   break;
+
+	}
+}
+
 function mainAlert(option) {
 	switch (option) {
 		case 'idEmpty':

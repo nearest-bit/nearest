@@ -31,7 +31,8 @@ var total = "";
 var searchMartName;
 
 // 검색 했을때 
-$('#nearest-search').click(function(){
+$('#nearest-search').on('keypress', function(event){
+	
 	indexOption = "search";
 	
 	//초기화
@@ -44,64 +45,90 @@ $('#nearest-search').click(function(){
 	previousPage = "";
 	total = "";
 
-  if($('input[name=searchContent]').val().trim() == ""){
-    alert('검색어를 입력해주세요.');
-    return;
-  }
   
-  $('#nearest-product-list').children().remove();
-  $('#nearest-pageno').children().remove();
   
-  $.ajax({
-    url :  contextRoot + 'product/list.do',
-    datatype : 'json',
-    method : 'post',
-      
-    data : {
-      searchTag : $('select[name="searchTag"]').val(),
-      searchContent : $('input[name="searchContent"]').val(),
-      currentPage: currentPage,
-      option: 'client'
-    },
-    success : function(result) {
-      if(result.status != 'success'){
-        alert('검색오류');
-        return;
-      }
-        
-      $('#nearest-product-list').append(prodListTemplete(result));
-      
-      total = JSON.stringify(result.total);
-        
-      if ( total % 9 != 0){
-      	totalPage = parseInt( total / 9 ) + 1;
-      }else{
-    	totalPage = parseInt( total / 9 );
-      }
-      
-      if ( totalPage >= 5) {
-    	  pageUnit = 5; 
-    	  nextPage = pageUnit + 1;
-    	  
-      }else if( totalPage == 0 ){
-    	  pageUnit = 0;
-      }else{
-    	  pageUnit = totalPage;
-      }
-      
-      searchTag = $('select[name=searchTag]').val();
-      searchContent = $('input[name=searchContent]').val();
-      
-      $('.fh5co-project-item > img').magnificPopup();
-      
-      
-    },
-    error : function() {
-      alert("error....");
-    }
-  });
+  if(event.keyCode == 13){
+	  
+	  if($.trim($('#nearest-search').val())== ""){
+		    alert('검색어를 입력해주세요.');
+		    return;
+		  }
+		  
+		  $('#nearest-product-list').children().remove();
+		  $('#nearest-pageno').children().remove();
+	  
+		$.ajax({
+		    url :  contextRoot + 'product/list.do',
+		    datatype : 'json',
+		    method : 'post',
+		      
+		    data : {
+		      searchTag : $('select[name="searchTag"]').val(),
+		      searchContent : $('#nearest-search').val(),
+		      currentPage: currentPage,
+		      option: 'client'
+		    },
+		    success : function(result) {
+		      if(result.status != 'success'){
+		        alert('검색오류');
+		        return;
+		      }
+		      
+		      if(result.productData.length == 0){
+		    	  clientAlert('nodata');
+		    	  return;
+		      }
+		      
+		      if(result.searchKeyword == 'prods'){
+		    	  $('#nearest-search-result').css('display','inline');
+		    	  $('#nearest-search-keyword-result').css('display', 'none');
+		    	  $('#nearest-search-keyword-result').next('span').text('상품');
+		    	  $('#nearest-search-content-result').text('\''+result.searchContent+'\'');
+		    	  $('#nearest-search-content-result').css('display', '');
+		      }else if(result.searchKeyword == 'marts'){
+		    	  $('#nearest-search-result').css('display','inline');
+		    	  $('#nearest-search-keyword-result').next('span').text('의 상품');
+		    	  $('#nearest-search-keyword-result').text('\''+result.searchContent+'\'');
+		    	  $('#nearest-search-content-result').css('display', 'none');
+		      }
+		      
+		      $('#nearest-product-list').append(prodListTemplete(result));
+		      
+		      total = JSON.stringify(result.total);
+		        
+		      if ( total % 9 != 0){
+		      	totalPage = parseInt( total / 9 ) + 1;
+		      }else{
+		    	totalPage = parseInt( total / 9 );
+		      }
+		      
+		      if ( totalPage >= 5) {
+		    	  pageUnit = 5; 
+		    	  nextPage = pageUnit + 1;
+		    	  
+		      }else if( totalPage == 0 ){
+		    	  pageUnit = 0;
+		      }else{
+		    	  pageUnit = totalPage;
+		      }
+		      
+		      searchTag = $('select[name=searchTag]').val();
+		      searchContent = $('input[name=searchContent]').val();
+		      
+		      $('.fh5co-project-item > img').magnificPopup();
+		      
+		      
+		    },
+		    error : function() {
+		      alert("error....");
+		    }
+		  });
+	}
   
+
 });
+	  
+
 
 $(function() {	
 	if(searchMartName != undefined) {

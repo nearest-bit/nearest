@@ -120,79 +120,63 @@
   
   <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
-    <div class="container nearest-header-menu">
+    <div class="nearest-header-menu">
 	      <div class="wrapper">
 	      
 					 <div class="row box-shadow nearest-header-logo">
 					   <div>
-					     <img src="./resources/images/logo_2.png"/>
+					     <img style="margin-top: 10px;" src="./resources/images/logo_2.png"/>
 					   </div> <!-- .nearest-header-nav end -->
+					   <ul class="nearest-fl gnb">
+					     <li class="nearest-fl nearest-li">HOME</li>
+					     <li id="nearest-to-cart" class="nearest-fl nearest-li">찜목록</li>
+					     <li id="nearest-to-purchase" class="nearest-fl nearest-li">구매목록</li>
+					     <li id="nearest-to-request" class="nearest-fl nearest-li">문의사항</li>
+					   </ul>
 					   <div class="box-shadow nearest-header-top-menu">
 				          
-				     <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
-				       <div style="position: absolute;">
-				         <div style="position: absolute; margin-left: 10px;">
-				          <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
-				              aria-hidden="true">
-				          </span>
-				         </div>
-				         <div style="position: absolute; 
-				                     width: 20px; 
-				                     height: 24px;
-				                     margin-left: 10px;">
-				           <div style="width: 60%;
-				                       height: 55%;
-				                       float: right;
-				                       border-radius: 10px;
-				                       margin: 2px -3px;
-				                       background: #003f50;"></div>
-				         </div>
-				         <div id="nearest-dropdown-alert" 
-				              style="position: absolute; 
-				                     width: 20px; 
-				                     height: 24px; 
-				                     font-size: 1rem; 
-				                     color: white;
-				                     font-weight: bold;
-				                     margin-left: 10px;">
-				             1
-				         </div>
-				       </div>
-				        
-				        <div id="myDropdown" class="nearest-dropdown-content">
-				          <a id="nearest-to-cart" href="#">찜 목록</a>
-				          <a id="nearest-to-purchase" href="#">구매 목록 &nbsp;</a>
-				          <a id="nearest-to-request" href="#">건의 사항 &nbsp;</a>
+				    
+				      <div class="nearest-fr top-box">
+					      
+					      <div class="nearest-fl main-top-select-div">
+                 <select name="searchTag" class="main-top-select">
+                   <option value="prods">상품</option>
+                   <option value="marts">마트</option>
+                 </select>
+                </div>
+					      
+				        <div class="nearest-fl main-top-searchbox">
+				          
+				          <input type="text" id="nearest-search" placeholder="상품을 찾아보세요." style="width: 180px;">
 				        </div>
+				      
+				        <div id="loginBtn-div" class="nearest-fl nearest-header-login-btn">
+	                <a id="loginBtn" href="./login.html">
+	                  <strong style="font-size: 15px;">Login</strong>
+	                </a>
+	              </div>
+	              <div id="myInfoBtn-div" class="nearest-fl nearest-header-login-btn login-display">
+		              <a id="myInfoBtn" href="#nearest-myinfo-div">
+	                  <strong style="font-size: 15px;">MyInfo</strong>
+	                </a>
+	              </div>
+	              
+	              <div id="signupBtn-div" class="nearest-fl nearest-header-join-btn">
+	                <a id="signupBtn" href="#signupForm" class="white-popup popup-modal">
+	                  <strong style="font-size: 15px;">Register</strong>
+	                </a>
+	              </div>
+	              
+	              <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn login-display">
+		              <a id="logoutBtn">
+	                  <strong style="font-size: 15px;">Logout</strong>
+	                </a> 
+	              </div>
 				      </div>
-				    
-				      <div class="white-popup nearest-header-menu-btn" id="loginAfter">
-				        <a id="myInfoBtn" href="#nearest-myinfo-div">
-				          <strong>내정보</strong>
-				        </a>
-				        <strong>|</strong>
-				        <a id="logoutBtn">
-				          <strong>로그아웃</strong>
-				        </a> 
-				      </div>
-				      
-				      <a id="signupBtn" href="#signupForm" class="white-popup popup-modal nearest-header-menu-btn">
-				        <strong style="font-size: 25px;">REGISTER</strong>
-				      </a>
-				      
-				      <a id="btnSplit" class="nearest-header-menu-btn">
-				        <strong style="font-size: 25px;">|</strong>
-				      </a>
-				      
-				      <a id="loginBtn" href="./login.html" class="white-popup nearest-header-menu-btn">
-				        <strong style="font-size: 25px;">LOGIN</strong>
-				      </a>
-				    
-				    
 				    </div>
 					 </div>
 					 
-					 <div class="row box-shadow top-nav">
+					 <!-- <div class="row box-shadow top-nav">
 					       <div class="col-xs-4">
 					         <select name="searchTag" class="form-control">
 					           <option value="prods">제품검색</option>
@@ -216,10 +200,10 @@
 					             </button>
 					           </span>
 					         </div>
-					         <!-- /input-group -->
+					         /input-group
 					       </div>
 					       
-					   </div>
+					   </div> -->
 			  </div>
 	 </div> <!-- container end -->
   </header>
@@ -328,7 +312,8 @@
   <section id="fh5co-home" data-section="home">
     
     <div id="nearest-map-locationField">
-      <input id="nearest-map-autocomplete" type="text" />
+	    <input id="nearest-map-autocomplete" type="text" placeholder=" 주소로 찾아보세요."/>
+	    
     </div>
     
     <div id="map"></div>
@@ -342,16 +327,21 @@
   <!-- Product -->
   <section id="fh5co-work" data-section="work">
     <div class="wrapper">
-	    <div class="container">
-	      <div class="row">
-	        <div class="col-md-12 section-heading text-center">
-	          <h2 class="to-animate">상품검색</h2>
-	        </div>
+	    <div>
+
+        <div style="padding-left: 10%;">
+          <h2 style="font-size: 25px;display: inline;margin-right: 30px;" class="to-animate gnb">상품검색</h2>
+          <div id="nearest-search-result" style="display: none;">
+	          <span id="nearest-search-keyword-result" style="color: red; font-weight: 100;" class="to-animate gnb"></span>
+	          <span style="color: black;font-weight: 100;" class="to-animate gnb">의 상품</span>
+	          <span id="nearest-search-content-result" style="color: red;font-weight: 100;" class="to-animate gnb"></span>
+	          <span style="color: black;font-weight: 100;" class="to-animate gnb">을 검색한 결과입니다.</span>
+          </div>
 	      </div>
 	      
 	    <script id="nearest-product-list-template" type="text/x-handlebars-template">
       {{#each productData}}
-        <div class="col-md-4 col-sm-6 col-xxs-12">
+        <div class="nearest-prod-list col-md-4 col-sm-3">
           <input type="hidden" value="{{no}}" />
           <a class="fh5co-project-item popup-with-form nearest-work-list-border" href="#nearest-modal">
             <img href="#nearest-modal" 
@@ -368,7 +358,7 @@
       {{/each}}
 	    </script>
 
-      <div id="nearest-product-list" class="row row-bottom-padded-sm"></div>
+      <div style="margin-top: 0 !important;" id="nearest-product-list" class="row row-bottom-padded-sm"></div>
 
       </div>
     </div>
