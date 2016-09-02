@@ -436,3 +436,8 @@
 
 
 }());
+// 홈버튼 누르면 맨위로
+$('#nearest-to-home').on('click', function(){
+	  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	  return false;
+});
