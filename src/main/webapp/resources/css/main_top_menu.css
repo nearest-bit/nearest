@@ -4,6 +4,10 @@
   width: 100%;
 }
 
+li > span {
+	 margin-bottom: 5px;
+}
+
 .row {
 	margin: 2% 10% 2% 10%;
 }
