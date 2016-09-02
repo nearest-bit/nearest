@@ -16,9 +16,6 @@ var pageUnit = "" ;
 // 총 페이지 수
 var totalPage = "";
 
-// 현재 페이지
-var currentPage = 1;
-
 // 다음 페이지 번호
 var nextPage = "";
 

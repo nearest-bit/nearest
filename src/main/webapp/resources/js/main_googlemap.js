@@ -3,6 +3,9 @@ var myLocation = {
   lng : 127.029334
 };
 
+//현재 페이지
+var currentPage = 1;
+
 var markerLocation = new Array();
 
 var nearLocation;
@@ -355,17 +358,18 @@ $(function() {
 		$('#nearest-product-list').children().remove();
 		$('#nearest-pageno').children().remove();
 		$('select[name="searchTag"] option:last-child').attr('selected', 'selected');
-		$('input[name="searchContent"]').val(martName);
+		$('#nearest-search').val(martName);
 		
 		searchTag = $('select[name=searchTag]').val();
-	    searchContent = $('input[name=searchContent]').val();
+	    searchContent = $('#nearest-search').val();
 		
 		$.ajax({
 		  url: contextRoot + 'product/list.do',
 		  dataType: 'json',
 		  data: {
 			searchTag: 'marts',
-			searchContent: martName
+			searchContent: martName,
+			currentPage: currentPage
 		  },
 		  method: 'post',
 		  success: function(result) {
@@ -375,6 +379,27 @@ $(function() {
 		      }
 		        
 		      $('#nearest-product-list').append(prodListTemplete(result));
+		      
+		      var products = result.productData;
+		      var indexProducts = $('.nearest-product-list-price');
+		      var discountPrice;
+		      var indexValue;
+		      
+		      for (var i in products) {					    	  
+		    	  if(products[i].discountRate > 0) {
+		    		  indexValue = parseInt(i)+parseInt((result.currentPage-1)*9);
+		    		  
+		    		  console.log(indexValue);
+		    		  
+		    		  console.log($(indexProducts[indexValue]).html());
+		    		  
+					  $(indexProducts[indexValue]).text(products[i].price);
+		    		  $(indexProducts[indexValue]).css('text-decoration', 'line-through');
+		    		  
+		    		  discountPrice = $('<span>').text(' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100)) + ' 원');
+		    		  $(indexProducts[indexValue]).after(discountPrice);					    		  
+		    	  }
+		      }
 		        
 		      total = JSON.stringify(result.total);
 		        
