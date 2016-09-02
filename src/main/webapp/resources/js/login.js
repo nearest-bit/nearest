@@ -9,8 +9,23 @@ $(function() {
     }
 });
 
-$(document).on('click','#login-btn',function() {
-	
+$(document).on('click', '#login-btn', function() {
+	doLogin();		
+});
+
+$(document).on('keydown', '#login-form-username', function(event) {
+	if(event.keycode == 13) {
+		doLogin();
+	}		
+});
+
+$(document).on('keydown', '#login-form-password', function(event) {
+	if(event.keycode == 13) {
+		doLogin();
+	}		
+});
+
+function doLogin() {
 	if($.trim($('#login-form-username').val()) == ""){
 		mainAlert('idEmpty');
 		return;
@@ -73,8 +88,8 @@ $(document).on('click','#login-btn',function() {
 			}
 		});
 		
-	}	
-});
+	}
+}
 
 /*$('.login-tab a').on('click', function (e) {
 	  
