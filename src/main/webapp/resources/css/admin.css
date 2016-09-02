@@ -168,7 +168,7 @@ p {margin:0 !important}
 }
 
 .nearest-file-upload {
-	  border: 1px solid #ccc;
+	border: 1px solid #ccc;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
@@ -184,8 +184,8 @@ input[type="file"] {
     background: white;
     padding: 20px 30px;
     text-align: left;
-    max-width: 700px;
-    height: 500px;
+    max-width: 850px;
+    min-height: 500px;
     margin: 0 auto;
     position: relative;
 }
@@ -196,4 +196,109 @@ input[type="file"] {
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+
+<!-- QnA part -->
+
+.nearest-qnaText > p {
+  font-family: Open Sans;
+  font-weight: 200;
+  height: 50px;
+  overflow: hidden;
+}
+
+.nearest-qnaText {
+  height: 120px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.qnaContentcard {
+  margin: auto;
+  margin-bottom: 50px;
+  width: 15em;
+}
+
+.nearest-qnaContentcard{
+  margin: auto;
+  margin-bottom: 20px;
+  width: 37em;
+}
+
+.nearest-qnaContext {
+	background: #4d9cc9;
+/* 	padding: .75em 5em 0em 5em;*/    
+    border-top-left-radius: .6em;
+    border-top-right-radius: .6em;
+    border-bottom-left-radius: .6em;
+    border-bottom-right-radius: .6em;
+}
+
+.nearest-qnaFooter {
+	background: #F0F4F7;
+	padding: 0.5em 1em;
+	transition: all 500ms ease-in-out;
+	border-bottom-left-radius: .6em;
+    border-bottom-right-radius: .6em;
+}
+
+.nearest-qnaFootertext {
+    color: #4d9cc9;
+    font-family: Open Sans;
+    font-weight: 200;
+}
+
+.qnaContenttop {
+  background: #F0F4F7;
+  padding: .75em 2em 0em 2em;
+  border-top-left-radius: .6em;
+  border-top-right-radius: .6em;
+  
+}
+  
+.qnaContenttop:after {
+    content:'';
+    position: relative;
+    @include triangle(2em, #F0F4F7, down);
+    top: 1em;
+    left: 1em;
+    z-index: 5;
+}
+  
+.qnaContenttop-text {
+    margin-top: .5em;
+    font-family: Open Sans;
+    font-weight: 200;
+    
+}
+  
+.qnaContenttop-text > h3 {
+      font-family: Open Sans;
+      font-weight: 200;
+}
+  
+  
+.qnaContenttoggle {
+    color: #4d9cc9;
+    position: relative;
+    top: -.5em;
+}
+
+.qnaContentfinal {
+  background: #4d9cc9;
+  padding: 0.5em 6.3em;
+  border-bottom-left-radius: .6em;
+  border-bottom-right-radius: .6em;
+  transition: all 500ms ease-in-out;
+  
+}
+  
+.qnaContentfinal:hover, .qnaContentfinal:focus {
+    background: #3986ad;
+}
+  
+.qnaContenttext {
+    color: #fff;
+    font-family: Open Sans;
+    font-weight: 200;
 }

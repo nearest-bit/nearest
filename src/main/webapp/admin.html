@@ -295,24 +295,44 @@
                     </div>
                 </div>
             </div>
-						
-			<script id="nearest-qna-list-template" type="text/x-handlebars-template">
-                {{#each qnadata}}
-                    <div class="col-md-4">
+<!-- 			<div class="col-md-4">
                         <div style="float:none;" class="box-testimony">
                           <blockquote>
                               <p>&ldquo;{{content}}&ldquo;</p>
                           </blockquote>
                           <div class="author">
                             <p content-no="{{no}}" client-no="{{client.no}}">{{client.name}}&nbsp;
-                                &nbsp;&nbsp;{{createDate}}
+                                &nbsp;&nbsp;{{localDate}}
                               <a reply-status="{{status}}" class="popup-with-zoom-anim nearest-answer-btn" href="#nearest-request-div">
                                 &nbsp;&nbsp;{{reqStatus}}
                               </a>
                             </p>
                           </div>
                         </div>
+                     </div>			 -->
+			<script id="nearest-qna-list-template" type="text/x-handlebars-template">
+                {{#each qnadata}}
+                <div class="col-md-4">
+                     <div class="qnaContentcard small-centered">
+                        <div class="row qnaContenttop clearfix">
+                            <div class="small-8 column qnaContenttop-text">
+                                <h3>{{client.name}}</h3>
+                                <br/>
+                                <p class="qnaContenttoggle">{{localDate}}</p>
+                            </div>
+                            <div class="small-4 column">
+                                <div class="nearest-qnaText">
+                                <p class="qnaContent">&ldquo;{{content}}&ldquo;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div client-no="{{client.no}}" content-no="{{no}}" class="row">
+                            <a class="qnaContentfinal small-12 column text-center qnaContenttext popup-with-zoom-anim nearest-answer-btn" reply-status="{{status}}" href="#nearest-request-div">
+                               {{reqStatus}}
+                            </a>
+                        </div>
                      </div>
+                </div>
                 {{/each}}    
             </script>
 						<div id="nearest-qnaContent" class="row"></div>
@@ -324,10 +344,16 @@
 			<!-- 답변하기 시작 -->
 			  
 		      <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
-		            <div id="qna-title" style="height: 30px; line-height: 30px; margin-top: 15px">
-		            <p id="qnaId" style="float: left; text-align: center; font-size: 30px"></p>&nbsp;&nbsp;<p style="float: left; text-align: center">님에 대한 답변</p>
+		            <br/>
+		            <div class="nearest-qnaContentcard small-centered">
+		              <div class="row nearest-qnaContext clearfix">
+		                  <div class="small-8 column qnaContenttop-text" id="qna-title" style="height: 30px; line-height: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 30px">
+                                <p id="qnaId" style="float: left; text-align: center; color: white; font-size: 25px"></p>&nbsp;&nbsp;&nbsp;<p style="float: left; color: white; text-align: center">님이 남긴 문의</p>
+                          </div>  
+                          <div class="nearest-qnaFooter" id="nearest-qnaStory">
+                          </div>    
+		              </div>
 		            </div>
-		            <br>
 		            <div id="summernote"></div>
 		            <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
 		            <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>

@@ -14,7 +14,9 @@ $( function() {
 	                  swal('실행 중 오류 발생!');
 	                  return;
 	            }
-	            
+	           for(var i=0; i<result.simpleDate.length; i++){
+	            	result.qnadata[i].localDate = result.simpleDate[i];
+	            }
 	            $('#nearest-qnaContent').append(template(result));
 	            $('.nearest-answer-btn').magnificPopup();
 	        },
@@ -110,7 +112,7 @@ $(function(){
 		
 		$('#summernote').summernote({
 			placeholder: "답변을 입력해주세요.",
-			height: 200,
+			height: 170,
 		});
 		
 		clientNoForReply = $(this).parent().attr('client-no');
@@ -129,10 +131,12 @@ $(function(){
 					if(result.reqMessage == 2){
 						$('#qnaId').text('\" '+result.clntName+' \"');
 						swal("답변하신 내용입니다.");
+						$('#nearest-qnaStory').text(result.qnaStory);
 						$('#summernote').summernote('code', result.content);
 					} else {
 						$('#qnaId').text('\" '+result.clntName+' \"');
 						swal("답변을 등록해주세요.");
+						$('#nearest-qnaStory').text(result.qnaStory);
 						$('#summernote').summernote('code', '');
 					}
 					
