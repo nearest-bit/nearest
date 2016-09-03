@@ -6,6 +6,6 @@
   margin: 0 auto;
 }
 
-/* .gm-style-mtc>div:FIRST-CHILD {
+.gm-style-mtc>div:FIRST-CHILD {
   display: none;
-} */
+}
