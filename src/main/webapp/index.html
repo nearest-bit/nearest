@@ -45,6 +45,9 @@
   <link rel="stylesheet" href="./resources/css/main_header.css">
   <!-- Main Footer -->
   <link rel="stylesheet" href="./resources/css/main_footer.css">
+  
+  <!-- product List-->
+  <link rel="stylesheet" href="./resources/css/prod-search.css">
   <!-- Main Product Detail -->
   <link rel="stylesheet" href="./resources/css/main_prod_detail.css">
   <!-- Sweet Alert -->
@@ -330,7 +333,7 @@
     <div class="wrapper">
 	    <div>
 
-        <div style="padding-left: 10%;">
+        <div style="padding-left: 5%;">
           <h2 style="font-size: 25px;display: inline;margin-right: 30px;" class="to-animate gnb">상품검색</h2>
           <div id="nearest-search-result" style="display: none;">
 	          <span id="nearest-search-keyword-result" style="color: red; font-weight: 100;" class="to-animate gnb"></span>
@@ -342,24 +345,31 @@
 	      
 	    <script id="nearest-product-list-template" type="text/x-handlebars-template">
       {{#each productData}}
-        <div class="nearest-prod-list col-md-4 col-sm-3">
-          <input type="hidden" value="{{no}}" />
-          <a class="fh5co-project-item popup-with-form nearest-work-list-border" href="#nearest-modal">
-            <img href="#nearest-modal" 
-                 src="./resources/images/shinramyun.png" 
+        <div class="col-md-4 col-sm-6 col-xxs-12">
+          <div class="nearest-prod-list">
+            <input type="hidden" value="{{no}}" />
+            <a class="fh5co-project-item popup-with-form nearest-work-list-border" href="#nearest-modal">
+              <div class="nearest-prod-image">
+                <img href="#nearest-modal" 
+                 src="http://media-cache-ak0.pinimg.com/736x/1d/00/01/1d0001fa63225bff898025658a90bece.jpg" 
                  alt="Image" 
-                 class="img-responsive white-popup popup-modal"
-                 style="padding: 20px 40px 10px 40px;">
-            <div class="fh5co-text">
-              <h2>{{name}}</h2>
-              <span class="nearest-product-list-price">{{price}} 원</span>
-            </div>
-          </a>
+                 class="img-responsive white-popup popup-modal">
+                <div class="nearest-prod-text">
+                  <h3>{{name}}</h3>
+                </div>
+              </div>
+              <ul class="nearest-media">
+                <li><i class="fa fa-won"></i>{{price}}원</li>
+                <li><i class="fa fa-shopping-cart"></i>{{entity}}개</li>
+                <li><i class="fa fa-arrow-down"></i>{{discountRate}}%</li>
+              </ul>
+            </a>
+          </div>
         </div>
       {{/each}}
 	    </script>
 
-      <div style="margin-top: 0 !important;" id="nearest-product-list" class="row row-bottom-padded-sm"></div>
+      <div id="nearest-product-list" class="row-bottom-padded-sm"></div>
 
       </div>
     </div>

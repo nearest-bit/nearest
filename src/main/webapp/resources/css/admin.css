@@ -54,6 +54,10 @@ p {margin:0 !important}
 	display: none;
 }
 
+#nearest-admin-product-list {
+	padding:0 30px;
+}
+
 .nearest-product-register {
 	width: 100%;
 }
@@ -194,9 +198,10 @@ input[type="file"] {
 /* prod-manage */
 .nearest-prod-list {
 	height:300px;
-	min-width: 300px;
+	min-width: 100%;
+	padding:0 10px;
 	position:relative;
-	margin-bottom: 50px;
+	margin-bottom: 30px;
 	display:inline-block;
 	cursor: pointer;
 }
@@ -244,8 +249,8 @@ input[type="file"] {
 	overflow:hidden;
   position:relative;
   margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
 }
 
 .nearest-prod-image img {
