@@ -68,7 +68,8 @@ public class QNAController {
 		int qnaSt = 0;
 		Admin admin = (Admin)session.getAttribute("adminId");
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		
+		List<String> simpleDate = new ArrayList<>();
+		SimpleDateFormat createDate = new SimpleDateFormat("yyyy년 MM월 dd일");
 		try {
 			if (qnaStatus.equals("답변미완료")) {
 				qnaSt = 1;
@@ -81,10 +82,12 @@ public class QNAController {
 				      }else{
 				        qna.setReqStatus("오류");
 				      }
+				      String birth = createDate.format(qna.getCreateDate());
+				      simpleDate.add(birth);
 				}
-				
 				result.put("status", "success");
 				result.put("qnadata", list);
+				result.put("simpleDate", simpleDate);
 			} else if (qnaStatus.equals("답변완료")){
 				qnaSt = 2;
 				List<QNA> list = qnaService.getQNAlistByCalendar(admin, startDate, endDate, qnaSt);
@@ -96,10 +99,13 @@ public class QNAController {
 				      }else{
 				        qna.setReqStatus("오류");
 				      }
+				      String birth = createDate.format(qna.getCreateDate());
+				      simpleDate.add(birth);
 				}
 				
 				result.put("status", "success");
 				result.put("qnadata", list);
+				result.put("simpleDate", simpleDate);
 			}
 			
 		} catch (Exception e) {

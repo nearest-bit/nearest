@@ -84,7 +84,9 @@ function callQNAListByCalendar(){
                  swal('실행 중 오류 발생!');
                  return;
            }
-           
+           for(var i=0; i<result.simpleDate.length; i++){
+	            	result.qnadata[i].localDate = result.simpleDate[i];
+	       }
            $('#nearest-qnaContent').append(template(result));
            $('.nearest-answer-btn').magnificPopup();
         },
