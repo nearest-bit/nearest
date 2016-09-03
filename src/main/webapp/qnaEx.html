@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="./resources/css/bootstrap.css">
+<!-- jQuery -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<style>
+
+
+.qnaContent p {
+  font-family: Open Sans;
+  font-weight: 200;
+}
+
+.qnaContentcard {
+  margin: 0 auto;
+  width: 25em;
+}
+
+.qnaContenttop {
+  background: #F0F4F7;
+  padding: .75em 2em 0em 2em;
+  border-top-left-radius: .6em;
+  border-top-right-radius: .6em;
+  
+  }
+  
+  .qnaContenttop:after {
+    content:'';
+    position: relative;
+    @include triangle(2em, #F0F4F7, down);
+    top: 1em;
+    left: 1em;
+    z-index: 5;
+  }
+  
+  .qnaContenttop-text {
+    margin-top: .5em;
+    font-family: Open Sans;
+    font-weight: 200;
+    
+  }
+  
+   .qnaContenttop-text > h3 {
+      font-family: Open Sans;
+      font-weight: 200;
+    }
+  
+  
+  .pic {
+    position: relative;
+    top:.2em;
+    height: 5em;
+    width: 5em;
+  }
+
+.qnaContenttoggle {
+    color: #4d9cc9;
+    position: relative;
+    top: -.5em;
+}
+
+.qnaContentfinal {
+  background: #4d9cc9;
+  padding: 1em 11.36em;
+  border-bottom-left-radius: .6em;
+  border-bottom-right-radius: .6em;
+  transition: all 500ms ease-in-out;
+  
+  }
+  
+  .qnaContentfinal:hover, .qnaContentfinal:focus {
+    background: #3986ad;
+  }
+  
+  .qnaContenttext {
+    color: #fff;
+    margin-left: .5em;
+    font-family: Open Sans;
+    font-weight: 200;
+  }
+
+
+</style>
+</head>
+<body>
+    
+	<div class="qnaContentcard small-centered">
+	  <div class="row qnaContenttop clearfix">
+	    <div class="small-8 column qnaContenttop-text">
+	      <h3>Mason Fox</h3><p class="qnaContenttoggle">@masonfoxdev</p>
+	    </div>
+	    <div class="small-4 column">
+	       <p class="qnaContent">오늘도 나는 방구를 꼈다 뿡뿡</p>
+	       <br/>
+	    </div>
+	  </div>
+	  <div class="row"><a class="qnaContentfinal small-12 column text-center"><span class="qnaContenttext">See Post</span></a></div>
+	</div>
+	
+</body>
+</html>
