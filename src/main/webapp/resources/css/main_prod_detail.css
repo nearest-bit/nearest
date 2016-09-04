@@ -1,5 +1,14 @@
 @CHARSET "UTF-8";
 
+.small-dialog {
+  background: white;
+  padding: 20px 30px;
+  text-align: left;
+  max-width: 1050px;
+  margin: 40px auto;
+  position: relative;
+}
+
 #nearest-modal {
     /* basic */
     background: #fff;

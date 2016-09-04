@@ -1,6 +1,6 @@
 $(function() {
-	$(document).on('click', '.fh5co-project-item > img', function() {		
-		var productNo = $(this).parent().prev().val();
+	$(document).on('click', '.fh5co-project-item img', function() {		
+		var productNo = $(this).parent().parent().prev().val();
 		
 		$.ajax({
 			url: contextRoot + 'product/getProduct.do',
@@ -67,6 +67,8 @@ $(function() {
 		});
 	});
 	
+	$('#nearest-item-purchase, #nearest-purchase-dialog').magnificPopup();
+	
 	$(document).on('click', '#nearest-item-purchase', function(event) {
 		event.preventDefault();
 		
@@ -79,6 +81,9 @@ $(function() {
         	
         	return;
 	    }
+		
+		/*$.magnificPopup.close();
+		$('#nearest-myinfo-div').magnificPopup('open');*/
 		
 	});
 });

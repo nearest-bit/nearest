@@ -450,6 +450,7 @@
             <h3 id="nearest-item-title">농심 신라면 1박스</h3>
           </div>
           <div class="nearest-detail-prod-price">
+            <input id="nearest-payment-price" type="hidden" value="7000" />
             <h3 id="nearest-item-price">₩7,000</h3>
           </div>
           <div class="nearest-detail-prod-stock">
@@ -467,24 +468,92 @@
 	            <button id="nearest-item-cart" type="button" class="btn btn-success btn-lg btn-block">찜하기</button>
 	          </p>
 	          <p>
-	            <button id="nearest-item-purchase" type="button" class="btn btn-primary btn-lg btn-block">바로구매</button>
+	            <a id="nearest-item-purchase" class="btn btn-primary btn-lg btn-block" href="#nearest-purchase-dialog">바로구매</a>
 	          </p>
           </div>
         </div>
         
     </div>
-    
-    <!-- <div class="nearest-prod-detail-btn">
-       <p style="float:left; width:45%;">
-         <button type="button" class="btn btn-success btn-lg btn-block">찜하기</button>
-       </p>
-       <p style="float:right; width:45%">  
-         <button type="button" class="btn btn-primary btn-lg btn-block">바로구매</button>
-       </p>
-     </div>  -->
-    
 	   
   </div>
+  
+  <!-- start payment popup -->
+    <div id="nearest-purchase-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
+      <div id="charge-form">
+  
+        <div class="form-box">
+          <div class="form-top">
+            <div class="form-top-left">
+              <h2>주문/결제</h2>
+              <p>결제정보를 빠짐없이 입력해 주세요.</p>
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-pencil"></i>
+            </div>
+          </div>
+          <div class="form-bottom">
+          
+            <form role="form" action="" method="post" class="registration-form">
+              <div>
+                <input type="checkbox">&nbsp;내 정보와 동일
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-first-name">First name</label> 
+                <input type="text" name="form-first-name" placeholder="이름.." class="form-first-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-last-name">Phone number...</label> 
+                <input type="text" name="phone-number" placeholder="핸드폰번호..('-' 없이 입력해주세요.)" 
+                       class="form-last-name form-control" id="phone-number">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-email">Email</label> 
+                <input type="text" name="form-email" placeholder="이메일..."
+                  class="form-email form-control" id="form-email">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-email">Address...</label> 
+                <input type="text" name="form-addr" placeholder="주소..."
+                  class="form-email form-control" id="form-addr">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-email">postcode</label> 
+                <input type="text" name="form-postcode" placeholder="우편번호..."
+                  class="form-email form-control" id="form-postcode">
+              </div>
+              
+              <table class="table table-striped">
+                <tr>
+                  <th>수령 가능 시간</th>
+                  <td>
+                    <input id="nearest-receive-time" type="datetime-local">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>이용약관 동의</strong>&nbsp; <input id="nearest-agree" type="checkbox">
+                  </td>
+                </tr>
+                <tr>
+                  <th>결제수단 선택</th>
+                  <td>
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="card" checked="checked">&nbsp;신용카드
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="phone">&nbsp;휴대폰 결제 
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="trans">&nbsp;실시간 계좌이체 
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="vbank">&nbsp;가상계좌
+                  </td>
+  
+                </tr>
+                <tr>
+                  <th>총 결제 금액</th>
+                  <td id="nearest-payment-price" value=""> </td>
+                </tr>
+              </table>
+  
+                <button style="" class="btn btn-success" id="purchaseBtn" type="button">결제하기</button>
+  
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </div><!-- End of payment popup -->
   
  
   <script
