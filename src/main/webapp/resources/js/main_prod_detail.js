@@ -59,7 +59,7 @@ $(function() {
 				productNo: cartProductNo				
 			},
 			success: function(result) {
-				alert('찜하셨습니다!!!!!')
+				mainAlert('cartSuccess');
 			},
 			error: function() {
 				

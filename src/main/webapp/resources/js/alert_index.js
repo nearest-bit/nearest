@@ -87,7 +87,6 @@ function clientAlert(option) {
 		case 'nodata':
 		   sweetAlert("검색결과가 없습니다!", "", "error");
 		   break;
-
 	}
 }
 
@@ -100,6 +99,8 @@ function mainAlert(option) {
 			sweetAlert('중복된 아이디입니다.', '','error');
 		case 'registSuccess':
 			sweetAlert('회원가입이 완료되었습니다.', '','success');
+		case 'cartSuccess':
+			sweetAlert('찜하셨습니다.', '', 'success');
 		default:
 			break;
 	}
