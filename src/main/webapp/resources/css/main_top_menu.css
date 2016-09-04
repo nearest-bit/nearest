@@ -8,6 +8,12 @@ li > span {
 	 margin-bottom: 5px;
 }
 
+.nearest-home-top{
+	position: fixed;
+  left: 50%;
+  bottom: 50px;
+  display: none;
+}
 .row {
 	margin: 2% 10% 2% 10%;
 }

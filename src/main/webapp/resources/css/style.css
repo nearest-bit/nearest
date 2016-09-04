@@ -1,15 +1,3 @@
-@font-face{
-  font-family:nanum_b_off; 
-  src:url('../resources/fonts/nanum/NanumGothic-Bold.woff') format(‘woff’);
-  font-weight: bold;
-}
-
-@font-face{
-  font-family:nanum_b_ot; 
-  src:url('../resources/fonts/nanum/NanumGothic-Bold.eot') format(‘eot’);
-  font-weight: bold;
-}
-
 @font-face {
   font-family: 'icomoon';
   src: url("../fonts/icomoon/icomoon.eot?srf3rx");
@@ -40,7 +28,7 @@ body {
 .gnb {
     height: 62px;
     line-height: 62px;
-    font-family: nanum_b_off;
+    font-family: nanum_b;
     font-size: 16px;
     font-weight: bold;
 }
@@ -223,6 +211,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 99;
   width: 100%;
   opacity: 1;
+  height: 65px;
   top: 0;
 }
 @media screen and (max-width: 768px) {
@@ -877,7 +866,7 @@ h1, h2, h3, h4, h5, h6 {
 #fh5co-work {
 	background-color:#f3f3f3;
 	padding: 0 !important;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   color: rgba(255, 255, 255, 0.8);
  /*  background-color: #f4ebdd; */
@@ -1383,6 +1372,7 @@ h1, h2, h3, h4, h5, h6 {
   
   position: relative;
 }
+
 
 #nearest-map-autocomplete {
     width: 30%;
