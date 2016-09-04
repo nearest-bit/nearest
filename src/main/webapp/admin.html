@@ -144,32 +144,37 @@
 </style>
 </head>
 
-<body>
-	<header role="banner" id="fh5co-header">
-		<div class="container nearest-header-menu">
-			<div class="wrapper">
-				<div class="row box-shadow nearest-header-top-menu">
-
-					<div class="white-popup nearest-header-menu-btn" id="loginBefore">
-						<a id="logoutBtn">
-						  <strong>로그아웃</strong>
-						</a>
-					</div>
-
-				</div>
-
-				<div class="row box-shadow nearest-header-logo">
-					<div>
-
-						<img src="./resources/images/logo_2.png" />
-
-					</div>
-					<!-- .nearest-header-nav end -->
-				</div>
-			</div>
-		</div>
-		<!-- container end -->
-	</header>
+<body style="background-color: #f3f3f3;">
+    <header role="banner" id="fh5co-header">
+    <div class="nearest-header-menu">
+        <div class="wrapper">
+        
+           <div class="row box-shadow nearest-header-logo">
+             <div>
+              
+               <img id="nearest-logo" src="./resources/images/logo_2.png"/>
+               
+             </div> <!-- .nearest-header-nav end -->
+             <ul class="nearest-fl gnb nearest-menu-tab-bar">
+               <li id="nearest-admin-orderList" class="nearest-fl nearest-li"><a data-toggle="tab" href="#order">주문내역</a></li>
+               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a data-toggle="tab" href="#qna">건의사항</a></li>
+               <li id="nearest-admin-insert-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#regist">상품등록</a></li>
+               <li id="nearest-admin-manage-prod" class="nearest-to-home nearest-fl nearest-li"><a data-toggle="tab" href="#manage">상품관리</a></li>
+             </ul>
+             
+              <div class="nearest-fr top-box">
+                
+                <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn">
+                  <a id="logoutBtn">
+                    <strong style="color:white; font-size: 15px;">Logout</strong>
+                  </a> 
+                </div>
+              </div>
+            </div>
+           </div>
+        </div>
+   <!-- container end -->
+  </header>
 
 	<div id="nearest-admin-wrap">
 

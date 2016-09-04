@@ -14,26 +14,17 @@
   color: #66cdaa;
 }
 
-.nearest-header-menu {
-  position: absolute;
-  z-index: 99;
-  padding: 2% 0px 1% 0px;
-  /* background-image: repeating-linear-gradient(to bottom right, #3f95ea 0%, #52d3aa 100%); */
-}
 
-.nearest-header-logo {
-  text-align: center;
-  margin: 0 auto;
-}
 
 .nearest-header-logo > div > img {
-	width: 300px;
+	width: 140px;
+	float: left; 
+	cursor:pointer; 
+	margin-top: 10px; 
+	padding-left: 15px;
 }
 
-.nearest-header-top-menu {
-	margin-top: 0 !important;
-	text-align: right;
-}
+
 
 .nearest-map-infowindow {
 	margin-bottom: 0 !important;
