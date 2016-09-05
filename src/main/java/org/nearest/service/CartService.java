@@ -11,4 +11,5 @@ public interface CartService {
 	void addCart(Cart cart);
 	List<Product> getCart(int clientNo);
 	void removeCart(Map<String, Object> params);
+	void removeCartList(int clientNo);
 }

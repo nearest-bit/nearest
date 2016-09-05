@@ -80,5 +80,21 @@ public class CartController {
     
     return new Gson().toJson(result);
   }
+	
+	@RequestMapping(path="removeCartList", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String removeCartList(HttpSession session){
+	  Map<String, Object> result = new HashMap<>();
+	  
+	  try {
+	    cartService.removeCartList(((Client)session.getAttribute("loginId")).getNo());
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+	  
+	  return new Gson().toJson(result);
+	}
 		
 }

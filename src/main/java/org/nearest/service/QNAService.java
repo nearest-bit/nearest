@@ -16,5 +16,6 @@ public interface QNAService {
 	QNA getQNAForStatus(int clientNo, int contentNo);
 	int updateQNA(String replyContent, int clientNo, Admin admin, int contentNo);
 	int deleteQNA(int no);
+	int updateClientQna(int qnaNo);
 
 }
