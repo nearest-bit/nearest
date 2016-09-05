@@ -1,7 +1,7 @@
 var duplicate = '';
   
   $(document).on('click','.regBtn', function(){
-	  if(duplicate == '') {
+	  if($('input[name="reg-id"]').val() == '') {
 		  mainAlert('idEmpty');
 		  return;
 	  }

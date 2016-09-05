@@ -111,10 +111,13 @@ function mainAlert(option) {
 			break;
 		case 'idDuplicate':
 			sweetAlert('중복된 아이디입니다.', '','error');
+			break;
 		case 'registSuccess':
 			sweetAlert('회원가입이 완료되었습니다.', '','success');
+			break;
 		case 'cartSuccess':
 			sweetAlert('찜하셨습니다.', '', 'success');
+			break;
 		default:
 			break;
 	}
