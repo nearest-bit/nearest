@@ -40,7 +40,7 @@
 }
 
 .nearest-left-image > img {
-	width: 300px;
+	width: 100%;
 	max-height: 300px;
 }
 

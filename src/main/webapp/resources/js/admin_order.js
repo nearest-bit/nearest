@@ -25,7 +25,7 @@ $.ajax({
 		  
 		  $.each(detailBtn, function(index, item){
 			  if($(item).attr('order-state') == '3') {
-				  $(item).parent().parent().css('background', 'gray');
+				  $(item).parent().parent().css('border', '2px solid orange');
 			  }
 		  });
 	  },
