@@ -15,7 +15,6 @@ var IMP = window.IMP;
 			return;
 		}
 		
-		
 		IMP.request_pay({
 			pg : 'inicis', // version 1.1.0부터 지원. 
 			/*
@@ -43,19 +42,28 @@ var IMP = window.IMP;
 				msg += '결제 금액 : ' + rsp.paid_amount;
 				msg += '카드 승인번호 : ' + rsp.apply_num;
 				//custom
-				var martNo = '';
-				var prodNo = '';
-				var prodEnt = '';
-				var prodName = '';
-				var price = '';
-				var discount = '';
+				var martNo = new Array();
+			    var prodNo = new Array();
+			    var prodEnt = new Array();
+			    var prodName = new Array();
+			    var price = new Array();
+			    var discount = new Array();
 				
-				martNo += $('.nearest-cart-martNo').val()+',';
-				prodNo += $('.nearest-cart-prodNo').val()+',';
-				prodEnt += $('.nearest-prod-ent').text()+',';
-				prodName += $('.nearest-cart-prodName').val()+',';
-				price += $('.nearest-cart-price').val()+',';
-				discount += $('.nearest-cart-discount').val()+',';
+			    martNo[0] = parseInt($('.nearest-cart-martNo').val());
+				prodNo[0] = parseInt($('.nearest-cart-prodNo').val());
+				prodEnt[0] = parseInt($('#nearest-receive-entity').val());
+				prodName[0] = $('.nearest-cart-prodName').val() + '';
+				price[0] = $('.nearest-cart-price').val() + '';
+				discount[0] = $('.nearest-cart-discount').val() + '';
+				
+				console.log(martNo[0]);
+				console.log(prodNo[0]);
+				console.log(prodEnt[0]);
+				console.log(prodName[0]);
+				console.log(price[0]);
+				console.log(discount[0]);
+				
+				jQuery.ajaxSettings.traditional = true;
 								
 				$.ajax({
 			        url : contextRoot + 'order/addOrder.do',

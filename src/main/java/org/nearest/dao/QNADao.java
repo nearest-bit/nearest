@@ -16,5 +16,6 @@ public interface QNADao {
 	int delete(int no);
 	List<Mart> selectOrderMartList(int clientNo);
 	void insertQNA(QNA qna);
+	int updateClientQna(int qnaNo);
 	
 }

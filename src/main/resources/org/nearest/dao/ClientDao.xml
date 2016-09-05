@@ -31,7 +31,7 @@
     FROM (SELECT COUNT(r.req_st) cnt
           FROM clnts c, reqs r
           WHERE c.clnt_no=r.clnt_no
-          AND r.req_st=3
+          AND r.req_st=2
           AND c.clnt_no=#{clientNo}) cr, (SELECT COUNT(o.order_st) cnt
 																		            FROM clnts c, orders o
 																		            WHERE c.clnt_no=o.clnt_no

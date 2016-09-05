@@ -91,5 +91,11 @@
         AND req_no = #{contentNo}
     </update>
     
+    <update id="updateClientQna" parameterType="int">
+      update reqs 
+      set req_st = 3
+      where req_no = #{value}
+    </update>
+    
     
 </mapper>

@@ -6,3 +6,4 @@ src/main/webapp/node_modules/*
 .project
 /bin/
 build/
+src/main/webapp/paytest.html

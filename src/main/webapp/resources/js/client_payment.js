@@ -91,6 +91,11 @@ var IMP = window.IMP;
 			        	  return;
 			          }
 			          cartAlert(5);
+			          $.ajax({
+			        	 url : contextRoot + 'cart/removeCartList.do',
+			        	 datatype : 'json',
+			        	 method : 'post'
+			          });
 			          $.magnificPopup.close();
 			          location.reload();
 			        },

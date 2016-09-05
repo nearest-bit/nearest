@@ -10,4 +10,5 @@ public interface CartDao {
 	void insertCart(Cart cart);
 	List<Product> selectCartList(int clientNo);
 	void deleteCart(Map<String, Object> params);
+	void deleteCartList(int clientNo);
 }

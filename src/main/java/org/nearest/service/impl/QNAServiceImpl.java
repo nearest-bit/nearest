@@ -78,5 +78,11 @@ public class QNAServiceImpl implements QNAService{
     return qnaDao.selectOrderMartList(clientNo);
   }
 
+  @Override
+  public int updateClientQna(int qnaNo) {
+    // TODO Auto-generated method stub
+    return qnaDao.updateClientQna(qnaNo);
+  }
+
 
 }
