@@ -309,7 +309,7 @@ input[type="file"] {
 .qnaContentcard {
   margin: auto;
   margin-bottom: 50px;
-  width: 15em;
+  width: 13.9em;
 }
 
 .nearest-qnaContentcard{
@@ -379,7 +379,7 @@ input[type="file"] {
 
 .qnaContentfinal {
   background: #4d9cc9;
-  padding: 0.5em 6.3em;
+  padding: 0.5em 5.7em;
   border-bottom-left-radius: .6em;
   border-bottom-right-radius: .6em;
   transition: all 500ms ease-in-out;

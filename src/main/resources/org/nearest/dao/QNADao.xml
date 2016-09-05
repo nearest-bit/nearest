@@ -18,6 +18,7 @@
         <association property="client" javaType="client">
             <id column="clnt_no" property="no" javaType="INTEGER" />
             <result column="clnt_nm" property="name" javaType="string" />
+            <result column="clnt_pn" property="phone" javaType="string" />
         </association>
     </resultMap>
     
@@ -34,7 +35,7 @@
     </select>
     
     <select id="selectQNAlistByCalendar" resultMap="qnaMap" parameterType="map">
-        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no, c.clnt_pn
         FROM reqs r, clnts c
         WHERE r.clnt_no=c.clnt_no
         AND mt_no = #{adminInfo}
@@ -60,7 +61,7 @@
     </select>
     
     <select id="selectQNAListByAdmin" resultMap="qnaMap" parameterType="map">
-        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no, c.clnt_pn
         FROM reqs r, clnts c
         WHERE r.clnt_no=c.clnt_no
         AND mt_no = #{adminInfo}
