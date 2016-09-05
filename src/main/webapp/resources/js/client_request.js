@@ -75,8 +75,8 @@ $(document).on('click', '.nearest-client-req-tr', function(){
 					return;
 				}
 				
-				$.cookie('clientMenu', 'request');
-				location.reload();
+				/*$.cookie('clientMenu', 'request');
+				location.reload();*/
 			},
 			error : function(){
 				alert('Controller error....');
