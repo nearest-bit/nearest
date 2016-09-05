@@ -296,26 +296,38 @@ input[type="file"] {
   font-weight: 200;
   height: 50px;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .nearest-qnaText {
-  height: 120px;
   overflow: hidden;
   margin-bottom: 40px;
   overflow: hidden; 
   text-overflow: ellipsis;
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /*라인수*/
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: 1.2em;
+  height: 3.6em;
+}
+
+.qnaContent{
+	overflow: hidden; 
+    text-overflow: ellipsis;
 }
 
 .qnaContentcard {
   margin: auto;
   margin-bottom: 50px;
-  width: 15em;
+  width: 13.9em;
 }
 
 .nearest-qnaContentcard{
   margin: auto;
   margin-bottom: 20px;
-  width: 37em;
+  width: 37.4em;
 }
 
 .nearest-qnaContext {
@@ -379,7 +391,7 @@ input[type="file"] {
 
 .qnaContentfinal {
   background: #4d9cc9;
-  padding: 0.5em 6.3em;
+  padding: 0.5em 5.7em;
   border-bottom-left-radius: .6em;
   border-bottom-right-radius: .6em;
   transition: all 500ms ease-in-out;
