@@ -31,7 +31,7 @@ public class SessionController {
 				result.put("status", "true");
 
 				if(adminCheck) result.put("role", "admin");
-				if(adminCheck) result.put("role", "client");
+				if(clientCheck) result.put("role", "client");
 			} else {
 				result.put("status", "false");
 			}
