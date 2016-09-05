@@ -53,6 +53,28 @@ function clientCart() {
 	        $('#nearest-cart-tbody').append(cartListTempl(result));
 	        $('#nearest-client-menu').addClass('active');
 	        
+	        if($('#nearest-cart-tbody').children().size() != 0){
+	    		console.log($('#nearest-cart-tbody').children().size());
+	    		$('.popup-with-zoom-anim-purchase').magnificPopup({
+	    			type: 'inline',
+	    	
+	    			fixedContentPos: false,
+	    			fixedBgPos: true,
+	    	
+	    			overflowY: 'auto',
+	    	
+	    			closeBtnInside: true,
+	    			preloader: false,
+	    			
+	    			midClick: true,
+	    			removalDelay: 300,
+	    			mainClass: 'my-mfp-zoom-in'
+	    		});
+	    	}else{
+	    		console.log($('#nearest-cart-tbody').children().size());
+	    		cartAlert('noCartList');
+	    	}
+	        
 	        var totalDiscountPrice;
 	        
 	        var products = result.cartData;

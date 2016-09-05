@@ -92,6 +92,8 @@
   <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
   <!-- jQuery Cookie -->
   <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
+  <!-- IamPort 결제 -->
+  <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
   
   <style>
 	/* Google Map InfoWindow */
@@ -502,28 +504,28 @@
 		          <input type="hidden" class="nearest-cart-price">
 		          <input type="hidden" class="nearest-cart-discount">
               <div>
-                <input type="checkbox">&nbsp;내 정보와 동일
+                <input id="input-myinfo" type="checkbox">&nbsp;내 정보와 동일
               </div>
-              <div class="form-group">
+              <div class="form-group form-group-pay">
                 <label class="sr-only" for="form-first-name">First name</label> 
                 <input type="text" name="form-first-name" placeholder="이름.." class="form-first-name form-control" id="form-name">
               </div>
-              <div class="form-group">
+              <div class="form-group form-group-pay">
                 <label class="sr-only" for="form-last-name">Phone number...</label> 
                 <input type="text" name="phone-number" placeholder="핸드폰번호..('-' 없이 입력해주세요.)" 
                        class="form-last-name form-control" id="phone-number">
               </div>
-              <div class="form-group">
+              <div class="form-group form-group-pay">
                 <label class="sr-only" for="form-email">Email</label> 
                 <input type="text" name="form-email" placeholder="이메일..."
                   class="form-email form-control" id="form-email">
               </div>
-              <div class="form-group">
+              <div class="form-group form-group-pay">
                 <label class="sr-only" for="form-email">Address...</label> 
                 <input type="text" name="form-addr" placeholder="주소..."
                   class="form-email form-control" id="form-addr">
               </div>
-              <div class="form-group">
+              <div class="form-group form-group-pay">
                 <label class="sr-only" for="form-email">postcode</label> 
                 <input type="text" name="form-postcode" placeholder="우편번호..."
                   class="form-email form-control" id="form-postcode">
@@ -585,6 +587,7 @@
   <script src="./resources/js/main_to_client.js"></script>
   <script src="./resources/js/main_register.js"></script>
   <script src="./resources/js/main_prod_detail.js"></script>
+  <script src="./resources/js/main_payment.js"></script>
   <script src="./resources/js/client_myinfo.js"></script>
   <script src="./resources/js/logout.js"></script>
   

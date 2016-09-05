@@ -40,7 +40,9 @@ $(function() {
 	});
 
 	$('#nearest-complete-btn').on('click', function() {
-		$('.nearest-margin-bottom').css('background', 'gray');
+		
+		$('.fh5co-person').css('border', '2px solid orange');
+		$(this).text('준비 완료');
 	});
 	
 	$('#reply-reset-btn').on('click', function() {

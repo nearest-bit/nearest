@@ -13,14 +13,16 @@ $(document).on('click', '#login-btn', function() {
 	doLogin();		
 });
 
-$(document).on('keydown', '#login-form-username', function(event) {
-	if(event.keycode == 13) {
+$('#login-form-username').keydown( function(event) {
+	console.log(event.keyCode);
+	
+	if(event.keyCode == 13) {
 		doLogin();
 	}		
 });
 
-$(document).on('keydown', '#login-form-password', function(event) {
-	if(event.keycode == 13) {
+$('#login-form-password').keydown( function(event) {
+	if(event.keyCode == 13) {
 		doLogin();
 	}		
 });

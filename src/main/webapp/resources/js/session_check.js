@@ -1,4 +1,5 @@
 var sessionLogin = false;
+var sessionRole = '';
 
 $.ajax({
 	url: contextRoot + 'session/check.do',
@@ -7,6 +8,9 @@ $.ajax({
 	success: function(result) {		
 		if(result.status == 'true') {
 			sessionLogin = true
+			sessionRole = result.role;
+			
+			console.log(sessionRole);
 			
 			var url = $(location).attr('href');
 			
@@ -17,27 +21,31 @@ $.ajax({
 			    $('#myInfoBtn-div').removeClass('login-display');
 			    $('#logoutBtn-div').removeClass('login-display');
 			    
-			    $.ajax({
-					url: contextRoot + 'client/checkAlert.do',
-					method: 'post',
-					dataType: 'json',
-					success: function(result) {
-						var data = result.alertData;
-						var count = data.cnt_req + 0 + data.cnt_order;
-													
-						if(result.status != 'success') {
-							return;
-						}
-						
-						$('#nearest-dropdown-alert').text(count);
-						
-						$('#nearest-to-purchase').append($('<span>').addClass('badge').text(data.cnt_order));
-						$('#nearest-to-request').append($('<span>').addClass('badge').text(data.cnt_req));
-					},
-					error: function() {
-						
-					}
-				});	  
+			    if( sessionRole == 'admin' ){
+		    		location.href='./admin.html';
+		    	} else if( sessionRole == 'client') {
+		    		 $.ajax({
+							url: contextRoot + 'client/checkAlert.do',
+							method: 'post',
+							dataType: 'json',
+							success: function(result) {
+								var data = result.alertData;
+								var count = data.cnt_req + 0 + data.cnt_order;
+															
+								if(result.status != 'success') {
+									return;
+								}
+								
+								$('#nearest-dropdown-alert').text(count);
+								
+								$('#nearest-to-purchase').append($('<span>').addClass('badge').text(data.cnt_order));
+								$('#nearest-to-request').append($('<span>').addClass('badge').text(data.cnt_req));
+							},
+							error: function() {
+								
+							}
+						});
+		    	}	  
 			}
 		}
 		

@@ -23,10 +23,15 @@ public class SessionController {
 	@ResponseBody
 	public String check(HttpSession session) {
 		HashMap<String,Object> result = new HashMap<>();
+		boolean adminCheck = session.getAttribute("adminId") != null;
+		boolean clientCheck = session.getAttribute("loginId") != null;
 						
 		try {
-			if(session.getAttribute("adminId") != null || session.getAttribute("loginId") != null) {
+			if(adminCheck || clientCheck) {
 				result.put("status", "true");
+
+				if(adminCheck) result.put("role", "admin");
+				if(clientCheck) result.put("role", "client");
 			} else {
 				result.put("status", "false");
 			}

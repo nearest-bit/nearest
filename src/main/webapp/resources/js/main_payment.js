@@ -5,9 +5,13 @@
 var IMP = window.IMP;
 	IMP.init('imp16866345');
 
-	$('#purchaseBtn').click(function() {
+	$(document).on('click', '#purchaseBtn', function() {
 		
 		if (checkVal()) {
+			return;
+		}else if (checkGetTime()){
+			return;
+		}else if(checkAgree()){
 			return;
 		}
 		
@@ -92,12 +96,69 @@ var IMP = window.IMP;
 	//validation check
 	function checkVal(){
 
-		for( var i in $('.form-group > input[type="text"]')){
-			if( $($('.form-group > input[type="text"]')[i]).val() == null || $($('.form-group > input[type="text"]')[i]).val() == '' ){
+		for( var i in $('.form-group-pay > input[type="text"]')){
+			if( $($('.form-group-pay > input[type="text"]')[i]).val() == null || $($('.form-group-pay > input[type="text"]')[i]).val() == '' ){
 				cartAlert(1);
 				return true;
-			} else if (i== $('.form-group > input[type="text"]').length-1) {
+			} else if (i== $('.form-group-pay > input[type="text"]').length-1) {
 				return false;
 			}
 		}
 	}
+	
+	function checkAgree(){
+		
+		
+		if ( $('#nearest-agree').is(':checked') ){
+			return false;
+		}else{
+			cartAlert('checkAgree');
+			$('#nearest-agree').focus();
+			return true;
+			
+		}
+	}
+	
+	$('#nearest-agree').on('click', function(){
+		if($('#nearest-agree').is(':checked')){
+			cartAlert(3);
+			return;
+		}
+		$('.cancel').on('click', function(){
+			$('#nearest-agree').prop('checked', false);
+		});
+	});
+	
+	function checkGetTime(){
+		if( $('#nearest-receive-time').val() == null || $('#nearest-receive-time').val() == ''){
+			cartAlert('checkGetTime');
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	$('#input-myinfo').on('click', function(){
+		if( $('#input-myinfo').is(':checked') ){
+			$.ajax({
+				url : contextRoot + 'client/purchaseInfo.do',
+				datatype : 'json',
+				method : 'post',
+				success : function(result){
+					if(result.status != 'success'){
+						alert('Controller Error......');
+						return;
+					}
+					
+					$('#form-email').val(result.data.email);
+					$('#form-name').val(result.data.name);
+					$('#phone-number').val(result.data.phone);
+					
+				}
+			});
+		}else{
+			$('#form-email').val('');
+			$('#form-name').val('');
+			$('#phone-number').val('');
+		}
+	});

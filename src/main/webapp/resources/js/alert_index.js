@@ -52,6 +52,13 @@ function cartAlert(option) {
 			html : true
 		});
 		break;
+	 case 'noCartList':
+			
+		swal({
+			title : "<small>찜하신 물품이 없습니다.</small>",
+			html : true
+		});
+		break;
 	 
 	}
 }

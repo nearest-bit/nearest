@@ -5,10 +5,15 @@ var duplicate = '';
 		  mainAlert('idEmpty');
 		  return;
 	  }
-	  
+	  alert($('input[name="reg-id"]').val())
+	  alert($('input[name="reg-password"]').val())
+	  alert($('input[name="reg-name"]').val())
+	  alert($('input[name="reg-birth"]').val())
+	  alert($('input[name="reg-email"]').val())
+	  alert($('input[name="reg-phone"]').val())
 	  $.ajax({
-		  dataType : 'json',
 		  url : contextRoot + 'client/register.do',
+		  dataType : 'json',
 		  data : {
 			  id : $('input[name="reg-id"]').val(),
 			  password : $('input[name="reg-password"]').val(),

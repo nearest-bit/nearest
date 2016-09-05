@@ -116,8 +116,8 @@ $(function(){
 	    	datatype : 'json',
 	    	method : 'post',
 	    	data : {
-	    		orderNo : $(this).next().children().attr('order-no'),
-	    		orderState : $(this).next().children().attr('order-state'),
+	    		orderNo : $(this).next().children('button').attr('order-no'),
+	    		orderState : $(this).next().children('button').attr('order-state'),
 	    		option : 2
 	    	},
 	    	success : function(result){
@@ -125,6 +125,8 @@ $(function(){
 	    			console.log(result.state);
 	    			return;
 	    		}
+	    		
+	    		location.reload();
 	    	},
 	    	error : function() {
 	    		alert('ajax error');
