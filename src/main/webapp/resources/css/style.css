@@ -1064,14 +1064,15 @@ h1, h2, h3, h4, h5, h6 {
   clear: both;
 }
 .section-heading h2 {
-  margin: 0 0 30px 0;
-  font-size: 50px;
+  margin: 10px 0 30px 0;
+  font-size: 35px;
   font-weight: 300;
   color: #444;
+  font-family: nanum_b;
   text-transform: uppercase;
   position: relative;
   display: block;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   line-height: 1.5;
 }
 .section-heading h2.left-border:after {

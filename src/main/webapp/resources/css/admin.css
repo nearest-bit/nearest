@@ -26,7 +26,6 @@ p {margin:0 !important}
 }
 
 .nearest-admin-list {
-	margin-top: 50px;
   width: 70%;
   margin-right: auto;
   margin-left: auto;
@@ -303,6 +302,8 @@ input[type="file"] {
   height: 120px;
   overflow: hidden;
   margin-bottom: 40px;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 
 .qnaContentcard {
@@ -393,4 +394,12 @@ input[type="file"] {
     color: #fff;
     font-family: Open Sans;
     font-weight: 200;
+}
+
+.nearest-admin-content{
+	    background: white;
+    box-shadow: 3px 5px 15px #888888;
+    border-radius: 5px;
+    padding: 30px !important;
+	
 }
