@@ -1,6 +1,8 @@
 $(function() {
 	$(document).on('click', '.fh5co-project-item img', function() {		
 		var productNo = $(this).parent().parent().prev().val();
+		var martNo = $(this).parent().parent().prev().prev().val();
+		var discountRate = $(this).parent().parent().prev().prev().prev().val();		
 		
 		$.ajax({
 			url: contextRoot + 'product/getProduct.do',
@@ -12,22 +14,31 @@ $(function() {
 			success: function(result) {
 				var data = result.productData;
 				var discountRate = data.discountRate;
+				var originPrice;
 				var discountPrice;
 								
 				$('#nearest-item-title').text(data.name);
 				$('#nearest-item-mart').text(data.mart.name);
 				$('#nearest-item-prod-no').val(productNo);
+				$('#nearest-item-mart-no').val(martNo);
+				$('#nearest-item-discount-rate').val(discountRate);
 				$('#nearest-item-entity').text(data.entity);
-				$('#nearest-item-price').text(data.price);
 				
+				$('#nearest-item-price').children('span').remove();
+				
+				originPrice = $('<span>').addClass('nearest-purchase-pay');
+				$(originPrice).text(data.price);
+				$('#nearest-item-price').append(originPrice);
+								
 				if(discountRate > 0) {
-					$('#nearest-item-price').css('text-decoration', 'line-through');
-					$('#nearest-item-price').next().remove();
 					
-					discountPrice = $('<font>').addClass('nearest-purchase-pay');
+					$(originPrice).css('text-decoration', 'line-through');
+					
+					discountPrice = $('<span>').addClass('nearest-purchase-pay');
 					$(discountPrice).text(' ' + parseInt(data.price - (data.price * discountRate / 100)));
+					$('#nearest-item-payment-price').val($(discountPrice).text());
 					
-					$('#nearest-item-price').after(discountPrice);
+					$(originPrice).after(discountPrice);
 				}
 			},
 			error: function() {
@@ -66,9 +77,7 @@ $(function() {
 			}
 		});
 	});
-	
-	$('#nearest-item-purchase, #nearest-purchase-dialog').magnificPopup();
-	
+
 	$(document).on('click', '#nearest-item-purchase', function(event) {
 		event.preventDefault();
 		
@@ -82,8 +91,35 @@ $(function() {
         	return;
 	    }
 		
-		/*$.magnificPopup.close();
-		$('#nearest-myinfo-div').magnificPopup('open');*/
+		$.magnificPopup.open({
+			  items: {
+			    src: '#nearest-purchase-dialog'
+			  }
+		});
+		
+		var maxEntity = parseInt($('#nearest-item-entity').text());
+		$('#nearest-receive-entity').attr('max', maxEntity);
+		
+		var totalPrice = $('#nearest-item-payment-price').val() * 1 * $('#nearest-receive-entity').val();
+		  
+		$('#nearest-payment-price').text(totalPrice);
+		$('#nearest-payment-price').attr('value', totalPrice);
+		
+		$('.nearest-cart-prodNo').val($('#nearest-item-prod-no').val());
+		$('.nearest-cart-martNo').val($('#nearest-item-mart-no').val());
+		$('.nearest-cart-prodName').val($('#nearest-item-title').text());
+		$('.nearest-cart-price').val(totalPrice);
+		$('.nearest-cart-discount').val($('#nearest-item-discount-rate').val());
 		
 	});
+	
+	$(document).on('change', '#nearest-receive-entity', function() {
+		var entity = parseInt($(this).val()); 
+		
+		var totalPrice = $('#nearest-item-payment-price').val() * 1 * entity;
+		  
+		$('#nearest-payment-price').text(totalPrice);
+		$('#nearest-payment-price').attr('value', totalPrice);
+		
+	})
 });

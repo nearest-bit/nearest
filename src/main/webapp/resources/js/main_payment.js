@@ -45,25 +45,14 @@ var IMP = window.IMP;
 				var prodName = '';
 				var price = '';
 				var discount = '';
-				for( var i=0; i<$('.nearest-cart-prodNo').size(); i++){
-					if (i == ($('.nearest-cart-prodNo').size() - 1) ){
-						martNo += $($('.nearest-cart-martNo')[i]).val();
-						prodNo += $($('.nearest-cart-prodNo')[i]).val();
-						prodEnt += $($('.nearest-prod-ent')[i]).text();
-						prodName += $($('.nearest-cart-prodName')[i]).val();
-						price += $($('.nearest-cart-price')[i]).val();
-						discount += $($('.nearest-cart-discount')[i]).val();
-					}else{
-						martNo += $($('.nearest-cart-martNo')[i]).val()+',';
-						prodNo += $($('.nearest-cart-prodNo')[i]).val()+',';
-						prodEnt += $($('.nearest-prod-ent')[i]).text()+',';
-						prodName += $($('.nearest-cart-prodName')[i]).val()+',';
-						price += $($('.nearest-cart-price')[i]).val()+',';
-						discount += $($('.nearest-cart-discount')[i]).val()+',';
-					}
-					
-				}
 				
+				martNo += $('.nearest-cart-martNo').val()+',';
+				prodNo += $('.nearest-cart-prodNo').val()+',';
+				prodEnt += $('.nearest-prod-ent').text()+',';
+				prodName += $('.nearest-cart-prodName').val()+',';
+				price += $('.nearest-cart-price').val()+',';
+				discount += $('.nearest-cart-discount').val()+',';
+								
 				$.ajax({
 			        url : contextRoot + 'order/addOrder.do',
 			        datatype : 'json',

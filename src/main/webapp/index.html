@@ -166,7 +166,7 @@
 	              </div>
 	              
 	              <div id="signupBtn-div" class="nearest-fl nearest-header-join-btn">
-	                <a id="signupBtn" href="#signupForm" class="white-popup popup-modal">
+	                <a id="signupBtn" href="#signupForm" class="white-popup popup-modal-topmenu">
 	                  <strong style="font-size: 15px;">Register</strong>
 	                </a>
 	              </div>
@@ -318,6 +318,8 @@
       {{#each productData}}
         <div class="col-md-4 col-sm-6 col-xxs-12">
           <div class="nearest-prod-list">
+            <input type="hidden" value="{{discountRate}}" />
+            <input type="hidden" value="{{mart.no}}" />
             <input type="hidden" value="{{no}}" />
             <a class="fh5co-project-item popup-with-form nearest-work-list-border" href="#nearest-modal">
               <div class="nearest-prod-image">
@@ -449,9 +451,8 @@
           <div class="nearest-detail-prod-name">
             <h3 id="nearest-item-title">농심 신라면 1박스</h3>
           </div>
-          <div class="nearest-detail-prod-price">
-            <input id="nearest-payment-price" type="hidden" value="7000" />
-            <h3 id="nearest-item-price">₩7,000</h3>
+          <div id="nearest-item-price" class="nearest-detail-prod-price">
+            <input id="nearest-item-payment-price" type="hidden" value="7000" />
           </div>
           <div class="nearest-detail-prod-stock">
             <p class="nearest-detail-font-size">재고 수량</p>
@@ -461,6 +462,7 @@
             <p class="nearest-detail-font-size">판매처</p>
             <p id="nearest-item-mart">진한마트</p>
             <input id="nearest-item-prod-no" type='hidden' value="" />
+            <input id="nearest-item-mart-no" type='hidden' value="" />
           </div>
           
           <div class="nearest-detail-btn">
@@ -494,6 +496,11 @@
           <div class="form-bottom">
           
             <form role="form" action="" method="post" class="registration-form">
+              <input type="hidden" class="nearest-cart-prodNo">
+		          <input type="hidden" class="nearest-cart-martNo">
+		          <input type="hidden" class="nearest-cart-prodName">
+		          <input type="hidden" class="nearest-cart-price">
+		          <input type="hidden" class="nearest-cart-discount">
               <div>
                 <input type="checkbox">&nbsp;내 정보와 동일
               </div>
@@ -524,6 +531,12 @@
               
               <table class="table table-striped">
                 <tr>
+                  <th>구매 수량</th>
+                  <td>
+                    <input id="nearest-receive-entity" type="number" placeholder="구매수량..." value="1" min="1">
+                  </td>
+                </tr>
+                <tr>
                   <th>수령 가능 시간</th>
                   <td>
                     <input id="nearest-receive-time" type="datetime-local">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -546,7 +559,7 @@
                 </tr>
               </table>
   
-                <button style="" class="btn btn-success" id="purchaseBtn" type="button">결제하기</button>
+                <button class="btn btn-success" id="purchaseBtn" type="button">결제하기</button>
   
             </form>
           </div>
