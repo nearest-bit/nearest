@@ -38,4 +38,11 @@
 																		            AND o.order_st=3
 																		            AND c.clnt_no=#{clientNo}) co
   </select>
+  
+  <update id="updateClient" parameterType="map">
+    update clnts 
+    set clnt_pw = #{password} , clnt_eml = #{email}
+    where clnt_no = #{clientNo}
+  </update>
+
 </mapper>

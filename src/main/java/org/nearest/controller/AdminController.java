@@ -31,8 +31,12 @@ public class AdminController {
 						HttpSession session) {
 		HashMap<String,Object> result = new HashMap<>(); 
 		Admin admin = adminService.getAdmin(id);
-		Mart mart = martService.getMartByAdmin(admin.getNo());
-				
+		Mart mart = null;
+		
+		if(admin != null) {
+			mart = martService.getMartByAdmin(admin.getNo());
+		}
+						
 		try {
 			if(admin.getPassword().equals(password)) {
 				result.put("status", "correct");

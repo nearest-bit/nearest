@@ -49,23 +49,28 @@ public class ProductController {
     	searchContent = ((Mart)session.getAttribute("adminMart")).getName();
     }
     
+    result.put("currentPage", currentPage);
+    
     try{
       result.put("status", "success");
       if(searchTag.equals("prods")) {
         
         products = productService.getProductList(currentPage, length, searchContent);
-        
+        result.put("searchKeyword", "prods");
         result.put("productData", products);
+        result.put("searchContent", searchContent);
         result.put("total", productService.getTotal(searchContent));
-        
+        System.out.println("prods : "+result.get("productData"));
       } 
       
       if(searchTag.equals("marts")) {
         
         products = productService.getMartList(currentPage, length, searchContent);
-        
+        result.put("searchKeyword", "marts");
         result.put("productData", products);
+        result.put("searchContent", searchContent);
         result.put("total", productService.getTotalByMart(searchContent));
+        System.out.println("marts : "+result.get("productData"));
       }
       
     }catch (Exception e) {

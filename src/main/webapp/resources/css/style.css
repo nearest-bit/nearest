@@ -16,15 +16,25 @@ body {
   font-weight: 300;
   font-size: 20px;
   line-height: 1.5;
-  color: #777777;
   color: #7f7f7f;
   height: 100%;
   position: relative;
-  background: #f7f0da;
+}
+.nearest-fl{
+	float: left;
+}
+
+
+.gnb {
+    height: 62px;
+    line-height: 62px;
+    font-family: nanum_b;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 a {
-  color: #52d3aa;
+  color: #ffffff;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -201,6 +211,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 99;
   width: 100%;
   opacity: 1;
+  height: 65px;
   top: 0;
 }
 @media screen and (max-width: 768px) {
@@ -393,7 +404,7 @@ h1, h2, h3, h4, h5, h6 {
   background-image: -ms-repeating-linear-gradient(top left, #3f95ea 0%, #52d3aa 100%);
 }
 #fh5co-home, #fh5co-home .text-wrap {
-  height: 700px;
+  height: 500px;
  
 }
 #fh5co-home .text-wrap {
@@ -853,7 +864,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #fh5co-work {
-  overflow: hidden;
+	background-color:#f3f3f3;
+	padding: 0 !important;
+  /* overflow: hidden; */
   position: relative;
   color: rgba(255, 255, 255, 0.8);
  /*  background-color: #f4ebdd; */
@@ -1051,14 +1064,15 @@ h1, h2, h3, h4, h5, h6 {
   clear: both;
 }
 .section-heading h2 {
-  margin: 0 0 30px 0;
-  font-size: 50px;
+  margin: 10px 0 30px 0;
+  font-size: 35px;
   font-weight: 300;
   color: #444;
+  font-family: nanum_b;
   text-transform: uppercase;
   position: relative;
   display: block;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   line-height: 1.5;
 }
 .section-heading h2.left-border:after {
@@ -1324,10 +1338,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #map {
-  width: 100%;
-  height: 100%;
-  top: 25%;
-  bottom: -50%;
+    width: 100%;
+    height: 77%;
+    top: 13%;
+    bottom: -50%;
   
   position: relative;
 }
@@ -1338,15 +1352,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #nearest-map-locationField {
-	width: 40%;
-	top: 35%;
-  bottom: -50%;
-  margin: auto;
-  
-  z-index: 99;
-  
-  position: relative;
+    width: 100%;
+    top: 13%;
+    height: 10%;
+    bottom: -50%;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    background: rgba(0,0,0,0.8);
 }
+
 
 #nearest-listing {
 	width: 40%;
@@ -1359,14 +1374,19 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+
 #nearest-map-autocomplete {
-	width: 100%;
-	top: 40%;
-  bottom: -50%;
-  border-radius:10px;
-	z-index: 99;
-	
-	position: relative;
+    width: 30%;
+    top: 18%;
+    min-width: 450px;
+    font-size: 14px;
+    height: 48%;
+    bottom: -50%;
+    border-radius: 3px;
+    position: relative;
+    background: url("http://www.earthtory.com/res/img/common/gnb/search_icon.png") no-repeat;
+    background-position: 98% center;
+    background-color: white;
 }
 
 .mfp-with-zoom .mfp-container,

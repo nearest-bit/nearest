@@ -1,7 +1,7 @@
 package org.nearest.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Client implements Serializable{
 

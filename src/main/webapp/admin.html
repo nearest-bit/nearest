@@ -48,6 +48,8 @@
 <link rel="stylesheet" href="./resources/css/client_popup.css">
 <!-- SweetAlert css -->
 <link rel="stylesheet" type="text/css" href="./node_modules/sweetalert/dist/sweetalert.css">
+<!-- main top menu -->
+<link rel="stylesheet" href="./resources/css/admin_top_menu.css">
 
 <!-- JS Files -->
 
@@ -114,10 +116,6 @@
 	position: inherit !important;
 }
 
-.nearest-header-menu {
-	position: inherit !important;
-}
-
 #product-detail-form {
 	background-color: white !important;
 }
@@ -141,53 +139,63 @@
 #nearest-order-search {
     display: none;
 }
+
+#nearest-admin-top-menu{
+  list-style: none;
+}
+
+#nearest-admin-top-menu > li {
+  padding: 0 19px;
+  
+}
+
+#nearest-admin-top-menu > li > a{
+  color: #7f7f7f;
+}
 </style>
 </head>
 
-<body>
-	<header role="banner" id="fh5co-header">
-		<div class="container nearest-header-menu">
-			<div class="wrapper">
-				<div class="row box-shadow nearest-header-top-menu">
-
-					<div class="white-popup nearest-header-menu-btn" id="loginBefore">
-						<a id="logoutBtn">
-						  <strong>로그아웃</strong>
-						</a>
-					</div>
-
-				</div>
-
-				<div class="row box-shadow nearest-header-logo">
-					<div>
-
-						<img src="./resources/images/logo_2.png" />
-
-					</div>
-					<!-- .nearest-header-nav end -->
-				</div>
-			</div>
-		</div>
-		<!-- container end -->
-	</header>
+<body style="background-color: #f3f3f3;">
+    <header role="banner" id="fh5co-header">
+    <div class="nearest-header-menu">
+        <div class="wrapper">
+        
+           <div class="row box-shadow nearest-header-logo">
+             <div>
+              
+               <img style="cursor: pointer;" class="nearest-to-home" src="./resources/images/logo_2.png"/>
+               
+             </div> <!-- .nearest-header-nav end -->
+             <div class="nearest-admin-list">
+	             <ul id="nearest-admin-top-menu" class="nearest-fl gnb nearest-menu-tab-bar">
+	               <li id="nearest-admin-orderList" class="nearest-fl nearest-li"><a data-toggle="tab" href="#order">주문내역</a></li>
+	               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a data-toggle="tab" href="#qna">건의사항</a></li>
+	               <li id="nearest-admin-insert-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#regist">상품등록</a></li>
+	               <li id="nearest-admin-manage-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#manage">상품관리</a></li>
+	             </ul>
+             </div>    
+              <div class="nearest-fr top-box">
+                
+                <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn">
+                  <a id="logoutBtn">
+                    <strong style="color:white; font-size: 15px;">Logout</strong>
+                  </a> 
+                </div>
+              </div>
+            </div>
+           </div>
+        </div>
+   <!-- container end -->
+  </header>
 
 	<div id="nearest-admin-wrap">
-
-		<div class="nearest-admin-list">
-			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#order">주문내역</a></li>
-				<li><a data-toggle="tab" href="#qna">건의사항</a></li>
-				<li><a data-toggle="tab" href="#regist">상품등록</a></li>
-				<li><a data-toggle="tab" href="#manage">상품관리</a></li>
-			</ul>
-		</div>
 
     <div class="tab-content">
       <div id="order" class="tab-pane active in">
 
 				<!-- start of joomoonList -->
 		    <section id="fh5co-about" data-section="about">
-		      <div class="container">
+		      <div class="container nearest-admin-content-bg nearest-admin-content">
 		        <div class="row">
 		          <div class="col-md-12 section-heading text-center">
 		            <h2 class="to-animate">주문내역</h2>
@@ -266,7 +274,7 @@
       <div id="qna" class="tab-pane fade">
 				<!-- 건의사항 시작 -->
 				<section id="fh5co-testimonials" data-section="testimonials">
-					<div class="container">
+					<div class="container nearest-admin-content-bg nearest-admin-content">
 						<div class="row">
                 <div class="col-md-13 section-heading">
                     <h2 class="to-animate text-center">Q & A</h2>
@@ -382,7 +390,7 @@
 
 		    <!-- start 상품등록 -->
 				<section id="fh5co-contact" data-section="contact">
-					<div class="container">
+					<div class="container nearest-admin-content-bg nearest-admin-content">
 						<div class="row">
 							<div class="col-md-12 section-heading text-center">
 								<h2 class="to-animate">상품등록</h2>
@@ -462,7 +470,7 @@
       <div id="manage" class="tab-pane fade">
 				<!-- 상품관리 시작 -->
 				<section id="fh5co-work" data-section="work">
-					<div class="container">
+					<div style="margin: 2em 0;" class="container nearest-admin-content-bg nearest-admin-content">
 						<div class="row">
 							<div class="col-md-12 section-heading text-center">
 								<h2 class="to-animate">상품관리</h2>
@@ -473,15 +481,23 @@
 						<script id="nearest-admin-product-list-template" type="text/x-handlebars-template">
               {{#each productData}}
                 <div class="col-md-4 col-sm-6 col-xxs-12">
-                  <input type="hidden" value="{{no}}" />
-                  <a href="#nearest-detail-image-fileupload"
-                     class="fh5co-project-item popup-with-form"> 
-                    <img src="{{photo}}" alt="Image" class="img-responsive">
-                    <div class="fh5co-text">
-                      <h2>{{name}}</h2>
-                      <span>가격 {{price}}원/수량 {{entity}}개/할인율 {{discountRate}}%</span>
-                    </div>
-                  </a>
+                  <div class="nearest-prod-list">
+                    <input type="hidden" value="{{no}}" />
+                    <a href="#nearest-detail-image-fileupload"
+                      class="fh5co-project-item popup-with-form">
+                      <div class="nearest-prod-image">
+                        <img src="{{photo}}" alt="Image">
+                        <div class="nearest-prod-text">
+                          <h3>{{name}}</h3>
+                        </div>
+                      </div>
+                      <ul class="nearest-media">
+                        <li><i class="fa fa-won"></i>{{price}}원</li>
+                        <li><i class="fa fa-shopping-cart"></i>{{entity}}개</li>
+                        <li><i class="fa fa-arrow-down"></i>{{discountRate}}%</li>
+                      </ul>
+                    </a>
+                  </div>
                 </div>
               {{/each}}
             </script>

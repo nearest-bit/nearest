@@ -26,7 +26,6 @@ p {margin:0 !important}
 }
 
 .nearest-admin-list {
-	margin-top: 50px;
   width: 70%;
   margin-right: auto;
   margin-left: auto;
@@ -52,6 +51,10 @@ p {margin:0 !important}
 
 #request-search {
 	display: none;
+}
+
+#nearest-admin-product-list {
+	padding:0 30px;
 }
 
 .nearest-product-register {
@@ -190,13 +193,101 @@ input[type="file"] {
     position: relative;
 }
 
-.img-responsive {
-	width: 250px;
-	height: 250px;
-	margin: 0 auto;
-	margin-top: 10px;
-	margin-bottom: 10px;
+
+/* prod-manage */
+.nearest-prod-list {
+	height:300px;
+	min-width: 100%;
+	padding:0 10px;
+	position:relative;
+	margin-bottom: 30px;
+	display:inline-block;
+	cursor: pointer;
 }
+
+.nearest-media {
+	width:100%;
+  font-size:0.7em;
+  color:#777;
+  padding:15px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 20px;
+  margin: 0;
+}
+
+.nearest-media li {
+	list-style: none;
+	display:inline-block;
+  padding:0 7px;
+}
+
+.nearest-prod-text {
+	width:100%;
+  background:#4ABFB4;
+  opacity: 0.85;
+  padding:5px;
+  filter: alpha(opacity=85); /* IE8 and Lower */
+  zoom: 1; /* set "zoom", "width" or "height" to trigger "hasLayout" in IE 7 and lower */
+  overflow:hidden;
+  position:absolute;
+  bottom:0;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 1px 1px 2px rgba(51, 145, 135, 1);
+  border-bottom:1px dotted #339187;
+}
+
+.nearest-prod-text h3 {
+	margin: 0 !important;
+	color: #fff;
+}
+
+.nearest-prod-image {
+	height: 250px;
+	overflow:hidden;
+  position:relative;
+  margin: 0 auto;
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+}
+
+.nearest-prod-image img {
+	width:100%;
+  transition: all 1s ease;
+  margin-top:-70px;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1.0);
+    opacity: 1.0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1.0;
+  }
+  to { 
+    transform: scale(1.0);
+    opacity: 1.0;
+  }
+}
+/* Pulse Animation for Google Chrome and Safari */
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale(1.0);
+    opacity: 1.0;
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+    opacity: 1.0;
+  }
+  to { 
+    -webkit-transform: scale(1.0);
+    opacity: 1.0;
+  }
+}
+
 
 <!-- QnA part -->
 
@@ -303,4 +394,12 @@ input[type="file"] {
     color: #fff;
     font-family: Open Sans;
     font-weight: 200;
+}
+
+.nearest-admin-content{
+	    background: white;
+    box-shadow: 3px 5px 15px #888888;
+    border-radius: 5px;
+    padding: 30px !important;
+	
 }

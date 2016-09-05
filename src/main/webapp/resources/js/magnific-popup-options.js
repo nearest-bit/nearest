@@ -101,6 +101,18 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$(function () {
+		$('#myInfoBtn').magnificPopup({
+			type: 'inline',
+			preloader: false,
+			focus: '#username',
+			modal: true
+		});
+		$(document).on('click', '#myinfo-resetBtn', function (e) {
+			//e.preventDefault();
+			$.magnificPopup.close();
+		});
+	});
   // MagnificPopup
 	var magnifPopup = function() {
 		$('.image-popup').magnificPopup({

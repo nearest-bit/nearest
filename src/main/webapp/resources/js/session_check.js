@@ -11,11 +11,11 @@ $.ajax({
 			var url = $(location).attr('href');
 			
 			if(url == contextRoot || url == contextRoot + 'index.html') {
-			    $("#loginBtn").css('display', 'none');
-			    $("#signupBtn").css('display', 'none');
+			    $("#loginBtn-div").addClass('login-display');
+			    $("#signupBtn-div").addClass('login-display');
 			    $("#btnSplit").css('display', 'none');
-			    $('#nearest-dropdown').css('display', 'inline');
-			    $('#loginAfter').css('display', 'inline');
+			    $('#myInfoBtn-div').removeClass('login-display');
+			    $('#logoutBtn-div').removeClass('login-display');
 			    
 			    $.ajax({
 					url: contextRoot + 'client/checkAlert.do',

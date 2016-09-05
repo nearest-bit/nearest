@@ -9,8 +9,23 @@ $(function() {
     }
 });
 
-$(document).on('click','#login-btn',function() {
-	
+$(document).on('click', '#login-btn', function() {
+	doLogin();		
+});
+
+$(document).on('keydown', '#login-form-username', function(event) {
+	if(event.keycode == 13) {
+		doLogin();
+	}		
+});
+
+$(document).on('keydown', '#login-form-password', function(event) {
+	if(event.keycode == 13) {
+		doLogin();
+	}		
+});
+
+function doLogin() {
 	if($.trim($('#login-form-username').val()) == ""){
 		mainAlert('idEmpty');
 		return;
@@ -35,7 +50,7 @@ $(document).on('click','#login-btn',function() {
 					
 					$(location).attr('href', './admin.html');
 				}else{
-					alert('로그인이 실패하였습니다');
+					clientLogin('loginFail');
 				}
 			},
 			error: function(result) {
@@ -64,7 +79,7 @@ $(document).on('click','#login-btn',function() {
 						
 						$(location).attr('href', contextRoot);
 					}else{
-						alert('id/password를 확인하세요');
+						clientLogin('incorrectInfo');
 					}
 				});
 			},
@@ -73,8 +88,8 @@ $(document).on('click','#login-btn',function() {
 			}
 		});
 		
-	}	
-});
+	}
+}
 
 /*$('.login-tab a').on('click', function (e) {
 	  

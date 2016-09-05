@@ -29,12 +29,15 @@
 
   @media only screen and (max-width: 420px) {
   table[class=fullTable] { width: 100% !important; clear: both; }
-  table[class=fullPadding] { width: 85% !important; clear: both; }
   table[class=col] { width: 100% !important; clear: both; }
   table[class=col] td { text-align: left !important; }
   .erase { display: none; font-size: 0; max-height: 0; line-height: 0; padding: 0; }
   .visibleMobile { display: block !important; }
   .hiddenMobile { display: none !important; }
+  
+
+  
+
   }
 </style>
 </head>
@@ -63,7 +66,7 @@
                     <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
                       <tbody>
                         <tr>
-                          <td align="left"> <img src="./resources/images/logo_2.png" width="150" alt="logo" border="0"></td>
+                          <td align="left"> <img src="./resources/images/logo_2.png" width="110" alt="logo" border="0"></td>
                         </tr>
                         <tr class="hiddenMobile">
                           <td height="40"></td>
@@ -72,8 +75,8 @@
                           <td height="20"></td>
                         </tr>
                         <tr>
-                          <td style="font-size: 25px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
-                           <strong id="receipt-client-name"></strong> <span style="font-size: 20px; font-weight: bold;">님</span>
+                          <td style="font-size: 20px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
+                           <strong id="receipt-client-name"></strong> <span style="font-size: 15px; font-weight: bold;">님</span>
                             <br><br> <span style="font-size: 15px; font-weight: bold;">저희 가게를 이용해주셔서 <br>감사합니다.</span>
                           </td>
                         </tr>
@@ -100,7 +103,7 @@
                           <td height="20"></td>
                         </tr>
                         <tr>
-                          <td style="font-size: 20px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: right;">
+                          <td id="receipt-mart-detail" style="font-size: 15px;color: #5b5b5b;line-height: 18px;vertical-align: top;text-align: right;">
                             <strong id="receipt-mart-name"></strong><br>  <br><strong>tel.</strong> <span id="receipt-mart-tel"></span> <br><br><span id="receipt-order-date"></span>
                             <br><br><strong id="receipt-mart-addr"></strong><br><strong id="receipt-mart-addrDetail"></strong>
                           </td>
@@ -137,17 +140,17 @@
                 <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
                   <tbody>
                     <tr>
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
                        <strong>상품</strong> 
                       </th>
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="left">
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="left">
                         <strong>수량</strong>
                       </th>
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="center">
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="center">
                         <strong>가격</strong>
                       </th>
                       
-                      <th style="font-size: 23px; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; text-align:right; vertical-align: top; padding: 0 0 7px;" align="right">
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; text-align:right; vertical-align: top; padding: 0 0 7px;" align="right">
                         <strong>총 가격</strong>
                       </th>
                     </tr>
