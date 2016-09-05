@@ -48,6 +48,8 @@
 <link rel="stylesheet" href="./resources/css/client_popup.css">
 <!-- SweetAlert css -->
 <link rel="stylesheet" type="text/css" href="./node_modules/sweetalert/dist/sweetalert.css">
+<!-- main top menu -->
+<link rel="stylesheet" href="./resources/css/admin_top_menu.css">
 
 <!-- JS Files -->
 
@@ -141,6 +143,19 @@
 #nearest-order-search {
     display: none;
 }
+
+#nearest-admin-top-menu{
+  list-style: none;
+}
+
+#nearest-admin-top-menu > li {
+  padding: 0 19px;
+  
+}
+
+#nearest-admin-top-menu > li > a{
+  color: #7f7f7f;
+}
 </style>
 </head>
 
@@ -155,13 +170,14 @@
                <img id="nearest-logo" src="./resources/images/logo_2.png"/>
                
              </div> <!-- .nearest-header-nav end -->
-             <ul class="nearest-fl gnb nearest-menu-tab-bar">
-               <li id="nearest-admin-orderList" class="nearest-fl nearest-li"><a data-toggle="tab" href="#order">주문내역</a></li>
-               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a data-toggle="tab" href="#qna">건의사항</a></li>
-               <li id="nearest-admin-insert-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#regist">상품등록</a></li>
-               <li id="nearest-admin-manage-prod" class="nearest-to-home nearest-fl nearest-li"><a data-toggle="tab" href="#manage">상품관리</a></li>
-             </ul>
-             
+             <div class="nearest-admin-list">
+	             <ul id="nearest-admin-top-menu" class="nearest-fl gnb nearest-menu-tab-bar">
+	               <li id="nearest-admin-orderList" class="nearest-fl nearest-li"><a data-toggle="tab" href="#order">주문내역</a></li>
+	               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a data-toggle="tab" href="#qna">건의사항</a></li>
+	               <li id="nearest-admin-insert-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#regist">상품등록</a></li>
+	               <li id="nearest-admin-manage-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#manage">상품관리</a></li>
+	             </ul>
+             </div>    
               <div class="nearest-fr top-box">
                 
                 <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn">
@@ -177,15 +193,6 @@
   </header>
 
 	<div id="nearest-admin-wrap">
-
-		<div class="nearest-admin-list">
-			<ul class="nav nav-tabs">
-				<li class="active"><a data-toggle="tab" href="#order">주문내역</a></li>
-				<li><a data-toggle="tab" href="#qna">건의사항</a></li>
-				<li><a data-toggle="tab" href="#regist">상품등록</a></li>
-				<li><a data-toggle="tab" href="#manage">상품관리</a></li>
-			</ul>
-		</div>
 
     <div class="tab-content">
       <div id="order" class="tab-pane active in">
