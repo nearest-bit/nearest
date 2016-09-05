@@ -15,20 +15,20 @@ function cartAlert(option) {
 		break;
 	case 3:
 		swal({
-			title : "Are you sure?",
-			text : "Your will not be able to recover this imaginary file!",
+			title : "이용약관",
+			text : "수령가능 시간 30분 이내 수령 못할 시 사전에 구매처에 연락 해야하며 연락부재로 인한 부분은 본인이 책임져야 합니다. ",
 			type : "warning",
 			showCancelButton : true,
 			confirmButtonColor : "#DD6B55",
-			confirmButtonText : "Yes, delete it!",
-			cancelButtonText : "No, cancel plx!",
+			confirmButtonText : "동의!",
+			cancelButtonText : "동의하지않음!",
 			closeOnConfirm : false,
 			closeOnCancel : false
 		}, function(isConfirm) {
 			if (isConfirm) {
-				swal("Deleted!", "Your imaginary file has been deleted.", "success");
+				swal("동의","이용약관 동의가 완료되었습니다.","success");
 			} else {
-				swal("Cancelled", "Your imaginary file is safe :)", "error");
+				swal("취소", "이용약관 동의가 취소되었습니다.", "error");
 			}
 		});
 		break;
@@ -38,6 +38,20 @@ function cartAlert(option) {
 	 case 5:
 		 swal("주문 성공!", "", "success");
 		 break;
+	 case 'checkGetTime':
+		
+		swal({
+			title : "<small>수령시간을 선택해 주세요.</small>",
+			html : true
+		});
+		break;
+	 case 'checkAgree':
+			
+		swal({
+			title : "<small>이용약관을 읽고 동의 해주세요.</small>",
+			html : true
+		});
+		break;
 	 
 	}
 }

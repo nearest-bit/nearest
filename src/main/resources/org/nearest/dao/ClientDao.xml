@@ -44,5 +44,6 @@
     set clnt_pw = #{password} , clnt_eml = #{email}
     where clnt_no = #{clientNo}
   </update>
+  
 
 </mapper>

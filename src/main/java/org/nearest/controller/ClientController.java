@@ -150,4 +150,20 @@ public class ClientController {
 	  
 	  return new Gson().toJson(result);
 	}
+	
+	@RequestMapping(path="purchaseInfo", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String purchaseInfo(HttpSession session){
+	  Map<String, Object> result = new HashMap<>();
+	  
+	  try {
+	    result.put("status", "success");
+	    result.put("data", clientService.getClient(((Client)session.getAttribute("loginId")).getId()));
+	    
+    } catch (Exception e) {
+      result.put("status", "failure");
+    }
+	  
+	  return new Gson().toJson(result);
+	}
 }
