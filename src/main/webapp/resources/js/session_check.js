@@ -10,7 +10,7 @@ $.ajax({
 			
 			var url = $(location).attr('href');
 			
-			if(url == contextRoot || url == contextRoot + 'index.html') {
+			if(url == contextRoot || url == contextRoot + 'index.html' || url == contextRoot + 'client.html') {
 			    $("#loginBtn-div").addClass('login-display');
 			    $("#signupBtn-div").addClass('login-display');
 			    $("#btnSplit").css('display', 'none');
