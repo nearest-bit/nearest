@@ -16,6 +16,8 @@ $(function() {
 				var discountRate = data.discountRate;
 				var originPrice;
 				var discountPrice;
+				
+				console.log(discountRate);
 								
 				$('#nearest-item-title').text(data.name);
 				$('#nearest-item-mart').text(data.mart.name);
@@ -39,6 +41,8 @@ $(function() {
 					$('#nearest-item-payment-price').val($(discountPrice).text());
 					
 					$(originPrice).after(discountPrice);
+				} else {
+					$('#nearest-item-payment-price').val(data.price);
 				}
 			},
 			error: function() {
