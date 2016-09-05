@@ -211,6 +211,8 @@ input[type="file"] {
   height: 120px;
   overflow: hidden;
   margin-bottom: 40px;
+  overflow: hidden; 
+  text-overflow: ellipsis;
 }
 
 .qnaContentcard {
