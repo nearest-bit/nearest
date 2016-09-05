@@ -52,6 +52,13 @@ function cartAlert(option) {
 			html : true
 		});
 		break;
+	 case 'noCartList':
+			
+		swal({
+			title : "<small>찜하신 물품이 없습니다.</small>",
+			html : true
+		});
+		break;
 	 
 	}
 }
@@ -111,10 +118,13 @@ function mainAlert(option) {
 			break;
 		case 'idDuplicate':
 			sweetAlert('중복된 아이디입니다.', '','error');
+			break;
 		case 'registSuccess':
 			sweetAlert('회원가입이 완료되었습니다.', '','success');
+			break;
 		case 'cartSuccess':
 			sweetAlert('찜하셨습니다.', '', 'success');
+			break;
 		default:
 			break;
 	}

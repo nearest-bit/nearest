@@ -15,7 +15,6 @@ $(document).ready(function() {
 		mainClass: 'my-mfp-zoom-in'
 	});
 	
-	
 	$(function () {
 		$('.popup-modal-topmenu').magnificPopup({
 			type: 'inline',
