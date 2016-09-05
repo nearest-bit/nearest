@@ -1,4 +1,5 @@
 var sessionLogin = false;
+var sessionRole = '';
 
 $.ajax({
 	url: contextRoot + 'session/check.do',
@@ -7,6 +8,7 @@ $.ajax({
 	success: function(result) {		
 		if(result.status == 'true') {
 			sessionLogin = true
+			sessionRole = result.role;
 			
 			var url = $(location).attr('href');
 			
