@@ -231,6 +231,11 @@ public class OrderController {
     Map<String, Object> result = new HashMap<>();
     Map<String, Integer> params = new HashMap<>();
     
+    System.out.println("=================updateOrderState=================");
+    System.out.println("orderNo : " + orderNo);
+    System.out.println("orderState : " + orderState);
+    System.out.println("option : " + option);
+    
     switch(option) {
     	case ORDER_STATE_OPTION_READY:
     		if(orderState == 1) {
@@ -243,7 +248,7 @@ public class OrderController {
     		
     		break;
     	case ORDER_STATE_OPTION_READY_END:
-    		if(orderState == 2) {
+    		if(orderState == 1 || orderState == 2) {
 		    	params.put("orderNo", orderNo);
 		    	params.put("orderState", 3);
 		    } else {
