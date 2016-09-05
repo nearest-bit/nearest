@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -221,9 +222,9 @@ public class QNAController {
           if(qna.getStatus() == 1){
             qna.setReqStatus("읽지않음");
           }else if(qna.getStatus() == 2){
-            qna.setReqStatus("읽음");
-          }else{
             qna.setReqStatus("답변완료");
+          }else{
+            qna.setReqStatus("확인");
           }
         }
       }catch (Exception e) {
@@ -251,6 +252,21 @@ public class QNAController {
       } 
       return new Gson().toJson(result);
     }
+  
+  @RequestMapping(path="updateQna", produces="application/json;charset=utf-8")
+  @ResponseBody
+  public String updateQna(int qnaNo){
+    Map<String, Object> result = new HashMap<>();
+    
+    try {
+      qnaService.updateClientQna(qnaNo);
+      result.put("status", "success");
+    } catch (Exception e) {
+      result.put("status", "failure");
+      e.printStackTrace();
+    }
+    return new Gson().toJson(result);
+  }
   
  
 }

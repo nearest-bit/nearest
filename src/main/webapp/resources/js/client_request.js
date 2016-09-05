@@ -60,9 +60,36 @@ $('#QNAaddBtn').on('click', function() {
 });
 
 $(document).on('click', '.nearest-client-req-tr', function(){
+	if ( $(this).children('td:last-child').attr('data') == '2'){
+		
+		$.ajax({
+			url : contextRoot + 'qna/updateQna.do',
+			datatype : 'json',
+			method : 'post',
+			data : {
+				qnaNo : $(this).children('td:first-child').attr('req-no')
+			},
+			success : function(result){
+				if( result.status != 'success' ){
+					alert(result.status);
+					return;
+				}
+				
+				$.cookie('clientMenu', 'request');
+				location.reload();
+			},
+			error : function(){
+				alert('Controller error....');
+			}
+		});
+		
+		
+	}
+	
+	
 	if($(this).next('.nearest-Qna').css('display') == 'none'){
 		$(this).next('.nearest-Qna').css('display', '');
-  }else{
+	}else{
 	  $(this).next('.nearest-Qna').css('display', 'none');
   }
 });
