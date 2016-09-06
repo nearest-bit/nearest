@@ -52,4 +52,17 @@
     AND o.clnt_no = c.clnt_no
   </select>
   
+  <select id="selectOrderListByCalendar" resultMap="orderMap" parameterType="map">
+      SELECT o.order_no, o.order_st, o.clnt_no, c.clnt_nm, c.clnt_pn
+	    FROM marts m, orders o, clnts c
+	    WHERE m.mt_no = #{martNo} 
+	    AND m.mt_no = o.mt_no 
+	    AND o.clnt_no = c.clnt_no
+      <if test="startDate != '' and endDate != ''">
+      AND date_format(r.req_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
+      </if>
+      AND r.req_st = #{qnaStatus}
+      ORDER BY req_no DESC
+  </select>
+  
 </mapper>

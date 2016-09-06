@@ -1,5 +1,7 @@
 package org.nearest.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.nearest.domain.Admin;
 import org.nearest.domain.Mart;
 import org.nearest.domain.Order;
+import org.nearest.domain.QNA;
 import org.nearest.service.AdminService;
 import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,5 +77,36 @@ public class AdminController {
 	  }
 	  
 	  return new Gson().toJson(result);
+	}
+	
+	@RequestMapping(path="orderListByCalendar", produces="application/json;charset=UTF-8")
+	@ResponseBody
+	public String orderListByCalendar(HttpSession session,
+									String orderStatus,
+									String startDate,
+									String endDate) {
+		int orderSt = 0;
+		int martNo = ((Mart)session.getAttribute("adminMart")).getNo();
+		
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		
+		List<String> simpleDate = new ArrayList<>();
+		SimpleDateFormat createDate = new SimpleDateFormat("yyyy년 MM월 dd일");
+		
+		try {
+			if (orderStatus.equals("답변미완료")) {
+				orderSt = 1;
+				List<Order> list = adminService.getOrderListByCalendar(martNo, startDate, endDate, orderSt);
+				
+				result.put("status", "success");
+				result.put("orderData", list);
+			} else if (orderStatus.equals("답변완료")){
+			}
+			
+		} catch (Exception e) {
+			result.put("status", "failure");
+			e.printStackTrace();
+		}
+		return new Gson().toJson(result);
 	}
 }

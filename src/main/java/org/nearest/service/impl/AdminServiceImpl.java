@@ -1,5 +1,6 @@
 package org.nearest.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.nearest.dao.AdminDao;
@@ -30,6 +31,18 @@ public class AdminServiceImpl implements AdminService {
   public List<Order> getOrder(int orderNo) {
     System.out.println("orderNo: "+orderNo);
     return adminDao.selectOrderList(orderNo);
+  }
+  
+  @Override
+  public List<Order> getOrderListByCalendar(int martNo, String sdate, String edate, int orderSt) {
+  	  HashMap<String, Object> params = new HashMap<>();
+	  params.put("adminInfo", martNo);
+	  params.put("startDate", sdate);
+	  params.put("endDate", edate);
+	  params.put("orderStatus", orderSt);
+	  System.out.println(params.toString());
+
+	  return adminDao.selectOrderListByCalendar(params);
   }
  
 }

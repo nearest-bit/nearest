@@ -1,3 +1,14 @@
+function adminAlert(option) {
+	switch(option) {
+		case 'registSuccess':
+			swal("상품등록이 완료되었습니다.","","success");
+			break;
+		case 'needImage':
+			sweetAlert("이런...", "상품이미지를 등록해주세요.", "error");
+			break;
+	}
+}
+
 function cartAlert(option) {
 	switch (option) {
 	case 0:

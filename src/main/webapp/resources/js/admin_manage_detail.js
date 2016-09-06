@@ -24,11 +24,12 @@ $(function() {
 		});
 	});
 	
+	var manageActive = false;
+	var detailImageList = new Array();
+	
 	$('.nearest-admin-list > ul > li > a[href="#manage"]').click(function () {
-//		$('#nearest-file-upload').fileupload('destroy');		
 		
 		/* 파일업로드 */
-		var detailImageList = new Array();
 		
 		$('#nearest-detail-file-upload').fileupload({
 			disableImageResize: false, 
@@ -56,8 +57,19 @@ $(function() {
 		$('#nearest-detail-image-fileupload').submit(function(event) {
 			event.preventDefault();
 			
-			var productImageFile = $('#nearest-detail-file-upload');
-			$(productImageFile).fileupload('send', {files: detailImageList});
+			console.log(detailImageList.length);
+			console.log(detailImageList);
+			
+			if(detailImageList.length == 0) {
+				adminAlert('needImage');
+				
+				return;
+			}
+			
+			$('#nearest-detail-image-fileupload')[0].reset();
+			detailImageList = new Array();
+			
+			adminAlert('registSuccess');
 		});
 	});
 	
