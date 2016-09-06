@@ -3,6 +3,7 @@ package org.nearest.service;
 import java.util.List;
 import java.util.Map;
 
+import org.nearest.domain.Admin;
 import org.nearest.domain.Order;
 
 public interface OrderService {

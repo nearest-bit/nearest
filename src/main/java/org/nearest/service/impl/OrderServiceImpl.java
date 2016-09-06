@@ -1,10 +1,13 @@
 package org.nearest.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.nearest.dao.OrderDao;
+import org.nearest.domain.Admin;
 import org.nearest.domain.Order;
+import org.nearest.domain.QNA;
 import org.nearest.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +61,7 @@ public class OrderServiceImpl implements OrderService {
     return orderDao.selectOrderDetailListByAdmin(params);
   }
   
+  @Override
   public int updateOrderState(Map<String, Integer> params) {
 	  return orderDao.updateOrderState(params);
   }

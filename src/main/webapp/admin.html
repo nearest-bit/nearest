@@ -203,15 +203,20 @@
 		              <button class="btn btn-info to-animate" id="order-btn"
 		                type="button">주문내역조회</button>
 		              <div id="order-search" class="to-animate">
-		                <select>
+		                <select id="#nearest-order-select">
 		                  <option selected="selected">새 주문</option>
 		                  <option>준비완료</option>
 		                  <option>수령완료</option>
-		                </select> <input type="date" value="2016-08-13"> <input
-		                  type="date" value="2016-08-20">
-		                <button class="btn btn-info" type="button">조회</button>
-		                <button class="btn btn-default" id="order-reset-btn"
-		                  type="reset">취소</button>
+		                </select>
+		               
+		                <span>시작일 : </span>
+                    <input id="osdate" type="text" size="10" maxlength="10">
+                    ~ 
+                    <span>종료일 : </span>    
+                    <input id="oedate" type="text" size="10" maxlength="10">
+                    <br><br>
+		                <button id="nearest-order-find" class="btn btn-info" type="button">조회</button>
+		                <button class="btn btn-default" id="order-reset-btn" type="reset">취소</button>
 		              </div>
 		            </div>
 		          </div>
@@ -448,7 +453,7 @@
 										<div class="form-group form-group-lg">
 											<label class="col-sm-3 control-label">할인률 (%)</label>
 											<div class="col-sm-8" style="padding-right: 40%;">
-												<input name="discountRate" class="form-control" type="number" min="5" max="100"
+												<input name="discountRate" class="form-control" type="number" min="0" max="100"
 													value="5" step="5" />
 											</div>
 										</div>
