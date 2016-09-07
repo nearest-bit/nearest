@@ -203,11 +203,13 @@
 		              <button class="btn btn-info to-animate" id="order-btn"
 		                type="button">주문내역조회</button>
 		              <div id="order-search" class="to-animate">
-		                <select id="#nearest-order-select">
-		                  <option selected="selected">새 주문</option>
-		                  <option>준비완료</option>
-		                  <option>수령완료</option>
-		                </select>
+		                <div class="col-xs-3">
+			                <select id="nearest-order-select" class="form-control" style="margin-left: 10%">
+			                  <option selected="selected">새 주문</option>
+			                  <option>준비완료</option>
+			                  <option>수령완료</option>
+			                </select>
+		                </div>
 		               
 		                <span>시작일 : </span>
                     <input id="osdate" type="text" size="10" maxlength="10">
@@ -225,11 +227,11 @@
 		          <script id="nearest-order-list" type="text/x-handlebars-template">
               {{#each orderData}}
                  <div class="col-md-4 col-sm-6 col-xs-12">
-                  <div class="fh5co-person text-center to-animate nearest-margin-bottom">
+                  <div class="fh5co-person text-center nearest-margin-bottom">
                      <h3>{{client.name}}</h3>
                      <div class="fh5co-position">
                        <p class="nearest-order-list-text">수령시간</p>
-                       <p class="nearest-order-list-number">{{receiveTime}}</p>
+                       <p class="nearest-order-list-number">{{orderRequestDate}}</p>
                        <p class="nearest-order-list-text">휴대번호</p>
                        <p class="nearest-order-list-number">{{client.phone}}</p>
                      </div>

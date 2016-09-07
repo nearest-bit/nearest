@@ -10,7 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.nearest.domain.Admin;
 import org.nearest.domain.Mart;
 import org.nearest.domain.Order;
-import org.nearest.domain.QNA;
 import org.nearest.service.AdminService;
 import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,10 +65,17 @@ public class AdminController {
 	  HashMap<String, Object> result = new HashMap<>();
 	  
 	  try {
-	      List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
-	      
+	    List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
+	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+	    List<Object> orderDateList = new ArrayList<>();
+	    
+	    for (Order order : list) {
+			orderDateList.add(simpleDateFormat.format(order.getOrderRequestDate()));
+		}
+	    	      
   	    result.put("state", "success");
   	    result.put("orderData", list);
+  	    result.put("orderDateList", orderDateList);
 	   
 	  }catch (Exception e) {
 	    e.printStackTrace();
@@ -89,19 +95,28 @@ public class AdminController {
 		int martNo = ((Mart)session.getAttribute("adminMart")).getNo();
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		
-		List<String> simpleDate = new ArrayList<>();
-		SimpleDateFormat createDate = new SimpleDateFormat("yyyy년 MM월 dd일");
-		
-		try {
-			if (orderStatus.equals("답변미완료")) {
-				orderSt = 1;
-				List<Order> list = adminService.getOrderListByCalendar(martNo, startDate, endDate, orderSt);
 				
-				result.put("status", "success");
-				result.put("orderData", list);
-			} else if (orderStatus.equals("답변완료")){
+		try {
+			if (orderStatus.equals("새 주문")) {
+				orderSt = 1;
+			} else if (orderStatus.equals("준비완료")){
+				orderSt = 3;
+			} else if (orderStatus.equals("수령완료")){
+				orderSt = 4;
 			}
+			
+			List<Order> list = adminService.getOrderListByCalendar(martNo, startDate, endDate, orderSt);
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		    List<Object> orderDateList = new ArrayList<>();
+		    
+		    for (Order order : list) {
+				orderDateList.add(simpleDateFormat.format(order.getOrderRequestDate()));
+			}
+			
+			result.put("status", "success");
+			result.put("orderData", list);
+	  	    result.put("orderDateList", orderDateList);
+			
 			
 		} catch (Exception e) {
 			result.put("status", "failure");

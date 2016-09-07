@@ -36,7 +36,7 @@ public class AdminServiceImpl implements AdminService {
   @Override
   public List<Order> getOrderListByCalendar(int martNo, String sdate, String edate, int orderSt) {
   	  HashMap<String, Object> params = new HashMap<>();
-	  params.put("adminInfo", martNo);
+	  params.put("martNo", martNo);
 	  params.put("startDate", sdate);
 	  params.put("endDate", edate);
 	  params.put("orderStatus", orderSt);

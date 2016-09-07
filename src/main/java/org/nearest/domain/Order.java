@@ -11,6 +11,7 @@ public class Order implements Serializable {
 	protected int no;
 	protected Date orderDate;
 	protected int orderState;
+	protected Date orderRequestDate;
 	protected Mart mart;
 	protected Client client;
 	
@@ -45,6 +46,12 @@ public class Order implements Serializable {
 	}
 	public void setClient(Client client) {
 		this.client = client;
+	}	
+	public Date getOrderRequestDate() {
+		return orderRequestDate;
+	}
+	public void setOrderRequestDate(Date orderRequestDate) {
+		this.orderRequestDate = orderRequestDate;
 	}
 	
 	@Override

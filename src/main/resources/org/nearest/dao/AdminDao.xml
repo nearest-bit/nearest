@@ -16,6 +16,7 @@
     <id     column="order_no"       property="no" />
     <result column="order_dt"       property="orderDate" />
     <result column="order_st"      property="orderState" />
+    <result column="order_re_dt"      property="orderRequestDate" />
     <association property="mart" javaType="mart">
       <result column="mt_no" property="no" javaType="INTEGER"/>
       <result column="mt_nm" property="name" javaType="string"/>
@@ -45,7 +46,7 @@
   </select>
   
   <select id="selectOrderList" resultMap="orderMap" parameterType="INTEGER">
-    SELECT o.order_no, o.order_st, o.clnt_no, c.clnt_nm, c.clnt_pn
+    SELECT o.order_no, o.order_st, o.order_re_dt, o.clnt_no, c.clnt_nm, c.clnt_pn
     FROM marts m, orders o, clnts c
     WHERE m.mt_no = #{value} 
     AND m.mt_no = o.mt_no 
@@ -53,16 +54,16 @@
   </select>
   
   <select id="selectOrderListByCalendar" resultMap="orderMap" parameterType="map">
-      SELECT o.order_no, o.order_st, o.clnt_no, c.clnt_nm, c.clnt_pn
+      SELECT o.order_no, o.order_st, o.order_re_dt, o.clnt_no, c.clnt_nm, c.clnt_pn
 	    FROM marts m, orders o, clnts c
 	    WHERE m.mt_no = #{martNo} 
 	    AND m.mt_no = o.mt_no 
 	    AND o.clnt_no = c.clnt_no
       <if test="startDate != '' and endDate != ''">
-      AND date_format(r.req_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
+      AND date_format(o.order_re_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
       </if>
-      AND r.req_st = #{qnaStatus}
-      ORDER BY req_no DESC
+      AND o.order_st = #{orderStatus}
+      ORDER BY o.order_no DESC
   </select>
   
 </mapper>

@@ -10,7 +10,10 @@ $.ajax({
 		  if (result.state != 'success') {
 		        alert('실행 중 오류 발생!');
 		        return;
-		        
+		  }
+		  
+		  for(var i in result.orderData) {
+			  result.orderData[i].orderRequestDate = result.orderDateList[i];
 		  }
 		  
 		  $('#nearest-orderList-append').append(template(result));
@@ -39,7 +42,7 @@ $.ajax({
 
 $(function() {
 	$(document).on('click','#nearest-order-find', function() {
-		callQNAListByCalendar();
+		callOrderListByCalendar();
 	});
 
 	$.datepicker.regional['ko'] = {
@@ -84,30 +87,41 @@ $(function() {
 
 
 
-function callQNAListByCalendar(){
-	$('#nearest-order-list > *').remove();
+function callOrderListByCalendar(){
+	$('#nearest-orderList-append > *').remove();
+		
 	var source   = $("#nearest-order-list").text();
 	var template = Handlebars.compile(source);
+	
 	$.ajax({
-		url : contextRoot + 'order/orderListByCalendar.do',
+		url : contextRoot + 'admin/orderListByCalendar.do',
         datatype : 'json',
         method : 'post',
         data :{
-      	  qnaStatus : $('#nearest-order-select').children('option:selected').text(),
+      	  orderStatus : $('#nearest-order-select').children('option:selected').text(),
           startDate : $('#osdate').val(),
       	  endDate : $('#oedate').val()
         },
         success : function(result) {
-        	 if(result.status != 'success'){
-                 swal('실행 중 오류 발생!');
-                 return;
-           }
-           for(var i=0; i<result.simpleDate.length; i++){
-	            	result.qnadata[i].localDate = result.simpleDate[i];
-	       }
-           
-           $('#nearest-order-list').append(template(result));
-           $('.nearest-orderDetail-btn').magnificPopup();
+			if (result.status != 'success') {
+				swal('실행 중 오류 발생!');
+				return;
+			}
+
+			for ( var i in result.orderData) {
+				result.orderData[i].orderRequestDate = result.orderDateList[i];
+			}
+
+			$('#nearest-orderList-append').append(template(result));
+			$('.nearest-orderDetail-btn').magnificPopup();
+			
+			var detailBtn = $('.nearest-order-list-detail');
+
+			$.each(detailBtn, function(index, item) {
+				if ($(item).attr('order-state') == '3') {
+					$(item).parent().parent().css('border', '2px solid orange');
+				}
+			});
         },
         error: function(result){
         	swal('조회 오류');
