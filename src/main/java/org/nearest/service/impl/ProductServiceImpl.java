@@ -58,4 +58,15 @@ public class ProductServiceImpl implements ProductService {
   public int updateProduct(Product product) {
 	  return productDao.updateProd(product);
   }
+
+  @Override
+  public List<Product> getMartCategoryList(int currentPage, int length, String martNo, String majorCat, String subCat) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("startIndex", (currentPage - 1) * length);
+    params.put("len", length);
+    params.put("martNo", martNo);
+    params.put("majorCat", majorCat);
+    params.put("subCat", subCat);
+    return productDao.selectMartCategoryList(params);
+  }
 }

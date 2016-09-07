@@ -38,12 +38,19 @@ public class ProductController {
                                @RequestParam(defaultValue="1") int currentPage,
                                @RequestParam(defaultValue="9") int length,
                                @RequestParam(defaultValue="client") String option,
+                               @RequestParam(defaultValue="") String martNo,
+                               @RequestParam(defaultValue="") String majorCat,
+                               @RequestParam(defaultValue="") String subCat,
                                HttpSession session){
-    
+    System.out.println("searchTag : " + searchTag);
+    System.out.println("searchContent : " + searchContent);
+    System.out.println("martNo : " + martNo);
+    System.out.println("majorCat : " + majorCat);
+    System.out.println("subCat : " + subCat);
     
     Map<String, Object> result = new HashMap<>();
     List<Product> products = null;
-    
+
     if(option.equals("admin")) {
     	searchTag = "marts";
     	searchContent = ((Mart)session.getAttribute("adminMart")).getName();
@@ -63,9 +70,19 @@ public class ProductController {
         System.out.println("prods : "+result.get("productData"));
       } 
       
-      if(searchTag.equals("marts")) {
-        
+      if(searchTag.equals("marts") && majorCat.length() == 0 && subCat.length() == 0) {
         products = productService.getMartList(currentPage, length, searchContent);
+        result.put("searchKeyword", "marts");
+        result.put("productData", products);
+        result.put("searchContent", searchContent);
+        result.put("total", productService.getTotalByMart(searchContent));
+        System.out.println("marts : "+result.get("productData"));
+      }
+      
+      
+      if(majorCat.length() != 0 && subCat.length() != 0 && martNo.length() != 0){
+        System.out.println("category search");
+        products = productService.getMartCategoryList(currentPage, length, martNo, majorCat, subCat);
         result.put("searchKeyword", "marts");
         result.put("productData", products);
         result.put("searchContent", searchContent);

@@ -120,6 +120,44 @@
   #nearest-dropdown {
     display: none;
   }
+  .category-link{
+    color: #7f7f7f;
+  }
+  .categoty-menu{
+  color: #7f7f7f; 
+  }
+  #nearest-category-menu{
+    position: absolute;
+    left: 114px;
+    top: 50px;
+    background: #fff;
+    display: none;
+    z-index: 9000000;
+    border: 2px solid #33353d;
+    padding: 10px 10px 1px 11px;
+  }
+  #nearest-category-inner{
+      position: relative;
+    width: 210px;
+    font-size: 13px;
+  }
+  #nearest-category-inner > ul > li {
+    list-style: none;  
+    cursor: default;
+  }
+  #nearest-category-inner > ul{
+    padding: 0;
+  }
+  .category-title{
+    cursor: default;
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    display: block;
+  }
+  #nearest-menu-category-wrap{
+    display: none; 
+  }
   </style>
   </head>
   <body>
@@ -127,14 +165,68 @@
   <!-- Top Banner Menu -->
   <header role="banner" id="fh5co-header">
     <div class="nearest-header-menu">
-	      <div class="wrapper">
+	      <div class="wrapper" style="overflow: inherit;">
 	      
-					 <div class="row box-shadow nearest-header-logo">
-					   <div>
+					 <div style="cursor: pointer;" class="row box-shadow nearest-header-logo">
+					   <div class="nearest-to-home">
 					     <img style="margin-top: 10px;" src="./resources/images/logo_2.png"/>
 					   </div> <!-- .nearest-header-nav end -->
 					   <ul class="nearest-fl gnb">
-					     <li class="nearest-fl nearest-li nearest-to-home">HOME</li>
+					     <li id="nearest-menu-category-wrap" class="nearest-fl nearest-li">
+					       <a href="#" class="categoty-menu">
+					         <span>카테고리</span>    
+					       </a>
+					       <div id="nearest-category-menu">
+					         <div id="nearest-category-inner">
+						         <span class="category-title">FOOD</span>
+						         <ul>
+						           <li>
+						             <a data-level="1" data-code="1" href="#" class="category-link">
+						               <span>과일/채소/계란</span>
+						             </a>
+						           </li>
+						           <li>
+							           <a data-level="1" data-code="2" href="#" class="category-link">
+		                         <span>쌀/잡곡</span>
+		                     </a>
+						           </li>
+						           <li>
+						             <a data-level="1" data-code="3" href="#" class="category-link">
+	                         <span>라면/통조림/조미료/소스류</span>
+	                       </a>
+						           </li>
+						           <li>
+						             <a data-level="1" data-code="4" href="#" class="category-link">
+	                         <span>과자/초콜릿/시리얼/빵</span>
+	                       </a>
+						           </li>
+						           <li>
+						             <a data-level="1" data-code="5" href="#" class="category-link">
+	                         <span>유제품/냉장/냉동/인스턴스/간편식</span>
+	                       </a>
+						           </li>
+						         </ul>
+						         <span class="category-title">LIFE</span>
+	                   <ul>
+	                     <li>
+	                       <a data-level="2" data-code="1" href="#" class="category-link">
+	                         <span>화장지/물티슈/위생용품/일회용품</span>
+	                       </a>
+	                     </li>
+	                     <li>
+	                       <a data-level="2" data-code="2" href="#" class="category-link">
+	                           <span>세제/세탁/청소/욕실용품</span>
+	                       </a>
+	                     </li>
+	                     <li>
+	                       <a data-level="2" data-code="3" href="#" class="category-link">
+	                         <span>구강용품/면도/의약외품</span>
+	                       </a>
+	                     </li>
+	                   </ul>
+                   </div>
+					       </div>
+					     </li>
 					     <li id="nearest-to-cart" class="nearest-fl nearest-li">찜목록</li>
 					     <li id="nearest-to-purchase" class="nearest-fl nearest-li">구매목록</li>
 					     <li id="nearest-to-request" class="nearest-fl nearest-li">문의사항</li>
@@ -594,6 +686,8 @@
   
   <script type="text/javascript">
   
+  
+
 	  
   </script>
 

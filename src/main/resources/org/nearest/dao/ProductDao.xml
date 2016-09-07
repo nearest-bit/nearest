@@ -53,6 +53,17 @@
     limit #{startIndex}, #{len}
   </select>
   
+  <select id="selectMartCategoryList" resultMap="productMap" parameterType="map">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, m.mt_no
+    FROM prods p, marts m
+    WHERE  p.mt_no = m.mt_no 
+    AND p.mt_no = #{martNo}
+    AND p.prod_maj_cat = #{majorCat}
+    AND p.prod_sub_cat = #{subCat}
+    order by prod_nm asc
+    limit #{startIndex}, #{len}
+  </select>
+  
   <select id="selectProdTotalByMart" resultType="int" parameterType="string">
     SELECT COUNT(prod_no)
     FROM prods p, marts m

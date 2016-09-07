@@ -10,7 +10,7 @@ public interface ProductService {
   List<Product> getMartList(int currentPage, int length, String searchContent);
   int getTotal(String searchContent);
   int getTotalByMart(String searchContent);
-  
+  List<Product> getMartCategoryList(int currentPage, int length, String martNo, String majorCat, String subCat);
   Product getProduct(int no);
   void addProduct(Product product);
   int updateProduct(Product product);

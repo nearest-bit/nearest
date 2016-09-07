@@ -21,3 +21,10 @@ window.onclick = function(event) {
     }
   }
 }
+
+$('#nearest-menu-category-wrap').mouseover(function(){
+	$('#nearest-category-menu').css('display', 'inline');
+});
+$('#nearest-menu-category-wrap').mouseout(function() {
+	$('#nearest-category-menu').css('display', 'none');
+});
