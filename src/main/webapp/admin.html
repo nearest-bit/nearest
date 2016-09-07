@@ -207,8 +207,10 @@
 		                  <option selected="selected">새 주문</option>
 		                  <option>준비완료</option>
 		                  <option>수령완료</option>
-		                </select> <input type="date" value="2016-08-13"> <input
-		                  type="date" value="2016-08-20">
+		                </select> 
+		                
+		                <input type="date" value="2016-08-13" id="stratDate">
+		                <input type="date" value="2016-08-20" id="endDate">
 		                <button class="btn btn-info" type="button">조회</button>
 		                <button class="btn btn-default" id="order-reset-btn"
 		                  type="reset">취소</button>
@@ -412,9 +414,9 @@
 								<div class="col-md-5 to-animate">
 										<div class="nearest-upload-wrap">
 											<div id="nearest-upload-image" class="nearest-upload-image">
-												<img src="./resources/images/shinramyun.png" 
+												<img src="" 
 												     alt="" 
-												     style="width: 400px; height: 280px;">
+												     style="width: 380px; height: 280px;">
 											</div>
 											<div class="nearest-upload-button">
 												<label class="nearest-file-upload"><input id="nearest-file-upload" name="imageFiles" type="file" />이미지 첨부</label>
@@ -423,43 +425,43 @@
 									
 								</div>
 			
-								<div class="col-md-7 to-animate" style="margin-top: 50px;">
+								<div class="col-md-7 to-animate" style="margin-top: 25px;">
 			
-										<div class="form-group form-group-lg">
+										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">상품명</label>
 											<div class="col-sm-8">
 												<input name="name" class="form-control" type="text" placeholder="상품명">
 											</div>
 										</div>
 			
-										<div class="form-group form-group-lg">
+										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">가격</label>
 											<div class="col-sm-8">
 												<input name="price" class="form-control" type="text" placeholder="가격">
 											</div>
 										</div>
-										<div class="form-group form-group-lg">
+										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">재고 (개)</label>
 											<div class="col-sm-8" style="padding-right: 50%;">
 												<input name="entity" class="form-control" type="number" min="1" max="100"
 													value="1">
 											</div>
 										</div>
-										<div class="form-group form-group-lg">
+										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">할인률 (%)</label>
 											<div class="col-sm-8" style="padding-right: 50%;">
 												<input name="discountRate" class="form-control" type="number" min="5" max="100"
 													value="5" step="5" />
 											</div>
 										</div>
-			
-									
 								</div>
+								
 								<div class="col-md-12 to-animate">
 									<div class="form-group text-center nearest-padding-top-2">
 										<input id="nearest-product-upload-btn" class="btn btn-primary btn-lg" value="상품 등록" type="submit">
 									</div>
 								</div>
+								
 							</div>
 		        </form>
 					</div>
@@ -516,7 +518,7 @@
 		
 					<div class="page-header nearest-popup-margin table-responsive">
 						<h1>상품정보</h1>
-						<table class="table nearest-no-border">
+						<!-- <table class="table nearest-no-border">
 		
 							<tr>
 								<td rowspan="3" width="40%">
@@ -566,7 +568,59 @@
 								    </select>
 								</td>
 							</tr>
-						</table>
+						</table> -->
+						<table class="table nearest-no-border">
+              <tr>
+                <td colspan="2" rowspan="4">
+                  <div id="nearest-detail-upload-image">
+                     <img id="nearest-detail-upload-image" 
+                          src="./resources/images/shinramyun.png" 
+                          alt="Image" 
+                          style="width: 300px; height: 280px;">
+                  </div>
+                </td>
+                <td>상품명</td>
+                <td class="nearest-text-left">
+                  <input type="text" 
+                         class="form-control col-sm-8"
+                         id="nearest-admin-item-title"
+                         name="name"
+                         placeholder="상품명" />
+                  <input id="nearest-admin-item-prod-no" name="no" type="hidden" value="" />
+                </td>
+              </tr>
+              <tr>
+                <td>판매가(원)</td>
+                <td class="nearest-text-left">
+                  <input name="price" type="text" class="form-control col-sm-8" id="nearest-admin-item-price" placeholder="판매 가격">
+                </td>
+              </tr>
+              <tr>
+                <td>재고량(개)</td>
+                <td class="nearest-text-left">
+                  <input name="entity" type="text" class="form-control col-sm-8" id="nearest-admin-item-entity" placeholder="재고">
+                </td>
+              </tr>
+              <tr>
+                <td>할인률</td>
+                <td class="nearest-text-left">
+                  <select name="discountRate">
+                    <option selected="selected" value="0">0%</option>
+                    <option value="5">5%</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                    <option value="25">25%</option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                   <label class="nearest-file-upload"><input id="nearest-detail-file-upload" name="imageFiles" type="file" /> 상품 이미지 수정</label>
+                </td>
+                <td colspan="2"></td>
+              </tr>
+            </table>
 						<p class="form-btn">
 							<input id="nearest-item-update" type="submit" class="btn btn-primary" value="수정" />
 							<button id="nearest-item-cancel" type="button" class="btn btn-default">취소</button>
