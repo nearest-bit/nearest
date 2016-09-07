@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -77,50 +76,80 @@
         
         <div class="login-form-top">
           
-          <div class="login-form-top-left">
+          <div class="login-form-top-left" style="text-align: center">
             <h3>Nearest</h3>
+            <h4>ID 찾기</h4>
+               <span style="color: gray; font-size: 15px">내정보에 등록한 정보로 아이디를 찾을 수 있습니다.</span>
           </div>
         </div>
         
         <div class="login-form-bottom">
-          <div id="loginForm">
+          <div id="loginFindForm">
             <div class="form-group">
-              <label class="sr-only" for="form-username">Username</label> 
+              <label style="color: gray">이름</label> 
               <input
                 type="text" 
                 name="form-username" 
-                placeholder="아이디"
+                placeholder="이름"
                 class="form-username form-control" 
-                id="login-form-username">
+                id="loginFind-form-username">
+            </div>
+	        <label style="color: gray">휴대폰번호</label> 
+            <form class="form-inline" style="padding-bottom: 20px">
+                <div class="form-group">
+	              <select class="form-control" id="login-find-select">
+	                <option selected="selected">선택</option>
+	                <option>010</option>
+	                <option>011</option>
+	                <option>016</option>
+	                <option>017</option>
+	                <option>018</option>
+	              </select>
+	            &nbsp;-&nbsp;
+                </div>
+	            <div class="form-group" style="width: 31%"> 
+	              <input
+	                type="text" 
+	                name="form-phone1" 
+	                placeholder="휴대폰앞번호"
+	                class="form-control" 
+	                id="loginFind-form-phone1"
+	                style="width: 100%">
+	            </div>
+	            &nbsp;-&nbsp;
+	            <div class="form-group" style="width: 31%">  
+	              <input
+	                type="text" 
+	                name="form-phone2" 
+	                placeholder="휴대폰뒷번호"
+	                class="form-control" 
+	                id="loginFind-form-phone2"
+	                style="width: 100%">
+	            </div>
+	            <div class="form-group">
+	               <input type="text" class="form-control">
+	            </div>
+            </form>
             </div>
             <div class="form-group">
-              <label class="sr-only" for="form-password">Password</label> 
+              <label style="color: gray">가입시 Email</label> 
               <input
-                type="password" 
+                type="text" 
                 name="form-password" 
-                placeholder="비밀번호"
-                class="form-password form-control" 
-                id="login-form-password">
+                placeholder="이메일"
+                class="form-email form-control" 
+                id="loginFind-form-email">
             </div>
+                <label style="color: gray">        
+                <input
+                  type="checkbox"
+                  name="form-confirm"
+                  id="loginFind-form-confirm">&nbsp;&nbsp;관리자ID 찾기</label>
             <div class="form-group">
-              <button id="login-btn" type="button" class="btn">로그인</button>
+              <button id="loginFind-btn" type="button" class="btn">찾기</button>
             </div>
-          </form>
           
           <div></div>
-          <div class="login-form-id-save">
-             <p class="id-save" style="margin-bottom: 5px"> 
-                <label><input type="checkbox" id="rememberId" > 아이디 저장</label>
-                <label><input type="checkbox" id="adminLogin" > 관리자 로그인</label>
-             </p><br/>
-             <p class="find-id-password">  
-              <!--  <a href="#signupForm">회원가입</a>
-               &nbsp;|&nbsp; -->
-               <a href="login_idFind.html">아이디 찾기</a>
-               &nbsp;|&nbsp;
-               <a href="login_pwFind.html">비밀번호 찾기</a>
-             </p> 
-          </div>
         </div>
           
       </div>
@@ -145,31 +174,31 @@
        <form role="form" action="" method="post" class="registration-form">
          <div class="form-group">
            <label>ID</label>
-			     <input type="text" 
-			            name="reg-id" 
-			            placeholder="아이디를 입력하세요." 
-			            class="form-first-name form-control" 
-			            id="form-id">   
-			            <span id="nearest-checkDupl"></span>                        
+                 <input type="text" 
+                        name="reg-id" 
+                        placeholder="아이디를 입력하세요." 
+                        class="form-first-name form-control" 
+                        id="form-id">   
+                        <span id="nearest-checkDupl"></span>                        
          </div>
                  
          <div class="form-group">
            <label>PASSWORD</label>
-			     <input type="password" 
-			            name="reg-password" 
-			            placeholder="패스워드를 입력하세요." 
-			            class="form-last-name form-control" 
-			            id="form-password">
+                 <input type="password" 
+                        name="reg-password" 
+                        placeholder="패스워드를 입력하세요." 
+                        class="form-last-name form-control" 
+                        id="form-password">
          </div>
                  
-			   <div class="form-group">
-			     <label>NAME</label>
-			     <input type="text" 
-			            name="reg-name" 
-			            placeholder="이름을 입력하세요." 
-			            class="form-last-name form-control" 
-			            id="form-name">
-			   </div>
+               <div class="form-group">
+                 <label>NAME</label>
+                 <input type="text" 
+                        name="reg-name" 
+                        placeholder="이름을 입력하세요." 
+                        class="form-last-name form-control" 
+                        id="form-name">
+               </div>
            
          <div class="form-group">
            <label>BIRTH</label>
@@ -184,19 +213,19 @@
            </div>
                      
            <!-- Load jQuery and bootstrap datepicker scripts -->
-			     <script type="text/javascript">
-			     // When the document is ready
-			     $(function () {
-			      
-			         $('#datepicker1').datetimepicker(
-			             {   
-			               format: 'YYYY-MM-DD', 
-			               defaultDate: new Date()
-			             }
-			         );  
-			  
-			     });
-			     </script>
+                 <script type="text/javascript">
+                 // When the document is ready
+                 $(function () {
+                  
+                     $('#datepicker1').datetimepicker(
+                         {   
+                           format: 'YYYY-MM-DD', 
+                           defaultDate: new Date()
+                         }
+                     );  
+              
+                 });
+                 </script>
          </div>
 
          <label>E-MAIL</label>
@@ -231,8 +260,8 @@
   <script src="./resources/js/alert_index.js"></script>
   <script src="./resources/js/session_check.js"></script>
   <script src="./resources/js/login.js"></script>
+  <script src="./resources/js/login_idFind.js"></script>
   <script src="./resources/js/main_register.js"></script>
 
   </body>
 </html>
-

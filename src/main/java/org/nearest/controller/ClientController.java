@@ -45,7 +45,40 @@ public class ClientController {
 
 		return new Gson().toJson(result);
 	}
+	
+	@RequestMapping(path = "findId", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String findId(@RequestParam String name, 
+						@RequestParam String phone1,
+						@RequestParam String phone2,
+						@RequestParam String phone3,
+						@RequestParam String email	){
+		
+		Map<String, Object> params = new HashMap<>();
+		HashMap<String, Object> result = new HashMap<>();
+		String phoneNumber = (phone1+phone2+phone3).trim();
+		System.out.println(name+":"+phoneNumber+","+email);
+		params.put("name", name);
+		params.put("phoneNumber", phoneNumber);
+		params.put("email", email);
+		Client client = clientService.getClientByInfo(params);
+		
+		try {
+			if (client.getEmail().equals(email) && client.getPhone().equals(phoneNumber)) {
+				result.put("status", "success");
+				result.put("id", client.getId());
 
+			} else {
+				result.put("status", "fail");
+			}
+
+		} catch (Exception e) {
+			result.put("status", "error");
+		}
+
+		return new Gson().toJson(result);
+	}
+	
 	@RequestMapping(path = "register", produces = "application/json;charset=utf-8")
 	@ResponseBody
 	public String addClient(Client client) {
