@@ -109,4 +109,4 @@ function doLogin() {
 	});
 */
 
-$('.find-id-password > a').magnificPopup();
+/*$('.find-id-password > a').magnificPopup();*/

@@ -18,6 +18,11 @@ public class ClientServiceImpl implements ClientService {
 	public Client getClient(String id) {
 		return clientDao.selectOne(id);
 	}
+	
+	@Override
+	public Client getClientByInfo(Map<String, Object> params) {
+		return clientDao.selectOneByInfo(params);
+	}
 
 	@Override
 	public void addClient(Client client) {

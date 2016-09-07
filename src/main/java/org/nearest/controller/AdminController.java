@@ -2,10 +2,12 @@ package org.nearest.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Admin;
+import org.nearest.domain.Client;
 import org.nearest.domain.Mart;
 import org.nearest.domain.Order;
 import org.nearest.service.AdminService;
@@ -13,6 +15,7 @@ import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
