@@ -107,6 +107,8 @@ public class ProductController {
     Product product = productService.getProduct(no);
     product.setMart(martService.getMart(product.getMart().getNo()));
     
+//    System.out.println(product);
+    
     try{
       result.put("status", "success");
       result.put("productData", product);
@@ -146,6 +148,13 @@ public class ProductController {
 				imageFile = imageFiles.get(0);
 				
 				realPath = session.getServletContext().getRealPath("/resources/images/product");
+				
+				File folder = new File(realPath);
+				
+				if(!folder.exists()) {
+					folder.mkdir();
+				}
+				
 				filePath = realPath + "\\" + currentTime + imageFile.getOriginalFilename();
 				resultFile = new File(filePath);
 						
@@ -210,9 +219,9 @@ public class ProductController {
 				prevFile.delete();
 				imageFile.transferTo(resultFile);
 				result.put("photo", product.getPhoto());
-			} else {
-				product.setPhoto(null);
 			}
+			
+			System.out.println(product);
 			
 			productService.updateProduct(product);
 			

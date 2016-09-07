@@ -12,6 +12,8 @@ public class Product implements Serializable {
 	protected int price;
 	protected int entity;
 	protected int discountRate;
+	protected String majorCategory;
+	protected String subCategory;
 	protected String photo;
 	protected Mart mart;
 	
@@ -58,11 +60,25 @@ public class Product implements Serializable {
 	public void setMart(Mart mart) {
 		this.mart = mart;
 	}
+	public String getMajorCategory() {
+		return majorCategory;
+	}
+	public void setMajorCategory(String majorCategory) {
+		this.majorCategory = majorCategory;
+	}
+	public String getSubCategory() {
+		return subCategory;
+	}
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
 	
 	@Override
 	public String toString() {
 		return "Product [no=" + no + ", name=" + name + ", price=" + price + ", entity=" + entity + ", discountRate="
-				+ discountRate + ", photo=" + photo + ", mart=" + mart + "]";
+				+ discountRate + ", majorCategory=" + majorCategory + ", subCategory=" + subCategory + ", photo="
+				+ photo + ", mart=" + mart + "]";
 	}
+	
 	
 }

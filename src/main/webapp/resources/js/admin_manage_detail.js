@@ -1,4 +1,36 @@
 $(function() {
+	$('#nearest-manage-maj-cate').change(function(event) {
+		var subCate = $('#nearest-manage-sub-cate');
+		var cateValue = $(this).children('option:selected').val();
+		$(subCate).children().remove();
+		
+		var foodCate = [$('<option>').attr('value', '1').attr('selected', 'selected').text('과일류/채소류/계란'),
+		               $('<option>').attr('value', '2').text('쌀/잡곡'),
+		               $('<option>').attr('value', '3').text('라면/통조림/조미료/장류/소스'),
+		               $('<option>').attr('value', '4').text('과자/초콜릿/시리얼/빵'),
+		               $('<option>').attr('value', '5').text('유제품/냉장/냉동/간편식')];
+		
+		var lifeCate = [$('<option>').attr('value', '1').attr('selected', 'selected').text('화장지/물티슈/위생용품/일회용품'),
+		               $('<option>').attr('value', '2').text('세제/세탁/청소/욕실용품'),
+		               $('<option>').attr('value', '3').text('구강용품/면도/의약외품')];
+		
+		switch(cateValue) {
+			case '1':
+				for(var i in foodCate) {
+					$(subCate).append($(foodCate[i]));
+				}
+				
+				break;
+			case '2':
+				for(var i in lifeCate) {
+					$(subCate).append($(lifeCate[i]));
+				}
+				
+				break;
+		}
+		
+	});
+	
 	$(document).on('click', '.fh5co-project-item', function() {		
 		var productNo = $(this).prev().val();
 		
@@ -11,12 +43,72 @@ $(function() {
 			},
 			success: function(result) {
 				var data = result.productData;
+				
+				var majCateSel = $('#nearest-manage-maj-cate');
+				var subCateSel = $('#nearest-manage-sub-cate');
+				$(majCateSel).children().remove();
+				$(subCateSel).children().remove();
+				
+				var majCateVal = parseInt(data.majorCategory);
+				var subCateVal = parseInt(data.subCategory);
+				
+				var majCate = [$('<option>').attr('value', '1').text('Food'),
+				               $('<option>').attr('value', '2').text('Life')];
+				
+				var foodCate = [$('<option>').attr('value', '1').text('과일류/채소류/계란'),
+				               $('<option>').attr('value', '2').text('쌀/잡곡'),
+				               $('<option>').attr('value', '3').text('라면/통조림/조미료/장류/소스'),
+				               $('<option>').attr('value', '4').text('과자/초콜릿/시리얼/빵'),
+				               $('<option>').attr('value', '5').text('유제품/냉장/냉동/간편식')];
+				
+				var lifeCate = [$('<option>').attr('value', '1').text('화장지/물티슈/위생용품/일회용품'),
+				               $('<option>').attr('value', '2').text('세제/세탁/청소/욕실용품'),
+				               $('<option>').attr('value', '3').text('구강용품/면도/의약외품')];
 								
 				$('#nearest-admin-item-title').val(data.name);
 				$('#nearest-admin-item-prod-no').val(productNo);
 				$('#nearest-admin-item-entity').val(data.entity);
 				$('#nearest-admin-item-price').val(data.price);
 				$('#nearest-detail-image-fileupload img').attr('src', data.photo);
+				
+				switch(data.majorCategory) {
+					case '1':
+						for(var i in majCate) {
+							if(i == majCateVal-1) {
+								$(majCateSel).append($(majCate[i]).attr('selected', 'selected'));
+							} else {
+								$(majCateSel).append($(majCate[i]));
+							}
+						}
+						
+						for(var i in foodCate) {
+							if(i == subCateVal-1) {
+								$(subCateSel).append($(foodCate[i]).attr('selected', 'selected'));
+							} else {
+								$(subCateSel).append($(foodCate[i]));
+							}
+						}
+						
+						break;
+					case '2':
+						for(var i in majCate) {
+							if(i == majCateVal-1) {
+								$(majCateSel).append($(majCate[i]).attr('selected', 'selected'));
+							} else {
+								$(majCateSel).append($(majCate[i]));
+							}
+						}
+						
+						for(var i in lifeCate) {
+							if(i == subCateVal-1) {
+								$(subCateSel).append($(lifeCate[i]).attr('selected', 'selected'));
+							} else {
+								$(subCateSel).append($(lifeCate[i]));
+							}
+						}
+						
+						break;
+				}
 			},
 			error: function() {
 				
@@ -57,9 +149,8 @@ $(function() {
 		$('#nearest-detail-image-fileupload').submit(function(event) {
 			event.preventDefault();
 			
-			console.log(detailImageList.length);
-			console.log(detailImageList);
-			
+			$('#nearest-detail-file-upload').fileupload('send', {files: detailImageList});
+						
 			if(detailImageList.length == 0) {
 				adminAlert('needImage');
 				

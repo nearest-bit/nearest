@@ -34,6 +34,38 @@ $( function() {
 		registActive = true;
 	});
 	
+	$('#nearest-regist-maj-cate').change(function(event) {
+		var subCate = $('#nearest-regist-sub-cate');
+		var cateValue = $(this).children('option:selected').val();
+		$(subCate).children().remove();
+		
+		var foodCate = [$('<option>').attr('value', '1').attr('selected', 'selected').text('과일류/채소류/계란'),
+		               $('<option>').attr('value', '2').text('쌀/잡곡'),
+		               $('<option>').attr('value', '3').text('라면/통조림/조미료/장류/소스'),
+		               $('<option>').attr('value', '4').text('과자/초콜릿/시리얼/빵'),
+		               $('<option>').attr('value', '5').text('유제품/냉장/냉동/간편식')];
+		
+		var lifeCate = [$('<option>').attr('value', '1').attr('selected', 'selected').text('화장지/물티슈/위생용품/일회용품'),
+		               $('<option>').attr('value', '2').text('세제/세탁/청소/욕실용품'),
+		               $('<option>').attr('value', '3').text('구강용품/면도/의약외품')];
+		
+		switch(cateValue) {
+			case '1':
+				for(var i in foodCate) {
+					$(subCate).append($(foodCate[i]));
+				}
+				
+				break;
+			case '2':
+				for(var i in lifeCate) {
+					$(subCate).append($(lifeCate[i]));
+				}
+				
+				break;
+		}
+		
+	});
+	
 	$('#nearest-image-fileupload').submit(function(event) {
 		event.preventDefault();
 		
