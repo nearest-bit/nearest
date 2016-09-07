@@ -43,8 +43,10 @@ public class QNAController {
 				        qna.setReqStatus("답변하기");
 				      }else if(qna.getStatus() == 2){
 				        qna.setReqStatus("답변완료");
+				      }else if(qna.getStatus() == 3){
+				        qna.setReqStatus("고객확인");
 				      }else{
-				        qna.setReqStatus("오류");
+				    	qna.setReqStatus("오류");
 				      }
 				      String birth = createDate.format(qna.getCreateDate());
 				      simpleDate.add(birth);
