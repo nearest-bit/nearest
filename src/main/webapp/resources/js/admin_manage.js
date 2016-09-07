@@ -24,6 +24,7 @@ $( function() {
 	// 총 데이터의 수
 	var total = "";
 	
+	
 	var prodListSource = $('#nearest-admin-product-list-template').text();
 	var prodListTemplete = Handlebars.compile(prodListSource);
 	var pageNavSource = $('#nearest-admin-product-pagenav-template').text();

@@ -75,6 +75,28 @@ $(document).on('click', '.nearest-client-req-tr', function(){
 					return;
 				}
 				
+				$.ajax({
+					url: contextRoot + 'client/checkAlert.do',
+					method: 'post',
+					dataType: 'json',
+					success: function(result) {
+						var data = result.alertData;
+						var count = data.cnt_req + 0 + data.cnt_order;
+													
+						if(result.status != 'success') {
+							return;
+						}
+						$('#nearest-to-request > span').remove();
+						$('#nearest-dropdown-alert').text(count);
+						
+						
+						$('#nearest-to-request').append($('<span>').addClass('badge').text(data.cnt_req));
+					},
+					error: function() {
+						
+					}
+				});
+				
 				/*$.cookie('clientMenu', 'request');
 				location.reload();*/
 			},
