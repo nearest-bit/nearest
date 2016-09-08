@@ -25,6 +25,7 @@ $(function() {
 				$('#nearest-item-mart-no').val(martNo);
 				$('#nearest-item-discount-rate').val(discountRate);
 				$('#nearest-item-entity').text(data.entity);
+				$('#nearest-detail-prod-image').attr('src', data.photo);
 				
 				$('#nearest-item-price').children('span').remove();
 				
