@@ -19,13 +19,13 @@
 
 .nearest-prod-image img {
   width:100%;
-  transition: all 1s ease;
  /* margin-top:-70px; */
 }
 
 .nearest-media {
   width:100%;
   font-size:0.8em;
+  background: #eee;
   color:#777;
   padding:15px;
   text-align: center;
