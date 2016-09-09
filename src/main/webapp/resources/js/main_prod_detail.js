@@ -30,15 +30,17 @@ $(function() {
 				$('#nearest-item-price').children('span').remove();
 				
 				originPrice = $('<span>').addClass('nearest-purchase-pay');
-				$(originPrice).text(data.price);
+				$(originPrice).text(data.price + '원');
+				$(originPrice).css('color', 'black');
 				$('#nearest-item-price').append(originPrice);
 								
 				if(discountRate > 0) {
 					
 					$(originPrice).css('text-decoration', 'line-through');
 					
+					
 					discountPrice = $('<span>').addClass('nearest-purchase-pay');
-					$(discountPrice).text(' ' + parseInt(data.price - (data.price * discountRate / 100)));
+					$(discountPrice).text(parseInt('\t' + data.price - (data.price * discountRate / 100)) + '원');
 					$('#nearest-item-payment-price').val($(discountPrice).text());
 					
 					$(originPrice).after(discountPrice);

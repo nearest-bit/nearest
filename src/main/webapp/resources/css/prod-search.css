@@ -26,7 +26,7 @@
   width:100%;
   font-size:0.8em;
   background: #eee;
-  color:#777;
+  color:#555;
   padding:15px;
   text-align: center;
   vertical-align: middle;
@@ -42,7 +42,7 @@
 
 .nearest-prod-text {
   width:100%;
-  background:#333;
+  background:#49b2e9;
   opacity: 0.85;
   padding: 10px 5px;
   filter: alpha(opacity=85); /* IE8 and Lower */
