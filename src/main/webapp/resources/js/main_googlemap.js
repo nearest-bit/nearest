@@ -19,7 +19,7 @@ var infowindows = new Array();
 
 var indexOption = "index";
 
-var searchMartName;
+var searchMartName = '';
 
 var majorCat = '';
 

@@ -56,6 +56,8 @@ function productSearch(){
       }
       console.log(result);
       if(result.searchKeyword == 'prods'){
+    	  searchMartName = '';
+    	  
     	  $('#nearest-menu-category-wrap').css('display', 'none');
     	  $('#nearest-search-result').css('display','inline');
     	  $('#nearest-search-keyword-result').css('display', 'none');
@@ -182,7 +184,7 @@ $(function() {
 	$(window).scroll(function() {
 		if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
 
-			if(searchMartName != undefined) {
+			if(searchMartName != '') {
 				indexOption = 'index';
 			}else if(searchLat != '' && searchLng != ''){
 				indexOption = 'search';
@@ -192,8 +194,12 @@ $(function() {
 			currentPage++;
 			
 			
+			console.log('scroll searchMartName : ' + searchMartName);
+			console.log('scroll currentPage : ' + currentPage);
+			console.log('scroll lat : ' + searchLat);
+			console.log('scroll searchContent : ' + searchContent);
+			console.log('scroll indexOption : ' + indexOption);
 			
-			console.log('currentPage : ' + currentPage);
 			
 			switch(indexOption) {
 				case 'index':
