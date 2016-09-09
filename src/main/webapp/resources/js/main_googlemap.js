@@ -286,11 +286,6 @@ function showSelectedPlace() {
 	searchLat = place.geometry.location.lat();
 	searchLng = place.geometry.location.lng();
 	
-	/*if(cityCircle != ''){
-		cityCircle.setVisible(false);
-	}
-	*/
-	alert(cityCircle);
 	if(cityCircle != ''){
 		cityCircle.setMap(null);
 	}
