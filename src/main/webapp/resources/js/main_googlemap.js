@@ -19,6 +19,19 @@ var infowindows = new Array();
 
 var indexOption = "index";
 
+var searchMartName;
+
+var majorCat = '';
+
+var subCat = '';
+
+var cityCircle = '';
+
+var searchLat = '';
+var searchLng = '';
+
+var martNo = '';
+
 function initMap() {
 
   var mapOptions = {
@@ -29,6 +42,7 @@ function initMap() {
   }
 
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  
   google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
   places = new google.maps.places.PlacesService(map);
   autocomplete = new google.maps.places.Autocomplete( document.getElementById('nearest-map-autocomplete') );
@@ -94,12 +108,12 @@ function initMap() {
 				
 			  var contentString = '<div style="min-width: 200px;">';
 			  contentString += '    <div class="text-center nearest-map-infowindow" style="text-align: left;">';
-			  contentString += '      <h4 style="margin-bottom: 0;">'+ martList[i].name +'</h4>';
+			  contentString += '      <h4 id="map-martName" style="margin-bottom: 0;">'+ martList[i].name +'</h4>';
 			  contentString += '      <hr style="border-color: red; margin: 5px 0 5px 0;" />';
 			  contentString += '      <span class="fh5co-position">'+ martList[i].telNo +'</span>';
 			  contentString += '      <p style="margin: 10px 0 0 0;">'+ martList[i].addr +'</p>';
 			  contentString += '      <p>'+ martList[i].addrDetail +'</p>';
-			  contentString += '	  <a class="infowindow-btn" href="#" style="color: blue;" data-martname="'+martList[i].name+'">마트 물품 보기</a>';
+			  contentString += '	  <a class="infowindow-btn" href="#" style="color: blue;" data-martNo="'+martList[i].no+'" data-martname="'+martList[i].name+'">마트 물품 보기</a>';
 			  contentString += '    </div>';
 			  contentString += '   </div>';
 			  
@@ -269,6 +283,29 @@ function showSelectedPlace() {
 	var place = autocomplete.getPlace();
 	map.panTo(place.geometry.location);
 	
+	searchLat = place.geometry.location.lat();
+	searchLng = place.geometry.location.lng();
+	
+	/*if(cityCircle != ''){
+		cityCircle.setVisible(false);
+	}
+	*/
+	alert(cityCircle);
+	if(cityCircle != ''){
+		cityCircle.setMap(null);
+	}
+	
+	cityCircle = new google.maps.Circle({
+	      strokeColor: '#FF0000',
+	      strokeOpacity: 0.8,
+	      strokeWeight: 2,
+	      fillColor: '#FF0000',
+	      fillOpacity: 0.35,
+	      map: map,
+	      center: {lat : searchLat, lng : searchLng},
+	      radius: 150
+	    });
+	
 	/*var iw;
 	
 	markers[0] = new google.maps.Marker({
@@ -310,13 +347,19 @@ function setMarkerInfoWindow (marker, index, content) {
 $(function() {
 	$(document).on('click', '.infowindow-btn', function(event) {
 		event.preventDefault();
+		currentPage = 1;
+		majorCat = '';
+		subCat = '';
 		
 		var martName = $(this).attr('data-martname');
+		searchMartName = martName;
 		
 		$('#nearest-product-list').children().remove();
 		$('#nearest-pageno').children().remove();
 		$('select[name="searchTag"] option:last-child').attr('selected', 'selected');
 		$('#nearest-search').val(martName);
+		$('#nearest-menu-category-wrap').css('display', 'inline');
+		martNo = $(this).attr('data-martNo');
 		
 		searchTag = $('select[name=searchTag]').val();
 	    searchContent = $('#nearest-search').val();
@@ -343,7 +386,7 @@ $(function() {
 		      var discountPrice;
 		      var indexValue;
 		      
-		      for (var i in products) {					    	  
+		      /*for (var i in products) {					    	  
 		    	  if(products[i].discountRate > 0) {
 		    		  indexValue = parseInt(i)+parseInt((result.currentPage-1)*9);
 		    		  
@@ -357,7 +400,7 @@ $(function() {
 		    		  discountPrice = $('<span>').text(' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100)) + ' 원');
 		    		  $(indexProducts[indexValue]).after(discountPrice);					    		  
 		    	  }
-		      }
+		      }*/
 		        
 		      total = JSON.stringify(result.total);
 		        
@@ -384,6 +427,8 @@ $(function() {
 		       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
 		       	}
 		      }
+		      
+		      $('.fh5co-project-item').magnificPopup();
 		  },
 		  error: function() {
 			  alert('ajax 접속 실패');

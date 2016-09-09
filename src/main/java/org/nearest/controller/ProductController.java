@@ -41,6 +41,8 @@ public class ProductController {
                                @RequestParam(defaultValue="") String martNo,
                                @RequestParam(defaultValue="") String majorCat,
                                @RequestParam(defaultValue="") String subCat,
+                               @RequestParam(defaultValue="") String searchLat,
+                               @RequestParam(defaultValue="") String searchLng,
                                HttpSession session){
     System.out.println("searchTag : " + searchTag);
     System.out.println("searchContent : " + searchContent);
@@ -61,8 +63,8 @@ public class ProductController {
     try{
       result.put("status", "success");
       if(searchTag.equals("prods")) {
-        
-        products = productService.getProductList(currentPage, length, searchContent);
+        System.out.println(searchLat+"//"+searchLng);
+        products = productService.getProductList(currentPage, length, searchContent, searchLat, searchLng);
         result.put("searchKeyword", "prods");
         result.put("productData", products);
         result.put("searchContent", searchContent);

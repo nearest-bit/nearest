@@ -6,7 +6,7 @@ import org.nearest.domain.Product;
 
 public interface ProductService {
   
-  List<Product> getProductList(int currentPage, int length, String searchContent);
+  List<Product> getProductList(int currentPage, int length, String searchContent, String searchLat, String searchLng);
   List<Product> getMartList(int currentPage, int length, String searchContent);
   int getTotal(String searchContent);
   int getTotalByMart(String searchContent);

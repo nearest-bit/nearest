@@ -33,10 +33,22 @@
     WHERE prod_no=#{no}
   </insert>
   
-  <select id="selectProdList" resultMap="productMap" parameterType="map">
+  <!-- <select id="selectProdList" resultMap="productMap" parameterType="map">
     SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
     FROM prods
     WHERE prod_nm LIKE '%${prodName}%'
+    ORDER BY prod_nm asc
+    limit #{startIndex}, #{len} 
+  </select> -->
+  
+  <select id="selectProdList" resultMap="productMap" parameterType="map">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, m.mt_no
+    FROM prods p, marts m
+    WHERE prod_nm LIKE '%${prodName}%'
+    AND p.mt_no = m.mt_no
+    <if test="searchLng != '' and searchLat != ''">
+    AND SQRT(POW(mt_lng - #{searchLng}, 2) + POW(mt_lat - #{searchLat}, 2)) &lt; (0.3 / 111.2 ) and mt_lng != #{searchLng} and mt_lat != #{searchLat}
+    </if>
     ORDER BY prod_nm asc
     limit #{startIndex}, #{len} 
   </select>

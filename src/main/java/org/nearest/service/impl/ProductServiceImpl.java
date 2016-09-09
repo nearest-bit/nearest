@@ -17,11 +17,13 @@ public class ProductServiceImpl implements ProductService {
   ProductDao productDao;
   
   @Override
-  public List<Product> getProductList(int currentPage, int length, String searchContent) {
+  public List<Product> getProductList(int currentPage, int length, String searchContent, String searchLat, String searchLng) {
      Map<String, Object> params = new HashMap<>();
      params.put("startIndex", (currentPage - 1) * length);
      params.put("len", length);
      params.put("prodName", searchContent);
+     params.put("searchLat", searchLat);
+     params.put("searchLng", searchLng);
      return productDao.selectProdList(params);
   }
 

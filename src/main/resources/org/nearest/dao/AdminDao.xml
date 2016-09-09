@@ -10,7 +10,7 @@
     <result column="admin_nm"       property="name" />
     <result column="admin_id"       property="id" />
     <result column="admin_pw"       property="password" />    
-  </resultMap>  
+  </resultMap>
   
   <resultMap type="order" id="orderMap">
     <id     column="order_no"       property="no" />

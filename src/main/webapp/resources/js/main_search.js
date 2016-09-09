@@ -26,14 +26,6 @@ var previousPage = "";
 // 총 데이터의 수
 var total = "";
 
-var searchMartName;
-
-var martNo = '';
-
-var majorCat = '';
-
-var subCat = '';
-
 function productSearch(){
 
 	
@@ -48,7 +40,9 @@ function productSearch(){
       option: 'client',
       martNo : martNo,
       majorCat : majorCat,
-      subCat : subCat
+      subCat : subCat,
+      searchLat : searchLat,
+      searchLng : searchLng
     },
     success : function(result) {
       if(result.status != 'success'){
@@ -109,7 +103,7 @@ function productSearch(){
       searchTag = $('select[name=searchTag]').val();
       searchContent = $('#nearest-search').val();
       
-      $('.fh5co-project-item > img').magnificPopup();
+      $('.fh5co-project-item').magnificPopup();
       
       
     },
@@ -158,7 +152,6 @@ $('#nearest-search').on('keypress', function(event){
 //카테고리 검색
 $('.category-link').on('click', function(e){
 	e.preventDefault();
-	
 	majorCat = '';
 	subCat = '';
 	currentPage = 1;
@@ -184,13 +177,21 @@ $('.categoty-menu').click(function(e){
 
 $(function() {	
 	
-	if(searchMartName != undefined) {
-		indexOption = 'index';
-	}
+	
 
 	$(window).scroll(function() {
 		if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
+
+			if(searchMartName != undefined) {
+				indexOption = 'index';
+			}else if(searchLat != '' && searchLng != ''){
+				indexOption = 'search';
+			}
+
+			
 			currentPage++;
+			
+			
 			
 			console.log('currentPage : ' + currentPage);
 			
@@ -206,7 +207,7 @@ $(function() {
 					
 					break;
 			}
-			
+
 			$.ajax({
 			    url :  contextRoot + 'product/list.do',
 			    datatype : 'json',
@@ -219,11 +220,14 @@ $(function() {
 			      option: 'client',
 			      martNo : martNo,
 			      majorCat : majorCat,
-			      subCat : subCat
+			      subCat : subCat,
+			      searchLat : searchLat,
+			      searchLng : searchLng
 			    },
 			    success : function(result) {
 
 			      			    
+			    	
 			      if(result.status != 'success'){
 			        alert('검색오류');
 			        return;
