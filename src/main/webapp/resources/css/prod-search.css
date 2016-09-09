@@ -20,7 +20,7 @@
 .nearest-prod-image img {
   width:100%;
   transition: all 1s ease;
-  margin-top:-70px;
+ /* margin-top:-70px; */
 }
 
 .nearest-media {
