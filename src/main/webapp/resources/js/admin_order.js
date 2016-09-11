@@ -26,9 +26,12 @@ $.ajax({
 		  
 		  console.log(detailBtn);
 		  
+		  $('.nearest-order-complete').css('display', 'none');
+		  
 		  $.each(detailBtn, function(index, item){
 			  if($(item).attr('order-state') == '3') {
-				  $(item).parent().parent().css('border', '2px solid orange');
+				  $(item).parent().parent().css('display', 'block');
+				  $(item).parent().parent().css('border', '1px solid orange');
 			  }
 		  });
 		  
@@ -118,8 +121,9 @@ function callOrderListByCalendar(){
 			var detailBtn = $('.nearest-order-list-detail');
 
 			$.each(detailBtn, function(index, item) {
+				console.log(item);
 				if ($(item).attr('order-state') == '3') {
-					$(item).parent().parent().css('border', '2px solid orange');
+					$(item).parent().parent().css('border', '2px solid red');
 				}
 			});
         },

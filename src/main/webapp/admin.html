@@ -228,6 +228,16 @@
               {{#each orderData}}
                  <div class="col-md-4 col-sm-6 col-xs-12">
                   <div class="fh5co-person text-center nearest-margin-bottom">
+                    <div class="nearest-order-complete">
+                      <p class="nearest-order-complete-text">준비완료</p>
+                      <a class="popup-with-form nearest-orderDetail-btn" href="#order-detail-form">
+                       <button type="button" 
+                               class="btn btn-primary nearest-order-list-detail" 
+                               order-no="{{no}}" 
+                               client-no="{{client.no}}"
+                               order-state="{{orderState}}">주문상세</button>
+                      </a>
+                     </div>
                      <h3>{{client.name}}</h3>
                      <div class="fh5co-position">
                        <p class="nearest-order-list-text">수령시간</p>
