@@ -179,7 +179,7 @@
                 <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn">
                   <a id="logoutBtn">
                     <strong style="color:white; font-size: 15px;">Logout</strong>
-                  </a> 
+                  </a>
                 </div>
               </div>
             </div>
@@ -195,13 +195,21 @@
 
 				<!-- start of joomoonList -->
 		    <section id="fh5co-about" data-section="about">
-		      <div class="container nearest-admin-content-bg nearest-admin-content">
+		      <div class="container nearest-admin-content-bg nearest-admin-register">
 		        <div class="row">
-		          <div class="col-md-12 section-heading text-center">
-		            <h2 class="to-animate">주문내역</h2>
-		            <div class="search-form">
+		          <div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px; margin-bottom: 10px">
+		              <div style="width: 200px; margin: auto">
+		                  <span class="glyphicon glyphicon-shopping-cart to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate">주문내역</h2>
+		              </div>  
+		            <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext to-animate" style="background: #505156; width: 100%; margin: 0; padding: 0">
+                            <h3 style="color: #e8e8e8; margin-bottom: 20px">주문받은 상품을 파악 합니다.</h3>
+                        </div>
+                    </div>
+		        </div>
+		            <div class="search-form" style="margin: 15px 0">
 		              <button class="btn btn-info to-animate" id="order-btn"
-		                type="button">주문내역조회</button>
+		                type="button" style="margin: 10px 0 0 43.5%">주문내역조회</button>
 		              <div id="order-search" class="to-animate">
 		                <div class="col-xs-3">
 			                <select id="nearest-order-select" class="form-control" style="margin-left: 10%">
@@ -210,19 +218,18 @@
 			                  <option>수령완료</option>
 			                </select>
 		                </div>
-		               
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		                <span>시작일 : </span>
                     <input id="osdate" type="text" size="10" maxlength="10">
                     ~ 
                     <span>종료일 : </span>    
                     <input id="oedate" type="text" size="10" maxlength="10">
                     <br><br>
-		                <button id="nearest-order-find" class="btn btn-info" type="button">조회</button>
-		                <button class="btn btn-default" id="order-reset-btn" type="reset">취소</button>
+		                <button id="nearest-order-find" class="btn btn-info text-center" type="button" style="margin-left: 42%">조회</button>
+		                <button class="btn btn-default text-center" id="order-reset-btn" type="reset" style="margin-left: 1%">취소</button>
 		              </div>
 		            </div>
 		          </div>
-		        </div>
 		        <div class="row">
 		          <script id="nearest-order-list" type="text/x-handlebars-template">
               {{#each orderData}}
@@ -281,36 +288,43 @@
       <div id="qna" class="tab-pane fade">
 				<!-- 건의사항 시작 -->
 				<section id="fh5co-testimonials" data-section="testimonials">
-					<div class="container nearest-admin-content-bg nearest-admin-content">
+					<div class="container nearest-admin-content-bg nearest-admin-register">
 						<div class="row">
-                <div class="col-md-13 section-heading">
-                    <h2 class="to-animate text-center">Q & A</h2>
-                    <div class="nearest-search-form">
-                        <button class="btn btn-info to-animate" id="nearest-request-btn"
-                            type="button" style="margin-left: 43.5%">문의사항조회</button>
-                        <div id="nearest-request-search" class="to-animate">
-                            <div class="col-xs-3">
-                                <select id="nearest-select" class="form-control" name="finishTag" style="margin-left: 10%">
-                                    <option selected="selected">답변미완료</option>
-                                    <option>답변완료</option>
-                                </select>
+                            <div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px; margin-bottom: 10px">
+                                <div style="width: 200px; margin: auto">
+                                <span class="glyphicon glyphicon-question-sign to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate text-center">Q & A</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-2 subtext to-animate" style="background: #505156; width: 100%; margin: 0; padding: 0">
+                                        <h3 style="color: #e8e8e8; margin-bottom: 20px">문의사항을 읽고 답변 합니다.</h3>
+                                    </div>
+                                </div>
                             </div>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span>시작일 : </span>
-                                <input id="sdate" type="text" size="10" maxlength="10">
-                            ~ 
-                            <span>종료일 : </span>    
-                                <input id="edate" type="text" size="10" maxlength="10">
-                                <br>
-                                <br>
-                                <button class="btn btn-info" id="nearest-find" type="button" style="margin-left: 42%">조회</button>
-                                <button class="btn btn-default text-center" id="nearest-request-reset-btn"
-                                type="reset" style="margin-left: 1%">취소</button>
+                                    <div class="nearest-search-form" style="margin: 15px 0">
+                                        <button class="btn btn-info to-animate" id="nearest-request-btn"
+                                        type="button" style="margin: 10px 0 0 43.5%">문의사항조회</button>
+                                            <div id="nearest-request-search" class="to-animate">
+                                                <div class="col-xs-3">
+                                                    <select id="nearest-select" class="form-control" name="finishTag" style="margin-left: 10%">
+                                                        <option selected="selected">답변미완료</option>
+                                                        <option>답변완료</option>
+                                                    </select>
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span>시작일 : </span>
+                                                <input id="sdate" type="text" size="10" maxlength="10">
+                                                ~ 
+                                                <span>종료일 : </span>    
+				                                <input id="edate" type="text" size="10" maxlength="10">
+				                                <br>
+				                                <br>
+				                                <button class="btn btn-info" id="nearest-find" type="button" style="margin-left: 42%">조회</button>
+				                                <button class="btn btn-default text-center" id="nearest-request-reset-btn"
+				                                type="reset" style="margin-left: 1%">취소</button>
                                
+                                            </div>
+                                    </div>
                         </div>
-                    </div>
-                </div>
-            </div>
 <!-- 			<div class="col-md-4">
                         <div style="float:none;" class="box-testimony">
                           <blockquote>
@@ -398,13 +412,15 @@
 
 		    <!-- start 상품등록 -->
 				<section id="fh5co-contact" data-section="contact">
-					<div class="container nearest-admin-content-bg nearest-admin-content">
+					<div class="container nearest-admin-content-bg nearest-admin-register">
 						<div class="row">
-							<div class="col-md-12 section-heading text-center">
-								<h2 class="to-animate">상품등록</h2>
+							<div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px">
+								<div style="width: 200px; margin: auto">
+								<span class="glyphicon glyphicon-plus-sign to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate">상품등록</h2>
+								</div>
 								<div class="row">
-									<div class="col-md-8 col-md-offset-2 subtext to-animate">
-										<h3>새로운 상품을 등록 합니다.</h3>
+									<div class="col-md-8 col-md-offset-2 subtext to-animate" style="background: #505156; width: 100%; margin: 0">
+										<h3 style="color: #e8e8e8; margin-bottom: 20px">새로운 상품을 등록 합니다.</h3>
 									</div>
 								</div>
 							</div>
@@ -418,13 +434,15 @@
 							<div class="row row-bottom-padded-md">
 								<div class="col-md-5 to-animate">
 										<div class="nearest-upload-wrap">
-											<div id="nearest-upload-image" class="nearest-upload-image">
+											<div id="nearest-upload-image" class="nearest-upload-image" style="text-align: center">
 												<img src="" 
 												     alt="" 
-												     style="width: 380px; height: 280px;">
+												     style="width: 300px; height: 300px; border: 2px solid #286090">
 											</div>
 											<div class="nearest-upload-button">
-												<label class="nearest-file-upload"><input id="nearest-file-upload" name="imageFiles" type="file" />이미지 첨부</label>
+												<label class="nearest-file-upload btn-primary" style="padding: 10px 20px; border-radius: 6px">
+												    <input id="nearest-file-upload" name="imageFiles" type="file"/>이미지 첨부
+												</label>
 											</div>
 										</div>
 									
@@ -435,27 +453,27 @@
 										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">상품명</label>
 											<div class="col-sm-8">
-												<input name="name" class="form-control" type="text" placeholder="상품명">
+												<input name="name" class="form-control" style="border-color: #52d3aa" type="text" placeholder="상품명">
 											</div>
 										</div>
 			
 										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">가격</label>
 											<div class="col-sm-8">
-												<input name="price" class="form-control" type="text" placeholder="가격">
+												<input name="price" class="form-control" style="border-color: #52d3aa" type="text" placeholder="가격">
 											</div>
 										</div>
 										
 										<div class="form-group form-group-lg nearest-registForm-height">
                       <label class="col-sm-3 control-label">분류</label>
                       <div class="col-sm-3">
-                        <select id="nearest-regist-maj-cate" name="majorCategory" class="form-control">
+                        <select id="nearest-regist-maj-cate" name="majorCategory" class="form-control" style="border-color: #52d3aa">
                           <option value="1" selected="selected">Food</option>
                           <option value="2">Life</option>
                         </select>
                       </div>
                       <div class="col-sm-5">
-                        <select id="nearest-regist-sub-cate" name="subCategory" class="form-control">
+                        <select id="nearest-regist-sub-cate" name="subCategory" class="form-control" style="border-color: #52d3aa">
                           <option value="1" selected="selected">과일류/채소류/계란</option>
                           <option value="2">쌀/잡곡</option>
                           <option value="3">라면/통조림/조미료/장류/소스</option>
@@ -468,7 +486,7 @@
 										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">재고 (개)</label>
 											<div class="col-sm-8" style="padding-right: 40%;">
-												<input name="entity" class="form-control" type="number" min="1" max="100"
+												<input name="entity" class="form-control" style="border-color: #52d3aa" type="number" min="1" max="100"
 													value="1">
 											</div>
 										</div>
@@ -476,7 +494,7 @@
 										<div class="form-group form-group-lg nearest-registForm-height">
 											<label class="col-sm-3 control-label">할인률 (%)</label>
 											<div class="col-sm-8" style="padding-right: 40%;">
-												<input name="discountRate" class="form-control" type="number" min="0" max="100"
+												<input name="discountRate" class="form-control" style="border-color: #52d3aa" type="number" min="0" max="100"
 													value="0" step="5" />
 											</div>
 										</div>
@@ -498,11 +516,18 @@
       <div id="manage" class="tab-pane fade">
 				<!-- 상품관리 시작 -->
 				<section id="fh5co-work" data-section="work">
-					<div style="margin: 2em 0;" class="container nearest-admin-content-bg nearest-admin-content">
+					<div style="margin: 2em 0; background: #ffd800; padding-top: 20px" class="container nearest-admin-content-bg nearest-admin-register">
 						<div class="row">
-							<div class="col-md-12 section-heading text-center">
+							<div class="col-md-12 section-heading text-center" style="margin-bottom: 0">
+							  <div style="width: 200px; margin: auto">
+							    <span class="glyphicon glyphicon-barcode to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span>
 								<h2 class="to-animate">상품관리</h2>
-		
+		                      </div>
+		                      <div class="row">
+                                    <div class="col-md-8 col-md-offset-2 subtext to-animate" style="background: #505156; width: 100%; margin: 0">
+                                        <h3 style="color: #e8e8e8; margin-bottom: 20px">등록된 상품을 관리 합니다.</h3>
+                                    </div>
+                              </div>      
 							</div>
 						</div>
 						
@@ -530,7 +555,7 @@
               {{/each}}
             </script>
             
-						<div id="nearest-admin-product-list" class="row row-bottom-padded-sm">
+						<div id="nearest-admin-product-list" class="row row-bottom-padded-sm" style="background: white">
 						</div>
 		      </div>
 				</section>

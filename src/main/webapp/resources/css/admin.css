@@ -54,7 +54,7 @@ p {margin:0 !important}
 }
 
 #nearest-admin-product-list {
-	padding:0 30px;
+	padding:5% 30px;
 }
 
 .nearest-product-register {
@@ -186,7 +186,6 @@ p {margin:0 !important}
 .nearest-file-upload {
 	border: 1px solid #ccc;
     display: inline-block;
-    padding: 6px 12px;
     cursor: pointer;
     font-size: 18px;
 }
@@ -431,3 +430,21 @@ input[type="file"] {
     padding: 30px !important;
 	
 }
+
+.nearest-admin-register{
+        background: white;
+    box-shadow: 3px 5px 15px #888888;
+    border-radius: 5px;
+}
+
+#nearest-orderList-append{
+	width: 100%;
+	overflow: hidden;
+	padding: 0 30px;
+}
+
+#nearest-qnaContent{
+	overflow: hidden;
+	padding: 0 30px;
+}
+
