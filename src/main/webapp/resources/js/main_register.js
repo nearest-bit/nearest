@@ -13,6 +13,7 @@ var duplicate = '';
 	  alert($('input[name="reg-phone"]').val())
 	  $.ajax({
 		  url : contextRoot + 'client/register.do',
+		  method : 'post',
 		  dataType : 'json',
 		  data : {
 			  id : $('input[name="reg-id"]').val(),
