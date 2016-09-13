@@ -1,15 +1,14 @@
 package org.nearest.controller;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.nearest.domain.Admin;
-import org.nearest.domain.Client;
 import org.nearest.domain.Mart;
 import org.nearest.domain.Order;
 import org.nearest.service.AdminService;
@@ -17,7 +16,6 @@ import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -69,16 +67,14 @@ public class AdminController {
 	  
 	  try {
 	    List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
-	    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-	    List<Object> orderDateList = new ArrayList<>();
 	    
-	    for (Order order : list) {
-			orderDateList.add(simpleDateFormat.format(order.getOrderRequestDate()));
-		}
+	   for (Order order : list) {
+	      order.setOrderRequestDate(order.getOrderRequestDate().replace(".0", ""));
+	    }
 	    	      
   	    result.put("state", "success");
   	    result.put("orderData", list);
-  	    result.put("orderDateList", orderDateList);
+  	   
 	   
 	  }catch (Exception e) {
 	    e.printStackTrace();

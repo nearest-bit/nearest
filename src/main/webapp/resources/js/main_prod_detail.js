@@ -46,8 +46,9 @@ $(function() {
 					$(originPrice).after(discountPrice);
 					
 					$('#nearest-percent-discount').text(discountRate + '%');
-				} else {
+				} else if(discountRate == 0){
 					$('#nearest-item-payment-price').val(data.price);
+					$('#nearest-percent-discount').text('0%');
 				}
 			},
 			error: function() {
@@ -109,9 +110,11 @@ $(function() {
 		var maxEntity = parseInt($('#nearest-item-entity').text());
 		$('#nearest-receive-entity').attr('max', maxEntity);
 		
-		var totalPrice = $('#nearest-item-payment-price').val() * 1 * $('#nearest-receive-entity').val();
-		  
-		$('#nearest-payment-price').text(totalPrice);
+		var totalPrice = parseInt( $('#nearest-item-payment-price').val() ) * parseInt ( $('#nearest-receive-entity').val() );
+		
+		/*alert('totalPrice: ' + parseInt( $('#nearest-item-payment-price').val() ) * parseInt( $('#nearest-receive-entity').val() ));*/
+		
+		$('#nearest-payment-price').text(totalPrice + '원');
 		$('#nearest-payment-price').attr('value', totalPrice);
 		
 		$('.nearest-cart-prodNo').val($('#nearest-item-prod-no').val());
@@ -125,9 +128,9 @@ $(function() {
 	$(document).on('change', '#nearest-receive-entity', function() {
 		var entity = parseInt($(this).val()); 
 		
-		var totalPrice = $('#nearest-item-payment-price').val() * 1 * entity;
+		var totalPrice = parseInt ( $('#nearest-item-payment-price').val() ) * entity;
 		  
-		$('#nearest-payment-price').text(totalPrice);
+		$('#nearest-payment-price').text(totalPrice + '원');
 		$('#nearest-payment-price').attr('value', totalPrice);
 		
 	})

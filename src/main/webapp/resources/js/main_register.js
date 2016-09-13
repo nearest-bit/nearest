@@ -5,14 +5,15 @@ var duplicate = '';
 		  mainAlert('idEmpty');
 		  return;
 	  }
-	  alert($('input[name="reg-id"]').val())
+	  /*alert($('input[name="reg-id"]').val())
 	  alert($('input[name="reg-password"]').val())
 	  alert($('input[name="reg-name"]').val())
 	  alert($('input[name="reg-birth"]').val())
 	  alert($('input[name="reg-email"]').val())
-	  alert($('input[name="reg-phone"]').val())
+	  alert($('input[name="reg-phone"]').val())*/
 	  $.ajax({
 		  url : contextRoot + 'client/register.do',
+		  method : 'post',
 		  dataType : 'json',
 		  data : {
 			  id : $('input[name="reg-id"]').val(),
@@ -30,6 +31,7 @@ var duplicate = '';
 				  
 			  }else{
 				  mainAlert('registSuccess');
+				  $.magnificPopup.close();
 			  }
 			  
 		  },
@@ -52,7 +54,7 @@ var duplicate = '';
 				  $('#nearest-checkDupl').text('중복된 아이디 입니다').css('color', 'red');
 				  duplicate = true;
 			  }else if( result == false ){				  
-				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', 'blue');
+				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', '#00ffdc');
 				  duplicate = false;
 			  }
 		  },
