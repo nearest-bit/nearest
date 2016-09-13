@@ -158,7 +158,7 @@ public class OrderController {
       for (int i=0; i < orderList.size(); i++) {
         table.add(simpleDateFormat.format(((Map<String,Date>)orderList.get(i)).get("orderDate")));
         compareDateData.add(((Map<String,Date>)orderList.get(i)).get("orderDate"));
-      }
+     }
       
       compareDateDataList.addAll(compareDateData);      
       Collections.reverse(compareDateDataList);

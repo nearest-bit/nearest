@@ -51,6 +51,7 @@
     WHERE m.mt_no = #{value} 
     AND m.mt_no = o.mt_no 
     AND o.clnt_no = c.clnt_no
+    ORDER BY o.order_re_dt asc
   </select>
   
   <select id="selectOrderListByCalendar" resultMap="orderMap" parameterType="map">

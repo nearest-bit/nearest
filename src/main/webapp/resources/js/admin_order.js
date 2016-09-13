@@ -13,9 +13,6 @@
 			        return;
 			  }
 			  
-			  for(var i in result.orderData) {
-				  result.orderData[i].orderRequestDate = result.orderDateList[i];
-			  }
 			  
 			  $('#nearest-orderList-append').append(template(result));
 
