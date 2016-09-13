@@ -4,6 +4,10 @@
 	box-sizing: border-box;
 }
 
+.nearest-order-complete{
+	display: none;
+}
+
 p {margin:0 !important}
 
 .nearest-margin-bottom {

@@ -102,10 +102,13 @@ public class AdminController {
 		try {
 			if (orderStatus.equals("새 주문")) {
 				orderSt = 1;
+				System.out.println("새 주문");
 			} else if (orderStatus.equals("준비완료")){
 				orderSt = 3;
+				System.out.println("준비완료");
 			} else if (orderStatus.equals("수령완료")){
 				orderSt = 4;
+				System.out.println("수령완료");
 			}
 			
 			List<Order> list = adminService.getOrderListByCalendar(martNo, startDate, endDate, orderSt);

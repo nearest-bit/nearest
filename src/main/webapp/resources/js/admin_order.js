@@ -27,7 +27,7 @@
 			  
 			  console.log(detailBtn);
 			  
-			  $('.nearest-order-complete').css('display', 'none');
+			  
 			  
 			  $.each(detailBtn, function(index, item){
 				  
@@ -125,7 +125,7 @@ function callOrderListByCalendar(){
 			$.each(detailBtn, function(index, item) {
 				console.log(item);
 				if ($(item).attr('order-state') == '3') {
-					$(item).parent().parent().css('border', '2px solid red');
+					$(item).parent().parent().css('display', 'block');
 				}
 			});
         },
