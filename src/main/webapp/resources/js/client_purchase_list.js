@@ -79,7 +79,7 @@ function clientPurchase(){
              		totalPrice += parseInt($($(tbodyId)[j]).attr('price-data'));
              	
              	}
-             	$('#nearest-putchase-total-price-'+i).html(totalPrice+'&#8361;');
+             	$('#nearest-putchase-total-price-'+i).html('&#8361;' + totalPrice);
              }
              
            },
