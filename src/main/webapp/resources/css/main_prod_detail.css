@@ -86,8 +86,8 @@
 }
 
 .nearest-detail-prod-price {
-	width: 100%;
-	padding-bottom: 10px;
+	padding: 0 1em 0 0;
+	float: left;
 }
 
 .nearest-detail-prod-price > h3 {
@@ -97,8 +97,23 @@
 	font-weight: bold;
 }
 
+.nearest-item-percent-right {
+	width:88px;
+	height:64px;
+	float: left;
+	background: url("../../resources/images/backgrounds/arrow.png");
+	text-align: center;
+	color: #fff;
+	font-size: 25px;
+}
+
+.nearest-item-percent-right > p {
+	margin: 0;
+}
+
 .nearest-detail-prod-stock {
 	padding-bottom: 10px;
+	clear: both;
 }
 
 .nearest-detail-btn {

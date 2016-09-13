@@ -1,44 +1,49 @@
-$.ajax({
-	  url: contextRoot + 'admin/orderList.do',
-	  dataType: 'json',
-	  method: 'post',
-	  success: function(result){
-		  
-		  var source   = $("#nearest-order-list").text();
-		  var template = Handlebars.compile(source);
-		  
-		  if (result.state != 'success') {
-		        alert('실행 중 오류 발생!');
-		        return;
-		  }
-		  
-		  for(var i in result.orderData) {
-			  result.orderData[i].orderRequestDate = result.orderDateList[i];
-		  }
-		  
-		  $('#nearest-orderList-append').append(template(result));
 
-		  $('.nearest-orderDetail-btn').magnificPopup();
-		  
-		  console.log($('.nearest-order-list-detail').attr('order-state'));
-		  
-		  var detailBtn = $('.nearest-order-list-detail');
-		  
-		  console.log(detailBtn);
-		  
-		  $.each(detailBtn, function(index, item){
-			  if($(item).attr('order-state') == '3') {
-				  $(item).parent().parent().css('border', '2px solid orange');
+	$.ajax({
+		  url: contextRoot + 'admin/orderList.do',
+		  dataType: 'json',
+		  method: 'post',
+		  success: function(result){
+			  
+			  var source   = $("#nearest-order-list").text();
+			  var template = Handlebars.compile(source);
+			  
+			  if (result.state != 'success') {
+			        alert('실행 중 오류 발생!');
+			        return;
 			  }
-		  });
-		  
-		  
-	  },
-	  error: function(result) {
-		  alert('안돼!!!!!!!!!!!');
-	  }
+			  
+			  for(var i in result.orderData) {
+				  result.orderData[i].orderRequestDate = result.orderDateList[i];
+			  }
+			  
+			  $('#nearest-orderList-append').append(template(result));
 
-});  
+			  $('.nearest-orderDetail-btn').magnificPopup();
+			  
+			  console.log($('.nearest-order-list-detail').attr('order-state'));
+			  
+			  var detailBtn = $('.nearest-order-list-detail');
+			  
+			  console.log(detailBtn);
+			  
+			  $('.nearest-order-complete').css('display', 'none');
+			  
+			  $.each(detailBtn, function(index, item){
+				  
+				  if($(item).attr('order-state') == '3') {
+					  $(item).parent().parent().css('display', 'block');
+					  };
+			  });
+			  
+			  
+		  },
+		  error: function(result) {
+			  alert('안돼!!!!!!!!!!!');
+		  }
+
+	});  
+
 
 $(function() {
 	$(document).on('click','#nearest-order-find', function() {
@@ -118,8 +123,9 @@ function callOrderListByCalendar(){
 			var detailBtn = $('.nearest-order-list-detail');
 
 			$.each(detailBtn, function(index, item) {
+				console.log(item);
 				if ($(item).attr('order-state') == '3') {
-					$(item).parent().parent().css('border', '2px solid orange');
+					$(item).parent().parent().css('border', '2px solid red');
 				}
 			});
         },

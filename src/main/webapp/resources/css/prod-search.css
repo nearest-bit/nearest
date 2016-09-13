@@ -38,11 +38,24 @@
   list-style: none;
   display:inline-block;
   padding:0 7px;
+  font-weight: 500;
+}
+
+.nearest-media li:nth-child(1) {
+  color:#e92222;
+}
+
+.nearest-media li:nth-child(2) {
+  color:#0e0d0d;
+}
+
+.nearest-media li:nth-child(3) {
+  color:#e68f25;
 }
 
 .nearest-prod-text {
   width:100%;
-  background:#49b2e9;
+  background:#333;
   opacity: 0.85;
   padding: 10px 5px;
   filter: alpha(opacity=85); /* IE8 and Lower */
