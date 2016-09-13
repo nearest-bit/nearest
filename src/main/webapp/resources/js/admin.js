@@ -40,7 +40,6 @@ $(function() {
 	});
 
 	$('#nearest-complete-btn').on('click', function() {
-		
 		$('.fh5co-person').css('border', '2px solid orange');
 		$(this).text('준비 완료');
 	});

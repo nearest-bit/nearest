@@ -40,10 +40,12 @@ $(function() {
 					
 					
 					discountPrice = $('<span>').addClass('nearest-purchase-pay');
-					$(discountPrice).text(parseInt('\t' + data.price - (data.price * discountRate / 100)) + '원');
+					$(discountPrice).text('\t\t'+parseInt( data.price - (data.price * discountRate / 100)) + '원');
 					$('#nearest-item-payment-price').val($(discountPrice).text());
 					
 					$(originPrice).after(discountPrice);
+					
+					$('#nearest-percent-discount').text(discountRate + '%');
 				} else {
 					$('#nearest-item-payment-price').val(data.price);
 				}
