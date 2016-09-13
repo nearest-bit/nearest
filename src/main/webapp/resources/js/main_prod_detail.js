@@ -46,8 +46,9 @@ $(function() {
 					$(originPrice).after(discountPrice);
 					
 					$('#nearest-percent-discount').text(discountRate + '%');
-				} else {
+				} else if(discountRate == 0){
 					$('#nearest-item-payment-price').val(data.price);
+					$('#nearest-percent-discount').text('0%');
 				}
 			},
 			error: function() {
