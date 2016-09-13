@@ -43,6 +43,7 @@ public class ProductController {
                                @RequestParam(defaultValue="") String subCat,
                                @RequestParam(defaultValue="") String searchLat,
                                @RequestParam(defaultValue="") String searchLng,
+                               @RequestParam(defaultValue="") String martName,
                                HttpSession session){
     System.out.println("searchTag : " + searchTag);
     System.out.println("searchContent : " + searchContent);
@@ -55,7 +56,12 @@ public class ProductController {
 
     if(option.equals("admin")) {
     	searchTag = "marts";
-    	searchContent = ((Mart)session.getAttribute("adminMart")).getName();
+    	
+    	if(martName.equals("")) {
+    		searchContent = ((Mart)session.getAttribute("adminMart")).getName();
+    	} else {
+    		searchContent = martName;
+    	}
     }
     
     result.put("currentPage", currentPage);
@@ -182,9 +188,19 @@ public class ProductController {
 	@ResponseBody
 	public String updateProduct(Product product,
 							 List<MultipartFile> imageFiles,
+							 @RequestParam(defaultValue="0") int no,
 							 HttpSession session) throws IOException {
 		HashMap<String,Object> result = new HashMap<>();
-		product.setMart((Mart)session.getAttribute("adminMart"));
+		Mart mart = null;
+		
+		if(no == 0) {
+			mart = (Mart)session.getAttribute("adminMart");
+		} else {
+			mart = new Mart();
+			mart.setNo(no);
+		}
+		
+		product.setMart(mart);
 		
 		System.out.println(imageFiles.get(0).getOriginalFilename());
 				
