@@ -146,7 +146,7 @@ public class OrderController {
     
     Map<String, Object> result = new HashMap<>();
         
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
     Set<String> table = new TreeSet<>();
     List<Object> compareDateDataOrder = new ArrayList<>();
     Set<Object> compareDateData = new TreeSet<>();
