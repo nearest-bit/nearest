@@ -25,7 +25,10 @@ public class ClientController {
 
 	@RequestMapping(path = "login", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String login(@RequestParam String id, @RequestParam String password, HttpSession session) {
+	public String login(@RequestParam String id, 
+						@RequestParam String password,
+						@RequestParam(defaultValue = "web") String option,
+						HttpSession session) {
 		HashMap<String, Object> result = new HashMap<>();
 		Client client = clientService.getClient(id);
 
@@ -34,7 +37,9 @@ public class ClientController {
 				result.put("status", "correct");
 				result.put("data", client);
 
-				session.setAttribute("loginId", client);
+				if(option.equals("web")){
+					session.setAttribute("loginId", client);
+				}
 			} else {
 				result.put("status", "incorrect");
 			}
@@ -122,10 +127,16 @@ public class ClientController {
 	
 	@RequestMapping(path = "checkAlert", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public String checkAlert(HttpSession session) {
+	public String checkAlert(@RequestParam(defaultValue = "0") int no, HttpSession session) {
 
 		Map<String, Object> result = new HashMap<>();
-		Map<String, Object> counts = clientService.checkAlert(((Client)session.getAttribute("loginId")).getNo());
+		Map<String, Object> counts = null;
+		
+		if(no == 0) {
+			counts = clientService.checkAlert(((Client)session.getAttribute("loginId")).getNo());
+		} else {
+			counts = clientService.checkAlert(no);
+		}
 
 		try {
 			result.put("alertData", counts);
@@ -139,39 +150,51 @@ public class ClientController {
 	}
 	@RequestMapping(path="myinfo", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String myinfo(HttpSession session){
+	public String myinfo(@RequestParam(defaultValue = "") String id, HttpSession session){
 	  
-	  Map<String, Object> result = new HashMap<>();
-	  SimpleDateFormat birth = new SimpleDateFormat("yyyy년 MM월 dd일");
-	  Client clientInfo;
-	  
-	  try {
-	    clientInfo = clientService.getClient(((Client)session.getAttribute("loginId")).getId());
-	    result.put("data", clientInfo);
-	    result.put("birth", birth.format(clientInfo.getBirth()));
-	    result.put("status", "success");
-    } catch (Exception e) {
-      result.put("status", "failure");
-      e.printStackTrace();
-      
-    }
+		Map<String, Object> result = new HashMap<>();
+		SimpleDateFormat birth = new SimpleDateFormat("yyyy년 MM월 dd일");
+		Client clientInfo;
+		  
+		try {
+		  if(id.equals("")) {
+			  clientInfo = clientService.getClient(((Client)session.getAttribute("loginId")).getId());  
+		  } else {
+			  clientInfo = clientService.getClient(id);
+		  }
+		  
+		  result.put("data", clientInfo);
+		  result.put("birth", birth.format(clientInfo.getBirth()));
+		  result.put("status", "success");
+	    } catch (Exception e) {
+	      result.put("status", "failure");
+	      e.printStackTrace();
+	      
+	    }
 	  
 	  return new Gson().toJson(result);
 	}
 	
 	@RequestMapping(path="update", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String update(HttpSession session, String password, String email){
+	public String update(@RequestParam(defaultValue = "0") int no, HttpSession session, String password, String email){
 	  
 	  
 	  Map<String, Object> params = new HashMap<>();
-	  params.put("clientNo", ((Client)session.getAttribute("loginId")).getNo());
+	  
+	  if(no == 0) {
+		  params.put("clientNo", ((Client)session.getAttribute("loginId")).getNo());
+	  } else {
+		  params.put("clientNo", no);
+	  }
+	  
 	  params.put("password", password);
 	  params.put("email", email);
+	  
 	  Map<String, Object> result = new HashMap<>();
 	  System.out.println("email : "+email);
-    System.out.println("password : "+password);
-    System.out.println("clientNo : "+((Client)session.getAttribute("loginId")).getNo());
+      System.out.println("password : "+password);
+      System.out.println("clientNo : "+((Client)session.getAttribute("loginId")).getNo());
 	  
 	  try {
       System.out.println(clientService.changeClientInfo(params));
@@ -186,12 +209,17 @@ public class ClientController {
 	
 	@RequestMapping(path="purchaseInfo", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String purchaseInfo(HttpSession session){
+	public String purchaseInfo(@RequestParam(defaultValue = "") String id, HttpSession session){
 	  Map<String, Object> result = new HashMap<>();
 	  
 	  try {
 	    result.put("status", "success");
-	    result.put("data", clientService.getClient(((Client)session.getAttribute("loginId")).getId()));
+	    
+	    if(id.equals("")) {
+	    	result.put("data", clientService.getClient(((Client)session.getAttribute("loginId")).getId()));
+	    } else {
+	    	result.put("data", id);
+	    }
 	    
     } catch (Exception e) {
       result.put("status", "failure");
