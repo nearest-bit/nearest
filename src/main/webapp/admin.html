@@ -586,15 +586,16 @@
                      <img id="nearest-detail-upload-image" 
                           src="./resources/images/shinramyun.png" 
                           alt="Image" 
-                          style="width: 300px; height: 280px;">
+                          style="width: 300px; height: 300px; border: 2px solid #286090">
                   </div>
                 </td>
-                <td>상품명</td>
+                <td style="width: 15%">상품명</td>
                 <td class="nearest-text-left" colspan="2">
                   <input type="text" 
                          class="form-control col-sm-8"
                          id="nearest-admin-item-title"
                          name="name"
+                         style="border-color: #52d3aa"
                          placeholder="상품명" />
                   <input id="nearest-admin-item-prod-no" name="no" type="hidden" value="" />
                 </td>
@@ -602,35 +603,35 @@
               <tr>
                 <td>판매가(원)</td>
                 <td class="nearest-text-left" colspan="2">
-                  <input name="price" type="text" class="form-control col-sm-8" id="nearest-admin-item-price" placeholder="판매 가격">
+                  <input name="price" type="text" class="form-control col-sm-8" id="nearest-admin-item-price"  style="border-color: #52d3aa" placeholder="판매 가격">
                 </td>
               </tr>
               <tr>
                 <td>분류</td>
                 <td>
-                  <select id="nearest-manage-maj-cate" name="majorCategory" class="form-control">
+                  <select id="nearest-manage-maj-cate" name="majorCategory"  style="border-color: #52d3aa" class="form-control">
 	                </select>
                 </td>
                 <td>
-                  <select id="nearest-manage-sub-cate" name="subCategory" class="form-control">
+                  <select id="nearest-manage-sub-cate" name="subCategory"  style="border-color: #52d3aa" class="form-control">
                   </select>
                 </td>
               </tr>
               <tr>
                 <td>재고량(개)</td>
                 <td class="nearest-text-left">
-                  <input name="entity" type="text" class="form-control col-sm-8" id="nearest-admin-item-entity" placeholder="재고">
+                  <input name="entity" type="text" class="form-control col-sm-8"  style="border-color: #52d3aa" id="nearest-admin-item-entity" placeholder="재고">
                 </td>
               </tr>
               <tr>
                 <td>할인률</td>
                 <td class="nearest-text-left">
-                  <input name="discountRate" class="form-control" type="number" min="0" max="100" value="0" step="5" />
+                  <input name="discountRate" class="form-control"  style="border-color: #52d3aa" type="number" min="0" max="100" value="0" step="5" />
                 </td>
               </tr>
               <tr>
                 <td colspan="2">
-                   <label class="nearest-file-upload"><input id="nearest-detail-file-upload" name="imageFiles" type="file" /> 상품 이미지 수정</label>
+                   <label class="nearest-file-upload btn-primary" style="padding: 10px 20px; border-radius: 6px" ><input id="nearest-detail-file-upload" name="imageFiles" type="file" /> 상품 이미지 수정</label>
                 </td>
                 <td colspan="2"></td>
               </tr>
