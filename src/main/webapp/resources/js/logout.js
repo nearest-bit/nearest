@@ -5,7 +5,7 @@ $(document).on('click','#logoutBtn',function() {
 		dataType: 'json',
 		success: function(result) {
 			if (result.status == 'success') {
-				$(location).attr('href', contextRoot);
+				$(location).attr('href', '/nearest/index.html');
 			}
 		},
 		error: function() {

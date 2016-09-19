@@ -1,2 +1,2 @@
-var contextRoot = "http://52.78.144.1:8080/nearest/";
-var nodeRoot = "http://52.78.144.1:1577/nearest/";
+var contextRoot = "http://www.nearest.org:8080/nearest/";
+var nodeRoot = "http://www.nearest.org:1577/nearest/";
