@@ -1,6 +1,5 @@
 package org.nearest.controller;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ import org.nearest.service.MartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -31,6 +31,7 @@ public class AdminController {
 	@ResponseBody
 	public String login(String id,
 						String password,
+						@RequestParam(defaultValue="web") String option,
 						HttpSession session) {
 		HashMap<String,Object> result = new HashMap<>(); 
 		Admin admin = adminService.getAdmin(id);
@@ -45,9 +46,10 @@ public class AdminController {
 				result.put("status", "correct");
 				result.put("data", admin);
 				
-				session.setAttribute("adminId", admin);
-				session.setAttribute("adminMart", mart);
-				
+				if(option.equals("web")) {
+					session.setAttribute("adminId", admin);
+					session.setAttribute("adminMart", mart);
+				}
 			} else {
 				result.put("status", "incorrect");
 			}
@@ -61,12 +63,17 @@ public class AdminController {
 	
 	@RequestMapping(path="orderList", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String orderList(HttpSession session){
+	public String orderList(@RequestParam(defaultValue="0") int no, HttpSession session){
 	  
 	  HashMap<String, Object> result = new HashMap<>();
+	  List<Order> list = null;
 	  
 	  try {
-	    List<Order> list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
+		  if(no == 0) {
+			  list = adminService.getOrder(((Mart)session.getAttribute("adminMart")).getNo());
+		  } else {
+			  list = adminService.getOrder(no);
+		  }
 	    
 	   for (Order order : list) {
 	      order.setOrderRequestDate(order.getOrderRequestDate().replace(".0", ""));
@@ -86,12 +93,19 @@ public class AdminController {
 	
 	@RequestMapping(path="orderListByCalendar", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String orderListByCalendar(HttpSession session,
+	public String orderListByCalendar(@RequestParam(defaultValue="0") int no, 
+									HttpSession session,
 									String orderStatus,
 									String startDate,
 									String endDate) {
 		int orderSt = 0;
-		int martNo = ((Mart)session.getAttribute("adminMart")).getNo();
+		int martNo = 0;
+		
+		if(no == 0) {
+			martNo = ((Mart)session.getAttribute("adminMart")).getNo();
+		} else {
+			martNo = no;
+		}
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 				

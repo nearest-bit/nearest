@@ -40,7 +40,8 @@ public class OrderController {
   
   @RequestMapping(path = "addOrder", method=RequestMethod.POST, produces = "applicetion/json;charset=utf-8")
   @ResponseBody 
-  public String addOrder(HttpSession session, @RequestParam(value="martNo") List<Integer> martNo,
+  public String addOrder(HttpSession session, @RequestParam(defaultValue="0") int no,
+		  									  @RequestParam(value="martNo") List<Integer> martNo,
                                               @RequestParam(value="prodNo") List<Integer> prodNo,
                                               @RequestParam(value="prodEnt") List<Integer> prodEnt,
                                               @RequestParam(value="prodName") List<String> prodName,
@@ -49,7 +50,14 @@ public class OrderController {
                                               String receiveDataTime
                                               ){
     
-    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	int clientNo = 0;
+		
+	if(no == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	} else {
+		clientNo = no;
+	}
+	
     //마트 중복 제거
     Set<Integer> removeDuplication = new HashSet<>(martNo);
     List<Integer> noDuplMartNo = new ArrayList<>(removeDuplication);
@@ -112,12 +120,17 @@ public class OrderController {
   
   @RequestMapping(path = "orderCount", produces="application/json;charset=utf-8")
   @ResponseBody
-  public String orderCount(HttpSession session){
+  public String orderCount(@RequestParam(defaultValue="0") int no, HttpSession session){
     
-    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	int clientNo = 0;
+		
+	if(no == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	} else {
+		clientNo = no;
+	}
+	
     Map<String, Object> result = new HashMap<>();
-    
-    
     
     try {
       if( orderService.getOrderCount(clientNo) != null ) {
@@ -134,10 +147,18 @@ public class OrderController {
   @RequestMapping(path = "orderList", produces = "application/json;charset=utf-8")
   @ResponseBody
   public String orderList(HttpSession session,
+		  				  @RequestParam(defaultValue="0") int no,
                           @RequestParam(defaultValue = "") String startDate, 
                           @RequestParam(defaultValue = "") String endDate){
     
-    int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	int clientNo = 0;
+		
+	if(no == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	} else {
+		clientNo = no;
+	}
+	  
     System.out.println("clientNo : "+clientNo);
     Map<String, Object> params = new HashMap<>();
     params.put("clientNo", clientNo);
@@ -182,16 +203,26 @@ public class OrderController {
   @RequestMapping(value = "myOrderList",produces="application/json;charset=utf-8")
   @ResponseBody
   public String myOrderList(@RequestParam(defaultValue = "0") int martNo,
-            		  					@RequestParam(defaultValue = "0") int clientNo,
-            		  					int orderNo, 
-            		  					HttpSession session){
+		  					@RequestParam(defaultValue = "0") int clientNo,
+		  					int orderNo,
+		  					@RequestParam(defaultValue = "") String adminOption,
+		  					@RequestParam(defaultValue = "0") int no,
+		  					HttpSession session){
 	String option = null;
-	  
-	if(martNo == 0) {
-		martNo = ((Mart)session.getAttribute("adminMart")).getNo();
-		option = "admin";
-	} else if(clientNo == 0) {
-		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	
+	if(no == 0) {
+		if(martNo == 0) {
+			martNo = ((Mart)session.getAttribute("adminMart")).getNo();
+			option = "admin";
+		} else if(clientNo == 0) {
+			clientNo = ((Client)session.getAttribute("loginId")).getNo();
+		}
+	} else {
+		if(adminOption.equals("admin")) {
+			martNo = no;
+		} else {
+			clientNo = no;
+		}
 	}
 	
 	System.out.println(martNo);

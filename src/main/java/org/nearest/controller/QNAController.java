@@ -16,6 +16,7 @@ import org.nearest.service.QNAService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -29,9 +30,17 @@ public class QNAController {
 	
 	@RequestMapping(path="QNAlistByAdmin", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String QNAlistByAdmin(HttpSession session) {
+	public String QNAlistByAdmin(@RequestParam(defaultValue="0") int no, HttpSession session) {
+			Admin admin = null;
 			
-			Admin admin = (Admin)session.getAttribute("adminId");
+			if(no == 0) {
+				admin = (Admin)session.getAttribute("adminId");
+			} else {
+				admin = new Admin();
+				admin.setNo(no);
+			}
+			
+			
 			HashMap<String,Object> result = new HashMap<String,Object>();
 			List<String> simpleDate = new ArrayList<>();
 			SimpleDateFormat createDate = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -65,11 +74,20 @@ public class QNAController {
 	@RequestMapping(path="QNAlistByCalendar", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String QNAlistByCalendar(HttpSession session,
+									@RequestParam(defaultValue="0") int no,
 									String qnaStatus,
 									String startDate,
 									String endDate) {
 		int qnaSt = 0;
-		Admin admin = (Admin)session.getAttribute("adminId");
+		Admin admin = null;
+		
+		if(no == 0) {
+			admin = (Admin)session.getAttribute("adminId");
+		} else {
+			admin = new Admin();
+			admin.setNo(no);
+		}
+		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		List<String> simpleDate = new ArrayList<>();
 		SimpleDateFormat createDate = new SimpleDateFormat("yyyy년 MM월 dd일");
@@ -136,10 +154,15 @@ public class QNAController {
 	
 	@RequestMapping(path="add", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String add(QNA qna, int martNo, HttpSession session) {
+	public String add(@RequestParam(defaultValue="0") int clientNo, QNA qna, int martNo, HttpSession session) {
 	  
+		if(clientNo == 0) {
+			qna.setClient(new Client(((Client)session.getAttribute("loginId")).getNo()));
+		} else {
+			qna.setClient(new Client(clientNo));
+		}
+		
 		qna.setMart(new Mart(martNo));
-		qna.setClient(new Client(((Client)session.getAttribute("loginId")).getNo()));
 		System.out.println(qna);
 		
 		HashMap<String,Object> result = new HashMap<>();
@@ -156,10 +179,19 @@ public class QNAController {
 	@RequestMapping(path="updateQNA", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String update(String replyContent,
+						@RequestParam(defaultValue="0") int no,
 						int clientNo,
 						int contentNo,
 						HttpSession session) {
-		Admin admin = (Admin)session.getAttribute("adminId");
+		Admin admin = null;
+		
+		if(no == 0) {
+			admin = (Admin)session.getAttribute("adminId");
+		} else {
+			admin = new Admin();
+			admin.setNo(no);
+		}
+		
 		QNA qna = (QNA)qnaService.getQNAForStatus(clientNo, contentNo);
 		HashMap<String,Object> result = new HashMap<>();
 		
@@ -211,13 +243,21 @@ public class QNAController {
 	
   @RequestMapping(path="QNAList", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String QNAlistClient(HttpSession session) {
+  public String QNAlistClient(@RequestParam(defaultValue="0") int no, HttpSession session) {
     
     
     HashMap<String,Object> result = new HashMap<String,Object>();
     
+    int clientNo = 0;
+    
+    if(no == 0) {
+    	clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    } else {
+    	clientNo = no;
+    }
+    
     try {
-      List<QNA> list = qnaService.getQNAList(((Client)session.getAttribute("loginId")).getNo());
+      List<QNA> list = qnaService.getQNAList(clientNo);
       result.put("status", "success");
       result.put("reqData", list);
         for (QNA qna : list) {
@@ -238,13 +278,21 @@ public class QNAController {
   
   @RequestMapping(path="orderMartList", produces="application/json;charset=UTF-8")
   @ResponseBody
-  public String orderMartList(HttpSession session) {
+  public String orderMartList(@RequestParam(defaultValue="0") int no, HttpSession session) {
     
     
     HashMap<String,Object> result = new HashMap<String,Object>();
     
+    int clientNo = 0;
+    
+    if(no == 0) {
+    	clientNo = ((Client)session.getAttribute("loginId")).getNo();
+    } else {
+    	clientNo = no;
+    }
+    
     try {
-      List<Mart> orderMartList = qnaService.getOrderMartList(((Client)session.getAttribute("loginId")).getNo());
+      List<Mart> orderMartList = qnaService.getOrderMartList(clientNo);
       result.put("status", "success");
       result.put("orderMartList", orderMartList);
         
