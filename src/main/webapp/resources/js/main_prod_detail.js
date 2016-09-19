@@ -80,7 +80,12 @@ $(function() {
 				productNo: cartProductNo				
 			},
 			success: function(result) {
-				mainAlert('cartSuccess');
+				if( result.status == 'duplication'){
+					mainAlert('cartDupl');
+				}else{
+					mainAlert('cartSuccess');
+				}
+				
 			},
 			error: function() {
 				

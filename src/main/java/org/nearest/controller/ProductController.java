@@ -211,7 +211,7 @@ public class ProductController {
 		File resultFile = null;
 		File prevFile = null;
 		
-		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "\\");
+		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "/");
 		
 		String currentTime = String.valueOf(System.currentTimeMillis()); 
 		
