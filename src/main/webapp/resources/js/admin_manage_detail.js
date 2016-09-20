@@ -142,7 +142,7 @@ $(function() {
 			$("#nearest-detail-upload-image > span").remove();
 			
 			var canvasIntodiv = $('<span class="imagewrapper"/>').append(data.files[0].preview);
-			$(canvasIntodiv.children()).attr('style', 'width: 400px; height: 280px;');
+			$(canvasIntodiv.children()).attr('style', 'width: 300px; height: 300px; border: 2px solid #286090');
 			canvasIntodiv.appendTo(node);
 		  });
 		

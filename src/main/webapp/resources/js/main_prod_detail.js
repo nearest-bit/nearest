@@ -65,7 +65,7 @@ $(function() {
 		if( loginId == false){
         	$.magnificPopup.close();
         	
-        	$(location).attr('href', './login.html');
+        	$(location).attr('href', '/nearest/login.html');
         	
         	return;
 	    }
@@ -102,7 +102,7 @@ $(function() {
 		if( loginId == false){
         	$.magnificPopup.close();
 
-        	$(location).attr('href', './login.html');
+        	$(location).attr('href', '/nearest/login.html');
         	
         	return;
 	    }

@@ -4,9 +4,9 @@ $(function() {
 		if(sessionLogin == true){
 			$.cookie('clientMenu', 'cart');
 		
-			$(location).attr('href', './client.html');
+			$(location).attr('href', '/nearest/client.html');
 		}else{
-			$(location).attr('href', './login.html');
+			$(location).attr('href', '/nearest/login.html');
 		}
 	});
 	
@@ -15,9 +15,9 @@ $(function() {
 		if(sessionLogin == true){
 			$.cookie('clientMenu', 'purchase');
 			
-			$(location).attr('href', './client.html');
+			$(location).attr('href', '/nearest/client.html');
 		}else{
-			$(location).attr('href', './login.html');
+			$(location).attr('href', '/nearest/login.html');
 		}
 	});
 	
@@ -26,9 +26,9 @@ $(function() {
 		if(sessionLogin == true){
 			$.cookie('clientMenu', 'request');
 			
-			$(location).attr('href', './client.html');
+			$(location).attr('href', '/nearest/client.html');
 		}else{
-			$(location).attr('href', './login.html');
+			$(location).attr('href', '/nearest/login.html');
 		}
 	});
 });

@@ -163,10 +163,11 @@ public class ProductController {
 					folder.mkdir();
 				}
 				
-				filePath = realPath + "\\" + currentTime + imageFile.getOriginalFilename();
+				filePath = realPath + "/" + currentTime + imageFile.getOriginalFilename();
 				resultFile = new File(filePath);
 						
 				product.setPhoto("./resources/images/product/" + currentTime + imageFile.getOriginalFilename());
+//				product.setPhoto(filePath);
 				
 				imageFile.transferTo(resultFile);
 				result.put("photo", product.getPhoto());
@@ -210,7 +211,7 @@ public class ProductController {
 		File resultFile = null;
 		File prevFile = null;
 		
-		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "\\");
+		String prevPath = realPath + (productService.getProduct(product.getNo()).getPhoto()).replace("./resources/images/product/", "/");
 		
 		String currentTime = String.valueOf(System.currentTimeMillis()); 
 		
@@ -225,14 +226,14 @@ public class ProductController {
 			if(imageFiles != null) {
 				imageFile = imageFiles.get(0);
 				
-				filePath = realPath + "\\" + currentTime + URLEncoder.encode(imageFile.getOriginalFilename(), "utf-8");
+				filePath = realPath + "/" + currentTime + imageFile.getOriginalFilename();
 				resultFile = new File(filePath);
 				prevFile = new File(prevPath);
 				
 				System.out.println("filePath : " + filePath);
 				System.out.println("prevPath : " + prevPath);
 						
-				product.setPhoto("./resources/images/product/" + currentTime + URLEncoder.encode(imageFile.getOriginalFilename(), "utf-8"));
+				product.setPhoto("./resources/images/product/" + currentTime + imageFile.getOriginalFilename());
 				
 				prevFile.delete();
 				imageFile.transferTo(resultFile);

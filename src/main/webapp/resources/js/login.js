@@ -50,7 +50,7 @@ function doLogin() {
 						$.cookie('saveId', $('#login-form-username').val());
 					}
 					
-					$(location).attr('href', './admin.html');
+					$(location).attr('href', '/nearest/admin.html');
 				}else{
 					clientLogin('loginFail');
 				}
@@ -79,7 +79,7 @@ function doLogin() {
 							$.cookie('saveId', $('#login-form-username').val());
 						}
 						
-						$(location).attr('href', contextRoot);
+						$(location).attr('href', '/nearest/index.html');
 					}else{
 						clientLogin('incorrectInfo');
 					}

@@ -26,7 +26,7 @@
   
   <insert id="updateProd" parameterType="product">
     UPDATE prods
-    SET prod_nm=#{name}, prod_pri=#{price}, prod_ent=#{entity}, prod_dis=#{discountRate}, mt_no=#{mart.no}, prod_maj_cat=#{majorCategory}, prod_sub_cat=#{subCategory}
+    SET prod_nm=#{name}, prod_pri=#{price}, prod_ent=#{entity}, prod_dis=#{discountRate}, prod_maj_cat=#{majorCategory}, prod_sub_cat=#{subCategory}
     <if test="photo != null">
     , prod_pic=#{photo}
     </if>

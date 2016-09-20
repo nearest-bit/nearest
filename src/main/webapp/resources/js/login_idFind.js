@@ -59,5 +59,5 @@ function doFindId() {
 }
 
 $(document).on('click', '.confirm', function() {
-	$(location).attr('href', contextRoot);
+	$(location).attr('href', '/nearest/index.html');
 });

@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 public class AjaxFilter implements Filter {
 
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {		
+	public void init(FilterConfig filterConfig) throws ServletException {	
+		System.out.println("Filter Initialize");
 	}
 
 	@Override
@@ -23,6 +24,8 @@ public class AjaxFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletResponse httpResponse = (HttpServletResponse)response;
 		httpResponse.addHeader("Access-Control-Allow-Origin", "*");
+		httpResponse.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		httpResponse.addHeader("Access-Control-Allow-Headers", "x-requested-with");
 		
 		chain.doFilter(request, response);
 	}

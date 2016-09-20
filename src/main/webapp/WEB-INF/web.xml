@@ -51,5 +51,14 @@
 	   <filter-name>characterEncodingFilter</filter-name>
 	   <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+   <filter-name>headerFilter</filter-name>
+   <filter-class>org.nearest.filter.AjaxFilter</filter-class>
+  </filter>
+  <filter-mapping>
+     <filter-name>headerFilter</filter-name>
+     <url-pattern>*.do</url-pattern>
+  </filter-mapping>
 
 </web-app>

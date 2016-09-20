@@ -1,5 +1,5 @@
 $('#nearest-logo').on('click', function() {
-  	location.href='index.html';
+  	location.href='/nearest/index.html';
 });
 
 $(function() {
