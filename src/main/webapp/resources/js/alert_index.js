@@ -136,6 +136,9 @@ function mainAlert(option) {
 		case 'cartSuccess':
 			sweetAlert('찜하셨습니다.', '', 'success');
 			break;
+		case 'cartDupl':
+			sweetAlert('이미 찜하신 상품입니다.', '', 'error');
+			break;
 		default:
 			break;
 	}

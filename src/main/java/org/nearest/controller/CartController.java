@@ -9,6 +9,7 @@ import org.nearest.domain.Cart;
 import org.nearest.domain.Client;
 import org.nearest.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,8 +40,12 @@ public class CartController {
 		try {
 			cartService.addCart(cart);
 			result.put("status", "success");
-		} catch(Exception e) {
+		} catch(DuplicateKeyException dupl){
+		  result.put("status", "duplication");
+		  System.out.println("찜목록 중복");
+		}catch(Exception e) {
 			result.put("status", "failure");
+			System.out.println("찜목록 추가");
 			e.printStackTrace();
 		}
 		
