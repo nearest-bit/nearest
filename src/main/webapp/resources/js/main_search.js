@@ -68,6 +68,7 @@ function productSearch(){
     	  console.log(result.productData);
     	  $('#nearest-menu-category-wrap').css('display', 'inline');
     	  $('#nearest-search-result').css('display','inline');
+    	  $('#nearest-search-keyword-result').css('display', '');
     	  $('#nearest-search-keyword-result').next('span').text('의 상품');
     	  $('#nearest-search-keyword-result').text('\''+result.searchContent+'\'');
     	  if(result.productData.length > 0){

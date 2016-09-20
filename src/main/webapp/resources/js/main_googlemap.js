@@ -381,21 +381,12 @@ $(function() {
 		      var discountPrice;
 		      var indexValue;
 		      
-		      /*for (var i in products) {					    	  
-		    	  if(products[i].discountRate > 0) {
-		    		  indexValue = parseInt(i)+parseInt((result.currentPage-1)*9);
-		    		  
-		    		  console.log(indexValue);
-		    		  
-		    		  console.log($(indexProducts[indexValue]).html());
-		    		  
-					  $(indexProducts[indexValue]).text(products[i].price);
-		    		  $(indexProducts[indexValue]).css('text-decoration', 'line-through');
-		    		  
-		    		  discountPrice = $('<span>').text(' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100)) + ' 원');
-		    		  $(indexProducts[indexValue]).after(discountPrice);					    		  
-		    	  }
-		      }*/
+		      $('#nearest-menu-category-wrap').css('display', 'inline');
+	    	  $('#nearest-search-result').css('display','inline');
+	    	  $('#nearest-search-keyword-result').css('display', '');
+	    	  $('#nearest-search-keyword-result').next('span').text('의 상품');
+	    	  $('#nearest-search-keyword-result').text('\''+result.searchContent+'\'');
+	    	  $('#nearest-search-content-result').css('display', 'none');
 		        
 		      total = JSON.stringify(result.total);
 		        
