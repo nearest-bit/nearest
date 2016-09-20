@@ -33,8 +33,8 @@ var IMP = window.IMP;
 			buyer_email : $('#form-email').val(),
 			buyer_name : $('#form-name').val(),
 			buyer_tel : $('#phone-number').val(),
-			buyer_addr : $('#form-addr').val(),
-			buyer_postcode : $('#form-postcode').val()
+			buyer_addr : '서울특별시',
+			buyer_postcode : '06325'
 		}, function(rsp) {
 			if (rsp.success) {
 				var msg = '결제가 완료되었습니다.';

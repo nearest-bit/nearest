@@ -92,42 +92,31 @@ public class QNAController {
 		List<String> simpleDate = new ArrayList<>();
 		SimpleDateFormat createDate = new SimpleDateFormat("yyyy년 MM월 dd일");
 		try {
-			if (qnaStatus.equals("답변미완료")) {
+			if(qnaStatus.equals("답변미완료")) {
 				qnaSt = 1;
-				List<QNA> list = qnaService.getQNAlistByCalendar(admin, startDate, endDate, qnaSt);
-				for (QNA qna : list) {
-				      if(qna.getStatus() == 1){
-				        qna.setReqStatus("답변하기");
-				      }else if(qna.getStatus() == 2){
-				        qna.setReqStatus("답변완료");
-				      }else{
-				        qna.setReqStatus("오류");
-				      }
-				      String birth = createDate.format(qna.getCreateDate());
-				      simpleDate.add(birth);
-				}
-				result.put("status", "success");
-				result.put("qnadata", list);
-				result.put("simpleDate", simpleDate);
-			} else if (qnaStatus.equals("답변완료")){
+			} else if(qnaStatus.equals("답변완료")) {
 				qnaSt = 2;
-				List<QNA> list = qnaService.getQNAlistByCalendar(admin, startDate, endDate, qnaSt);
-				for (QNA qna : list) {
-				      if(qna.getStatus() == 1){
-				        qna.setReqStatus("답변하기");
-				      }else if(qna.getStatus() == 2){
-				        qna.setReqStatus("답변완료");
-				      }else{
-				        qna.setReqStatus("오류");
-				      }
-				      String birth = createDate.format(qna.getCreateDate());
-				      simpleDate.add(birth);
-				}
-				
-				result.put("status", "success");
-				result.put("qnadata", list);
-				result.put("simpleDate", simpleDate);
+			} else if(qnaStatus.equals("고객확인")) {
+				qnaSt = 3;
 			}
+			
+			List<QNA> list = qnaService.getQNAlistByCalendar(admin, startDate, endDate, qnaSt);
+			for (QNA qna : list) {
+			      if(qna.getStatus() == 1){
+			        qna.setReqStatus("답변하기");
+			      }else if(qna.getStatus() == 2){
+			        qna.setReqStatus("답변완료");
+			      }else if(qna.getStatus() == 3){
+			        qna.setReqStatus("고객확인");
+			      }else{
+			        qna.setReqStatus("오류");
+			      }
+			      String birth = createDate.format(qna.getCreateDate());
+			      simpleDate.add(birth);
+			}
+			result.put("status", "success");
+			result.put("qnadata", list);
+			result.put("simpleDate", simpleDate);
 			
 		} catch (Exception e) {
 			result.put("status", "failure");

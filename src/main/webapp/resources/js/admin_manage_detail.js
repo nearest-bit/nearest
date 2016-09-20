@@ -69,6 +69,18 @@ $(function() {
 				$('#nearest-admin-item-prod-no').val(productNo);
 				$('#nearest-admin-item-entity').val(data.entity);
 				$('#nearest-admin-item-price').val(data.price);
+				$('#nearest-admin-item-discount-rate').val(data.discountRate);
+				
+				if($('#nearest-detail-upload-image > img').attr('src') == undefined) {
+					$('#nearest-detail-upload-image span').remove();
+					
+					$('<img>').attr('id', 'nearest-detail-upload-image')
+							  .attr('src', data.photo)
+							  .attr('alt', 'image')
+							  .attr('style', 'width: 300px; height: 300px; border: 2px solid #286090')
+							  .appendTo($('#nearest-detail-upload-image'));
+				}
+				
 				$('#nearest-detail-image-fileupload img').attr('src', data.photo);
 				
 				switch(data.majorCategory) {
@@ -152,8 +164,30 @@ $(function() {
 			$('#nearest-detail-file-upload').fileupload('send', {files: detailImageList});
 						
 			if(detailImageList.length == 0) {
-				adminAlert('needImage');
-				
+				$.ajax({
+					url: contextRoot + 'product/updateProductInfo.do',
+					data: {
+						name: $('#nearest-admin-item-title').val(),
+						no: $('#nearest-admin-item-prod-no').val(),
+						entity: $('#nearest-admin-item-entity').val(),
+						price: $('#nearest-admin-item-price').val(),
+						discountRate: $('#nearest-admin-item-discount-rate').val(),
+						majorCategory: $('#nearest-manage-maj-cate option:selected').val(),
+						subCategory: $('#nearest-manage-sub-cate option:selected').val()
+					},
+					method: 'post',
+					dataType: 'json',
+					success: function(result) {
+						if(result.status != 'success') {
+							console.log('실패');
+						}
+						adminAlert('registSuccess');
+					},
+					error: function() {
+						
+					}
+				});
+
 				return;
 			}
 			
@@ -168,5 +202,11 @@ $(function() {
 		event.preventDefault();
 
 		$.magnificPopup.close();
+	});
+	
+	$(document).on('change', 'input[name=discountRate]', function(event) {
+		var managePrice = $('#nearest-admin-item-price').val();
+		
+		$('.nearest-prod-manage-discount-price').text(managePrice - (managePrice * $(this).val() / 100));
 	});
 });
