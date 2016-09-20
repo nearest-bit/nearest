@@ -90,5 +90,22 @@
     WHERE prod_no=#{value}
     ORDER BY prod_nm asc
   </select>
+  
+  <select id="selectProdEnt" parameterType="list" resultType="int">
+    
+      select prod_ent 
+      from prods 
+      where prod_no IN(
+      <foreach collection="list" item="item" separator=",">
+       #{item.value}
+      </foreach>
+    )
+  </select>
+  
+  <update id="updateProdEnt" parameterType="product">
+    update prods 
+    set prod_ent = #{entity}
+    where PROD_NO = #{no}
+  </update>
 
 </mapper>

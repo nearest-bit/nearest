@@ -121,7 +121,7 @@ function clientPurchase(){
         		/*alert(result.orderDetail);*/
         		var realTotalPrice = 0;
         		var discountPrice = 0;
-        		
+        		console.log(result.orderInfo);
         		$('#receipt-client-name').text(result.orderInfo.client.name);
         		$('#receipt-mart-name').text(result.orderInfo.mart.name);
         		$('#receipt-mart-tel').text(result.orderInfo.mart.telNo);

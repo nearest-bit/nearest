@@ -409,7 +409,16 @@ input[type="file"] {
 	padding: 0.5em 1em;
 	transition: all 500ms ease-in-out;
 	border-bottom-left-radius: .6em;
-    border-bottom-right-radius: .6em;
+  border-bottom-right-radius: .6em;
+}
+
+#nearest-qnaAnswer{
+	background: #F0F4F7;
+	padding: 0.5em 1em;
+	border-radius: .6em;
+	width: 98.9%;
+  margin: auto;
+  margin-bottom: 20px;
 }
 
 .nearest-qnaFootertext {

@@ -1,6 +1,7 @@
 package org.nearest.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.nearest.domain.Product;
 
@@ -14,4 +15,6 @@ public interface ProductService {
   Product getProduct(int no);
   void addProduct(Product product);
   int updateProduct(Product product);
+  List<Integer> getProdEnt(List<Integer> prodNo);
+  void updateProductEnd(Product product);
 }

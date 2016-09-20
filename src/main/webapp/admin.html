@@ -169,7 +169,7 @@
              <div class="nearest-admin-list">
 	             <ul id="nearest-admin-top-menu" class="nearest-fl gnb nearest-menu-tab-bar">
 	               <li id="nearest-admin-orderList" class="nearest-fl nearest-li"><a data-toggle="tab" href="#order">주문내역</a></li>
-	               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a data-toggle="tab" href="#qna">문의사항</a></li>
+	               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a id="nearest-menu-qna" data-toggle="tab" href="#qna">문의사항</a></li>
 	               <li id="nearest-admin-insert-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#regist">상품등록</a></li>
 	               <li id="nearest-admin-manage-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#manage">상품관리</a></li>
 	             </ul>
@@ -190,7 +190,7 @@
 
 	<div id="nearest-admin-wrap">
 
-    <div class="tab-content">
+    <div id="nearest-tab-content" class="tab-content">
       <div id="order" class="tab-pane active in">
 
 				<!-- start of joomoonList -->
@@ -302,7 +302,7 @@
 						<div class="row">
                             <div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px; margin-bottom: 10px">
                                 <div style="width: 200px; margin: auto">
-                                <span class="glyphicon glyphicon-question-sign to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate text-center">Q & A</h2>
+                                <span class="glyphicon glyphicon-question-sign to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate text-center">문의사항</h2>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2 subtext" style="background: #505156; width: 100%; margin: 0; padding: 0">
@@ -391,11 +391,12 @@
 		                  <div class="small-8 column qnaContenttop-text" id="qna-title" style="height: 30px; line-height: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 30px">
                                 <p id="qnaId" style="float: left; text-align: center; color: white; font-size: 25px"></p>&nbsp;&nbsp;&nbsp;<p style="float: left; color: white; text-align: center">님이 남긴 문의</p>
                           </div>  
-                          <div class="nearest-qnaFooter" id="nearest-qnaStory">
-                          </div>    
+                          <div class="nearest-qnaFooter" id="nearest-qnaStory"></div>
+                           
 		              </div>
 		            </div>
 		            <div id="summernote"></div>
+		            <div id="nearest-qnaAnswer"></div>   
 		            <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
 		            <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>
 		      </div>
@@ -530,7 +531,7 @@
 						<div class="row">
 							<div class="col-md-12 section-heading text-center" style="margin-bottom: 0">
 							  <div style="width: 200px; margin: auto">
-							    <span class="glyphicon glyphicon-barcode to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span>
+							    <span class="glyphicon glyphicon-barcode to-animate" style="color:#83817b; float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span>
 								<h2 class="to-animate">상품관리</h2>
 		                      </div>
 		                      <div class="row">

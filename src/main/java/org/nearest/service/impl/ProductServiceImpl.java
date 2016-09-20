@@ -71,4 +71,15 @@ public class ProductServiceImpl implements ProductService {
     params.put("subCat", subCat);
     return productDao.selectMartCategoryList(params);
   }
+
+  @Override
+  public void updateProductEnd(Product product) {
+    productDao.updateProdEnt(product);
+    
+  }
+
+  @Override
+  public List<Integer> getProdEnt(List<Integer> prodNo) {
+    return productDao.selectProdEnt(prodNo);
+  }
 }

@@ -2,7 +2,7 @@ package org.nearest.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -185,7 +185,7 @@ public class ProductController {
 	}
 
   	
-  	@RequestMapping(path="updateProduct")
+  @RequestMapping(path="updateProduct")
 	@ResponseBody
 	public String updateProduct(Product product,
 							 List<MultipartFile> imageFiles,
@@ -252,4 +252,48 @@ public class ProductController {
 		
 		return new Gson().toJson(result);
 	}
+  
+  @RequestMapping(path = "decreaseProdEnt", produces = "application/json;charset=utf-8")
+  @ResponseBody
+  public String decreaseProdEnt(@RequestParam(value="prodNo") List<Integer> prodNo,
+                                @RequestParam(value="prodEnt") List<Integer> prodEnt){
+
+    System.out.println(prodNo+".."+prodEnt);
+    
+    List<Integer> beforeMinusEnt = productService.getProdEnt(prodNo);
+    List<Integer> afterMinusEnt = new ArrayList<>();
+    
+    System.out.println("decreaseProdEnt start......");
+    
+    
+    for(int i=0; i<prodEnt.size(); i++){
+      afterMinusEnt.add(beforeMinusEnt.get(i) - prodEnt.get(i));
+    }
+    
+    System.out.println(afterMinusEnt);
+    
+    List<Product> productList = new ArrayList<>();
+    
+    for(int i=0; i<prodNo.size(); i++){
+      Product product = new Product();
+      product.setEntity(afterMinusEnt.get(i));
+      product.setNo(prodNo.get(i));
+      productList.add(product);
+    }
+    
+    System.out.println(productList);
+    
+    Map<String, Object> result = new HashMap<>();
+    try {
+      for(int i=0; i<productList.size(); i++){
+        productService.updateProductEnd(productList.get(i));
+      }
+      result.put("prodEntUpdate", "success");
+    } catch (Exception e) {
+      e.printStackTrace();
+      result.put("prodEntUpdate", "failure");
+    }
+    return new Gson().toJson(result);
+  }
+  
 }

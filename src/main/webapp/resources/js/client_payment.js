@@ -92,6 +92,22 @@ var IMP = window.IMP;
 			          }
 			          cartAlert(5);
 			          $.ajax({
+							url : contextRoot + 'product/decreaseProdEnt.do',
+							datatype : 'json',
+							method : 'post',
+							data : {
+								prodNo : prodNo,
+								prodEnt : prodEnt
+							},
+			          		success : function(result){
+				        	  if(result.status != 'success'){
+				        		  console.log('decreaseProdEnt failure......');
+				        		  return;
+				        	  }
+				        	  console.log('decreaseProdEnt success......');
+			          		}
+						});
+			          $.ajax({
 			        	 url : contextRoot + 'cart/removeCartList.do',
 			        	 datatype : 'json',
 			        	 method : 'post'
@@ -103,6 +119,8 @@ var IMP = window.IMP;
 			          alert('주문 실패 error.....');
 			        }
 			      });
+				
+				
 			} else {
 				var msg = '결제에 실패하였습니다.';
 				msg += '에러내용 : ' + rsp.error_msg;

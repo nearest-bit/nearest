@@ -14,4 +14,6 @@ public interface ProductDao {
   Product selectProd(int no);
   void insertProd(Product product);
   int updateProd(Product product);
+  List<Integer> selectProdEnt(List<Integer> beforeProdNo);
+  void updateProdEnt(Product product);
 }
