@@ -30,7 +30,7 @@ public class QNAController {
 	
 	@RequestMapping(path="QNAlistByAdmin", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String QNAlistByAdmin(@RequestParam(defaultValue="0") int no, HttpSession session) {
+	public String QNAListByAdmin(@RequestParam(defaultValue="0") int no, HttpSession session) {
 			Admin admin = null;
 			
 			if(no == 0) {
@@ -258,6 +258,8 @@ public class QNAController {
     
     try {
       List<QNA> list = qnaService.getQNAList(clientNo);
+      
+      System.out.println(list);
       result.put("status", "success");
       result.put("reqData", list);
         for (QNA qna : list) {
@@ -268,6 +270,7 @@ public class QNAController {
           }else{
             qna.setReqStatus("확인");
           }
+         qna.setStringCreateDate(qna.getCreateDate().toString());
         }
       }catch (Exception e) {
         result.put("status", "failure");

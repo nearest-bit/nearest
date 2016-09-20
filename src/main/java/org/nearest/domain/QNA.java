@@ -19,6 +19,7 @@ public class QNA implements Serializable{
   protected Mart mart;
   protected Client client;
   protected String reqStatus;
+  protected String stringCreateDate;
   
   
   public String getTitle() {
@@ -82,11 +83,17 @@ public class QNA implements Serializable{
     this.client = client;
   }
 
+  public String getStringCreateDate() {
+    return stringCreateDate;
+  }
+  public void setStringCreateDate(String stringCreateDate) {
+    this.stringCreateDate = stringCreateDate;
+  }
   @Override
   public String toString() {
     return "QNA [no=" + no + ", createDate=" + createDate + ", title=" + title + ", content=" + content + ", status="
         + status + ", replyContent=" + replyContent + ", replyDate=" + replyDate + ", mart=" + mart + ", client="
-        + client + ", reqStatus=" + reqStatus + "]";
+        + client + ", reqStatus=" + reqStatus + ", stringCreateDate=" + stringCreateDate + "]";
   }
 
 }

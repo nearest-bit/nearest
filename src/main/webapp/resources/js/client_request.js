@@ -7,6 +7,7 @@ function clientRequest() {
 		
 		success : function(result){
 			$('#nearest-req > tbody > tr').remove();
+			console.log(result.reqData[0].createDate);
 			var source = $('#nearest-req-list').html();
 		    var templete = Handlebars.compile(source);
 		    for(var i=0; i<result.reqData.length; i++){
