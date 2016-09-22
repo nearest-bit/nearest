@@ -318,6 +318,7 @@
                                                     <select id="nearest-select" class="form-control" name="finishTag" style="margin-left: 10%">
                                                         <option selected="selected">답변미완료</option>
                                                         <option>답변완료</option>
+                                                        <option>고객확인</option>
                                                     </select>
                                                 </div>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -627,7 +628,10 @@
               <tr>
                 <td>할인률</td>
                 <td class="nearest-text-left">
-                  <input name="discountRate" class="form-control"  style="border-color: #52d3aa" type="number" min="0" max="100" value="0" step="5" />
+                  <input id="nearest-admin-item-discount-rate" name="discountRate" class="form-control"  style="border-color: #52d3aa" type="number" min="0" max="100" value="0" step="5" />
+                </td>
+                <td>
+                  <span class="nearest-prod-manage-discount-price" style="color: red;"></span>
                 </td>
               </tr>
               <tr>

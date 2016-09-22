@@ -55,9 +55,8 @@ public class Order implements Serializable {
 	}
 	
 	@Override
-  public String toString() {
-    return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", mart=" + mart
-        + ", client=" + client + "]";
-  }
-	
+	public String toString() {
+		return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", orderRequestDate="
+				+ orderRequestDate + ", mart=" + mart + ", client=" + client + "]";
+	}
 }

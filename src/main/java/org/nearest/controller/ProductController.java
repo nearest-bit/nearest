@@ -296,4 +296,26 @@ public class ProductController {
     return new Gson().toJson(result);
   }
   
+  
+  @RequestMapping(path="updateProductInfo")
+	@ResponseBody
+	public String updateProductInfo(Product product,
+							 HttpSession session) throws IOException {
+		HashMap<String,Object> result = new HashMap<>();
+		Mart mart = (Mart)session.getAttribute("adminMart");
+		
+		product.setMart(mart);
+	
+		try {			
+			productService.updateProduct(product);
+			
+			result.put("status", "success");
+		} catch(Exception e) {
+			e.printStackTrace();
+			result.put("status", "error");
+		}
+		
+		return new Gson().toJson(result);
+	}
+  
 }

@@ -1,5 +1,6 @@
 package org.nearest.controller;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,11 +123,16 @@ public class AdminController {
 			}
 			
 			List<Order> list = adminService.getOrderListByCalendar(martNo, startDate, endDate, orderSt);
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.S");
 		    List<Object> orderDateList = new ArrayList<>();
+		    SimpleDateFormat resultDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		    
+		    java.util.Date tempDate = null;
 		    
 		    for (Order order : list) {
-				orderDateList.add(simpleDateFormat.format(order.getOrderRequestDate()));
+		    	tempDate = simpleDateFormat.parse(order.getOrderRequestDate());
+		    	
+				orderDateList.add(resultDateFormat.format(tempDate));
 			}
 			
 			result.put("status", "success");

@@ -51,7 +51,7 @@
     WHERE m.mt_no = #{value} 
     AND m.mt_no = o.mt_no 
     AND o.clnt_no = c.clnt_no
-    ORDER BY o.order_re_dt asc
+    ORDER BY o.order_re_dt ASC, o.order_st ASC
   </select>
   
   <select id="selectOrderListByCalendar" resultMap="orderMap" parameterType="map">
@@ -64,7 +64,7 @@
       AND date_format(o.order_re_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
       </if>
       AND o.order_st = #{orderStatus}
-      ORDER BY o.order_no DESC
+      ORDER BY o.order_re_dt ASC, o.order_st ASC
   </select>
   
 </mapper>
