@@ -73,7 +73,7 @@ main {
 #flight-datepicker label {
   display: block;
   margin-bottom: 8px;
-  color: white;
+  color: black;
 }
 #flight-datepicker input {
   display: block;
@@ -87,7 +87,7 @@ main {
   color: #0e3e43;
   background-color: transparent;
   border: none;
-  border-bottom: 2px solid #ffffff;
+  border-bottom: 2px solid black;
   border-radius: 0;
   outline: none;
   -webkit-transition: border-color .2s ease-out;

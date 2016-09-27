@@ -1,0 +1,509 @@
+@CHARSET "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+.nearest-order-complete{
+	display: none;
+}
+
+p {margin:0 !important}
+
+.nearest-margin-bottom {
+	margin-bottom: 30px;	
+}
+
+.container {
+	width: 1024px;
+	margin: auto;
+}
+
+.nearest-order-complete {
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  position: absolute;
+  top:0;
+  left:0;
+  background: #555;
+  background: rgba(62, 62, 62, 0.8);
+  box-sizing: border-box;
+}
+
+.nearest-margin-bottom:hover {
+  border: 2px solid red;
+  box-sizing: border-box;
+}
+
+.nearest-order-complete-text {
+  padding:100px 0 50px 0 !important;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.fh5co-person {
+  padding: 30px !important;
+}
+
+.fh5co-position {
+	margin: 20px 0px;
+}
+
+#nearest-admin-wrap {
+	width: 1024px;
+	margin: 0px auto;
+}
+
+.nearest-admin-list {
+  width: 70%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nearest-order-list-text {
+	
+	font-size: 16px;
+	line-height: 1.5em;
+	color: #3457ee;
+}
+
+.nearest-order-list-number {
+	
+	font-size: 20px;
+	line-height: 1.5em;
+	color: #ed4e4e;
+}
+
+#order-search {
+	display: none;
+}
+
+#request-search {
+	display: none;
+}
+
+#nearest-admin-product-list {
+	padding:5% 30px;
+}
+
+.nearest-product-register {
+	width: 100%;
+}
+
+.nearest-registForm-height {
+	height: 50px;
+}
+
+.nearest-product-register > img {
+	width: 400px;
+	height: 280px;
+}
+
+#nearest-product-detail-form img {
+	width: 400px;
+  height: 280px;
+}
+
+.nearest-wrapp-position {
+	position: relative;
+	width: 100%;
+}
+
+.nearest-padding-top-1 {
+  	padding-top: 30px;
+}
+
+.nearest-padding-top-2 {
+    padding-top: 50px;
+}
+
+.form-horizontal .control-label {
+	text-align: center;
+}
+
+
+.nearest-popup-margin {
+	margin: 20px 30px 0 0 !important;
+}
+
+.nearest-popup-margin > h1 {
+	padding-left: 40px;
+}
+
+.form-btn {
+	text-align: right;
+}
+
+/* popup 3d effect start */
+.mfp-3d-unfold {
+  
+ 
+  .mfp-content {
+    perspective: 2000px; 
+  }
+  
+  /* start state */
+  .mfp-with-anim {
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    transform-style: preserve-3d;
+    transform: rotateY(-60deg);
+  }
+  
+  
+  &.mfp-bg {
+    opacity: 0;
+    transition: all 0.5s;
+  }
+  
+  /* animate in */
+  &.mfp-ready {
+    .mfp-with-anim {
+      opacity: 1;
+      transform: rotateY(0deg);
+    }
+    &.mfp-bg {
+      opacity: 0.8;
+    }
+  }
+  
+  /* animate out */
+  &.mfp-removing {
+    
+    .mfp-with-anim {
+      transform: rotateY(60deg);
+      opacity: 0;
+    }
+    &.mfp-bg {
+      opacity: 0;
+    }
+    
+  }
+  
+}
+/* popup 3d effect end */
+
+.page-header {
+	border-bottom: none !important;
+}
+
+.nearest-no-border {
+	margin-top: 20px;
+}
+
+.nearest-no-border td {
+	border: 0px !important;
+	text-align: center;
+}
+.nearest-text-left {
+	text-align: left !important;
+}
+
+.nearest-work-list-border {
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+}
+
+.nearest-upload-wrap {
+	width: 100%;
+}
+
+.nearest-upload-image > img {
+	width: 100%;
+}
+
+.nearest-upload-button {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.nearest-file-upload {
+	border: 1px solid #ccc;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+.nearest-middle-dialog {
+    background: white;
+    padding: 20px 30px;
+    text-align: left;
+    max-width: 850px;
+    min-height: 500px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+/* prod-manage */
+.nearest-prod-list {
+	height:300px;
+	min-width: 100%;
+	padding:0 10px;
+	position:relative;
+	margin-bottom: 30px;
+	display:inline-block;
+	cursor: pointer;
+}
+
+.nearest-media {
+	width:100%;
+  font-size:14px;
+  background: #f3f3f3;
+  color:#777;
+  padding:15px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1em;
+  margin: 0;
+}
+
+.nearest-media li {
+	list-style: none;
+	display:inline-block;
+  padding:0 7px;
+  font-weight: 500;
+}
+
+.nearest-media li:nth-child(1) {
+	color:#e92222;
+}
+
+.nearest-media li:nth-child(2) {
+  color:#0e0d0d;
+}
+
+.nearest-media li:nth-child(3) {
+  color:#e68f25;
+}
+
+.nearest-prod-text {
+	width:100%;
+  background: #333;
+  opacity: 0.85;
+  padding: 10px 5px;
+  filter: alpha(opacity=85); /* IE8 and Lower */
+  zoom: 1; /* set "zoom", "width" or "height" to trigger "hasLayout" in IE 7 and lower */
+  overflow:hidden;
+  position:absolute;
+  bottom:0;
+  text-align: center;
+  vertical-align: middle;
+  text-shadow: 1px 1px 2px rgba(51, 145, 135, 1);
+  border-bottom:1px dotted #339187;
+}
+
+.nearest-prod-text h3 {
+	margin: 0 !important;
+	color: #fff;
+	font-size: 16px;
+}
+
+.nearest-prod-image {
+	height: 250px;
+	overflow:hidden;
+  position:relative;
+  margin: 0 auto;
+  /* margin-top: 10px; */
+  /* margin-bottom: 10px; */
+}
+
+.nearest-prod-image img {
+	width:100%;
+  transition: all 1s ease;
+  height: 100%;
+  /* margin-top:-70px; */
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1.0);
+    opacity: 1.0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1.0;
+  }
+  to { 
+    transform: scale(1.0);
+    opacity: 1.0;
+  }
+}
+/* Pulse Animation for Google Chrome and Safari */
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale(1.0);
+    opacity: 1.0;
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+    opacity: 1.0;
+  }
+  to { 
+    -webkit-transform: scale(1.0);
+    opacity: 1.0;
+  }
+}
+
+
+<!-- QnA part -->
+
+.nearest-qnaText > p {
+  font-family: Open Sans;
+  font-weight: 200;
+  height: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nearest-qnaText {
+  overflow: hidden;
+  margin-bottom: 40px;
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  font-size: 15px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /*라인수*/
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: 1.2em;
+  height: 3.6em;
+}
+
+.qnaContent{
+	overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+.qnaContentcard {
+  margin: auto;
+  margin-bottom: 50px;
+  width: 13.9em;
+}
+
+.nearest-qnaContentcard{
+  margin: auto;
+  margin-bottom: 20px;
+  width: 37.4em;
+}
+
+.nearest-qnaContext {
+	background: #4d9cc9;
+/* 	padding: .75em 5em 0em 5em;*/    
+    border-top-left-radius: .6em;
+    border-top-right-radius: .6em;
+    border-bottom-left-radius: .6em;
+    border-bottom-right-radius: .6em;
+}
+
+.nearest-qnaFooter {
+	background: #F0F4F7;
+	padding: 0.5em 1em;
+	transition: all 500ms ease-in-out;
+	border-bottom-left-radius: .6em;
+  border-bottom-right-radius: .6em;
+}
+
+#nearest-qnaAnswer{
+	background: #F0F4F7;
+	padding: 0.5em 1em;
+	border-radius: .6em;
+	width: 98.9%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
+.nearest-qnaFootertext {
+    color: #4d9cc9;
+    font-family: Open Sans;
+    font-weight: 200;
+}
+
+.qnaContenttop {
+  background: #F0F4F7;
+  padding: .75em 2em 0em 2em;
+  border-top-left-radius: .6em;
+  border-top-right-radius: .6em;
+  
+}
+  
+.qnaContenttop:after {
+    content:'';
+    position: relative;
+    @include triangle(2em, #F0F4F7, down);
+    top: 1em;
+    left: 1em;
+    z-index: 5;
+}
+  
+.qnaContenttop-text {
+    margin-top: .5em;
+    font-family: Open Sans;
+    font-weight: 200;
+    
+}
+  
+.qnaContenttop-text > h3 {
+      font-family: Open Sans;
+      font-weight: 200;
+}
+  
+  
+.qnaContenttoggle {
+    color: #4d9cc9;
+    position: relative;
+    top: -.5em;
+}
+
+.qnaContentfinal {
+  background: #4d9cc9;
+  padding: 0.5em 5.7em;
+  border-bottom-left-radius: .6em;
+  border-bottom-right-radius: .6em;
+  transition: all 500ms ease-in-out;
+  
+}
+  
+.qnaContentfinal:hover, .qnaContentfinal:focus {
+    background: #3986ad;
+}
+  
+.qnaContenttext {
+    color: #fff;
+    font-family: Open Sans;
+    font-weight: 200;
+}
+
+.nearest-admin-content{
+	    background: white;
+    box-shadow: 3px 5px 15px #888888;
+    border-radius: 5px;
+    padding: 30px !important;
+	
+}
+
+.nearest-admin-register{
+        background: white;
+    box-shadow: 3px 5px 15px #888888;
+    border-radius: 5px;
+}
+
+#nearest-orderList-append{
+	width: 100%;
+	overflow: hidden;
+	padding: 0 30px;
+}
+
+#nearest-qnaContent{
+	overflow: hidden;
+	padding: 0 30px;
+}
+

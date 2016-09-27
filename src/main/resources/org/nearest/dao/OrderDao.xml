@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.nearest.dao.OrderDao">
+  <resultMap type="order" id="orderMap">
+    <id     column="order_no"       property="no" />
+    <result column="order_dt"       property="orderDate" />
+    <result column="order_st"      property="orderState" />
+    <association property="mart" javaType="mart">
+      <result column="mt_no" property="no" javaType="INTEGER"/>
+      <result column="mt_nm" property="name" javaType="string"/>
+      <result column="mt_addr" property="addr"/>
+      <result column="mt_addt" property="addrDetail"/>
+      <result column="mt_tel" property="telNo"/>
+    </association>
+    <association property="client" javaType="client">
+      <result column="clnt_no" property="no" javaType="INTEGER"/>
+      <result column="clnt_nm" property="name" javaType="string"/>
+      <result column="clnt_pn" property="phone" javaType="string"/>
+    </association>
+  </resultMap>
+  
+  <resultMap type="product" id="productMap">
+    <id column="prod_no" property="no" javaType="INTEGER"/>
+    <result column="prod_nm" property="name" javaType="string"/>
+    <result column="prod_pri" property="price" javaType="INTEGER"/>
+  </resultMap>
+  
+  <insert id="insertOrder" parameterType="map">
+    insert into 
+    orders (order_dt, order_st, mt_no, clnt_no, order_re_dt) 
+    values 
+      <foreach collection="noDuplMartNo" item="item" separator=",">
+         ( now(), 1, #{item}, #{clientNo}, date_format(#{receiveDataTime},'%Y-%m-%dT%H:%i'))  
+      </foreach>
+    <selectKey resultType="int" keyProperty="orderNo" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
+  </insert>
+  
+  <select id="selectOrderCount" resultType="java.util.HashMap" parameterType="int">
+	  select distinct
+			(select count(DISTINCT(order_dt)) from orders where ORDER_ST = 1 and clnt_no = #{value}) as paid,
+			(select count(DISTINCT(order_dt)) from orders where ORDER_ST = 2 and clnt_no = #{value}) as preparing,
+			(select count(DISTINCT(order_dt)) from orders where ORDER_ST = 3 and clnt_no = #{value}) as complete
+		from orders
+  </select>
+  
+  <select id="selectOrderList" resultType="java.util.HashMap" parameterType="map">
+    select o.order_no orderNo, o.order_st orderState, po.order_dis discountRate, m.mt_no martNo, m.mt_nm martName, o.order_dt orderDate, p.prod_nm productName, floor(sum(p.prod_pri-(p.prod_pri * po.order_dis / 100))) totalPrice, count(p.prod_no) totalCount, o.order_st orderState
+    from clnts c, orders o, prod_orders po, prods p, marts m
+    where c.clnt_no = o.clnt_no 
+    and o.order_no = po.order_no
+    and po.prod_no = p.prod_no
+    and p.mt_no = m.mt_no
+    and c.clnt_no = #{clientNo}
+    <if test="startDate != '' and endDate != ''">
+    and date_format(o.order_dt, '%y/%m/%d') between date(#{startDate}) and date(#{endDate})
+    </if>
+    group by o.order_no
+    order by o.order_dt desc
+  </select>
+  
+  <select id="selectOrderInfoOne" resultMap="orderMap" parameterType="map">
+    select c.clnt_nm ,m.mt_nm, m.mt_addr, m.mt_addt, m.mt_tel, o.order_dt from marts m, orders o, clnts c
+    where m.mt_no = #{martNo}
+    and o.mt_no = m.mt_no
+    and o.order_no = #{orderNo}
+    and c.clnt_no = #{clientNo}
+    order by o.order_dt
+  </select>  
+  
+  <select id="selectOrderDetailList" resultType="java.util.HashMap" parameterType="map">
+    SELECT o.order_no orderNo, po.order_nm prodName, po.order_dis discountRate, po.order_ent orderEnt, po.order_pri price 
+    from prods p, orders o, clnts c, prod_orders po, marts m
+    where c.clnt_no = #{clientNo}
+    and p.prod_no = po.prod_no
+    and po.order_no = o.order_no
+    and m.mt_no = o.mt_no
+    and m.mt_no = #{martNo}
+    and o.order_no = #{orderNo}
+  </select>
+
+  
+  
+  <select id="selectOrderInfoOneByAdmin" resultMap="orderMap" parameterType="map">
+    SELECT c.clnt_nm, c.clnt_pn, m.mt_nm, o.order_dt, o.order_st
+    FROM marts m, orders o, clnts c
+    WHERE m.mt_no = #{martNo}
+    and o.mt_no = m.mt_no
+    and o.order_no = #{orderNo}
+    and c.clnt_no = #{clientNo}
+    ORDER BY o.order_dt
+  </select>  
+  
+  <select id="selectOrderDetailListByAdmin" resultType="java.util.HashMap" parameterType="map">
+    SELECT o.order_no orderNo, po.order_nm prodName, po.order_dis discountRate, po.order_ent orderEnt, po.order_pri price  
+    FROM prods p, orders o, clnts c, prod_orders po, marts m
+    WHERE c.clnt_no = #{clientNo}
+    and p.prod_no = po.prod_no
+    and po.order_no = o.order_no
+    and m.mt_no = o.mt_no
+    and m.mt_no = #{martNo}
+    and o.order_no = #{orderNo}
+  </select>
+
+  <update id="updateOrderState" parameterType="map">
+    UPDATE orders
+    SET order_st=#{orderState}
+    WHERE order_no=#{orderNo}
+  </update>
+</mapper>

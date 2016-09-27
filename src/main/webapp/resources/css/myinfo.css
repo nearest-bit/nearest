@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+@media (min-width: 750px) {
+  #nearest-myinfo-div{
+    width: 800px;
+    border-width: 1px;
+    border-radius: 15px; 
+    margin: auto;
+    margin-top: 9%;
+    margin-bottom: 9%;
+    
+  }
+  
+}
+
+#nearest-myinfo-div td {
+	min-width : 242px;
+  vertical-align: middle !important;
+  font-size: 15px;
+}
+
+td:first-child{/* 
+background-color: #f9f9f9;
+border-top: 0px solid #ddd; */
+}
+
+strong{
+  font-size: 16px;
+}
+
+.userinfoBtn{
+  text-align: left;
+}
+
+#nearest-myinfo-div{
+	
+	padding: 0 20px 20px 20px;
+	background-color: white;
+}

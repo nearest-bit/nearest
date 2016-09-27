@@ -17,12 +17,20 @@ public class Mart implements Serializable {
 	protected String longitude;
 	protected Admin admin;
 	
+	//Constructor
+	public Mart() {
+  }
+	public Mart(int no) {
+    super();
+    this.no = no;
+  }
 	
 	//getter, setter
 	public int getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	
+  public void setNo(int no) {
 		this.no = no;
 	}
 	public String getName() {

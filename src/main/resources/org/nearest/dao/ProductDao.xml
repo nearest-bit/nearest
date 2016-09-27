@@ -11,21 +11,44 @@
     <result column="prod_ent"      property="entity" />
     <result column="prod_dis"      property="discountRate" />
     <result column="prod_pic"      property="photo" />
+    <result column="prod_maj_cat"      property="majorCategory" />
+    <result column="prod_sub_cat"      property="subCategory" />
     <association property="mart" javaType="mart">
       <result property="no" column="mt_no" javaType="INTEGER"/>
     </association>
   </resultMap>
   
-  <insert id="insertProduct" parameterType="product">
-    
-    inser
-  
+  <insert id="insertProd" parameterType="product">
+    INSERT
+    INTO prods(prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no, prod_maj_cat, prod_sub_cat)
+    VALUES (#{name}, #{price}, #{entity}, #{discountRate}, #{photo}, #{mart.no}, #{majorCategory}, #{subCategory});  
   </insert>
   
-  <select id="selectProdList" resultMap="productMap" parameterType="map">
+  <insert id="updateProd" parameterType="product">
+    UPDATE prods
+    SET prod_nm=#{name}, prod_pri=#{price}, prod_ent=#{entity}, prod_dis=#{discountRate}, prod_maj_cat=#{majorCategory}, prod_sub_cat=#{subCategory}
+    <if test="photo != null">
+    , prod_pic=#{photo}
+    </if>
+    WHERE prod_no=#{no}
+  </insert>
+  
+  <!-- <select id="selectProdList" resultMap="productMap" parameterType="map">
     SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
     FROM prods
     WHERE prod_nm LIKE '%${prodName}%'
+    ORDER BY prod_nm asc
+    limit #{startIndex}, #{len} 
+  </select> -->
+  
+  <select id="selectProdList" resultMap="productMap" parameterType="map">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, m.mt_no
+    FROM prods p, marts m
+    WHERE prod_nm LIKE '%${prodName}%'
+    AND p.mt_no = m.mt_no
+    <if test="searchLng != '' and searchLat != ''">
+    AND SQRT(POW(mt_lng - #{searchLng}, 2) + POW(mt_lat - #{searchLat}, 2)) &lt; (0.15 / 111.2 ) and mt_lng != #{searchLng} and mt_lat != #{searchLat}
+    </if>
     ORDER BY prod_nm asc
     limit #{startIndex}, #{len} 
   </select>
@@ -44,6 +67,17 @@
     limit #{startIndex}, #{len}
   </select>
   
+  <select id="selectMartCategoryList" resultMap="productMap" parameterType="map">
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, m.mt_no
+    FROM prods p, marts m
+    WHERE  p.mt_no = m.mt_no 
+    AND p.mt_no = #{martNo}
+    AND p.prod_maj_cat = #{majorCat}
+    AND p.prod_sub_cat = #{subCat}
+    order by prod_nm asc
+    limit #{startIndex}, #{len}
+  </select>
+  
   <select id="selectProdTotalByMart" resultType="int" parameterType="string">
     SELECT COUNT(prod_no)
     FROM prods p, marts m
@@ -51,10 +85,27 @@
   </select>
   
   <select id="selectProd" resultMap="productMap" parameterType="int">
-    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no
+    SELECT prod_no, prod_nm, prod_pri, prod_ent, prod_dis, prod_pic, mt_no, prod_maj_cat, prod_sub_cat
     FROM prods
     WHERE prod_no=#{value}
     ORDER BY prod_nm asc
   </select>
+  
+  <select id="selectProdEnt" parameterType="list" resultType="int">
+    
+      select prod_ent 
+      from prods 
+      where prod_no IN(
+      <foreach collection="list" item="item" separator=",">
+       #{item.value}
+      </foreach>
+    )
+  </select>
+  
+  <update id="updateProdEnt" parameterType="product">
+    update prods 
+    set prod_ent = #{entity}
+    where PROD_NO = #{no}
+  </update>
 
 </mapper>

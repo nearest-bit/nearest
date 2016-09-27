@@ -10,4 +10,5 @@ public interface MartDao {
 	List<Mart> selectMartList();
 	
 	Mart selectMart(int no);
+	Mart selectMartByAdmin(int adminNo);
 }

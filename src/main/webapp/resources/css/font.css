@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+@font-face{
+	font-family:nanum_b_off; 
+	src:url('http://www.nearest.org:8080/nearest/resources/fonts/nanum/NanumGothic-Bold.woff')
+}
+
+@font-face{
+	font-family:nanum_b_ot; 
+	src:local(※), url('http://www.nearest.org:8080/nearest/resources/fonts/nanum/NanumGothic-Bold.eot') format(‘eot’)
+}

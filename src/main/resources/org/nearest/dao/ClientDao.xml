@@ -25,4 +25,33 @@
     FROM clnts
     WHERE clnt_id=#{value}
   </select>
+  
+  <select id="selectOneByInfo" resultMap="clientMap" parameterType="map">
+    SELECT clnt_no, clnt_nm, clnt_pn, clnt_eml, clnt_id
+    FROM clnts
+    WHERE clnt_nm=#{name}
+    AND clnt_pn=#{phoneNumber}
+    AND clnt_eml=#{email}
+  </select>
+  
+  <select id="selectAlert" resultType="java.util.HashMap" parameterType="int">
+    SELECT cr.cnt cnt_req, co.cnt cnt_order
+    FROM (SELECT COUNT(r.req_st) cnt
+          FROM clnts c, reqs r
+          WHERE c.clnt_no=r.clnt_no
+          AND r.req_st=2
+          AND c.clnt_no=#{clientNo}) cr, (SELECT COUNT(o.order_st) cnt
+																		            FROM clnts c, orders o
+																		            WHERE c.clnt_no=o.clnt_no
+																		            AND o.order_st=3
+																		            AND c.clnt_no=#{clientNo}) co
+  </select>
+  
+  <update id="updateClient" parameterType="map">
+    update clnts 
+    set clnt_pw = #{password} , clnt_eml = #{email}
+    where clnt_no = #{clientNo}
+  </update>
+  
+
 </mapper>

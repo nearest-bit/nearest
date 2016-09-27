@@ -3,6 +3,9 @@ var myLocation = {
   lng : 127.029334
 };
 
+//현재 페이지
+var currentPage = 1;
+
 var markerLocation = new Array();
 
 var nearLocation;
@@ -14,6 +17,21 @@ var autocomplete;
 
 var infowindows = new Array();
 
+var indexOption = "index";
+
+var searchMartName = '';
+
+var majorCat = '';
+
+var subCat = '';
+
+var cityCircle = '';
+
+var searchLat = '';
+var searchLng = '';
+
+var martNo = '';
+
 function initMap() {
 
   var mapOptions = {
@@ -24,6 +42,7 @@ function initMap() {
   }
 
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  
   google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
   places = new google.maps.places.PlacesService(map);
   autocomplete = new google.maps.places.Autocomplete( document.getElementById('nearest-map-autocomplete') );
@@ -87,16 +106,17 @@ function initMap() {
 			
 			for ( var i in markerLocation) {
 				
-			  var contentString = '<div>';
-			  contentString += '    <div class="fh5co-person text-center nearest-map-infowindow">';
-			  contentString += '      <img src="./resources/images/person1.jpg" alt="Image" style="width:70%; height:30%;">';
-			  contentString += '      <h3>'+ martList[i].name +'</h3>';
+			  var contentString = '<div style="min-width: 200px;">';
+			  contentString += '    <div class="text-center nearest-map-infowindow" style="text-align: left;">';
+			  contentString += '      <h4 id="map-martName" style="margin-bottom: 0;">'+ martList[i].name +'</h4>';
+			  contentString += '      <hr style="border-color: red; margin: 5px 0 5px 0;" />';
 			  contentString += '      <span class="fh5co-position">'+ martList[i].telNo +'</span>';
-			  contentString += '      <p>'+ martList[i].addr +'</p>';
+			  contentString += '      <p style="margin: 10px 0 0 0;">'+ martList[i].addr +'</p>';
 			  contentString += '      <p>'+ martList[i].addrDetail +'</p>';
-			  contentString += '	  <button type="button" class="infowindow-btn" value="'+ martList[i].name +'">마트 물품 보기</button>';
+			  contentString += '	  <a class="infowindow-btn" href="#" style="color: blue;" data-martNo="'+martList[i].no+'" data-martname="'+martList[i].name+'">마트 물품 보기</a>';
 			  contentString += '    </div>';
 			  contentString += '   </div>';
+			  
 				  
 			  var marker = new google.maps.Marker({
 			    position : markerLocation[i],
@@ -133,6 +153,7 @@ function initMap() {
 			}
 						
 			var martName = markers[minIndex].getTitle();
+			searchMartName = martName;
 			
 			$('#nearest-product-list').children().remove();
 			$('#nearest-pageno').children().remove();
@@ -155,9 +176,15 @@ function initMap() {
 			        alert('Controller 오류');
 			        return;
 			      }
-			        
+
+				  var products = result.productData;
+			      
+			      for(var i in products) {
+			    	  products[i].price = ' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100));
+			      }
+				  
 			      $('#nearest-product-list').append(prodListTemplete(result));
-			        
+			     
 			      total = JSON.stringify(result.total);
 			        
 			      if ( total % 9 != 0){
@@ -169,27 +196,21 @@ function initMap() {
 			      if ( totalPage >= 5) {
 			    	  pageUnit = 5; 
 			    	  nextPage = pageUnit + 1;
-			    	  
-			    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
+			    
 			      }else if( totalPage == 0 ){
 			    	  pageUnit = 0;
-			    	  $('span[data-next-page=""]').attr('data-next-page', '');
 			      }else{
 			    	  pageUnit = totalPage;
 			      }
-			        
-			      if (pageUnit >= 1){
-			      	for(var i=1; i<=pageUnit; i++){
-			       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-			       	}
-			      }
 			      
-			      $('.fh5co-project-item > img').magnificPopup();
+			      $('.fh5co-project-item').magnificPopup();
 			  },
 			  error: function() {
 				  alert('ajax 접속 실패');
 			  }
 			});
+			
+			
 		}
 	  },
 	  error: function() {
@@ -262,6 +283,24 @@ function showSelectedPlace() {
 	var place = autocomplete.getPlace();
 	map.panTo(place.geometry.location);
 	
+	searchLat = place.geometry.location.lat();
+	searchLng = place.geometry.location.lng();
+	
+	if(cityCircle != ''){
+		cityCircle.setMap(null);
+	}
+	
+	cityCircle = new google.maps.Circle({
+	      strokeColor: '#FF0000',
+	      strokeOpacity: 0.8,
+	      strokeWeight: 2,
+	      fillColor: '#FF0000',
+	      fillOpacity: 0.35,
+	      map: map,
+	      center: {lat : searchLat, lng : searchLng},
+	      radius: 150
+	    });
+	
 	/*var iw;
 	
 	markers[0] = new google.maps.Marker({
@@ -298,62 +337,35 @@ function setMarkerInfoWindow (marker, index, content) {
 		
 		infowindow.open(map, marker);
 	});
-	
-	google.maps.event.addListener(infowindow, 'domready', function() {
-
-		   // Reference to the DIV which receives the contents of the infowindow using jQuery
-		   var iwOuter = $('.gm-style-iw');
-
-		   /* The DIV we want to change is above the .gm-style-iw DIV.
-		    * So, we use jQuery and create a iwBackground variable,
-		    * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
-		    */
-		   var iwBackground = iwOuter.prev();
-
-		   // Remove the background shadow DIV
-		   iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-
-		   // Remove the white background DIV
-		   iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-
-		   var iwCloseBtn = iwOuter.next();
-
-	    		// Apply the desired effect to the close button
-	    		iwCloseBtn.css({
-	    		  opacity: '1', // by default the close button has an opacity of 0.7
-	    		  right: '15%', 
-	    		  top: '2%', // button repositioning
-	    		  border: '7px solid #48b5e9', // increasing button border and new color
-	    		  'border-radius': '4px', // circular effect
-	    		  'box-shadow': '0 0 5px #3990B9' // 3D effect to highlight the button
-	    		  });
-	
-	    		// The API automatically applies 0.7 opacity to the button after the mouseout event.
-	    		// This function reverses this event to the desired value.
-	    		iwCloseBtn.mouseout(function(){
-	    		  $(this).css({opacity: '1'});
-	    		});
-		});
 }
 
 $(function() {
-	$(document).on('click', '.infowindow-btn', function() {
-		var martName = $(this).val();
+	$(document).on('click', '.infowindow-btn', function(event) {
+		event.preventDefault();
+		currentPage = 1;
+		majorCat = '';
+		subCat = '';
+		
+		var martName = $(this).attr('data-martname');
+		searchMartName = martName;
 		
 		$('#nearest-product-list').children().remove();
 		$('#nearest-pageno').children().remove();
 		$('select[name="searchTag"] option:last-child').attr('selected', 'selected');
-		$('input[name="searchContent"]').val(martName);
+		$('#nearest-search').val(martName);
+		$('#nearest-menu-category-wrap').css('display', 'inline');
+		martNo = $(this).attr('data-martNo');
 		
 		searchTag = $('select[name=searchTag]').val();
-	    searchContent = $('input[name=searchContent]').val();
+	    searchContent = $('#nearest-search').val();
 		
 		$.ajax({
 		  url: contextRoot + 'product/list.do',
 		  dataType: 'json',
 		  data: {
 			searchTag: 'marts',
-			searchContent: martName
+			searchContent: martName,
+			currentPage: currentPage
 		  },
 		  method: 'post',
 		  success: function(result) {
@@ -363,6 +375,18 @@ $(function() {
 		      }
 		        
 		      $('#nearest-product-list').append(prodListTemplete(result));
+		      
+		      var products = result.productData;
+		      var indexProducts = $('.nearest-product-list-price');
+		      var discountPrice;
+		      var indexValue;
+		      
+		      $('#nearest-menu-category-wrap').css('display', 'inline');
+	    	  $('#nearest-search-result').css('display','inline');
+	    	  $('#nearest-search-keyword-result').css('display', '');
+	    	  $('#nearest-search-keyword-result').next('span').text('의 상품');
+	    	  $('#nearest-search-keyword-result').text('\''+result.searchContent+'\'');
+	    	  $('#nearest-search-content-result').css('display', 'none');
 		        
 		      total = JSON.stringify(result.total);
 		        
@@ -389,8 +413,8 @@ $(function() {
 		       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
 		       	}
 		      }
-		        
-		      alert(pageUnit);
+		      
+		      $('.fh5co-project-item').magnificPopup();
 		  },
 		  error: function() {
 			  alert('ajax 접속 실패');

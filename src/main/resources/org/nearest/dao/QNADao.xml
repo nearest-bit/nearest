@@ -6,26 +6,96 @@
     <resultMap type="qna" id="qnaMap">
         <id     column="req_no"     property="no"/>
         <result column="req_dt"     property="createDate"/>
+        <result column="req_title"     property="title"/>
         <result column="req_cnt"    property="content"/>
         <result column="req_st"     property="status"/>
         <result column="req_rcnt"   property="replyContent"/>
         <result column="req_rdt"    property="replyDate"/>
         <association property="mart" javaType="mart">
             <id column="mt_no" property="no" javaType="INTEGER" />
+            <result column="mt_nm" property="name" javaType="string"/>
         </association>
         <association property="client" javaType="client">
             <id column="clnt_no" property="no" javaType="INTEGER" />
+            <result column="clnt_nm" property="name" javaType="string" />
+            <result column="clnt_pn" property="phone" javaType="string" />
         </association>
     </resultMap>
     
-    <select id="selectOne" resultMap="qnaMap" parameterType="int">
-        SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
-        FROM reqs
-        WHERE req_no = #{value}
+    <resultMap type="mart" id="martMap">
+      <id column="mt_no" property="no" javaType="INTEGER"/>
+      <result column="mt_nm" property="name" javaType="string"/>
+    </resultMap>
+    
+    <select id="selectQNAList" resultMap="qnaMap" parameterType="int">
+        SELECT m.mt_no, req_no, req_title, req_cnt, req_dt, req_st, mt_nm, req_rcnt, req_rdt
+        FROM reqs r, marts m
+        WHERE r.mt_no = m.mt_no and clnt_no = #{value}
+        order by req_no desc
     </select>
     
-    <select id="selectQNAList" resultMap="qnaMap">
-        select * from marts mt, reqs rq
-        where mt.mt_no = rq.mt_no
-  </select>
+    <select id="selectQNAlistByCalendar" resultMap="qnaMap" parameterType="map">
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no, c.clnt_pn
+        FROM reqs r, clnts c
+        WHERE r.clnt_no=c.clnt_no
+        AND mt_no = #{adminInfo}
+        <if test="startDate != '' and endDate != ''">
+        AND date_format(r.req_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
+        </if>
+        AND r.req_st = #{qnaStatus}
+        ORDER BY req_no DESC
+    </select>
+    
+    <select id="selectQNA" resultMap="qnaMap" parameterType="int">
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_no, c.clnt_nm 
+        FROM reqs r, clnts c
+        WHERE r.clnt_no=c.clnt_no
+        AND req_no = #{value}
+    </select>
+    
+    <select id="selectQNAForStatus" resultMap="qnaMap" parameterType="map">
+        SELECT req_no, req_dt, req_cnt, req_st, req_rcnt, req_rdt
+        FROM reqs
+        WHERE clnt_no = #{clientNo}
+        AND req_no = #{contentNo}
+    </select>
+    
+    <select id="selectQNAListByAdmin" resultMap="qnaMap" parameterType="map">
+        SELECT r.req_no, r.req_dt, r.req_cnt, r.req_st, r.req_rcnt, r.req_rdt, c.clnt_nm, c.clnt_no, c.clnt_pn
+        FROM reqs r, clnts c
+        WHERE r.clnt_no=c.clnt_no
+        AND mt_no = #{adminInfo}
+        ORDER BY req_no DESC
+    </select>
+    
+    <select id="selectOrderMartList" resultMap="martMap" parameterType="int">
+		    select distinct m.mt_no, m.mt_nm
+		    from marts m, orders o, clnts c
+		    where m.mt_no = o.mt_no
+		    and o.clnt_no = c.clnt_no
+		    and c.clnt_no = #{value}
+    </select>
+    
+    <select id="insertQNA" parameterType="qna">
+        insert into reqs(req_dt, req_title, req_cnt, req_st, mt_no, clnt_no)
+        values(now(), #{title}, #{content}, 1, #{mart.no}, #{client.no})
+    </select>
+    
+    <update id="updateQNA" parameterType="Map">
+        UPDATE reqs SET
+            req_rcnt = #{replyContent},
+            req_st = 2,
+            req_rdt = now()
+        WHERE mt_no = #{adminNo}
+        AND clnt_no = #{clientNo}
+        AND req_no = #{contentNo}
+    </update>
+    
+    <update id="updateClientQna" parameterType="int">
+      update reqs 
+      set req_st = 3
+      where req_no = #{value}
+    </update>
+    
+    
 </mapper>

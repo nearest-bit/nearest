@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://www.nearest.org:8080/nearest/recept.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title> Order confirmation </title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width; initial-scale=1.0;">
+
+<style type="text/css">
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
+  #nearest-purchase-receipt { margin: 0; padding: 0; background: white;}
+  div, p, a, li, td { -webkit-text-size-adjust: none; }
+  .ReadMsgBody { width: 100%; background-color: #ffffff; }
+  .ExternalClass { width: 100%; background-color: #ffffff; }
+  #nearest-purchase-receipt { width: 100%; height: 100%;  margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+  html { width: 100%; }
+  p { padding: 0 !important; margin-top: 0 !important; margin-right: 0 !important; margin-bottom: 0 !important; margin-left: 0 !important; }
+  .visibleMobile { display: none; }
+  .hiddenMobile { display: block; }
+
+  @media only screen and (max-width: 600px) {
+  #nearest-purchase-receipt { width: auto !important; }
+  table[class=fullTable] { width: 96% !important; clear: both; }
+  table[class=fullPadding] { width: 85% !important; clear: both; }
+  table[class=col] { width: 45% !important; }
+  .erase { display: none; }
+  }
+
+  @media only screen and (max-width: 420px) {
+  table[class=fullTable] { width: 100% !important; clear: both; }
+  table[class=col] { width: 100% !important; clear: both; }
+  table[class=col] td { text-align: left !important; }
+  .erase { display: none; font-size: 0; max-height: 0; line-height: 0; padding: 0; }
+  .visibleMobile { display: block !important; }
+  .hiddenMobile { display: none !important; }
+  
+
+  
+
+  }
+</style>
+</head>
+<body>
+<div class="zoom-anim-dialog mfp-hide" id="nearest-purchase-receipt" style="width: 800px; max-height:528px; margin: 0 auto; overflow: auto;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+  <tbody><tr>
+    <td height="20"></td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 10px 10px 0 0;">
+        <tbody><tr class="hiddenMobile">
+          <td height="40"></td>
+        </tr>
+        <tr class="visibleMobile">
+          <td height="30"></td>
+        </tr>
+
+        <tr>
+          <td>
+            <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+              <tbody>
+                <tr>
+                  <td>
+                    <table width="220" border="0" cellpadding="0" cellspacing="0" align="left" class="col">
+                      <tbody>
+                        <tr>
+                          <td align="left"> <img src="./resources/images/logo_2.png" width="110" alt="logo" border="0"></td>
+                        </tr>
+                        <tr class="hiddenMobile">
+                          <td height="40"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="20"></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 20px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
+                           <strong id="receipt-client-name"></strong> <span style="font-size: 15px; font-weight: bold;">님</span>
+                            <br><br> <span style="font-size: 15px; font-weight: bold;">저희 가게를 이용해주셔서 <br>감사합니다.</span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <table width="220" border="0" cellpadding="0" cellspacing="0" align="right" class="col">
+                      <tbody>
+                        <tr class="visibleMobile">
+                          <td height="20"></td>
+                        </tr>
+                        <tr>
+                          <td height="5"></td>
+                        </tr>
+                        <tr>
+                          <td style="font-size: 30px; color: #ff0000; letter-spacing: -1px; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 1; vertical-align: top; text-align: right;">
+                            <strong>구매내역</strong>
+                          </td>
+                        </tr>
+                        <tr>
+                        </tr><tr class="hiddenMobile">
+                          <td height="50"></td>
+                        </tr>
+                        <tr class="visibleMobile">
+                          <td height="20"></td>
+                        </tr>
+                        <tr>
+                          <td id="receipt-mart-detail" style="font-size: 15px;color: #5b5b5b;line-height: 18px;vertical-align: top;text-align: right;">
+                            <strong id="receipt-mart-name"></strong><br>  <br><strong>tel.</strong> <span id="receipt-mart-tel"></span> <br><br><span id="receipt-order-date"></span>
+                            <br><br><strong id="receipt-mart-addr"></strong><br><strong id="receipt-mart-addrDetail"></strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+<!-- /Header -->
+<!-- Order Details -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+  <tbody>
+    <tr>
+      <td>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+          <tbody>
+            <tr>
+            </tr><tr class="hiddenMobile">
+              <td height="60"></td>
+            </tr>
+            <tr class="visibleMobile">
+              <td height="40"></td>
+            </tr>
+            <tr>
+              <td>
+                <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                  <tbody>
+                    <tr>
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 10px 7px 0;" width="52%" align="left">
+                       <strong>상품</strong> 
+                      </th>
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="left">
+                        <strong>수량</strong>
+                      </th>
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; text-align:center; vertical-align: top; padding: 0 0 7px;" align="center">
+                        <strong>가격</strong>
+                      </th>
+                      
+                      <th style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; text-align:right; vertical-align: top; padding: 0 0 7px;" align="right">
+                        <strong>총 가격</strong>
+                      </th>
+                    </tr>
+                    <tr>
+                      <td height="1" style="background: #bebebe;" colspan="4"></td>
+                    </tr>
+                    <tr id="nearest-product-receipt">
+                      <td height="10" colspan="4"></td>
+                    </tr>
+                    
+                   <!--  <tr>
+                      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">신라면(5개입)</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">2개</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">1200원</td>
+                      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">2400원</td>
+                    </tr>
+                    <tr>
+                      <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">유한락스(1L) 리필형</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">1개</td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">5500원</td>
+                      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">5500원</td>
+                    </tr> -->
+                    <tr>
+                      <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td height="20"></td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /Order Details -->
+<!-- Total -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+  <tbody>
+    <tr>
+      <td>
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff">
+          <tbody>
+            <tr>
+              <td>
+
+                <!-- Table Total -->
+                <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+                  <tbody>
+                    <tr>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
+                        <strong>총 결제액</strong>
+                      </td>
+                      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #000; line-height: 22px; vertical-align: top; text-align:right; ">
+                        <strong id="nearest-receipt-real-total-price"></strong>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- /Table Total -->
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<!-- /Total -->
+<!-- Information -->
+
+<!-- /Information -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#e1e1e1">
+
+  <tbody><tr>
+    <td>
+      <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullTable" bgcolor="#ffffff" style="border-radius: 0 0 10px 10px;">
+        <tbody><tr>
+          <td>
+            <table width="85%" border="0" cellpadding="0" cellspacing="0" align="center" class="fullPadding">
+              <tbody>
+                <tr>
+                  <td style="font-size: 15px; color: #5b5b5b; font-family: &#39;Open Sans&#39;, sans-serif; line-height: 18px; vertical-align: top; text-align: left;">
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr class="spacer">
+          <td height="50"></td>
+        </tr>
+
+      </tbody></table>
+    </td>
+  </tr>
+  <tr>
+    <td height="20"></td>
+  </tr>
+</tbody></table>
+
+</div>
+
+</body></html>

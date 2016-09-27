@@ -1,0 +1,151 @@
+@CHARSET "UTF-8";
+
+.container {
+  width: 100%;
+}
+
+li > span {
+   margin-bottom: 5px;
+}
+
+.nearest-home-top{
+  position: fixed;
+  left: 50%;
+  bottom: 50px;
+  display: none;
+}
+
+
+#loginAfter > a {
+  cursor: pointer;
+  
+}
+
+.nearest-li {
+  list-style: none !important;
+  padding: 0px 19px;
+  cursor: pointer;
+}
+
+.nearest-header-nav {
+  text-align: center;
+}
+
+.nearest-header-join-btn{
+    width: 63px;
+    height: 29px;
+    line-height: 29px;
+    border: solid #3099dd 1px;
+    border-left: 0px;
+    margin-top: 17px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    background: #49b2e9;
+    margin-left: 5px;
+  
+}
+.nearest-fr {
+  float: right;
+}
+.nearest-box {
+    height: 62px;
+    position: relative;
+}
+  
+#nearest-search{
+    width: 180px;
+    border: solid #c8c8ca 1px;
+    height: 29px;
+    font-family: nanum;
+    padding: 0 0 0 10px;
+    color: #555555;
+    float: right;
+    background: url("http://www.earthtory.com/res/img/common/gnb/search_icon.png") no-repeat;
+    background-position: 98% center;
+    font-size: 13px !important;
+}
+
+.main-top-select-div{
+    margin-top: 17px;
+    margin-right: 10px;
+    font-size: 13px;
+    position: relative;
+}
+
+.login-display{
+  display: none;
+}
+
+.main-top-select{
+    border: solid #c8c8ca 1px;
+    height: 29px;
+    font-family: nanum;
+    padding: 0px 0 0 10px;
+}
+
+
+.main-top-searchbox{
+    width: 174px;
+    height: 31px;
+    margin-top: 17px;
+    margin-right: 10px;
+    position: relative;
+  
+}
+
+.nearest-header-login-btn {
+      width: 63px;
+    height: 29px;
+    line-height: 29px;
+    border: solid #f7870f 1px;
+    border-left: 0px;
+    margin-top: 17px;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    background: #ff9320;
+}
+
+.nearest-header-menu {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  height: 65px;
+  z-index: 99;
+  /* background-image: repeating-linear-gradient(to bottom right, #3f95ea 0%, #52d3aa 100%); */
+}
+
+.nearest-header-logo {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.nearest-header-logo > div > img {
+  width: 140px;
+  float: left;
+  margin-top: 7px;
+}
+
+.nearest-header-top-menu {
+  margin-top: 0 !important;
+  text-align: right;
+}
+
+.nearest-map-infowindow {
+  margin-bottom: 0 !important;
+}
+
+.fh5co-person {
+  padding: 2% 2% 0 2%;
+}
+
+/* Product Detail Item Border */
+.nearest-work-list-border {
+cursor: pointer;
+}
+
+/* PageNavigation Hover Background */
+.pagenav :hover {
+  background-color: #66cdaa !important;
+}

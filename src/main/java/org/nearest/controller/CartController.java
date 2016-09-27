@@ -9,8 +9,10 @@ import org.nearest.domain.Cart;
 import org.nearest.domain.Client;
 import org.nearest.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -23,18 +25,27 @@ public class CartController {
 	
 	@RequestMapping(path="addCart", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String addCart(int productNo, HttpSession session){		
+	public String addCart(@RequestParam(defaultValue="0") int no, int productNo, HttpSession session){		
 		  
 		Map<String, Object> result = new HashMap<>(); 
 		Cart cart = new Cart();
 		cart.setProductNo(productNo);
-		cart.setClientNo( ((Client)session.getAttribute("loginId")).getNo());
+		
+		if(no == 0) {
+			cart.setClientNo( ((Client)session.getAttribute("loginId")).getNo());
+		} else {
+			cart.setClientNo(no);
+		}
 
 		try {
 			cartService.addCart(cart);
 			result.put("status", "success");
-		} catch(Exception e) {
+		} catch(DuplicateKeyException dupl){
+		  result.put("status", "duplication");
+		  System.out.println("찜목록 중복");
+		}catch(Exception e) {
 			result.put("status", "failure");
+			System.out.println("찜목록 추가");
 			e.printStackTrace();
 		}
 		
@@ -43,9 +54,15 @@ public class CartController {
 	
 	@RequestMapping(path="getCart", produces="application/json;charset=utf-8")
   @ResponseBody
-  public String getCart(HttpSession session){   
+  public String getCart(@RequestParam(defaultValue="0") int no, HttpSession session){   
 	
-	int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	int clientNo = 0;
+	
+	if(no == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	} else {
+		clientNo = no;
+	}
       
     Map<String, Object> result = new HashMap<>(); 
     try {
@@ -61,8 +78,14 @@ public class CartController {
 	
 	@RequestMapping(path="removeCart", produces="application/json;charset=utf-8")
   @ResponseBody
-  public String removeCart(String prodNo, HttpSession session){   
-	int clientNo = ((Client)session.getAttribute("loginId")).getNo();
+  public String removeCart(@RequestParam(defaultValue="0") int no, String prodNo, HttpSession session){   
+	int clientNo = 0;
+	
+	if(no == 0) {
+		clientNo = ((Client)session.getAttribute("loginId")).getNo();
+	} else {
+		clientNo = no;
+	}
 	  
 	Map<String, Object> params = new HashMap<>();
 	params.put("prodNo", prodNo);
@@ -80,5 +103,26 @@ public class CartController {
     
     return new Gson().toJson(result);
   }
+	
+	@RequestMapping(path="removeCartList", produces="application/json;charset=utf-8")
+	@ResponseBody
+	public String removeCartList(@RequestParam(defaultValue="0") int no, HttpSession session){
+	  Map<String, Object> result = new HashMap<>();
+	  
+	  try {
+		  if(no == 0) {
+			  cartService.removeCartList(((Client)session.getAttribute("loginId")).getNo()); 
+		  } else {
+			  cartService.removeCartList(no);
+		  }
+        
+	    result.put("status", "success");
+      } catch (Exception e) {
+        result.put("status", "failure");
+        e.printStackTrace();
+      }
+	  
+	  return new Gson().toJson(result);
+	}
 		
 }

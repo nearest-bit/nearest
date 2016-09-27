@@ -11,14 +11,16 @@ public class Order implements Serializable {
 	protected int no;
 	protected Date orderDate;
 	protected int orderState;
+	protected String orderRequestDate;
 	protected Mart mart;
 	protected Client client;
 	
 	// Getter, Setter
-	public int getNo() {
+
+  public int getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+  public void setNo(int no) {
 		this.no = no;
 	}
 	public Date getOrderDate() {
@@ -44,12 +46,17 @@ public class Order implements Serializable {
 	}
 	public void setClient(Client client) {
 		this.client = client;
+	}	
+	public String getOrderRequestDate() {
+		return orderRequestDate;
+	}
+	public void setOrderRequestDate(String orderRequestDate) {
+		this.orderRequestDate = orderRequestDate;
 	}
 	
 	@Override
 	public String toString() {
-		return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", mart=" + mart
-				+ ", client=" + client + "]";
+		return "Order [no=" + no + ", orderDate=" + orderDate + ", orderState=" + orderState + ", orderRequestDate="
+				+ orderRequestDate + ", mart=" + mart + ", client=" + client + "]";
 	}
-	
 }

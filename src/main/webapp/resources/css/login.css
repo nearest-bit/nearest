@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+
+#loginForm-wrap {
+	position:absolute;
+	display:table;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%
+	
+}
+
+.nearest-loginForm {
+  display:table-cell;
+  text-align:center;
+  vertical-align:middle;
+  background: #edede3;
+}
+
+/* login tab button */
+.login-tab-group {
+  list-style:none;
+  padding:0;
+}
+
+.login-tab-group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+.login-form-box {
+  display:inline-block;
+  background: #13232f;
+  opacity: 0.9;
+  padding: 40px 20px 10px 20px;
+  width:500px;
+  border-radius:10px;
+  box-shadow:0 4px 10px 4px rgba(19, 35, 47, 0.3);
+
+}
+.form-group:last-child {
+  display:none;
+}
+
+/* end */
+
+.login-form-top {
+  overflow: hidden;
+  padding: 0 25px 15px 25px;
+  
+  text-align: left;
+}
+
+.login-form-top-left {
+  width: 100%;
+  padding: 10px 0 0 0;
+}
+
+.login-form-top-left h3 { margin-top: 0; color: #fff; text-align: center;}
+.login-form-top-left p { opacity: 0.8; color: #fff; }
+
+.login-form-top-right {
+  float: left;
+  width: 25%;
+  padding-top: 5px;
+  font-size: 66px;
+  color: #fff;
+  line-height: 100px;
+  text-align: right;
+  opacity: 0.3;
+}
+
+.login-form-bottom {
+  padding: 25px 25px 0px 25px;
+  
+  text-align: left;
+}
+
+.login-form-id-save {
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+.id-save {
+	float: left;
+}
+
+.id-save > label  {
+	color:#fff;
+	font-weight: 200 !important;
+	font-size: 1.4rem;
+}
+
+.find-id-password {
+  float: right;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.find-id-password > a {
+	text-decoration: none; 
+	color: #e7e7e7 !important;
+	font-size: 1.4rem;
+}
+
+.login-form-group > .login-form-control{
+  height: 40px;	
+}
+
+.login-form > .btn {
+	padding: 10px 12px;	
+}
+
+.login-form > .login-form-group {
+	margin-bottom: 20px;
+}
+
+.login-form-bottom form textarea {
+  height: 100px;
+}
+
+.form-group button.btn {
+  width: 100%;
+  background: #179b77;
+  color: #ffffff;
+  margin: 5px 0;
+}
+
+
+.login-form-bottom form .input-error {
+  border-color: #19b9e7;
+}
+

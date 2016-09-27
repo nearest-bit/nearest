@@ -1,9 +1,20 @@
 var duplicate = '';
   
   $(document).on('click','.regBtn', function(){
+	  if($('input[name="reg-id"]').val() == '') {
+		  mainAlert('idEmpty');
+		  return;
+	  }
+	  /*alert($('input[name="reg-id"]').val())
+	  alert($('input[name="reg-password"]').val())
+	  alert($('input[name="reg-name"]').val())
+	  alert($('input[name="reg-birth"]').val())
+	  alert($('input[name="reg-email"]').val())
+	  alert($('input[name="reg-phone"]').val())*/
 	  $.ajax({
-		  dataType : 'json',
 		  url : contextRoot + 'client/register.do',
+		  method : 'post',
+		  dataType : 'json',
 		  data : {
 			  id : $('input[name="reg-id"]').val(),
 			  password : $('input[name="reg-password"]').val(),
@@ -15,10 +26,12 @@ var duplicate = '';
 		  success : function(result){
 			
 			  if(duplicate == true){
-				  alert('중복된 아이디 입니다')
+				  mainAlert('idDuplicate');
 				  return;
+				  
 			  }else{
-				  alert('회원가입 성공');
+				  mainAlert('registSuccess');
+				  $.magnificPopup.close();
 			  }
 			  
 		  },
@@ -31,20 +44,17 @@ var duplicate = '';
   $('input[name="reg-id"]').on('keyup', function(event){
 	  $.ajax({
 		  dataType : 'json',
-		  url : contextRoot + 'client/checkDupl.do',
+		  url : nodeRoot + 'client/checkDupl.do',
 		  data : {
 			  id : $('input[name="reg-id"]').val()
 		  },
 		  success : function(result){
-			  if(result.status != 'success'){
-				  alert('서버 오류...');
-				  return;
-			  }
-			   if( result.check == 'true' ){
+			  
+			  if( result == true ){						  
 				  $('#nearest-checkDupl').text('중복된 아이디 입니다').css('color', 'red');
 				  duplicate = true;
-			  }else{
-				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', 'blue');
+			  }else if( result == false ){				  
+				  $('#nearest-checkDupl').text('사용 가능한 아이디 입니다.').css('color', '#00ffdc');
 				  duplicate = false;
 			  }
 		  },

@@ -15,9 +15,8 @@ $(document).ready(function() {
 		mainClass: 'my-mfp-zoom-in'
 	});
 	
-	
 	$(function () {
-		$('.popup-modal').magnificPopup({
+		$('.popup-modal-topmenu').magnificPopup({
 			type: 'inline',
 			preloader: false,
 			focus: '#form-username',
@@ -26,15 +25,7 @@ $(document).ready(function() {
 			callbacks: {
 				open: function() {
 					$('.mfp-container').click(function(event) {
-						if(event.target.id == 'loginForm') {
-							$.magnificPopup.close();
-						}
-						
 						if(event.target.id == 'signupForm') {
-							$.magnificPopup.close();
-						}
-						
-						if(event.target.id == 'modal') {
 							$.magnificPopup.close();
 						}
 					});
@@ -99,6 +90,18 @@ $(document).ready(function() {
 					}
 				}
 			}
+		});
+	});
+	$(function () {
+		$('#myInfoBtn').magnificPopup({
+			type: 'inline',
+			preloader: false,
+			focus: '#username',
+			modal: true
+		});
+		$(document).on('click', '#myinfo-resetBtn', function (e) {
+			//e.preventDefault();
+			$.magnificPopup.close();
 		});
 	});
   // MagnificPopup

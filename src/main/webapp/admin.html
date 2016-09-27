@@ -1,0 +1,682 @@
+
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Nearest</title>
+
+
+<!-- CSS Files -->
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="./resources/css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="./resources/css/icomoon.css">
+<!-- Simple Line Icons -->
+<link rel="stylesheet" href="./resources/css/simple-line-icons.css">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="./resources/css/magnific-popup.css">
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="./resources/css/bootstrap.css">
+<!-- Signup CSS -->
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link rel="stylesheet"
+	href="./resources/css/font-awesome/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="./resources/css/form-elements.css"> -->
+<link rel="stylesheet" href="./resources/css/main_signup.css">
+<link rel="stylesheet" href="./resources/css/style.css">
+<link rel="stylesheet" href="./resources/css/admin_top_menu.css">
+<!-- BootStrap DateTimePicker -->
+<link rel="stylesheet"
+	href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+<!-- Client Payment PopUp -->
+<link rel="stylesheet" href="./resources/css/client_menu.css">
+<link rel="stylesheet" href="./resources/css/client_main.css">
+<!-- Main Header -->
+<link rel="stylesheet" href="./resources/css/main_header.css">
+<!-- Purchase List -->
+<link rel="stylesheet" href="./resources/css/client_purchase_list.css">
+<!-- manager page css -->
+<link rel="stylesheet" href="./resources/css/admin.css">
+<!-- uploadimage css -->
+<!-- <link rel="stylesheet" href="./resources/css/admin_upload_images.css"> -->
+<!-- jQueryUI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<!-- magnific popup css -->
+<link rel="stylesheet" href="./resources/css/client_popup.css">
+<!-- SweetAlert css -->
+<link rel="stylesheet" type="text/css" href="./node_modules/sweetalert/dist/sweetalert.css">
+<!-- main top menu -->
+<link rel="stylesheet" href="./resources/css/admin_top_menu.css">
+
+<!-- JS Files -->
+
+<!-- SweetAlert -->
+<script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
+<!-- jQuery -->
+<script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script
+	src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
+<!-- Bootstrap -->
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="./node_modules/jquery-waypoints/waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="./resources/js/jquery.stellar.min.js"></script>
+<!-- Counter -->
+<script src="./node_modules/jquery-countto/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script
+	src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="./resources/js/magnific-popup-options.js"></script>
+<!-- Handlebars -->
+<script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+
+<script src="./resources/js/jquery.backstretch.min.js"></script>
+<script src="./resources/js/scripts.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<!-- Modernizr JS -->
+<script src="./node_modules/npm-modernizr/modernizr.js"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+  <script src="./js/respond.min.js"></script>
+  <![endif]-->
+
+<!-- jQuery Cookie -->
+<script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
+<!-- IamPort 결제 -->
+<script type="text/javascript"
+	src="https://service.iamport.kr/js/iamport.payment-1.1.1.js"></script>
+<!-- jQuery Form -->
+<script src="./node_modules/jquery-form/jquery.form.js"></script>
+<!-- jQuery File Upload -->
+<script src="./node_modules/jquery.ui.widget/jquery.ui.widget.js"></script>
+<script src="./node_modules/blueimp-load-image/js/load-image.all.min.js"></script>
+<script src="./node_modules/blueimp-canvas-to-blob/js/canvas-to-blob.min.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="./node_modules/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
+
+<!-- jQuery-ui (datepicker) -->
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<!-- SummerNote(글작성기) include summernote js-->
+<script src="./node_modules/summernote/dist/summernote.js"></script>
+<!-- SummerNote css -->
+<link href="./node_modules/summernote/dist/summernote.css" rel="stylesheet">
+<!-- <script src="./resources/js/manager_upload_images.js"></script> -->
+<style>
+#fh5co-header {
+	position: inherit !important;
+}
+
+#product-detail-form {
+	background-color: white !important;
+}
+
+#loginAfter {
+	display: none;
+}
+
+#nearest-dropdown {
+	display: none;
+}
+
+#nearest-request-search {
+    display: none;
+}
+
+.nearest-search-form:not(button) {
+    color: #23527c !important;
+}
+
+#nearest-order-search {
+    display: none;
+}
+
+#nearest-admin-top-menu{
+  list-style: none;
+}
+
+#nearest-admin-top-menu > li {
+  padding: 0 19px;
+  
+}
+
+#nearest-admin-top-menu > li > a{
+  color: #7f7f7f;
+}
+</style>
+</head>
+
+<body style="background-color: #f3f3f3;">
+    <header role="banner" id="fh5co-header">
+    <div class="nearest-header-menu">
+        <div class="wrapper">
+        
+           <div class="row box-shadow nearest-header-logo">
+             <div>
+              
+               <img style="cursor: pointer;" class="nearest-to-home" src="./resources/images/logo_2.png"/>
+               
+             </div> <!-- .nearest-header-nav end -->
+             <div class="nearest-admin-list">
+	             <ul id="nearest-admin-top-menu" class="nearest-fl gnb nearest-menu-tab-bar">
+	               <li id="nearest-admin-orderList" class="nearest-fl nearest-li"><a data-toggle="tab" href="#order">주문내역</a></li>
+	               <li id="nearest-admin-request-admin" class="nearest-fl nearest-li"><a id="nearest-menu-qna" data-toggle="tab" href="#qna">문의사항</a></li>
+	               <li id="nearest-admin-insert-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#regist">상품등록</a></li>
+	               <li id="nearest-admin-manage-prod" class="nearest-fl nearest-li"><a data-toggle="tab" href="#manage">상품관리</a></li>
+	             </ul>
+             </div>    
+              <div class="nearest-fr top-box">
+                
+                <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn">
+                  <a id="logoutBtn">
+                    <strong style="color:white; font-size: 15px;">Logout</strong>
+                  </a>
+                </div>
+              </div>
+            </div>
+           </div>
+        </div>
+   <!-- container end -->
+  </header>
+
+	<div id="nearest-admin-wrap">
+
+    <div id="nearest-tab-content" class="tab-content">
+      <div id="order" class="tab-pane active in">
+
+				<!-- start of joomoonList -->
+		    <section id="fh5co-about" data-section="about">
+		      <div class="container nearest-admin-content-bg nearest-admin-register">
+		        <div class="row">
+		          <div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px; margin-bottom: 10px">
+		              <div style="width: 200px; margin: auto">
+		                  <span class="glyphicon glyphicon-shopping-cart to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate">주문내역</h2>
+		              </div>  
+		            <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext" style="background: #505156; width: 100%; margin: 0; padding: 0">
+                            <h3 class="to-animate" style="color: #e8e8e8; margin-bottom: 20px">주문받은 상품을 파악 합니다.</h3>
+                        </div>
+                    </div>
+		        </div>
+		            <div class="search-form" style="margin: 15px 0">
+		              <button class="btn btn-info to-animate" id="order-btn"
+		                type="button" style="margin: 10px 0 0 43.5%">주문내역조회</button>
+		              <div id="order-search" class="to-animate">
+		                <div class="col-xs-3">
+			                <select id="nearest-order-select" class="form-control" style="margin-left: 10%">
+			                  <option selected="selected">새 주문</option>
+			                  <option>준비완료</option>
+			                  <option>수령완료</option>
+			                </select>
+		                </div>
+		                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		                <span>시작일 : </span>
+                    <input id="osdate" type="text" size="10" maxlength="10">
+                    ~ 
+                    <span>종료일 : </span>    
+                    <input id="oedate" type="text" size="10" maxlength="10">
+                    <br><br>
+		                <button id="nearest-order-find" class="btn btn-info text-center" type="button" style="margin-left: 42%">조회</button>
+		                <button class="btn btn-default text-center" id="order-reset-btn" type="reset" style="margin-left: 1%">취소</button>
+		              </div>
+		            </div>
+		          </div>
+		        <div class="row">
+		          <script id="nearest-order-list" type="text/x-handlebars-template">
+              {{#each orderData}}
+                 <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="fh5co-person text-center nearest-margin-bottom">
+                    <div class="nearest-order-complete">
+                      <p class="nearest-order-complete-text">준비완료</p>
+                      <a class="popup-with-form nearest-orderDetail-btn" href="#order-detail-form">
+                       <button type="button" 
+                               class="btn btn-primary nearest-order-list-detail" 
+                               order-no="{{no}}" 
+                               client-no="{{client.no}}"
+                               order-state="{{orderState}}">주문상세</button>
+                      </a>
+                     </div>
+                     <h3>{{client.name}}</h3>
+                     <div class="fh5co-position">
+                       <p class="nearest-order-list-text">수령시간</p>
+                       <p class="nearest-order-list-number">{{orderRequestDate}}</p>
+                       <p class="nearest-order-list-text">휴대번호</p>
+                       <p class="nearest-order-list-number">{{client.phone}}</p>
+                     </div>
+                     <button type="button" class="btn btn-info nearest-complete-btn">준비완료</button>
+                     <a class="popup-with-form nearest-orderDetail-btn" href="#order-detail-form">
+                       <button type="button" 
+                               class="btn btn-primary nearest-order-list-detail" 
+                               order-no="{{no}}" 
+                               client-no="{{client.no}}"
+                               order-state="{{orderState}}">주문상세</button>
+                     </a>
+                 </div>
+               </div>
+             {{/each}} 
+             </script>
+		        
+		          <!-- handlebars -->
+		          <div id="nearest-orderList-append"></div>
+		        </div>
+		      </div>
+		    </section>
+				<!-- End of joomoonList -->
+				
+				<div id="nearest-receipt" class="zoom-anim-dialog mfp-hide small-dialog"><!-- receipt div --></div>
+			</div>
+			
+	  <script id="nearest-product-recipt-list" type="text/x-handlebars-templete">
+    {{#each this}}
+    <tr class="nearest-product-receipt-list-tr">
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+        {{prodName}}
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">
+        {{orderEnt}}개
+      </td>
+      <td style="font-size: 20px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">
+        {{price}}원
+      </td>
+      <td style="font-size: 20px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">
+        {{totalPrice}}원
+      </td>
+    </tr>
+    {{/each}}
+
+    </script>
+
+      <div id="qna" class="tab-pane fade">
+				<!-- 건의사항 시작 -->
+				<section id="fh5co-testimonials" data-section="testimonials">
+					<div class="container nearest-admin-content-bg nearest-admin-register">
+						<div class="row">
+                            <div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px; margin-bottom: 10px">
+                                <div style="width: 200px; margin: auto">
+                                <span class="glyphicon glyphicon-question-sign to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate text-center">문의사항</h2>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 col-md-offset-2 subtext" style="background: #505156; width: 100%; margin: 0; padding: 0">
+                                        <h3 class="to-animate" style="color: #e8e8e8; margin-bottom: 20px">문의사항을 읽고 답변 합니다.</h3>
+                                    </div>
+                                </div>
+                            </div>
+                                    <div class="nearest-search-form" style="margin: 15px 0">
+                                        <button class="btn btn-info to-animate" id="nearest-request-btn"
+                                        type="button" style="margin: 10px 0 0 43.5%">문의사항조회</button>
+                                            <div id="nearest-request-search" class="to-animate">
+                                                <div class="col-xs-3">
+                                                    <select id="nearest-select" class="form-control" name="finishTag" style="margin-left: 10%">
+                                                        <option selected="selected">답변미완료</option>
+                                                        <option>답변완료</option>
+                                                        <option>고객확인</option>
+                                                    </select>
+                                                </div>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <span>시작일 : </span>
+                                                <input id="sdate" type="text" size="10" maxlength="10">
+                                                ~ 
+                                                <span>종료일 : </span>    
+				                                <input id="edate" type="text" size="10" maxlength="10">
+				                                <br>
+				                                <br>
+				                                <button class="btn btn-info" id="nearest-find" type="button" style="margin-left: 42%">조회</button>
+				                                <button class="btn btn-default text-center" id="nearest-request-reset-btn"
+				                                type="reset" style="margin-left: 1%">취소</button>
+                               
+                                            </div>
+                                    </div>
+                        </div>
+<!-- 			<div class="col-md-4">
+                        <div style="float:none;" class="box-testimony">
+                          <blockquote>
+                              <p>&ldquo;{{content}}&ldquo;</p>
+                          </blockquote>
+                          <div class="author">
+                            <p content-no="{{no}}" client-no="{{client.no}}">{{client.name}}&nbsp;
+                                &nbsp;&nbsp;{{localDate}}
+                              <a reply-status="{{status}}" class="popup-with-zoom-anim nearest-answer-btn" href="#nearest-request-div">
+                                &nbsp;&nbsp;{{reqStatus}}
+                              </a>
+                            </p>
+                          </div>
+                        </div>
+                     </div>			 -->
+			<script id="nearest-qna-list-template" type="text/x-handlebars-template">
+                {{#each qnadata}}
+                <div class="col-md-4">
+                     <div class="qnaContentcard small-centered">
+                        <div class="row qnaContenttop clearfix">
+                            <div class="small-8 column qnaContenttop-text">
+                                <h3>{{client.name}}<span style="color: gray; font-size: 15px">&nbsp;고객님</span></h3>
+                                <h5>휴대폰번호&nbsp;:&nbsp;{{client.phone}}</h5>
+                                <br/>
+                                <p class="qnaContenttoggle">{{localDate}}</p>
+                            </div>
+                            <div class="small-4 column">
+                                <div class="nearest-qnaText">
+                                <p class="qnaContent">&ldquo;{{content}}&ldquo;</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div client-no="{{client.no}}" content-no="{{no}}" class="row">
+                            <a class="qnaContentfinal small-12 column text-center qnaContenttext popup-with-zoom-anim nearest-answer-btn" reply-status="{{status}}" href="#nearest-request-div">
+                               {{reqStatus}}
+                            </a>
+                        </div>
+                     </div>
+                </div>
+                {{/each}}    
+            </script>
+						<div id="nearest-qnaContent" class="row"></div>
+					</div>
+				</section>
+				<!-- 건의사항 끝 -->
+			</div>
+			
+			<!-- 답변하기 시작 -->
+			  
+		      <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+		            <br/>
+		            <div class="nearest-qnaContentcard small-centered">
+		              <div class="row nearest-qnaContext clearfix">
+		                  <div class="small-8 column qnaContenttop-text" id="qna-title" style="height: 30px; line-height: 25px; margin-top: 10px; margin-bottom: 10px; margin-left: 30px">
+                                <p id="qnaId" style="float: left; text-align: center; color: white; font-size: 25px"></p>&nbsp;&nbsp;&nbsp;<p style="float: left; color: white; text-align: center">님이 남긴 문의</p>
+                          </div>  
+                          <div class="nearest-qnaFooter" id="nearest-qnaStory"></div>
+                           
+		              </div>
+		            </div>
+		            <div id="summernote"></div>
+		            <div id="nearest-qnaAnswer"></div>   
+		            <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
+		            <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>
+		      </div>
+      <!-- <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+      <h2>답변하기</h2>
+      <textarea id="nearest-replyContent" style="width: 100%; height: 200px"></textarea>
+      <br>
+          <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
+          <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>      
+      </div> -->
+      <!-- <div id="nearest-request-div" class="nearest-middle-dialog zoom-anim-dialog mfp-hide">
+          <h2>답변하기</h2>
+          <textarea id="nearest-replyContent" style="width: 100%; height: 200px" placeholder="답변을 입력해 주세요.">
+          </textarea>
+          <br>
+          <button id="nearest-reply-btn" type="button" class="btn btn-primary">전송</button>
+          <button id="reply-reset-btn" type="reset" class="btn btn-default">취소</button>
+      </div> -->
+
+        
+      <!-- 답변하기 끝 -->
+			
+			<div id="regist" class="tab-pane fade">
+
+		    <!-- start 상품등록 -->
+				<section id="fh5co-contact" data-section="contact">
+					<div class="container nearest-admin-content-bg nearest-admin-register">
+						<div class="row">
+							<div class="col-md-12 section-heading text-center" style="background: #ffd800; padding-top: 20px">
+								<div style="width: 200px; margin: auto">
+								<span class="glyphicon glyphicon-plus-sign to-animate" style="float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span><h2 class="to-animate">상품등록</h2>
+								</div>
+								<div class="row">
+									<div class="col-md-8 col-md-offset-2 subtext" style="background: #505156; width: 100%; margin: 0">
+										<h3 class="to-animate" style="color: #e8e8e8; margin-bottom: 20px">새로운 상품을 등록 합니다.</h3>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<form id="nearest-image-fileupload"
+						      action="./product/addProduct.do"
+						      method="post"
+						      enctype="multipart/form-data">
+						
+							<div class="row row-bottom-padded-md">
+								<div class="col-md-5 to-animate">
+										<div class="nearest-upload-wrap">
+											<div id="nearest-upload-image" class="nearest-upload-image" style="text-align: center">
+												<img src="" 
+												     alt="" 
+												     style="width: 300px; height: 300px; border: 2px solid #286090">
+											</div>
+											<div class="nearest-upload-button">
+												<label class="nearest-file-upload btn-primary" style="padding: 10px 20px; border-radius: 6px">
+												    <input id="nearest-file-upload" name="imageFiles" type="file"/>이미지 첨부
+												</label>
+											</div>
+										</div>
+									
+								</div>
+			
+								<div class="col-md-7 to-animate" style="margin-top: 25px;">
+			
+										<div class="form-group form-group-lg nearest-registForm-height">
+											<label class="col-sm-3 control-label">상품명</label>
+											<div class="col-sm-8">
+												<input name="name" class="form-control" style="border-color: #52d3aa" type="text" placeholder="상품명">
+											</div>
+										</div>
+			
+										<div class="form-group form-group-lg nearest-registForm-height">
+											<label class="col-sm-3 control-label">가격</label>
+											<div class="col-sm-8">
+												<input name="price" class="form-control" style="border-color: #52d3aa" type="text" placeholder="가격">
+											</div>
+										</div>
+										
+										<div class="form-group form-group-lg nearest-registForm-height">
+                      <label class="col-sm-3 control-label">분류</label>
+                      <div class="col-sm-3">
+                        <select id="nearest-regist-maj-cate" name="majorCategory" class="form-control" style="border-color: #52d3aa">
+                          <option value="1" selected="selected">Food</option>
+                          <option value="2">Life</option>
+                        </select>
+                      </div>
+                      <div class="col-sm-5">
+                        <select id="nearest-regist-sub-cate" name="subCategory" class="form-control" style="border-color: #52d3aa">
+                          <option value="1" selected="selected">과일류/채소류/계란</option>
+                          <option value="2">쌀/잡곡</option>
+                          <option value="3">라면/통조림/조미료/장류/소스</option>
+                          <option value="4">과자/초콜릿/시리얼/빵</option>
+                          <option value="5">유제품/냉장/냉동/간편식</option>
+                        </select>
+                      </div>
+                    </div>
+										
+										<div class="form-group form-group-lg nearest-registForm-height">
+											<label class="col-sm-3 control-label">재고 (개)</label>
+											<div class="col-sm-8" style="padding-right: 40%;">
+												<input name="entity" class="form-control" style="border-color: #52d3aa" type="number" min="1" max="100"
+													value="1">
+											</div>
+										</div>
+										
+										<div class="form-group form-group-lg nearest-registForm-height">
+											<label class="col-sm-3 control-label">할인률 (%)</label>
+											<div class="col-sm-8" style="padding-right: 40%;">
+												<input name="discountRate" class="form-control" style="border-color: #52d3aa" type="number" min="0" max="100"
+													value="0" step="5" />
+											</div>
+										</div>
+								</div>
+								
+								<div class="col-md-12 to-animate">
+									<div class="form-group text-center nearest-padding-top-2">
+										<input id="nearest-product-upload-btn" class="btn btn-primary btn-lg" value="상품 등록" type="submit">
+									</div>
+								</div>
+								
+							</div>
+		        </form>
+					</div>
+				</section>
+				<!-- End of 상품등록 -->
+			</div>
+
+      <div id="manage" class="tab-pane fade">
+				<!-- 상품관리 시작 -->
+				<section id="fh5co-work" data-section="work">
+					<div style="margin: 2em 0; background: #ffd800; padding-top: 20px" class="container nearest-admin-content-bg nearest-admin-register">
+						<div class="row">
+							<div class="col-md-12 section-heading text-center" style="margin-bottom: 0">
+							  <div style="width: 200px; margin: auto">
+							    <span class="glyphicon glyphicon-barcode to-animate" style="color:#83817b; float: left; padding-top: 15px; font-size: 30px" aria-hidden= "true"></span>
+								<h2 class="to-animate">상품관리</h2>
+		                      </div>
+		                      <div class="row">
+                                    <div class="col-md-8 col-md-offset-2 subtext" style="background: #505156; width: 100%; margin: 0">
+                                        <h3 class="to-animate" style="color: #e8e8e8; margin-bottom: 20px">등록된 상품을 관리 합니다.</h3>
+                                    </div>
+                              </div>      
+							</div>
+						</div>
+						
+						<script id="nearest-admin-product-list-template" type="text/x-handlebars-template">
+              {{#each productData}}
+                <div class="col-md-4 col-sm-6 col-xxs-12">
+                  <div class="nearest-prod-list">
+                    <input type="hidden" value="{{no}}" />
+                    <a href="#nearest-detail-image-fileupload"
+                      class="fh5co-project-item popup-with-form nearest-work-list-border">
+                      <div class="nearest-prod-image">
+                        <img src="{{photo}}" alt="Image">
+                        <div class="nearest-prod-text">
+                          <h3>{{name}}</h3>
+                        </div>
+                      </div>
+                      <ul class="nearest-media">
+                        <li><i class="fa fa-won"></i>{{price}}원</li>
+                        <li><i class="fa fa-shopping-cart"></i> {{entity}}개</li>
+                        <li><i class="fa fa-arrow-down"></i> {{discountRate}}%</li>
+                      </ul>
+                    </a>
+                  </div>
+                </div>
+              {{/each}}
+            </script>
+            
+						<div id="nearest-admin-product-list" class="row row-bottom-padded-sm" style="background: white">
+						</div>
+		      </div>
+				</section>
+				
+
+				<form id="nearest-detail-image-fileupload" 
+				      class="mfp-hide small-dialog"
+				      action="./product/updateProduct.do"
+              method="post"
+              enctype="multipart/form-data">
+		
+					<div class="page-header nearest-popup-margin table-responsive">
+						<h1>상품정보</h1>
+						<table class="table nearest-no-border">
+              <tr>
+                <td colspan="2" rowspan="5">
+                  <div id="nearest-detail-upload-image">
+                     <img id="nearest-detail-upload-image" 
+                          src="./resources/images/shinramyun.png" 
+                          alt="Image" 
+                          style="width: 300px; height: 300px; border: 2px solid #286090">
+                  </div>
+                </td>
+                <td style="width: 15%">상품명</td>
+                <td class="nearest-text-left" colspan="2">
+                  <input type="text" 
+                         class="form-control col-sm-8"
+                         id="nearest-admin-item-title"
+                         name="name"
+                         style="border-color: #52d3aa"
+                         placeholder="상품명" />
+                  <input id="nearest-admin-item-prod-no" name="no" type="hidden" value="" />
+                </td>
+              </tr>
+              <tr>
+                <td>판매가(원)</td>
+                <td class="nearest-text-left" colspan="2">
+                  <input name="price" type="text" class="form-control col-sm-8" id="nearest-admin-item-price"  style="border-color: #52d3aa" placeholder="판매 가격">
+                </td>
+              </tr>
+              <tr>
+                <td>분류</td>
+                <td>
+                  <select id="nearest-manage-maj-cate" name="majorCategory"  style="border-color: #52d3aa" class="form-control">
+	                </select>
+                </td>
+                <td>
+                  <select id="nearest-manage-sub-cate" name="subCategory"  style="border-color: #52d3aa" class="form-control">
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>재고량(개)</td>
+                <td class="nearest-text-left">
+                  <input name="entity" type="text" class="form-control col-sm-8"  style="border-color: #52d3aa" id="nearest-admin-item-entity" placeholder="재고">
+                </td>
+              </tr>
+              <tr>
+                <td>할인률</td>
+                <td class="nearest-text-left">
+                  <input id="nearest-admin-item-discount-rate" name="discountRate" class="form-control"  style="border-color: #52d3aa" type="number" min="0" max="100" value="0" step="5" />
+                </td>
+                <td>
+                  <span class="nearest-prod-manage-discount-price" style="color: red;"></span>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                   <label class="nearest-file-upload btn-primary" style="padding: 10px 20px; border-radius: 6px" ><input id="nearest-detail-file-upload" name="imageFiles" type="file" /> 상품 이미지 수정</label>
+                </td>
+                <td colspan="2"></td>
+              </tr>
+            </table>
+						<p class="form-btn">
+							<input id="nearest-item-update" type="submit" class="btn btn-primary" value="수정" />
+							<button id="nearest-item-cancel" type="button" class="btn btn-default">취소</button>
+						</p>
+					</div>
+				</form>
+				<!-- 상품관리 끝 -->
+			</div>
+		</div>
+	</div>
+	<!-- nearest-client-wrap end -->
+
+	<footer>
+    <section class="foot-area">
+      <div class="nearest-footer" style="text-align: center; width: 100%;">
+          <!-- (s)160524: 전자금융거래이용약관 -->
+          <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
+          <!-- (e)160524: 전자금융거래이용약관 -->
+      </div> <!--/.row -->
+    </section>
+  </footer>
+
+	<!-- Main JS (Do not remove) -->
+	<script src="./resources/js/app-context.js"></script>
+	<script src="./resources/js/session_check.js"></script>
+	<script src="./resources/js/alert_index.js"></script>
+	<script src="./resources/js/main.js"></script>
+	<script src="./resources/js/admin.js"></script>
+	<script src="./resources/js/admin_order.js"></script>
+	<script src="./resources/js/admin_manage.js"></script>
+	<script src="./resources/js/admin_manage_detail.js"></script>
+	<script src="./resources/js/admin_qna.js"></script>
+	<script src="./resources/js/admin_regist.js"></script>
+	<script src="./resources/js/admin_purchase_list.js"></script>
+	<script src="./resources/js/logout.js"></script>
+	
+</body>
+</html>
+

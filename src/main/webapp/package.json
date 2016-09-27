@@ -10,18 +10,27 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "blueimp-canvas-to-blob": "^3.3.0",
+    "blueimp-file-upload": "^9.12.5",
+    "blueimp-load-image": "^2.6.1",
     "bootstrap": "^3.3.7",
     "bootstrap-datetimepicker": "0.0.7",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.42",
     "google-maps": "^3.2.1",
     "handlebars": "^4.0.5",
     "jquery": "^1.12.4",
     "jquery-countto": "^1.2.0",
     "jquery-dateformat": "^1.0.3",
     "jquery-easing": "0.0.1",
+    "jquery-form": "^3.50.0",
+    "jquery-ui": "^1.12.0",
     "jquery-waypoints": "^2.0.5",
     "jquery.cookie": "^1.4.1",
+    "jquery.ui.widget": "^1.10.3",
     "magnific-popup": "^1.1.0",
     "npm-modernizr": "^2.8.3",
-    "respondjs": "^0.3.0"
+    "respondjs": "^0.3.0",
+    "summernote": "^0.8.2",
+    "sweetalert": "^1.1.3"
   }
 }

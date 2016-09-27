@@ -1,3 +1,4 @@
+
 var prodListSource = $('#nearest-product-list-template').text();
 var prodListTemplete = Handlebars.compile(prodListSource);
 var pageNavSource = $('#nearest-product-pagenav-template').text();
@@ -16,9 +17,6 @@ var pageUnit = "" ;
 // 총 페이지 수
 var totalPage = "";
 
-// 현재 페이지
-var currentPage = "";
-
 // 다음 페이지 번호
 var nextPage = "";
 
@@ -28,45 +26,65 @@ var previousPage = "";
 // 총 데이터의 수
 var total = "";
 
-// 검색 했을때 
-$('#nearest-search').click(function(){
-	
-	//초기화
-	searchTag = "";
-	searchContent = "";
-	pageUnit = "" ;
-	totalPage = "";
-	currentPage = "";
-	nextPage = "";
-	previousPage = "";
-	total = "";
+function productSearch(){
 
-  if($('input[name=searchContent]').val().trim() == ""){
-    alert('검색어를 입력해주세요.');
-    return;
-  }
-  
-  $('#nearest-product-list').children().remove();
-  $('#nearest-pageno').children().remove();
-  
+	
   $.ajax({
-    url :  contextRoot + 'product/list.do',
+	url :  contextRoot + 'product/list.do',
     datatype : 'json',
     method : 'post',
-      
     data : {
       searchTag : $('select[name="searchTag"]').val(),
-      searchContent : $('input[name="searchContent"]').val()
+      searchContent : $('#nearest-search').val(),
+      currentPage: currentPage,
+      option: 'client',
+      martNo : martNo,
+      majorCat : majorCat,
+      subCat : subCat,
+      searchLat : searchLat,
+      searchLng : searchLng
     },
     success : function(result) {
       if(result.status != 'success'){
         alert('검색오류');
         return;
       }
-        
+      
+      if( result.productData == undefined || result.productData.length == 0 ){
+    	  clientAlert('nodata');
+    	  return;
+      }
+      console.log(result);
+      if(result.searchKeyword == 'prods'){
+    	  searchMartName = '';
+    	  
+    	  $('#nearest-menu-category-wrap').css('display', 'none');
+    	  $('#nearest-search-result').css('display','inline');
+    	  $('#nearest-search-keyword-result').css('display', 'none');
+    	  $('#nearest-search-keyword-result').next('span').text('상품');
+    	  $('#nearest-search-content-result').text('\''+result.searchContent+'\'');
+    	  $('#nearest-search-content-result').css('display', '');
+      }else if(result.searchKeyword == 'marts'){
+    	  console.log(result.productData);
+    	  $('#nearest-menu-category-wrap').css('display', 'inline');
+    	  $('#nearest-search-result').css('display','inline');
+    	  $('#nearest-search-keyword-result').css('display', '');
+    	  $('#nearest-search-keyword-result').next('span').text('의 상품');
+    	  $('#nearest-search-keyword-result').text('\''+result.searchContent+'\'');
+    	  if(result.productData.length > 0){
+    		  martNo = JSON.stringify(result.productData[0].mart.no);  
+    	  }
+    	  $('#nearest-search-content-result').css('display', 'none');
+      }
+      
+      var products = result.productData;
+      
+      for(var i in products) {
+    	  products[i].price = ' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100));
+      }
+      
       $('#nearest-product-list').append(prodListTemplete(result));
-        
-//      alert(JSON.stringify(result.total));
+      
       total = JSON.stringify(result.total);
         
       if ( total % 9 != 0){
@@ -79,24 +97,16 @@ $('#nearest-search').click(function(){
     	  pageUnit = 5; 
     	  nextPage = pageUnit + 1;
     	  
-    	  $('span[data-next-page=""]').attr('data-next-page', nextPage);
       }else if( totalPage == 0 ){
     	  pageUnit = 0;
-    	  $('span[data-next-page=""]').attr('data-next-page', '');
       }else{
     	  pageUnit = totalPage;
       }
-        
-      if (pageUnit >= 1){
-      	for(var i=1; i<=pageUnit; i++){
-       		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-       	}
-      }
-      searchTag = $('select[name=searchTag]').val();
-      searchContent = $('input[name=searchContent]').val();
-//      alert(pageUnit+'//'+searchTag+'//'+searchContent+'//'+totalPage);
       
-      $('.fh5co-project-item > img').magnificPopup();
+      searchTag = $('select[name=searchTag]').val();
+      searchContent = $('#nearest-search').val();
+      
+      $('.fh5co-project-item').magnificPopup();
       
       
     },
@@ -104,162 +114,188 @@ $('#nearest-search').click(function(){
       alert("error....");
     }
   });
-});
-
-//페이지 번호 눌렀을때
-$(document).on('click','#nearest-pageno > li',function (){
-	
-	$('#nearest-product-list').children().remove();
-	
-	currentpage = $(this).children('a').text();
-	
-//	alert(searchTag+'//'+searchContent+"//"+currentpage);
-	
-	$.ajax({
-	    url :  contextRoot + 'product/list.do',
-	    datatype : 'json',
-	    method : 'post',
-	      
-	    data : {
-	      searchTag : searchTag,
-	      searchContent : searchContent,
-	      currentPage : currentpage
-	    },
-	    success : function(result) {
-	    	if(result.status != 'success'){
-	            alert('재검색오류');
-	            return;
-	          }
-	    	$('#nearest-product-list').append(prodListTemplete(result));
-	    	
-	    	$('.fh5co-project-item > img').magnificPopup();
-	    },
-	    error : function() {
-	        alert("error....");
-	    }
-  });
-});
-
-function search(){
-
-	
 }
 
-//다음 버튼 눌렀을때
-$(document).on('click', 'a[aria-label="Next"]', function() {
+// 검색 했을때 
+$('#nearest-search').on('keypress', function(event){
 	
-//	alert('currentPage = ' + $(this).children('span').attr('data-next-page'));
-	currentPage = $(this).children('span').attr('data-next-page');
+	indexOption = "search";
 	
-	$('#nearest-product-list').children().remove();
+	//초기화
+	searchTag = "";
+	searchContent = "";
+	pageUnit = "" ;
+	totalPage = "";
+	currentPage = 1;
+	nextPage = "";
+	previousPage = "";
+	total = "";
+	martNo = '';
+	majorCat = '';
+	subCat = '';
+	
+
+	if(event.keyCode == 13){
+	  
+	  if($.trim($('#nearest-search').val())== ""){
+		    alert('검색어를 입력해주세요.');
+		    return;
+	  }
+	  
+	  $('#nearest-product-list').children().remove();
 	  $('#nearest-pageno').children().remove();
 	  
-	  if( $(this).children('span').attr('data-next-page') == '' ){
-		  alert('끝 페이지 입니다.');
-	  }
-		$.ajax({
-		    url :  contextRoot + 'product/list.do',
-			datatype : 'json',
-			method : 'post',
-		  
-			data : {
-			  searchTag : searchTag,
-			  searchContent : searchContent,
-			  currentPage : currentPage
-			},
-			success : function(result) {
-			  if(result.status != 'success'){
-			    alert('검색오류');
-			    return;
-			  }
-			    
-			  $('#nearest-product-list').append(prodListTemplete(result));
-			    
-			  if( totalPage >= (nextPage + 5)) {
-				  pageUnit = (nextPage + 5);
-				  
-				  $('span[data-next-page=""]').attr('data-next-page', nextPage);
+	  productSearch();
+	  
+	}
+  
 
-			  }else{
-				  pageUnit = totalPage+1;
-				  $('span[data-next-page]').attr('data-next-page', '');
-			  }
-			  
-			  previousPage = nextPage - 1;
-			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
-			 
-			  if (pageUnit >= 1){
-			  	for(var i=nextPage; i < pageUnit; i++){
-			   		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-			   	}
-			  	
-			  }
-			  if(totalPage >= pageUnit){
-			      nextPage = pageUnit;
-				  $('span[data-next-page]').attr('data-next-page', nextPage);
-			  }
-			  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
-			  
-			  $('.fh5co-project-item > img').magnificPopup();
-			},
-			error : function() {
-			  alert("error....");
+});
+	  
+//카테고리 검색
+$('.category-link').on('click', function(e){
+	e.preventDefault();
+	majorCat = '';
+	subCat = '';
+	currentPage = 1;
+	
+	majorCat = $(this).attr('data-level');
+	subCat = $(this).attr('data-code');
+
+
+	if(martNo != '' && majorCat != '' && subCat != ''){
+     
+	 $('#nearest-product-list').children().remove();
+     $('#nearest-pageno').children().remove();
+			
+	  productSearch();
+	}
+	
+});
+
+//카테고리 메뉴 클릭 이벤트 없앰
+$('.categoty-menu').click(function(e){
+	e.preventDefault();
+});
+
+$(function() {	
+	
+	
+
+	$(window).scroll(function() {
+		if($(window).scrollTop() >= $(document).height()-$(window).height()-20) {
+
+			if(searchMartName != '') {
+				indexOption = 'index';
+			}else if(searchLat != '' && searchLng != ''){
+				indexOption = 'search';
 			}
-	  });
-	  
+
+			
+			currentPage++;
+			
+			
+			console.log('scroll searchMartName : ' + searchMartName);
+			console.log('scroll currentPage : ' + currentPage);
+			console.log('scroll lat : ' + searchLat);
+			console.log('scroll searchContent : ' + searchContent);
+			console.log('scroll indexOption : ' + indexOption);
+			
+			
+			switch(indexOption) {
+				case 'index':
+					searchTag = 'marts';
+					searchContent = searchMartName;
+					
+					break;
+				case 'search':
+					searchTag = $('select[name="searchTag"]').val();
+				    searchContent = $('#nearest-search').val();
+					
+					break;
+			}
+
+			$.ajax({
+			    url :  contextRoot + 'product/list.do',
+			    datatype : 'json',
+			    method : 'post',
+			      
+			    data : {
+			      searchTag: searchTag,
+				  searchContent: searchContent,
+			      currentPage : currentPage,
+			      option: 'client',
+			      martNo : martNo,
+			      majorCat : majorCat,
+			      subCat : subCat,
+			      searchLat : searchLat,
+			      searchLng : searchLng
+			    },
+			    success : function(result) {
+
+			      			    
+			    	
+			      if(result.status != 'success'){
+			        alert('검색오류');
+			        return;
+			      }
+			      
+			      if(result.productData.length > 0){
+		    		  martNo = JSON.stringify(result.productData[0].mart.no);  
+		    	  }
+			        
+			      $('#nearest-product-list').append(prodListTemplete(result));
+			      
+			      var products = result.productData;
+			      var indexProducts = $('.nearest-product-list-price');
+			      var discountPrice;
+			      var indexValue;
+			      
+			      for (var i in products) {					    	  
+			    	  if(products[i].discountRate > 0) {
+			    		  indexValue = parseInt(i)+parseInt((result.currentPage-1)*9);
+			    		  
+			    		  console.log(indexValue);
+			    		  
+			    		  console.log($(indexProducts[indexValue]).html());
+			    		  
+		    			  $(indexProducts[indexValue]).text(products[i].price);
+			    		  $(indexProducts[indexValue]).css('text-decoration', 'line-through');
+			    		  
+			    		  discountPrice = $('<span>').text(' ' + parseInt(products[i].price - (products[i].price * products[i].discountRate / 100)) + ' 원');
+			    		  $(indexProducts[indexValue]).after(discountPrice);					    		  
+			    	  }
+			      }
+			        
+		//		      alert(JSON.stringify(result.total));
+			      total = JSON.stringify(result.total);
+			        
+			      if ( total % 9 != 0){
+			      	totalPage = parseInt( total / 9 ) + 1;
+			      }else{
+			    	totalPage = parseInt( total / 9 );
+			      }
+			      
+			      if ( totalPage >= 5) {
+			    	  pageUnit = 5; 
+			    	  nextPage = pageUnit + 1;
+			    	  
+			      }else if( totalPage == 0 ){
+			    	  pageUnit = 0;
+			      }else{
+			    	  pageUnit = totalPage;
+			      }
+			      
+			      $('.fh5co-project-item').magnificPopup();
+			      
+			      
+			    },
+			    error : function() {
+			      alert("error....");
+			    }
+			});
+		}
+	});
+	
 });
 
-//이전 버튼 눌렀을때
-$(document).on('click', 'a[aria-label="Previous"]', function() {
-	
-	currentPage = $(this).children('span').attr('data-previous-page');
-	
-	$('#nearest-product-list').children().remove();
-	$('#nearest-pageno').children().remove();
-	  
-	  $.ajax({
-	    url :  contextRoot + 'product/list.do',
-		datatype : 'json',
-		method : 'post',
-	  
-		data : {
-		  searchTag : searchTag,
-		  searchContent : searchContent,
-		  currentPage : previousPage
-		},
-		success : function(result) {
-		  if(result.status != 'success'){
-		    alert('검색오류');
-		    return;
-		  }
-		  
-		  $('#nearest-product-list').append(prodListTemplete(result));
-		  
-		  if (pageUnit >= 1){
-		  	for(var i=(previousPage - 4); i <= previousPage; i++){
-		   		$('#nearest-pageno').append(pageNavTemplete({i}));   		
-		   	}
-		  	
-		  }
-		  if(previousPage > 5 ){
-			  previousPage -= 5 ;
-			  $('span[data-previous-page]').attr('data-previous-page', previousPage );
-		  }
-		  if( nextPage > 6 && (totalPage - nextPage) > 6){
-			  nextPage -= 5;  
-		  }
-		  if( currentPage == 5 ){
-			  nextPage = 6;
-		  }
-		  $('span[data-next-page]').attr('data-next-page', nextPage);
-		  /*if( (totalPage - nextPage) < 6 ){}*/
-		  
-		  /*alert('[pageUnit] : '+pageUnit+' [totalPage] : '+totalPage+' [currentPage] : '+currentPage+' [nextPage] : '+nextPage+' [previousPage] : '+previousPage+' [total] : '+total);*/
-		  
-		  $('.fh5co-project-item > img').magnificPopup();
-		},
-		error : function() {
-		  alert("error....");
-		}
-  });
-});

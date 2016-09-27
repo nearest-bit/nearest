@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Nearest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+  <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+  <meta name="author" content="FREEHTML5.CO" />
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+  
+  <!-- CSS Files -->
+  
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="./resources/css/animate.css">
+  <!-- Icomoon Icon Fonts-->
+  <link rel="stylesheet" href="./resources/css/icomoon.css">
+  <!-- Simple Line Icons -->
+  <link rel="stylesheet" href="./resources/css/simple-line-icons.css">
+  <!-- Magnific Popup -->
+  <link rel="stylesheet" href="./resources/css/magnific-popup.css">
+  <!-- Bootstrap  -->
+  <link rel="stylesheet" href="./resources/css/bootstrap.css">
+  <!-- Signup CSS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+  <link rel="stylesheet" href="./resources/css/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./resources/css/main_signup.css">
+  <!-- Login CSS -->
+  <link rel="stylesheet" href="./resources/css/login.css">
+  <!-- SignUp CSS -->
+  <link rel="stylesheet" href="./resources/css/main_signup.css">
+  <!-- Main Footer -->
+  <link rel="stylesheet" href="./resources/css/main_footer.css">
+  <!-- Sweet Alert -->
+  <link rel="stylesheet" href="./node_modules/sweetalert/dist/sweetalert.css">
+  <!-- BootStrap DateTimePicker -->
+  <link rel="stylesheet" href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+  
+  
+  
+  <!-- JS Files -->
+  
+  <!-- jQuery -->
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Bootstrap DateTimePicker -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+  <script src="./resources/js/bootstrap-datetimepicker.js"></script>
+  <!-- Magnific Popup -->
+  <script src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+  <script src="./resources/js/magnific-popup-options.js"></script>
+  <!-- Handlebars -->
+  <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
+  <!-- Sweet Alert -->
+  <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- jQuery Cookie -->
+  <script src="./node_modules/jquery.cookie/jquery.cookie.js"></script>
+  
+  </head>
+  <body>
+
+  <!-- Login Form -->
+  
+  <div id="loginForm-wrap">
+    <div class="nearest-loginForm">
+    
+      <div class="login-form-box">
+        
+        <div class="login-form-top">
+          
+          <div class="login-form-top-left">
+            <h3>Nearest</h3>
+          </div>
+        </div>
+        
+        <div class="login-form-bottom">
+          <div id="loginForm">
+            <div class="form-group">
+              <label class="sr-only" for="form-username">Username</label> 
+              <input
+                type="text" 
+                name="form-username" 
+                placeholder="아이디"
+                class="form-username form-control" 
+                id="login-form-username">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="form-password">Password</label> 
+              <input
+                type="password" 
+                name="form-password" 
+                placeholder="비밀번호"
+                class="form-password form-control" 
+                id="login-form-password">
+            </div>
+            <div class="form-group">
+              <button id="login-btn" type="button" class="btn">로그인</button>
+            </div>
+          </form>
+          
+          <div></div>
+          <div class="login-form-id-save">
+             <p class="id-save" style="margin-bottom: 5px"> 
+                <label><input type="checkbox" id="rememberId" > 아이디 저장</label>
+                <label><input type="checkbox" id="adminLogin" > 관리자 로그인</label>
+             </p><br/>
+             <p class="find-id-password">  
+              <!--  <a href="#signupForm">회원가입</a>
+               &nbsp;|&nbsp; -->
+               <a href="login_idFind.html">아이디 찾기</a>
+               &nbsp;|&nbsp;
+               <a href="login_pwFind.html">비밀번호 찾기</a>
+             </p> 
+          </div>
+        </div>
+          
+      </div>
+    </div>
+  </div>
+  
+  <div id="signupForm" class="white-popup-block mfp-hide">   
+  
+    <div class="signup-form-box">
+     <div class="signup-form-top">
+        <div class="signup-form-top-left">
+          <h2><strong>Nearest</strong></h2>
+          <p>위치기반 간편쇼핑 Nearest 가입을 환영합니다.</p>
+        </div>
+
+        <div class="signup-form-top-right">
+          <i class="fa fa-pencil"></i>
+        </div>
+     </div>
+            
+     <div class="signup-form-bottom">
+       <form role="form" action="" method="post" class="registration-form">
+         <div class="form-group">
+           <label>ID</label>
+			     <input type="text" 
+			            name="reg-id" 
+			            placeholder="아이디를 입력하세요." 
+			            class="form-first-name form-control" 
+			            id="form-id">   
+			            <span id="nearest-checkDupl"></span>                        
+         </div>
+                 
+         <div class="form-group">
+           <label>PASSWORD</label>
+			     <input type="password" 
+			            name="reg-password" 
+			            placeholder="패스워드를 입력하세요." 
+			            class="form-last-name form-control" 
+			            id="form-password">
+         </div>
+                 
+			   <div class="form-group">
+			     <label>NAME</label>
+			     <input type="text" 
+			            name="reg-name" 
+			            placeholder="이름을 입력하세요." 
+			            class="form-last-name form-control" 
+			            id="form-name">
+			   </div>
+           
+         <div class="form-group">
+           <label>BIRTH</label>
+           <div class='input-group date' id='datepicker1'>
+               <input type='text' 
+                      name="reg-birth"
+                      class="form-control birth-font-color" 
+                      placeholder="생년월일을 선택하세요."/>
+               <span class="input-group-addon">
+                 <span class="glyphicon glyphicon-calendar"></span>
+               </span>
+           </div>
+                     
+           <!-- Load jQuery and bootstrap datepicker scripts -->
+			     <script type="text/javascript">
+			     // When the document is ready
+			     $(function () {
+			      
+			         $('#datepicker1').datetimepicker(
+			             {   
+			               format: 'YYYY-MM-DD', 
+			               defaultDate: new Date()
+			             }
+			         );  
+			  
+			     });
+			     </script>
+         </div>
+
+         <label>E-MAIL</label>
+         <div class="form-group">
+           <input type="text" 
+                  name="reg-email" 
+                  placeholder="이메일을 입력하세요." 
+                  class="form-email form-control" 
+                  id="form-email">
+         </div>
+         
+         <label>Phone</label>
+         <div class="form-group">
+
+           <input name="reg-phone"
+                  type="text" 
+                  placeholder="핸드폰 번호를 입력하세요." 
+                  class="form-about-yourself form-control"/>
+         </div>
+
+         <button name="regBtn" type="button" class="btn regBtn">회원가입</button>
+       </form>
+     </div> <!-- signup-form-bottom end -->
+       
+    </div> <!-- signup-form-box end -->
+      
+  </div> <!-- signupForm end -->
+
+
+  <!-- Main JS (Do not remove) -->
+  <script src="./resources/js/app-context.js"></script>
+  <script src="./resources/js/alert_index.js"></script>
+  <script src="./resources/js/session_check.js"></script>
+  <script src="./resources/js/login.js"></script>
+  <script src="./resources/js/main_register.js"></script>
+
+  </body>
+</html>
+

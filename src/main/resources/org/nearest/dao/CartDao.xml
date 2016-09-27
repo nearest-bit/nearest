@@ -22,20 +22,6 @@
       <result property="name" column="mt_nm" javaType="string"/>
     </association>
   </resultMap>
-  
-  <resultMap type="mart" id="martMap">
-    <id     column="mt_no"       property="no" />
-    <result column="mt_nm"       property="name" />
-    <result column="mt_addr"     property="addr" />
-    <result column="mt_addt"     property="addrDetail" />
-    <result column="mt_post"     property="postNo" />
-    <result column="mt_tel"      property="telNo" />
-    <result column="mt_lat"      property="latitude" />
-    <result column="mt_lng"      property="longitude" />
-    <association property="admin" javaType="admin">
-      <id column="admin_no" property="no" javaType="INTEGER" />
-    </association>
-  </resultMap>
 
   
   <insert id="insertCart" parameterType="cart">
@@ -43,8 +29,8 @@
     values ( #{clientNo}, #{productNo})
   </insert>
   
-  <select id="selectCartList" parameterType="int" resultMap="productMap,martMap">
-    select p.prod_no, prod_pic, prod_nm, prod_pri, prod_ent, p.mt_no, mt_nm
+  <select id="selectCartList" parameterType="int" resultMap="productMap">
+    select p.prod_no, prod_pic, prod_nm, prod_pri, prod_ent, p.mt_no, mt_nm, prod_dis
     from clnts c, temps t, prods p, marts m
     where c.clnt_no = t.clnt_no 
     AND t.prod_no = p.prod_no 
@@ -55,6 +41,11 @@
   <delete id="deleteCart" parameterType="map">
     delete from temps 
     where clnt_no = #{clientNo} AND prod_no in (${prodNo})
+  </delete>
+  
+  <delete id="deleteCartList" parameterType="int">
+    delete from temps 
+    where clnt_no = #{clientNo}
   </delete>
 
 </mapper>

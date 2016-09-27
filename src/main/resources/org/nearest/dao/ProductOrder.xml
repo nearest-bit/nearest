@@ -5,7 +5,10 @@
   
 <mapper namespace="org.nearest.dao.ProductOrderDao">
   <resultMap type="productOrder" id="productOrderMap">
-    <id     column="order_ent"       property="entity" />
+    <result column="order_nm"        property="orderName"/>
+    <result column="order_pri"        property="orderPrice"/>
+    <result column="order_dis"        property="orderDiscount"/>
+    <result column="order_ent"       property="entity" />
     <association property="product" javaType="product">
       <result column="prod_no" property="no" javaType="INTEGER"/>
     </association>
@@ -16,10 +19,10 @@
   
   <insert id="insertProdOrder" parameterType="map">
     insert into 
-    prod_orders (order_no, prod_no, order_ent)
+    prod_orders (order_no, prod_no, order_ent, order_nm, order_pri, order_dis)
     values
     <foreach collection="prodDataList" item="item" separator=",">
-      (#{item.orderNo}, #{item.prodNo}, #{item.entity})
+      (#{item.orderNo}, #{item.prodNo}, #{item.entity}, #{item.prodName}, #{item.price}, #{item.discount})
     </foreach> 
   </insert>
 

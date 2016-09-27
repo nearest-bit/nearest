@@ -14,16 +14,27 @@
 body {
   font-family: "Source Sans Pro", Arial, sans-serif;
   font-weight: 300;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.5;
-  color: #777777;
   color: #7f7f7f;
   height: 100%;
   position: relative;
 }
+.nearest-fl{
+	float: left;
+}
+
+
+.gnb {
+    height: 62px;
+    line-height: 62px;
+    font-family: nanum_b;
+    font-size: 16px;
+    font-weight: bold;
+}
 
 a {
-  color: #52d3aa;
+  color: #ffffff;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
@@ -41,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #000;
   font-family: "Source Sans Pro", Arial, sans-serif;
   font-weight: 400;
-  margin: 0 0 30px 0;
+ /*  margin: 0 0 30px 0; */
 }
 
 /* ::-webkit-selection {
@@ -200,6 +211,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 99;
   width: 100%;
   opacity: 1;
+  height: 65px;
   top: 0;
 }
 @media screen and (max-width: 768px) {
@@ -392,7 +404,8 @@ h1, h2, h3, h4, h5, h6 {
   background-image: -ms-repeating-linear-gradient(top left, #3f95ea 0%, #52d3aa 100%);
 }
 #fh5co-home, #fh5co-home .text-wrap {
-  height: 1000px;
+  height: 500px;
+ 
 }
 #fh5co-home .text-wrap {
   display: table;
@@ -413,7 +426,6 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.5s;
 }
 #fh5co-home .text-inner a:hover, #fh5co-home .text-inner a:active, #fh5co-home .text-inner a:focus {
-  text-decoration: none;
   color: white;
   border-bottom: 1px dashed white;
 }
@@ -768,13 +780,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fh5co-counters .fh5co-counter .fh5co-counter-number {
   font-size: 40px;
-  color: #fff;
+  color: #57d3aa;
   font-weight: 300;
 }
 #fh5co-counters .fh5co-counter .fh5co-counter-label {
-  color: rgba(255, 255, 255, 0.5);
+  color: rgb(0, 0, 0);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 #fh5co-testimonials .box-testimony {
@@ -786,7 +798,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fh5co-testimonials .box-testimony a:hover, #fh5co-testimonials .box-testimony a:focus, #fh5co-testimonials .box-testimony a:active {
   color: white;
-  text-decoration: none;
 }
 #fh5co-testimonials .box-testimony blockquote {
   padding-left: 0;
@@ -853,11 +864,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #fh5co-work {
-  overflow: hidden;
+	background-color:#f3f3f3;
+	padding: 0 !important;
+  /* overflow: hidden; */
   position: relative;
   color: rgba(255, 255, 255, 0.8);
-  /* background-color: #52d3aa;
-  IE9, iOS 3.2+
+ /*  background-color: #f4ebdd; */
+  /*IE9, iOS 3.2+
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiMzZjk1ZWEiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iIzUyZDNhYSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
   background-image: -webkit-gradient(linear, 0% 0%, 100% 100%, color-stop(0, #3f95ea), color-stop(1, #52d3aa));
   Android 2.3
@@ -872,7 +885,7 @@ h1, h2, h3, h4, h5, h6 {
   /* text-decoration: underline; */
 }
 #fh5co-work a:hover {
-  color: white;
+  /* color: white; */
 }
 /* #fh5co-work:before, #fh5co-work:after {
   position: absolute;
@@ -902,7 +915,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 #fh5co-work .section-heading h2:after {
   /* background: rgba(255, 255, 255, 0.3); */
-  background: black;
+  background: #52d3aa;
 }
 #fh5co-work .section-heading h3 {
   color: rgba(255, 255, 255, 0.8);
@@ -934,9 +947,6 @@ h1, h2, h3, h4, h5, h6 {
 #fh5co-work .fh5co-project-item .fh5co-text {
   padding: 10px 20px;
 }
-#fh5co-work .fh5co-project-item .fh5co-text h2, #fh5co-work .fh5co-project-item .fh5co-text span {
-  text-decoration: none !important;
-}
 #fh5co-work .fh5co-project-item .fh5co-text h2 {
   font-size: 18px;
   font-weight: bold;
@@ -948,13 +958,13 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 #fh5co-work .fh5co-project-item:hover, #fh5co-work .fh5co-project-item:focus {
-  -webkit-box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.4);
-  -ms-box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.4);
-  -o-box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.4);
-  box-shadow: 7px 14px 42px 3px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 7px 14px 25px 3px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 7px 14px 25px 3px rgba(0, 0, 0, 0.4);
+  -ms-box-shadow: 7px 14px 25px 3px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 7px 14px 25px 3px rgba(0, 0, 0, 0.4);
+  box-shadow: 7px 14px 25px 3px rgba(0, 0, 0, 0.4);
   text-decoration: none;
-  top: -15px;
+  top: -5px;
 }
 #fh5co-work .fh5co-project-item:hover img, #fh5co-work .fh5co-project-item:focus img {
   opacity: .7;
@@ -1005,7 +1015,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: none;
   background: transparent;
   border: 2px solid gray;
-  height: 41px;
+  height: 45px;
   font-size: 15px;
   font-weight: 400;
   font-family: 'icomoon';
@@ -1054,14 +1064,15 @@ h1, h2, h3, h4, h5, h6 {
   clear: both;
 }
 .section-heading h2 {
-  margin: 0 0 30px 0;
-  font-size: 50px;
+  margin: 10px 0 30px 0;
+  font-size: 35px;
   font-weight: 300;
   color: #444;
+  font-family: nanum_b;
   text-transform: uppercase;
   position: relative;
   display: block;
-  padding-bottom: 20px;
+  padding-bottom: 15px;
   line-height: 1.5;
 }
 .section-heading h2.left-border:after {
@@ -1327,10 +1338,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #map {
-  width: 100%;
-  height: 60%;
-  top: 35%;
-  bottom: -50%;
+    width: 100%;
+    height: 77%;
+    top: 13%;
+    bottom: -50%;
   
   position: relative;
 }
@@ -1341,15 +1352,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #nearest-map-locationField {
-	width: 40%;
-	top: 40%;
-  bottom: -50%;
-  margin: auto;
-  
-  z-index: 99;
-  
-  position: relative;
+    width: 100%;
+    top: 13%;
+    height: 10%;
+    bottom: -50%;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    background: rgba(0,0,0,0.8);
 }
+
 
 #nearest-listing {
 	width: 40%;
@@ -1362,14 +1374,19 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
 }
 
+
 #nearest-map-autocomplete {
-	width: 100%;
-	top: 40%;
-  bottom: -50%;
-  
-	z-index: 99;
-	
-	position: relative;
+    width: 30%;
+    top: 18%;
+    min-width: 450px;
+    font-size: 14px;
+    height: 48%;
+    bottom: -50%;
+    border-radius: 3px;
+    position: relative;
+    background: url("http://www.earthtory.com/res/img/common/gnb/search_icon.png") no-repeat;
+    background-position: 98% center;
+    background-color: white;
 }
 
 .mfp-with-zoom .mfp-container,

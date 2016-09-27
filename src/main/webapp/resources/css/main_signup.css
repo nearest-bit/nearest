@@ -27,17 +27,30 @@
 .top-content .description a:hover, 
 .top-content .description a:focus { border-bottom: 1px dotted #fff; }
 
+/*start*/
+
+.form-control-bg {
+	background-color: #fff !important;
+	border: 1px solid #ccc !important;
+	color: #555555;
+}
+
 .signup-form-box {
-  margin: 0 35% 0 35%;
-  background: white;
+  margin: 0 auto;
+  background: #13232f;
+  opacity: 0.9;
+  border-radius:10px;
+  box-shadow:0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  padding: 40px 20px 10px 20px;
+  width:600px;
 }
 
 .signup-form-top {
 	overflow: hidden;
 	padding: 0 25px 0 25px;
-	background: #444;
+	/* background: #444;
 	background: rgba(0, 0, 0, 0.35);
-	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0; */
 	text-align: left;
 }
 
@@ -47,7 +60,7 @@
 	padding-top: 25px;
 }
 
-.signup-form-top-left h3 { margin-top: 0; color: #fff; }
+.signup-form-top-left h2 { margin-top: 0; color: #fff; text-align: center}
 .signup-form-top-left p { opacity: 0.8; color: #fff; }
 
 .signup-form-top-right {
@@ -63,9 +76,9 @@
 
 .signup-form-bottom {
 	padding: 0 25px 30px 25px;
-	background: #444;
+	/* background: #444;
 	background: rgba(0, 0, 0, 0.3);
-	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px; */
 	text-align: left;
 }
 
@@ -74,7 +87,9 @@
 }
 
 .signup-form-bottom form button.btn {
-	width: 60%;
+	width: 100%;
+  background: #179b77;
+  color: #ffffff;
 }
 
 .signup-form-bottom form .input-error {
@@ -120,5 +135,5 @@
 }
 
 .birth-font-color {
-	color: white !important;
+	color: black !important;
 }

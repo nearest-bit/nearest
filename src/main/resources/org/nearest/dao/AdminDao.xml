@@ -5,11 +5,30 @@
   
 <mapper namespace="org.nearest.dao.AdminDao">
   <resultMap type="admin" id="adminMap">
-    <id     column="admin_no"       property="no" />
+    <result column="admin_no"       property="no" />
     <result column="admin_pn"       property="phone" />
     <result column="admin_nm"       property="name" />
     <result column="admin_id"       property="id" />
-    <result column="admin_pw"       property="password" />
+    <result column="admin_pw"       property="password" />    
+  </resultMap>
+  
+  <resultMap type="order" id="orderMap">
+    <id     column="order_no"       property="no" />
+    <result column="order_dt"       property="orderDate" />
+    <result column="order_st"      property="orderState" />
+    <result column="order_re_dt"      property="orderRequestDate" />
+    <association property="mart" javaType="mart">
+      <result column="mt_no" property="no" javaType="INTEGER"/>
+      <result column="mt_nm" property="name" javaType="string"/>
+      <result column="mt_addr" property="addr"/>
+      <result column="mt_addt" property="addrDetail"/>
+      <result column="mt_tel" property="telNo"/>
+    </association>
+    <association property="client" javaType="client">
+      <result column="clnt_no" property="no" javaType="INTEGER"/>
+      <result column="clnt_nm" property="name" javaType="string"/>
+      <result column="clnt_pn" property="phone" javaType="string"/>
+    </association>
   </resultMap>
   
   
@@ -18,6 +37,34 @@
     FROM admins
     WHERE admin_id=#{value}
   </select>
+   
+  <select id="selectOneMartNo" resultType="int" parameterType="INTEGER">
+    SELECT mt.mt_no 
+    FROM admins ad, marts mt
+    WHERE ad.ADMIN_NO = #{value} 
+    AND ad.ADMIN_NO = mt.ADMIN_NO
+  </select>
   
+  <select id="selectOrderList" resultMap="orderMap" parameterType="INTEGER">
+    SELECT o.order_no, o.order_st, o.order_re_dt, o.clnt_no, c.clnt_nm, c.clnt_pn
+    FROM marts m, orders o, clnts c
+    WHERE m.mt_no = #{value} 
+    AND m.mt_no = o.mt_no 
+    AND o.clnt_no = c.clnt_no
+    ORDER BY o.order_re_dt ASC, o.order_st ASC
+  </select>
+  
+  <select id="selectOrderListByCalendar" resultMap="orderMap" parameterType="map">
+      SELECT o.order_no, o.order_st, o.order_re_dt, o.clnt_no, c.clnt_nm, c.clnt_pn
+	    FROM marts m, orders o, clnts c
+	    WHERE m.mt_no = #{martNo} 
+	    AND m.mt_no = o.mt_no 
+	    AND o.clnt_no = c.clnt_no
+      <if test="startDate != '' and endDate != ''">
+      AND date_format(o.order_re_dt, '%y-%m-%d') between date(#{startDate}) and date(#{endDate})
+      </if>
+      AND o.order_st = #{orderStatus}
+      ORDER BY o.order_re_dt ASC, o.order_st ASC
+  </select>
   
 </mapper>

@@ -17,11 +17,13 @@ public class ProductServiceImpl implements ProductService {
   ProductDao productDao;
   
   @Override
-  public List<Product> getProductList(int currentPage, int length, String searchContent) {
+  public List<Product> getProductList(int currentPage, int length, String searchContent, String searchLat, String searchLng) {
      Map<String, Object> params = new HashMap<>();
      params.put("startIndex", (currentPage - 1) * length);
      params.put("len", length);
      params.put("prodName", searchContent);
+     params.put("searchLat", searchLat);
+     params.put("searchLng", searchLng);
      return productDao.selectProdList(params);
   }
 
@@ -48,5 +50,36 @@ public class ProductServiceImpl implements ProductService {
   public Product getProduct(int no) {
 	  return productDao.selectProd(no);
   }
+  
+  @Override
+  public void addProduct(Product product) {
+	  productDao.insertProd(product);
+  }
+  
+  @Override
+  public int updateProduct(Product product) {
+	  return productDao.updateProd(product);
+  }
 
+  @Override
+  public List<Product> getMartCategoryList(int currentPage, int length, String martNo, String majorCat, String subCat) {
+    Map<String, Object> params = new HashMap<>();
+    params.put("startIndex", (currentPage - 1) * length);
+    params.put("len", length);
+    params.put("martNo", martNo);
+    params.put("majorCat", majorCat);
+    params.put("subCat", subCat);
+    return productDao.selectMartCategoryList(params);
+  }
+
+  @Override
+  public void updateProductEnd(Product product) {
+    productDao.updateProdEnt(product);
+    
+  }
+
+  @Override
+  public List<Integer> getProdEnt(List<Integer> prodNo) {
+    return productDao.selectProdEnt(prodNo);
+  }
 }

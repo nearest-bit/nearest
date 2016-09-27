@@ -8,7 +8,8 @@
 
 
 <!-- CSS Files -->
-
+<!-- SweetAlert css -->
+<link rel="stylesheet" href="./node_modules/sweetalert/dist/sweetalert.css">
 <!-- Animate.css -->
 <link rel="stylesheet" href="./resources/css/animate.css">
 <!-- Icomoon Icon Fonts-->
@@ -20,22 +21,19 @@
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="./resources/css/bootstrap.css">
 <!-- Signup CSS -->
-<link rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-<link rel="stylesheet"
-	href="./resources/css/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+<link rel="stylesheet" href="./resources/css/font-awesome/css/font-awesome.min.css">
 <!-- <link rel="stylesheet" href="./resources/css/form-elements.css"> -->
 <link rel="stylesheet" href="./resources/css/main_signup.css">
 <link rel="stylesheet" href="./resources/css/style.css">
 <link rel="stylesheet" href="./resources/css/main_top_menu.css">
-<link rel="stylesheet" href="./resources/css/main_login.css">
 <!-- BootStrap DateTimePicker -->
 <link rel="stylesheet"
-	href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
+  href="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/build/css/bootstrap-datetimepicker.css">
 <!-- DropDown Menu -->
 <link rel="stylesheet" href="./resources/css/main_dropdown.css">
 <!-- Client Payment PopUp -->
-<link rel="stylesheet" href="./resources/css/client_payment.css">
+<link rel="stylesheet" href="./resources/css/client_popup.css">
 <link rel="stylesheet" href="./resources/css/client_menu.css">
 <link rel="stylesheet" href="./resources/css/client_main.css">
 <!-- Main Header -->
@@ -45,14 +43,18 @@
 <!-- input calendar -->
 <link rel="stylesheet" href="./resources/css/client_datepicker_style.css">
 <!-- Main Footer -->
-  <link rel="stylesheet" href="./resources/css/main_footer.css">
-
+ <link rel="stylesheet" href="./resources/css/main_footer.css">
+<!-- client req form -->
+ <link rel="stylesheet" href="./resources/css/client_req_form.css">
+ <!-- myinfo.css -->
+<link rel="stylesheet" href="./resources/css/myinfo.css">
 <!-- JS Files -->
+
 
 <!-- jQuery -->
 <script src="./node_modules/jquery/dist/jquery.min.js"></script>
 <!-- jQuery Easing -->
-<script	src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
+<script src="./node_modules/jquery-easing/dist/jquery.easing.1.3.umd.min.js"></script>
 <!-- Bootstrap -->
 <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
@@ -62,14 +64,14 @@
 <!-- Counter -->
 <script src="./node_modules/jquery-countto/jquery.countTo.js"></script>
 <!-- Magnific Popup -->
-<script	src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="./node_modules/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
 <script src="./resources/js/magnific-popup-options.js"></script>
 <!-- Handlebars -->
 <script src="./node_modules/handlebars/dist/handlebars.min.js"></script>
 
 <script src="./resources/js/jquery.backstretch.min.js"></script>
 <script src="./resources/js/scripts.js"></script>
-<script	src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <!-- Modernizr JS -->
 <script src="./node_modules/npm-modernizr/modernizr.js"></script>
 <!-- FOR IE9 below -->
@@ -90,8 +92,9 @@
   position: inherit !important;
 }
 
+
 .nearest-header-menu {
-  position: inherit !important;
+  position: fixed;
 } 
 
 
@@ -106,386 +109,412 @@
 #nearest-dropdown {
   display: none;
 }
+
+.nearest-purchased-list-table > tbody > tr > td{
+  border-top: 0px;
+  
+} 
+.nearest-hover-table > tbody > tr:hover{
+  background-color: #000000;
+}
+
 </style>
 </head>
 
-<body>
-  <header role="banner" id="fh5co-header">
-    <div class="container nearest-header-menu">
-	        <div class="wrapper">
-	          <div class="row box-shadow nearest-header-top-menu">
-	          
-	            <div id="nearest-dropdown" class="nearest-dropdown nearest-header-menu-btn"> 
-	              <span class="glyphicon glyphicon-align-justify nearest-drop-span" 
-	                    aria-hidden="true"
-	                    onclick="myFunction()">
-	       </span>
-	       
-	       <div id="myDropdown" class="nearest-dropdown-content">
-	         <a href="./client.html">찜 목록</a>
-	         <a href="./client.html">구매 목록</a>
-	         <a href="./client.html">건의 사항</a>
-	       </div>
-	     </div>
-	   
-	     <div class="white-popup nearest-header-menu-btn">
-	       <a id="logoutBtn">
-	         <strong>로그아웃</strong>
-	       </a> 
-	     </div>    
-	   
-	   </div>
-	  
-	   <div class="row box-shadow nearest-header-logo">
-	     <div>
-	     
-	       <img src="./resources/images/logo_2.png"/>
-	       
-	     </div> <!-- .nearest-header-nav end -->
-	   </div>
-	   
-	   <div class="row box-shadow top-nav">
-	     <p class="nearest-header-nav">
-	         <div class="col-xs-4">
-	           <select name="searchTag" class="form-control">
-	             <option value="prods">제품검색</option>
-	             <option value="marts">매장검색</option>
-	           </select>
-	         </div>
-	         
-	         <div class="col-xs-8">
-	           <div class="input-group">
-	             <input type="text"
-	                    name="searchContent" 
-	                    class="form-control" 
-	                    placeholder="상품을 입력하세요.">
-	             <span class="input-group-btn">
-	               <button id="nearest-search" 
-	                       class="btn btn-default" 
-	                       type="button"
-	                       data-nav-section="work">
-	                    검색
-	               </button>
-	             </span>
-	           </div>
-	           <!-- /input-group -->
-	         </div>
-	         
-	       </p> <!-- .nearest-header-nav end -->
-	     </div>
-	    </div>
-	  </div> <!-- container end -->
+<body style="background-color: #f3f3f3;">
+  <!-- Top Banner Menu -->
+    <header role="banner" id="fh5co-header">
+    <div class="nearest-header-menu">
+        <div class="wrapper">
+        
+           <div class="row box-shadow nearest-header-logo">
+             <div>
+              
+               <img id="nearest-logo" style="cursor:pointer; margin-top: 10px;" src="./resources/images/logo_2.png"/>
+               
+             </div> <!-- .nearest-header-nav end -->
+             <ul class="nearest-fl gnb nearest-menu-tab-bar">
+               <li id="nearest-to-cart" class="nearest-fl nearest-li"><a data-toggle="tab" href="#home">찜목록</a></li>
+               <li id="nearest-to-purchase" class="nearest-fl nearest-li"><a data-toggle="tab" href="#menu1">구매내역</a></li>
+               <li id="nearest-to-request" class="nearest-fl nearest-li"><a data-toggle="tab" href="#menu2">문의사항</a></li>
+               <li id="nearest-to-top" style="display: none;" class="nearest-to-home nearest-fl nearest-li"><a href="#">TOP</a></li>
+             </ul>
+                  
+            
+              <div class="nearest-fr top-box">
+              
+                <div id="myInfoBtn-div" class="nearest-fl nearest-header-login-btn">
+                  <a id="myInfoBtn" href="#nearest-myinfo-div">
+                    <strong style="color:white; font-size: 15px;">MyInfo</strong>
+                  </a>
+                </div>
+                
+                <div id="logoutBtn-div" class="nearest-fl nearest-header-join-btn">
+                  <a id="logoutBtn">
+                    <strong style="color:white; font-size: 15px;">Logout</strong>
+                  </a> 
+                </div>
+              </div>
+            </div>
+           </div>
+        </div>
+   <!-- container end -->
   </header>
-
-  <div id="nearest-client-wrap" style="width: 1024px; margin: 0 auto;">
-
-	  <div class="nearest-manage-list-wrap">
-	               
-	     <div class="nearest-manage-list">
-	       <ul class="nav nav-tabs nav-justified" id="nearest-client-menu">
-	         <li class="active"><a href="#">찜목록</a></li>
-	         <li><a href="#">구매목록</a></li>
-	         <li><a href="#">건의사항</a></li>
-	       </ul>
-	     </div>
-	   </div>
-	
-	  <!-- start of JJimList -->
-		<section id="fh5co-about" data-section="about">
-			<div class="container">
-					<div class="col-md-12 section-heading text-center">
-						<h2 class="to-animate">찜 목록</h2>
-	
-					</div>
-				</div>
-					<div id="jjimList" class="text-center to-animate">
-						<table class="table" style="width: 100%; height: 100%;">
-							<thead class="thead-inverse">
-								<tr>
-									<th>#</th>
-									<th></th>
-									<th colspan="2">상품정보</th>
-									<th style="text-align: center;">가격</th>
-									<th style="text-align: center;">수량</th>
-									<th style="text-align: center;">구매처</th>
-									<th style="text-align: center;">총합</th>
-								</tr>
-							</thead>
-							<tbody id="nearest-cart-tbody">
-							 <!-- <tr>
-                  <th class="prod-info" scope="row">2</th>
-                  <td class="prod-info">
-                    <input type="checkbox">
-                  </td>
-                  <td width="13%">
-                    <img src="./resources/images/shinramyun.png" alt="Image" class="img-responsive">
-                  </td>
-                  <td class="prod-info">
-                    농심 신 라면 5개입 봉지
-                  </td>
-                  <td class="prod-info">
-                    <span>3,600</span>원
-                  </td>
-                  <td class="prod-info">
-                    <div class="number">
-                      <button type="button" class="btn btn-default btn-xs decreaseBtn">-</button>
-                      <span>1</span>
-                      <button type="button" class="btn btn-default btn-xs increaseBtn">+</button>
-                    </div>
-                  </td>
-                  <td class="prod-info">
-                    <a href="#">한빛마트</a>
-                  </td>
-                  <td class="prod-info">
-                    <span value="3600">3,600</span>원
-                    <p class="cart-prod-price" style="display: none;">3600</p>
-                  </td>
-                </tr> -->
-							</tbody>
-							<tr>
-								<td colspan="8">
-									<button id="nearest-cart-delete" class="btn btn-default" type="button">삭제</button>
-									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 찜목록에 담긴 상품은 30일간 보관되며 이후 삭제
-									됩니다.
-								</td>
-							</tr>
-							<tr>
-								<td colspan="8" style="text-align: right;">
-									<p style="margin-top: 2%;">
-										<span style="color: black; font-weight: bold;">
-										   총 주문금액&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;
-										</span>
-										<span id="nearest-cart-totalPrice"	style="color: red; font-weight: bold; font-size: xx-large;">
-										  
-										</span>
-										<span style="color: black; font-weight: bold;">
-										    원
-										</span>
-									</p>
-									<p>
-									  <a class="popup-with-zoom-anim" href="#small-dialog">
-										 <button id="nearest-buyBtn"
-										         class="btn btn-primary"
-										         style="margin-top: 1%; font-size: 30px; width: 265px; height: 80px;"
-											       type="button">구매하기</button>
-										</a>
-									</p>
-								</td>
-							</tr>
-						</table>
-					</div>
-	
-		</section><!-- End of JJimList -->
-		
   
-  <section id="fh5co-counters" data-stellar-background-ratio="0.5">
+  <div id="nearest-client-wrap" style="width: 100%; height:100%; margin: 0 auto;">
+
+  <div class="container" style="width: 1024px;">
+  
+    <div class="tab-content">
+      <div id="home" class="tab-pane fade in active">
+        
+        
+       <section id="fh5co-about" class="nearest-client-component" data-section="about">
+        
+            <h2 class="to-animate">찜목록</h2>
     
-    <div id="nearest-purchase-list" class="container">
-      <div class="row">
-        <div class="col-md-12 section-heading text-center to-animate">
-          <h2 style="font-size: 40px;">구매내역</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="fh5co-counter to-animate">
-            <i class="fh5co-counter-icon icon-money to-animate-2"></i>
-            <span class="fh5co-counter-number js-counter" data-from="0" data-to="5" data-speed="5000" data-refresh-interval="50">89</span>
-            <span class="fh5co-counter-label">결제완료</span>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="fh5co-counter to-animate">
-            <i class="fh5co-counter-icon icon-inbox to-animate-2"></i>
-            <span class="fh5co-counter-number js-counter" data-from="0" data-to="15" data-speed="5000" data-refresh-interval="50">15</span>
-            <span class="fh5co-counter-label">준비중</span>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="fh5co-counter to-animate">
-            <i class="fh5co-counter-icon icon-lightbulb-o to-animate-2"></i>
-            <span class="fh5co-counter-number js-counter" data-from="0" data-to="30" data-speed="5000" data-refresh-interval="50">30</span>
-            <span class="fh5co-counter-label">준비완료</span>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-xs-12">
-          <div class="fh5co-counter to-animate">
-            <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
-            <span class="fh5co-counter-number js-counter" data-from="0" data-to="55" data-speed="5000" data-refresh-interval="50">55</span>
-            <span class="fh5co-counter-label">수령완료</span>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div id="flight-datepicker" class="input-daterange input-group">
-          
-			    <div class="form-item">
-			      <label>Start Date</label><span class="fontawesome-calendar"></span>
-			      <input type="text" id="start-date" name="start" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm form-control"/><span class="date-text date-depart"></span>
-			    </div>
-			    <div class="form-item">
-			      <label>End Date</label><span class="fontawesome-calendar"></span>
-			      <input type="text" id="end-date" name="end" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm form-control"/><span class="date-text date-return"></span>
-			    </div>
-			  </div>      
-      </div>
-    </div>
-  </section>
-  
-  <section id="fh5co-work" data-section="work"
-    style="background-image: url(images/full_image_2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
-    <div class="container">
-      <div class="row">
-        <!-- <div class="col-md-12 section-heading text-center">
-          <h2 class="to-animate">구매내역</h2>
-          <div class="search-form">
-            <button class="btn btn-info to-animate" id="order-btn"
-              type="button">구매내역조회</button>
-            <div id="nearest-order-search" class="to-animate">
-              <select>
-                <option selected="selected">구매완료</option>
-                <option>준비완료</option>
-                <option>수령완료</option>
-              </select> 
-              <input type="date" value="2016-08-13"> 
-              <input type="date" value="2016-08-20">
-              <button class="btn btn-info" type="button">조회</button>
-              <button class="btn btn-default" id="order-reset-btn" type="reset">취소</button>
+            
+            <div id="jjimList" class="text-center to-animate">
+              <table class="table" style="width: 100%; height: 100%;">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>#</th>
+                    <th></th>
+                    <th colspan="2">상품정보</th>
+                    <th style="text-align: center;">가격</th>
+                    <th style="text-align: center;">수량</th>
+                    <th style="text-align: center;">구매처</th>
+                    <th style="text-align: center;">총합</th>
+                  </tr>
+                </thead>
+                <tbody id="nearest-cart-tbody">
+                
+                </tbody>
+                <tr>
+                  <td colspan="8">
+                    <button id="nearest-cart-delete" class="btn btn-default" type="button">삭제</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 찜목록에 담긴 상품은 30일간 보관되며 이후 삭제
+                    됩니다.
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="8" style="text-align: right;">
+                    <p style="margin-top: 2%;">
+                      <span style="color: black; font-weight: bold;">
+                         총 주문금액&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;
+                      </span>
+                      <span id="nearest-cart-totalPrice"  style="color: red; font-weight: bold; font-size: xx-large;">
+                        
+                      </span>
+                      <span style="color: black; font-weight: bold;">
+                          원
+                      </span>
+                    </p>
+                    <p>
+                      <a class="popup-with-zoom-anim-purchase" href="#nearest-purchase-dialog">
+                       <button id="nearest-buyBtn"
+                               class="btn btn-primary"
+                               style="margin-top: 1%; font-size: 30px; width: 265px; height: 80px;"
+                               type="button">구매하기</button>
+                      </a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
             </div>
-         </div>
-        </div> -->
-      <div class="row row-bottom-padded-sm">
+    
+      </section><!-- End of JJimList -->
+        
+        
+      </div>
+      <div id="menu1" class="tab-pane fade">
+                
+       <section id="fh5co-counters" data-stellar-background-ratio="0.5">
+   
+        <div id="nearest-purchase-list" class="container">
+          <div style="margin: 2% 5% 2% 5%;">
+            <div class="section-heading text-center to-animate">
+              <h2 style="text-align:center; color:black; font-size: 30px;">구매내역</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div id="flight-datepicker" class="input-daterange input-group">
+              
+              <div class="form-item">
+                <label>Start Date</label><span class="fontawesome-calendar"></span>
+                <input type="text" id="nearest-order-start-date" name="start" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm"/><span class="date-text date-depart"></span>
+              </div>
+              <div class="form-item">
+                <label>End Date</label><span class="fontawesome-calendar"></span>
+                <input type="text" id="nearest-order-end-date" name="end" placeholder="조회날짜를 선택하세요" data-date-format="DD, MM d" class="input-sm"/><span class="date-text date-return"></span>
+              </div>
+              
+            </div>     
+            <p style="text-align: right; margin-right: 41px;">
+              <input id="nearest-order-searchBtn" style="font-size: 15px; font-weight: 900;" class="btn btn-info" type="button" value="조회">
+            </p> 
+          </div>
+        </div>
+      </section>
       
-        <div class="col-md-4 col-sm-6 col-xxs-12">
-          <a href="#" class="purchase-list fh5co-project-item popup-with-form"> 
-          <img src="./images/shinramyun.png" alt="Image" class="img-responsive">
-            <div class="fh5co-text">
-              <h2>아 여기 뭘 어떠케 해야되 씨바</h2>
-              
-              
-            </div>
-          </a>
+      <section id="fh5co-work" data-section="work"
+        style="background-image: url(images/full_image_2.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+        <div class="container">
+         <div>
+          <div id="nearest-purchase-list-div" class="row-bottom-padded-sm">
+           
+          </div>
         </div>
-        <div class="col-md-4 col-sm-6 col-xxs-12">
-          <a href="#" class="purchase-list fh5co-project-item popup-with-form"> 
-          <img src="./images/shinramyun.png" alt="Image" class="img-responsive">
-            <div class="fh5co-text">
-              <h2>아 여기 뭘 어떠케 해야되 씨바</h2>
+      </div>
+      </section>
+      
+      </div>
+      <div id="menu2" class="tab-pane fade">
+        
+        <div id="nearest-request" class="container nearest-client-component">
+          <div id="listPage">
+              <h2>문의하기</h2>
+              <br/>
               
-              
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 col-sm-6 col-xxs-12">
-          <a href="#" class="purchase-list fh5co-project-item popup-with-form"> 
-          <img src="./images/shinramyun.png" alt="Image" class="img-responsive">
-            <div class="fh5co-text">
-              <h2>아 여기 뭘 어떠케 해야되 씨바</h2>
-              
-              
-            </div>
-          </a>
-        </div>
+              <a class="popup-with-zoom-anim" href="#nearest-new-request-dialog">
+                <button id="nearest-new-qnaBtn" class="btn btn-primary btn-sm">새 글</button>
+              </a>
+              <br/>
+              <table id="nearest-req" class="table table-hover">
+                  <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>생성일</th>
+                        <th>문의처</th>
+                        <th>상태</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+              </table>
+          </div>
+          <br/>
+          <br/>
+          <div id="nearest-new-request-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
+            <div id="formPage">
+              <h2 style="margin: 10px 0 19px 89px">새 문의사항</h2>
+             
+              <form class="form-horizontal">
+                <div class="form-group" style="margin-left: 3px;">
+                  <label class="col-sm-2 control-label">문의처</label>
+                  <select id="QNAselectBox" class="form-control" style="width: 200px;">
+                    <option id="nearest-select-ordered-mart" style="font-weight: bold;" value="">최근 주문한 마트</option>
+                  </select> 
+                </div>
+                <div class="form-group">
+                  <label for="fTitle" class="col-sm-2 control-label">제목</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" id="nearest-req-title" placeholder="제목을 입력하세요.">
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="fContent" class="col-sm-2 control-label">내용</label>
+                  <div class="col-sm-8">
+                    <textarea id="nearest-req-content" class="form-control" rows="4" 
+                              placeholder="내용을 입력하세요."></textarea>
+                  </div>
+                </div>
+                
+                
+                <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                      <button id="QNAaddBtn" type="button" class="bit-new-form btn btn-primary btn-sm">등록</button>
+                  </div>
+                </div>
+                
+              </form>    
+              </div> <!-- #formPage -->
+          </div>
+          
+          
+          </div> <!-- .container -->
         
       </div>
     </div>
   </div>
-  </section>
-		
-		<!-- start payment popup -->
-		<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-	    <div id="charge-form">
-	
-	      <div class="form-box">
-	        <div class="form-top">
-	          <div class="form-top-left">
-	            <h2>주문/결제</h2>
-	            <p>결제정보를 빠짐없이 입력해 주세요.</p>
-	          </div>
-	          <div class="form-top-right">
-	            <i class="fa fa-pencil"></i>
-	          </div>
-	        </div>
-	        <div class="form-bottom">
-	        
-	          <form role="form" action="" method="post" class="registration-form">
-	            <div>
-	              <input type="checkbox">&nbsp;내 정보와 동일
-	            </div>
-	            <div class="form-group">
-	              <label class="sr-only" for="form-first-name">First name</label> 
-	              <input type="text" name="form-first-name" placeholder="이름.." class="form-first-name form-control" id="form-name">
-	            </div>
-	            <div class="form-group">
-	              <label class="sr-only" for="form-last-name">Phone number...</label> 
-	              <input type="text" name="phone-number" placeholder="핸드폰번호..('-' 없이 입력해주세요.)" 
-	                     class="form-last-name form-control" id="phone-number">
-	            </div>
-	            <div class="form-group">
-	              <label class="sr-only" for="form-email">Email</label> 
-	              <input type="text" name="form-email" placeholder="이메일..."
-	                class="form-email form-control" id="form-email">
-	            </div>
-	            <div class="form-group">
-	              <label class="sr-only" for="form-email">Address...</label> 
-	              <input type="text" name="form-addr" placeholder="주소..."
-	                class="form-email form-control" id="form-addr">
-	            </div>
-	            <div class="form-group">
-	              <label class="sr-only" for="form-email">postcode</label> 
-	              <input type="text" name="form-postcode" placeholder="우편번호..."
-	                class="form-email form-control" id="form-postcode">
-	            </div>
-	            
-	            <table class="table table-striped">
-	              <tr>
-	                <th>수령 가능 시간</th>
-	                <td><input type="datetime-local"> ~ <input
-	                  type="datetime-local"></td>
-	              </tr>
-	              <tr>
-	                <th>결제수단 선택</th>
-	                <td>
-	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="card" checked="checked">&nbsp;신용카드
-	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="phone">&nbsp;휴대폰 결제 
-	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="trans">&nbsp;실시간 계좌이체 
-	                  <input type="radio" name="purchaseMethod" class="purchaseMethod" value="vbank">&nbsp;가상계좌
-	                </td>
-	
-	              </tr>
-	              <tr>
-	                <th>총 결제 금액</th>
-	                <td id="nearest-payment-price" value=""> </td>
-	              </tr>
-	            </table>
-	
-	              <button style="" class="btn btn-success" id="purchaseBtn" type="button">결제하기</button>
-	
-	          </form>
-	        </div>
-	      </div>
-	
-	    </div>
-	  </div><!-- End of payment popup -->
-	</div>
-	
-	<footer>
-	 <section class="foot-area">
+  
+    <!-- start payment popup -->
+    <div id="nearest-purchase-dialog" class="zoom-anim-dialog mfp-hide small-dialog">
+      <div id="charge-form">
+  
+        <div class="form-box">
+          <div class="form-top">
+            <div class="form-top-left">
+              <h2>주문/결제</h2>
+              <p>결제정보를 빠짐없이 입력해 주세요.</p>
+            </div>
+            <div class="form-top-right">
+              <i class="fa fa-pencil"></i>
+            </div>
+          </div>
+          <div class="form-bottom">
+          
+            <form role="form" action="" method="post" class="registration-form">
+              <div>
+                <input id="input-myinfo" type="checkbox">&nbsp;내 정보와 동일
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-first-name">First name</label> 
+                <input type="text" name="form-first-name" placeholder="이름.." class="form-first-name form-control" id="form-name">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-last-name">Phone number...</label> 
+                <input type="text" name="phone-number" placeholder="핸드폰번호..('-' 없이 입력해주세요.)" 
+                       class="form-last-name form-control" id="phone-number">
+              </div>
+              <div class="form-group">
+                <label class="sr-only" for="form-email">Email</label> 
+                <input type="text" name="form-email" placeholder="이메일..."
+                  class="form-email form-control" id="form-email">
+              </div>
+              
+              <table class="table table-striped">
+                <tr>
+                  <th>수령 가능 시간</th>
+                  <td>
+                    <input id="nearest-receive-time" type="datetime-local">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong>이용약관 동의</strong>&nbsp; <input id="nearest-agree" type="checkbox">
+                  </td>
+                </tr>
+                <tr>
+                  <th>결제수단 선택</th>
+                  <td>
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="card" checked="checked">&nbsp;신용카드
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="phone">&nbsp;휴대폰 결제 
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="trans">&nbsp;실시간 계좌이체 
+                    <input type="radio" name="purchaseMethod" class="purchaseMethod" value="vbank">&nbsp;가상계좌
+                  </td>
+  
+                </tr>
+                <tr>
+                  <th>총 결제 금액</th>
+                  <td id="nearest-payment-price" value=""> </td>
+                </tr>
+              </table>
+  
+                <button style="" class="btn btn-success" id="purchaseBtn" type="button">결제하기</button>
+  
+            </form>
+          </div>
+        </div>
+  
+      </div>
+    </div><!-- End of payment popup -->
+    
+    <div id="nearest-receipt" class="zoom-anim-dialog mfp-hide small-dialog"><!-- receipt div -->
+      
+    </div>
+    <div id="nearest-client-req-popup" class="zoom-anim-dialog mfp-hide small-dialog"><!-- nearest-client-rep-form div -->
+      
+    </div>
+  </div>
+  
+  <div id="nearest-myinfo-div" class="white-popup-block mfp-hide">
+  <table id="nearest-myinfo-table" class="table table-hover">
+    <thead>
+      <tr>
+        <th colspan="3">
+          <h2>개인정보변경</h2>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Name</strong></td>
+        <td colspan="2"><span id="client-name"></span></td>
+      </tr>
+      <tr>
+        <td><strong>Id</strong></td>
+        <td colspan="2">
+          <input id="client-id-input" type="hidden"><span id="client-id"></span>
+        </td>
+        
+      </tr>
+      <tr>
+        <td>
+          <strong>Password</strong>
+        </td>
+        <td colspan="2">
+          <input id="update-password" type="password">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Password Check</strong>
+        </td>
+        <td colspan="2">
+          <input id="update-password-check" type="password"><span id="alert-check-password"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>bitrh</strong>
+        </td>
+        <td colspan="2">
+          <span id="client-birth"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>Phone</strong>
+        </td>
+        <td colspan="2">
+          <span id="client-phone"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <strong>E-Mail</strong>
+        </td>
+        <td>
+          <input id="client-email-input" type="hidden">
+          <span id="client-email"></span>
+        </td>
+        <td class="userinfoBtn">
+          <input id="update-email-btn" type="button" class="btn btn-success" value="E-mail변경">
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td class="userinfoBtn" style="text-align: right;">
+          <input id="myinfo-updateBtn" type="button" class="btn btn-primary" value="수정">
+          <input id="myinfo-resetBtn" type="reset" class="btn btn-default" value="취소">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <!-- 내정보 끝 -->
+  
+  <footer>
+   <section class="foot-area" style="height: 150px;">
       <div class="nearest-footer" style="text-align: center; width: 100%;">
           <!-- (s)160524: 전자금융거래이용약관 -->
           <div class="nearest-footer-copyright">Copyright © Nearest All Rights Reserved.</div>
           <!-- (e)160524: 전자금융거래이용약관 -->
       </div> <!--/.row -->
     </section>
-	</footer>
-	
-	<script id="nearest-cart-list" type="text/x-handlebars-template">
+  </footer>
+  
+  <script id="nearest-cart-list" type="text/x-handlebars-template">
     {{#each cartData}}
       <tr>
         <th class="prod-info" scope="row">{{inc @index}}</th>
         <td class="prod-info">
           <input type="checkbox" class="nearest-cart-prodNo" value="{{no}}">
           <input type="hidden" class="nearest-cart-martNo" value="{{mart.no}}">
+          <input type="hidden" class="nearest-cart-prodName" value="{{name}}">
+          <input type="hidden" class="nearest-cart-price" value="{{price}}">
+          <input type="hidden" class="nearest-cart-discount" value="{{discountRate}}">
         </td>
         <td width="13%">
           <img src="{{photo}}" alt="Image" class="img-responsive">
@@ -494,7 +523,7 @@
            {{name}}
         </td>
         <td class="prod-info">
-          <span>{{price}}</span>
+          <span class="nearest-cart-price-display">{{price}}</span>
         </td>
         <td class="prod-info">
           <div class="number">
@@ -507,29 +536,171 @@
           <a href="#">{{mart.name}}</a>
         </td>
         <td class="prod-info">
-          <span value="{{price}}">{{price}}</span>원
+          <span class="nearest-cart-total-price-display" value="{{price}}">{{price}}원</span>
           <p class="cart-prod-price" style="display: none;">{{price}}</p>
         </td>
       </tr>
     {{/each}}
-	</script>
-	
-	<!-- Main JS (Do not remove) -->
-	<script src="./resources/js/app-context.js"></script>
-	<script src="./resources/js/main.js"></script>
-	<script src="./resources/js/main_dropdown.js"></script>
-	<script src="./resources/js/main_search.js"></script>
-	<script src="./resources/js/main_handlebars.js"></script>
-	<script src="./resources/js/main_login.js"></script>
-	<script src="./resources/js/main_register.js"></script>
-	<script src="./resources/js/client_payment.js"></script>
-	<script src="./resources/js/client_purchase_list.js"></script>
-	<script src="./resources/js/client_cart.js"></script>
-	<script type="text/javascript">
-	
+  </script>
+  
+  <script id="nearest-req-list" type="text/x-handlebars-template">
+    {{#each reqData}}
+      <tr class="nearest-client-req-tr">
+        <td req-no="{{no}}">{{no}}</td>
+        <td data="{{title}}">{{title}}</td>
+        <td data="{{createDate}}">{{stringCreateDate}}</td>
+        <td mart-no="{{mart.no}}">{{mart.name}}</td>
+        <td data="{{status}}">{{reqStatus}}</td>
+      </tr>
+      <tr class="nearest-Qna" style="display : none;">
+        <td colspan="5">
+          <div class="comments-container">
+      
+          <ul class="comments-list" style="margin: 0; padding: 0;">
+            <li>
+              <div class="comment-main-level">
+                <!-- Contenedor del Comentario -->
+                <div class="comment-box">
+                  <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-head">
+                  <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">Q</h1>
+                   {{content}}
+                  </div>
+                  {{#if request}}
+                  <div style="font-size: 20px; color: black; font-weight: 600;" class="comment-content">
+                  <h1 style="margin: 0 0 10px 0; color: #03658c;" class="comment-name">A</h1>
+                    {{replyContent}}
+                  </div>
+                  {{/if}}
+                </div>
+              </div>
+            </li>
+      
+      
+          </ul>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+  </script>
+  
+  <script id="nearest-purchase-info" type="text/x-handlebars-templete">
 
-	</script>
+      <div class="row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="fh5co-counter to-animate">
+                <i class="fh5co-counter-icon icon-krw to-animate-2"></i>
+                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{paid}}" data-speed="5000" data-refresh-interval="50">{{paid}}</span>
+                <span class="fh5co-counter-label">결제완료</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="fh5co-counter to-animate">
+                <i class="fh5co-counter-icon icon-inbox to-animate-2"></i>
+                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{preparing}}" data-speed="5000" data-refresh-interval="50">{{preparing}}</span>
+                <span class="fh5co-counter-label">준비중</span>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="fh5co-counter to-animate">
+                <i class="fh5co-counter-icon icon-box2 to-animate-2"></i>
+                <span class="fh5co-counter-number js-counter" data-from="0" data-to="{{complete}}" data-speed="5000" data-refresh-interval="50">{{complete}}</span>
+                <span class="fh5co-counter-label">준비완료</span>
+              </div>
+            </div>
+          </div>
+    
+  </script>
 
+  <script id="nearest-purchase-list-table-form" type="text/x-handlebars-templete">
+  {{#each this}}
+    <div class="purchase-list fh5co-project-item"> 
+      <div class="col-md-3" style="max-height:200px; text-align: center;">
+          <h4 style="font-size: 22px;"><span class="label label-danger">주문시간</span></h4>    
+          <h4 style="font-size: 22px;">{{this}}</h4>
+          <h4 style="font-size: 22px;"><span class="label label-default">결제금액</span></h4>    
+          <h1 id="nearest-putchase-total-price-{{@index}}" style="margin-bottom:10px; color:#b00000; font-size: 50px; font-family: fantasy;  font-weight:bold;"></h1>
+      </div>
+      <div class="col-md-9" style="overflow: auto; line-height:0; min-height:200px; max-height:200px; background:#222; padding: 30px 15px;">
+        <table style=" margin-bottom:0px; color: white;" class="nearest-purchased-list-table table nearest-hover-table">
+          <thead>
+            <tr>
+              <th>구매처</th>
+              <th>구매상품</th>
+              <th>총구매가격</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody id="nearest-purchaseList-tbody-{{@index}}">
+
+          </tbody> 
+        </table>
+      </div>
+    </div>    
+  {{/each}}
+  </script>
+  <script id="nearest-purchase-list-table-content" type="text/x-handlebars-templete">
+    <tr style="cursor:pointer;" class="nearest-order-list-detail">
+      <td mart-no="{{martNo}}" order-no="{{orderNo}}">{{martName}}</td>
+      <td>{{productName}} 포함 {{totalCount}}개</td>
+      <td class="nearest-mart-price" price-data="{{totalPrice}}">{{totalPrice}}원</td>
+      
+      <td>{{state orderState}}</td>
+    </tr>
+  </script>
+  <script id="nearest-product-recipt-list" type="text/x-handlebars-templete">
+    {{#each this}}
+    <tr class="nearest-product-receipt-list-tr">
+      <td style="font-size: 16px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #ff0000;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
+        {{prodName}}
+      </td>
+      <td style="font-size: 16px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;">
+        {{orderEnt}}개
+      </td>
+      <td style="font-size: 16px; font-family: &#39;Open Sans&#39;, sans-serif; color: #646a6e;  line-height: 18px; text-align:center; vertical-align: top; padding:10px 0;" align="center">
+        {{price}}원
+      </td>
+      <td style="font-size: 16px; font-weight:bold; font-family: &#39;Open Sans&#39;, sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">
+        {{totalPrice}}원
+      </td>
+    </tr>
+    {{/each}}
+
+  </script>
+  <!-- <td><span class="label ${{orderStateCss}}">${{orderStateLabel}}</span></td> -->
+  <script id="nearest-ordered-mart-list" type="text/x-handlebars-templete">
+  {{#each this}}
+
+    
+    <option value="{{no}}">{{name}}</option>
+
+  {{/each}}
+  </script>
+  
+  
+  <!-- Main JS (Do not remove) -->
+  <script src="./resources/js/app-context.js"></script>
+  <script src="./resources/js/session_check.js"></script>
+  <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="./resources/js/alert_index.js"></script>
+  <script src="./resources/js/main.js"></script>
+  <script src="./resources/js/main_dropdown.js"></script>
+  <!-- <script src="./resources/js/main_search.js"></script> -->
+  <script src="./resources/js/main_register.js"></script>
+  <script src="./resources/js/client.js"></script>
+  <script src="./resources/js/client_payment.js"></script>
+  <script src="./resources/js/client_purchase_list.js"></script>
+  <script src="./resources/js/client_cart.js"></script>
+  <script src="./resources/js/client_order_list.js"></script>
+  <script src="./resources/js/client_qna.js"></script>
+  <script src="./resources/js/client_request.js"></script>
+  <script src="./resources/js/client_myinfo.js"></script>
+  <script src="./resources/js/logout.js"></script>
+  
+  <script type="text/javascript">
+    $('#nearest-logo').on('click', function() {
+    	location.href='/nearest/index.html';
+    });
+  </script>
 
 </body>
 </html>

@@ -5,5 +5,17 @@ tbody > tr > td, tbody > tr > th {
 }
 #nearest-purchase-list {
 	
-	background-color: black; padding: 0em; border-radius: 20px;
+	background-color: #ffffff; border-radius: 20px;
+	box-shadow: 3px 5px 15px #888888 !important;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 98%;
+}
+
+#nearest-request{
+	padding: 2em 0;
+}
+
+.nearest-client-req-tr{
+	cursor: pointer;
 }
